@@ -13,7 +13,7 @@ task :install do
 end
 
 def install(file)
-  #puts "Linking ~/.#{file}"
+  puts "Linking ~/.#{file}"
   system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
 end
 
@@ -23,7 +23,7 @@ def maybe_replace(file)
   case $stdin.gets.chomp 
   when 'y'
     system %Q{rm "$HOME/.#{file}"}
-    install(file)
+    install file
   else 
     puts "skipping ~/.#{file}"
   end
