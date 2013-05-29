@@ -15,12 +15,14 @@ set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
 set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
+set laststatus=2                " Always show status line
+set scrolloff=3                 " Begin scrolling the screen # lines from cursor
 
 " Buffers can exist in background without being in a window
 set hidden
 
-" Highlight current status line when multiple windows are open
-highlight StatusLine ctermfg=blue ctermbg=yellow
+" Color the status line
+"highlight StatusLine ctermfg=blue ctermbg=yellow
 
 "" Swap Files
 set updatecount=0               " Disable swap files
