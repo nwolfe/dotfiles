@@ -56,3 +56,7 @@ map <Up> :echo "no!"<CR>
 map <Down> :echo "no!"<CR>
 map <Left> :echo "no!"<CR>
 map <Right> :echo "no!"<CR>
+
+" Scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
