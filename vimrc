@@ -41,6 +41,15 @@ set incsearch                   " Search as you type
 set ignorecase                  " Searches ignore case...
 set smartcase                   " ...unless they contain at least one capital letter
 
+"" Ruby support
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading=1
+autocmd FileType ruby,eruby let g:rubycomplete_rails=1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global=1
+
+" Improve autocomplete menu color
+highlight Pmenu ctermbg=blue gui=bold
+
 "" Mappings
 " Un-highlight search matches on Enter
 nnoremap <CR> :nohlsearch<CR>
