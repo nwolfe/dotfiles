@@ -41,9 +41,6 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rvm)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/Users/nwolfe/.rvm/gems/ruby-1.9.3-p429/bin:/Users/nwolfe/.rvm/gems/ruby-1.9.3-p429@global/bin:/Users/nwolfe/.rvm/rubies/ruby-1.9.3-p429/bin:/Users/nwolfe/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/nwolfe/.rvm/bin
