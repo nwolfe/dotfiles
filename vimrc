@@ -3,19 +3,22 @@
 set nocompatible                " Use Vim settings instead of classic vi. Must be first
 set encoding=utf-8
 
-color desert                    " Set the color theme
-
 set showcmd                     " Display incomplete commands
 set showmatch                   " Highlight matching parens
-set ruler                       " Show cursor position at bottom
 set title                       " Show title
-set cursorline                  " Underline the line the cursor is on
 set number                      " Show line numbers
 set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
+set hidden                      " Switch away from a buffer with unsaved changes
 set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
-set hidden                      " Buffers can exist in background without being in a window
+
+"" Color Scheme
+if has('gui')
+  colorscheme solarized
+else
+  colorscheme desert
+end
 
 "" Status Line
 set laststatus=2                " Always show status line
@@ -26,10 +29,11 @@ set noswapfile
 set nobackup
 set nowritebackup 
 
-"" Scrolling
+"" Cursor
+set ruler                       " Show cursor position at bottom
+set cursorline                  " Underline the line the cursor is on
 set scrolloff=3                 " Begin scrolling the screen # lines from cursor
-set sidescrolloff=3
-set sidescroll=1
+set sidescrolloff=2
 
 "" Whitespace
 set tabstop=2 shiftwidth=2      " Tab is 2 spaces
