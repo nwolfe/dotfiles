@@ -1,8 +1,6 @@
 set nocompatible                " Use Vim settings instead of classic vi. Must be first
 set encoding=utf-8
 
-syntax enable                   " Syntax highlighting
-filetype plugin indent on       " Load file type plugins + indentation
 color desert                    " Set the color theme
 
 set showcmd                     " Display incomplete commands
@@ -24,8 +22,10 @@ set hidden
 " Color the status line
 "highlight StatusLine ctermfg=blue ctermbg=yellow
 
-"" Swap Files
-set updatecount=0               " Disable swap files
+"" Swap/Backup Files
+set noswapfile
+set nobackup
+set nowritebackup 
 
 "" Whitespace
 set tabstop=2 shiftwidth=2      " Tab is 2 spaces
@@ -41,13 +41,18 @@ set incsearch                   " Search as you type
 set ignorecase                  " Searches ignore case...
 set smartcase                   " ...unless they contain at least one capital letter
 
-"" Ruby support
+"" Syntax
+syntax enable
+filetype plugin on
+filetype indent on
+
+" Ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading=1
 autocmd FileType ruby,eruby let g:rubycomplete_rails=1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global=1
 
-" Improve autocomplete menu color
+" Improve Powertab? autocomplete menu color
 highlight Pmenu ctermbg=blue gui=bold
 
 "" Mappings
