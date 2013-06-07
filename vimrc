@@ -1,3 +1,5 @@
+" For more information on a setting type :help <setting>
+
 set nocompatible                " Use Vim settings instead of classic vi. Must be first
 set encoding=utf-8
 
@@ -13,19 +15,21 @@ set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
 set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
+set hidden                      " Buffers can exist in background without being in a window
+
+"" Status Line
 set laststatus=2                " Always show status line
-set scrolloff=3                 " Begin scrolling the screen # lines from cursor
-
-" Buffers can exist in background without being in a window
-set hidden
-
-" Color the status line
 "highlight StatusLine ctermfg=blue ctermbg=yellow
 
 "" Swap/Backup Files
 set noswapfile
 set nobackup
 set nowritebackup 
+
+"" Scrolling
+set scrolloff=3                 " Begin scrolling the screen # lines from cursor
+set sidescrolloff=3
+set sidescroll=1
 
 "" Whitespace
 set tabstop=2 shiftwidth=2      " Tab is 2 spaces

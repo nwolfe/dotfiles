@@ -28,7 +28,8 @@ ZSH_THEME="wezm"
 
 # Uncomment following line if you want to disable command autocorrection
 # ** Uncommented for use of 'tree' command so it wouldn't try to autocorrect to 'tee'
-DISABLE_CORRECTION="true"
+# ** Recommented for lack of using 'tree'
+# DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
