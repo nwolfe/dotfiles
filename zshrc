@@ -45,3 +45,27 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+### ENVIRONMENT
+VISUAL=vim
+
+### ALIASES
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Verify destruction
+alias rm='rm -iv' # Verbose, print removed files
+alias mv='mv -i'
+alias cp='cp -i'
+
+# List directory contents
+# -h  Human-readable file sizes
+# -G  Colored output
+# -F  Append special character denoting file type
+# -o  Long format, omit owner
+# -g  Long format, omit group
+alias ls='ls -hGF'
+alias ll='ls -og'
+alias la='ls -A'
