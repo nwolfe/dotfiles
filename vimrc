@@ -14,11 +14,7 @@ set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
 
 "" Color Scheme
-if has('gui')
-  colorscheme solarized
-else
-  colorscheme desert
-end
+colorscheme desert
 
 "" Status Line
 set laststatus=2                " Always show status line
