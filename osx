@@ -1,10 +1,8 @@
-# Menu Bar: Show remaining battery time, not percentage
-# ** This doesn't seem to work anymore
-#defaults write com.apple.menuextra.battery ShowPercent -string "NO"
-#defaults write com.apple.menuextra.battery ShowTime -string "YES"
-
 # Finder: Allow quitting with Command + Q
 defaults write com.apple.finder QuitMenuItem -bool true
 
 # Finder: Show path bar
 defaults write com.apple.finder ShowPathbar -bool true
+
+# Spaces: Don't rearrange based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
