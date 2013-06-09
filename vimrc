@@ -60,6 +60,11 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global=1
 highlight Pmenu ctermbg=blue gui=bold
 
 "" Mappings
+let mapleader=","
+
+" Swap buffers
+nnoremap <leader><leader> <C-^>
+
 " Un-highlight search matches on Enter
 nnoremap <CR> :nohlsearch<CR>
 
@@ -80,5 +85,5 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " Move line up/down
-map _ ddkP
-map - ddp
+nnoremap <leader>_ ddkP
+nnoremap <leader>- ddp
