@@ -84,6 +84,10 @@ map <Right> <nop>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-" Move line up/down
-nnoremap <leader>_ ddkP
-nnoremap <leader>- ddp
+" Edit files from directory of current buffer
+" http://vimcasts.org/episodes/the-edit-command
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
