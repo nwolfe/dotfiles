@@ -70,11 +70,15 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Disable arrow keys in normal mode for fun
-map <Up> :echo "no!"<CR>
-map <Down> :echo "no!"<CR>
-map <Left> :echo "no!"<CR>
-map <Right> :echo "no!"<CR>
+map <Up> <nop>
+map <Down> <nop>
+map <Left> <nop>
+map <Right> <nop>
 
 " Scroll the viewport faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+
+" Move line up/down
+map _ ddkP
+map - ddp
