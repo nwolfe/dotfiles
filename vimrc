@@ -20,7 +20,7 @@ colorscheme desert
 
 "" Status Line
 set laststatus=2                " Always show status line
-"highlight StatusLine ctermfg=blue ctermbg=yellow
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 "" Swap/Backup Files
 set noswapfile
