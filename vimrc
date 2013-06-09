@@ -12,6 +12,8 @@ set autoread                    " Auto-reload buffers when file changed on disk
 set hidden                      " Switch away from a buffer with unsaved changes
 set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
+set splitright                  " Split to the right side instead of left
+set splitbelow                  " Split below instead of above
 
 "" Color Scheme
 colorscheme desert
@@ -45,7 +47,6 @@ set incsearch                   " Search as you type
 set ignorecase                  " Searches ignore case...
 set smartcase                   " ...unless they contain at least one capital letter
 
-"" Syntax
 syntax enable
 filetype plugin on
 filetype indent on
