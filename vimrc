@@ -6,7 +6,7 @@ set encoding=utf-8
 set showcmd                     " Display incomplete commands
 set showmatch                   " Highlight matching parens
 set title                       " Show title
-set number                      " Show line numbers
+set relativenumber              " Show line numbers relative to the cursor line
 set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
 set hidden                      " Switch away from a buffer with unsaved changes
