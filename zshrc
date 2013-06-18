@@ -69,3 +69,8 @@ alias cp='cp -i'
 alias ls='ls -hGF'
 alias ll='ls -og'
 alias la='ls -A'
+
+# List directory contents after cd
+function chpwd() {
+  ls
+}
