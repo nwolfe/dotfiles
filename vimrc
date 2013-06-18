@@ -6,7 +6,6 @@ set encoding=utf-8
 set showcmd                     " Display incomplete commands
 set showmatch                   " Highlight matching parens
 set title                       " Show title
-set relativenumber              " Show line numbers relative to the cursor line
 set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
 set hidden                      " Switch away from a buffer with unsaved changes
@@ -15,6 +14,10 @@ set wildmode=list:longest
 set splitright                  " Split to the right side instead of left
 set splitbelow                  " Split below instead of above
 set shell=/bin/bash             " For embedded shell to work properly 
+
+"" Line Numbers
+"set relativenumber               " Relative
+set number                       " Absolute
 
 "" Color Scheme
 colorscheme desert
