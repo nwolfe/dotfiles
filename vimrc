@@ -51,6 +51,12 @@ set incsearch                   " Search as you type
 set ignorecase                  " Searches ignore case...
 set smartcase                   " ...unless they contain at least one capital letter
 
+"" File Explorer
+"let g:netrw_liststyle=3        " Enable tree-view
+"let g:netrw_preview=1          " Preview files in vertical split
+let g:netrw_browse_split=4      " Files open in previous buffer
+let g:netrw_winsize=20          " Narrow window
+
 syntax enable
 filetype plugin on
 filetype indent on
@@ -96,3 +102,5 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+map <leader>e. :Vex<CR>
+" ^ Open file explorer in left window
