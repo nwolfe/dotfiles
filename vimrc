@@ -55,7 +55,7 @@ set smartcase                   " ...unless they contain at least one capital le
 "let g:netrw_liststyle=3        " Enable tree-view
 "let g:netrw_preview=1          " Preview files in vertical split
 let g:netrw_browse_split=4      " Files open in previous buffer
-let g:netrw_winsize=20          " Narrow window
+let g:netrw_winsize=30          " Narrow window
 
 syntax enable
 filetype plugin on
