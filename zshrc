@@ -73,7 +73,20 @@ alias ls='ls -hGF'
 alias ll='ls -og'
 alias la='ls -A'
 
+### FUNCTIONS
 # List directory contents after cd
 function chpwd() {
   ls
+}
+
+# Create executable shell script with hash-bang line
+function mkscript() {
+    if [ -e $1 ]; then
+        echo "ERROR: $1 already exists" 1>&2
+        return 1
+    fi
+
+    echo "#!/bin/sh" > $1
+    chmod 777 $1
+    return 0
 }
