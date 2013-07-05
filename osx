@@ -6,3 +6,9 @@ defaults write com.apple.finder ShowPathbar -bool true
 
 # Spaces: Don't rearrange based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
+
+# Fast Key Repeat
+#   Default key repeat is 2 (30ms)
+#   Default initial is 15 (225ms)
+defaults write NSGlobalDomain KeyRepeat -int 1
+#defaults write NSGlobalDomain InitialKeyRepeat -int 0.02

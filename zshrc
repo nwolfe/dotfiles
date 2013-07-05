@@ -5,10 +5,10 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="wezm"
+ZSH_THEME="wezm"
 #ZSH_THEME="nicoulaj"
 #ZSH_THEME="blinks"
-ZSH_THEME="sorin"
+#ZSH_THEME="sorin"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
