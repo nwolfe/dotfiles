@@ -20,7 +20,7 @@ set shell=/bin/bash             " For embedded shell to work properly
 set number                       " Absolute
 
 "" Color Scheme
-colorscheme desert
+colorscheme jellybeans
 
 "" Status Line
 set laststatus=2                " Always show status line
