@@ -51,6 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 ### ENVIRONMENT
 VISUAL=vim
+TERM=xterm-256color
 
 ### ALIASES
 # Navigation
