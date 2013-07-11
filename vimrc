@@ -1,7 +1,12 @@
 " For more information on a setting type :help <setting>
+execute pathogen#infect()
+execute pathogen#helptags()
 
-set nocompatible                " Use Vim settings instead of classic vi. Must be first
+set nocompatible                " Use Vim settings instead of classic vi
 set encoding=utf-8
+
+syntax enable
+filetype plugin indent on
 
 set showcmd                     " Display incomplete commands
 set showmatch                   " Highlight matching parens
@@ -56,10 +61,6 @@ set smartcase                   " ...unless they contain at least one capital le
 "let g:netrw_preview=1          " Preview files in vertical split
 let g:netrw_browse_split=4      " Files open in previous buffer
 let g:netrw_winsize=30          " Narrow window
-
-syntax enable
-filetype plugin on
-filetype indent on
 
 " Ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
