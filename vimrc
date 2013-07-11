@@ -119,3 +119,7 @@ map <leader>et :tabe %%
 
 " Yank from cursor to end of line to be consistent with C and D
 nnoremap Y y$
+
+" Visual shifting does not exit Visual mode
+vnoremap < <gv
+vnoremap > >gv
