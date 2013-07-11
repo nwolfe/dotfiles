@@ -19,6 +19,7 @@ set wildmode=list:longest
 set splitright                  " Split to the right side instead of left
 set splitbelow                  " Split below instead of above
 set shell=/bin/bash             " For embedded shell to work properly 
+set visualbell                  " ...not audio bell
 
 "" Line Numbers
 "set relativenumber               " Relative
