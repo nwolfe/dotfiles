@@ -29,8 +29,19 @@ set number                       " Absolute
 colorscheme jellybeans
 
 "" Status Line
-set laststatus=2                " Always show status line
-set statusline=%<%f\ %{fugitive#statusline()}(%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)%#warningmsg#%{SyntasticStatuslineFlag()}%*
+""    From https://github.com/spf13/spf13-vim/blob/master/.vimrc
+if has('statusline')
+    set laststatus=2                              " Always show status line
+    set statusline=%<%f\                          " Filename
+    set statusline+=%w%h%m%r                      " Options?
+    set statusline+=%{fugitive#statusline()}      " Git branch
+    "set statusline+=\ [%{&ff}/%Y]                 " Filetype
+    set statusline+=\ [%{getcwd()}]               " Current directory
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%       " Right-aligned file nav info
+endif
 
 "" Swap/Backup Files
 set noswapfile
