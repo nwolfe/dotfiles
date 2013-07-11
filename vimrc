@@ -10,6 +10,7 @@ syntax enable
 filetype plugin indent on
 
 "let g:solarized_termcolors=256  " Enable color support for Solarized scheme
+"set background=dark
 colorscheme jellybeans
 
 set showcmd                     " Display incomplete commands
