@@ -1,4 +1,5 @@
 " For more information on a setting type :help <setting>
+
 execute pathogen#infect()
 execute pathogen#helptags()
 
@@ -8,27 +9,23 @@ set encoding=utf-8
 syntax enable
 filetype plugin indent on
 
+colorscheme jellybeans
+
 set showcmd                     " Display incomplete commands
 set showmatch                   " Highlight matching parens
 set title                       " Show title
 set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
 set hidden                      " Switch away from a buffer with unsaved changes
-set wildmenu                    " Bash-style file & command Tab completion
-set wildmode=list:longest
-set splitright                  " Split to the right side instead of left
-set splitbelow                  " Split below instead of above
 set shell=/bin/bash             " For embedded shell to work properly 
 set visualbell                  " ...not audio bell
+set splitright                  " Split to the right side instead of left
+"set splitbelow                  " Split below instead of above
+set number                      " Absolute, or relativenumber
+set wildmenu                    " Bash-style file & command Tab completion
+set wildmode=list:longest
 set list                        " Highlight whitespace
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
-
-"" Line Numbers
-"set relativenumber               " Relative
-set number                       " Absolute
-
-"" Color Scheme
-colorscheme jellybeans
 
 "" Status Line
 ""    From https://github.com/spf13/spf13-vim/blob/master/.vimrc
@@ -76,7 +73,7 @@ set smartcase                   " ...unless they contain at least one capital le
 "let g:netrw_browse_split=4      " Files open in previous buffer
 "let g:netrw_winsize=30          " Narrow window
 
-" Ruby
+"" Ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading=1
 autocmd FileType ruby,eruby let g:rubycomplete_rails=1
