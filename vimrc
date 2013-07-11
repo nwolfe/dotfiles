@@ -9,6 +9,7 @@ set encoding=utf-8
 syntax enable
 filetype plugin indent on
 
+let g:solarized_termcolors=256
 colorscheme jellybeans
 
 set showcmd                     " Display incomplete commands
