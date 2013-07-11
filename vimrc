@@ -30,7 +30,7 @@ colorscheme jellybeans
 
 "" Status Line
 set laststatus=2                " Always show status line
-set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline=%<%f\ (%{&ft})%{fugitive#statusline()}\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 "" Swap/Backup Files
 set noswapfile
