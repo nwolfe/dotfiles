@@ -116,3 +116,6 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 "map <leader>e. :Vex<CR>
 " ^ Open file explorer in left window
+
+" Yank from cursor to end of line to be consistent with C and D
+nnoremap Y y$
