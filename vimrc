@@ -20,6 +20,8 @@ set splitright                  " Split to the right side instead of left
 set splitbelow                  " Split below instead of above
 set shell=/bin/bash             " For embedded shell to work properly 
 set visualbell                  " ...not audio bell
+set list                        " Highlight whitespace
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 "" Line Numbers
 "set relativenumber               " Relative
