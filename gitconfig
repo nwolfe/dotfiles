@@ -1,5 +1,6 @@
 [core]
     editor = /usr/bin/vim
+    excludesfile = /Users/nwolfe/.gitignore
 [user]
     email = nwolfe@puppetlabs.com
     name = Nate Wolfe
