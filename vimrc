@@ -30,7 +30,7 @@ colorscheme jellybeans
 
 "" Status Line
 set laststatus=2                " Always show status line
-set statusline=%<%f\ %{fugitive#statusline()}(%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set statusline=%<%f\ %{fugitive#statusline()}(%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)%#warningmsg#%{SyntasticStatuslineFlag()}%*
 
 "" Swap/Backup Files
 set noswapfile
@@ -104,5 +104,5 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-map <leader>e. :Vex<CR>
+"map <leader>e. :Vex<CR>
 " ^ Open file explorer in left window
