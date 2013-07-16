@@ -2,3 +2,4 @@ vim/.netrwhist
 tags
 .DS_Store
 *.class
+.lein-repl-history
