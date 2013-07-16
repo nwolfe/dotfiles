@@ -1,0 +1,33 @@
+# Adds Puppet and Facter to PATH
+function puppetenv() {
+  local PUPPET_HOME=/Users/nwolfe/workspace/puppetlabs/puppet
+  local FACTER_HOME=/Users/nwolfe/workspace/puppetlabs/facter
+  export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
+  export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
+}
+
+DEFAULT_PUPPET_TESTDIR=/Users/nwolfe/workspace/puppetlabs/conf/puppet
+
+function runmaster() {
+  local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
+  puppet master --autosign=true --no-daemonize --debug --verbose --confdir=$TESTDIR/master/conf --vardir=$TESTDIR/master/var --certname localhost
+}
+
+function runagent() {
+  local DEFAULT_TESTDIR=/Users/nwolfe/workspace/puppetlabs/conf/puppet
+  local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
+  puppet agent --no-daemonize --debug --trace --verbose --confdir=$TESTDIR/agent/conf --vardir=$TESTDIR/agent/var --server localhost --onetime --certname localhost-puppetdb
+}
+
+# Set environment variables to make PuppetDB use PostgreSQL instead of HSQL
+function puppetdbpgenv() {
+  export PUPPETDB_DBTYPE=postgres
+  export PUPPETDB_DBSUBNAME=puppetdb_tests
+  export PUPPETDB_DBUSER=puppetdb
+  export PUPPETDB_DBPASSWORD=puppetdb
+}
+
+function runpuppetdb() {
+  cd $HOME/workspace/puppetlabs/puppetdb
+  lein run services -c $HOME/workspace/puppetlabs/conf/puppetdb/config.ini
+}

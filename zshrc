@@ -49,6 +49,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+### MY ADDITIONS ###
+source $HOME/.dotfiles/puppetrc
+
 ### ENVIRONMENT
 VISUAL=vim
 TERM=xterm-256color
