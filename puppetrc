@@ -1,4 +1,7 @@
 PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
+DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
+
+alias cdp="cd $PUPPETLABS"
 
 function puppetenv() {
   local PUPPET_HOME=$PUPPETLABS/puppet
@@ -7,8 +10,6 @@ function puppetenv() {
   export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
   export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
 }
-
-DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
 
 function runmaster() {
   local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
