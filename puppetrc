@@ -1,8 +1,6 @@
 PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
 DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
 
-alias cdp="cd $PUPPETLABS"
-
 function puppetenv() {
   local PUPPET_HOME=$PUPPETLABS/puppet
   local FACTER_HOME=$PUPPETLABS/facter
