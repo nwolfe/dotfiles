@@ -70,10 +70,10 @@ set ignorecase                  " Searches ignore case...
 set smartcase                   " ...unless they contain at least one capital letter
 
 "" File Explorer
-"let g:netrw_liststyle=3         " Enable tree-view
+let g:netrw_liststyle=3         " Enable tree-view
 "let g:netrw_preview=1           " Preview files in vertical split
 "let g:netrw_browse_split=4      " Files open in previous buffer
-"let g:netrw_winsize=30          " Narrow window
+let g:netrw_winsize=30          " Narrow window
 
 "" Ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -116,7 +116,7 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-"map <leader>e. :Vex<CR>
+map <leader>e. :Vex<CR>
 " ^ Open file explorer in left window
 
 " Yank from cursor to end of line to be consistent with C and D
