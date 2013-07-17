@@ -1,12 +1,14 @@
-# Adds Puppet and Facter to PATH
+PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
+
 function puppetenv() {
-  local PUPPET_HOME=/Users/nwolfe/workspace/puppetlabs/puppet
-  local FACTER_HOME=/Users/nwolfe/workspace/puppetlabs/facter
+  local PUPPET_HOME=$PUPPETLABS/puppet
+  local FACTER_HOME=$PUPPETLABS/facter
   export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
   export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
+  export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
 }
 
-DEFAULT_PUPPET_TESTDIR=/Users/nwolfe/workspace/puppetlabs/conf/puppet
+DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
 
 function runmaster() {
   local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
@@ -32,6 +34,6 @@ function puppetdbpgenv() {
 }
 
 function runpuppetdb() {
-  cd $HOME/workspace/puppetlabs/puppetdb
-  lein run services -c $HOME/workspace/puppetlabs/conf/puppetdb/config.ini
+  cd $PUPPETLABS/puppetdb
+  lein run services -c $PUPPETLABS/conf/puppetdb/config.ini
 }
