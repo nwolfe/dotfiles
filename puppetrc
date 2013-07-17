@@ -12,7 +12,7 @@ function runmaster() {
   local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
   local COMMAND="puppet master --autosign=true --no-daemonize --debug --verbose --confdir=$TESTDIR/master/conf --vardir=$TESTDIR/master/var --certname localhost"
   echo $COMMAND
-  echo $COMMAND | pbcopy
+  echo -n $COMMAND | pbcopy
 }
 
 function runagent() {
@@ -20,7 +20,7 @@ function runagent() {
   local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
   local COMMAND="puppet agent --no-daemonize --debug --trace --verbose --confdir=$TESTDIR/agent/conf --vardir=$TESTDIR/agent/var --server localhost --onetime --certname localhost-puppetdb"
   echo $COMMAND
-  echo $COMMAND | pbcopy
+  echo -n $COMMAND | pbcopy
 }
 
 # Set environment variables to make PuppetDB use PostgreSQL instead of HSQL
