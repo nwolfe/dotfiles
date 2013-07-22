@@ -19,3 +19,6 @@
 [submodule "vim/bundle/classpath"]
 	path = vim/bundle/classpath
 	url = git://github.com/tpope/vim-classpath.git
+[submodule "vim/bundle/gitgutter"]
+	path = vim/bundle/gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
