@@ -1,4 +1,6 @@
-PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
+# vim: filetype=sh
+
+export PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
 DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
 
 function puppetenv() {

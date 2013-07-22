@@ -24,6 +24,7 @@ set visualbell                  " ...not audio bell
 set splitright                  " Split to the right side instead of left
 "set splitbelow                  " Split below instead of above
 set number                      " Absolute, or relativenumber
+set modeline                    " Enable modelines in files
 set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
 set list                        " Highlight whitespace
@@ -73,7 +74,7 @@ set smartcase                   " ...unless they contain at least one capital le
 let g:netrw_liststyle=3         " Enable tree-view
 "let g:netrw_preview=1           " Preview files in vertical split
 "let g:netrw_browse_split=4      " Files open in previous buffer
-let g:netrw_winsize=30          " Narrow window
+"let g:netrw_winsize=30          " Narrow window
 
 "" Ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -116,7 +117,7 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-map <leader>e. :Vex<CR>
+map <leader>e. :Vex %%<CR>
 " ^ Open file explorer in left window
 
 " Yank from cursor to end of line to be consistent with C and D
