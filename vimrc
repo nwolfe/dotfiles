@@ -38,7 +38,7 @@ if has('statusline')
     set statusline+=%w%h%m%r                      " Options?
     set statusline+=%{fugitive#statusline()}      " Git branch
     "set statusline+=\ [%{&ff}/%Y]                 " Filetype
-    set statusline+=\ [%{getcwd()}]               " Current directory
+    "set statusline+=\ [%{getcwd()}]               " Current directory
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
@@ -88,8 +88,10 @@ highlight Pmenu ctermbg=blue gui=bold
 "" Mappings
 let mapleader=","
 
-" Swap buffers
+" Swap & cycle through buffers
 nnoremap <leader><leader> <C-^>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprevious<CR>
 
 " Un-highlight search matches on Enter
 nnoremap <CR> :nohlsearch<CR>
@@ -99,12 +101,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" Disable arrow keys in normal mode for fun
-map <Up> <nop>
-map <Down> <nop>
-map <Left> <nop>
-map <Right> <nop>
 
 " Scroll the viewport faster
 nnoremap <C-e> 3<C-e>
