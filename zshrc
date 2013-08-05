@@ -79,6 +79,9 @@ alias ls='ls -hGF'
 alias ll='ls -og'
 alias la='ls -A'
 
+# Shortcuts
+alias v='vim'
+
 ### FUNCTIONS
 # List directory contents after cd
 function chpwd() {
