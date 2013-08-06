@@ -1,8 +1,8 @@
-# vim: filetype=sh
-
 export PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
 DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
 
+alias p='cd $PUPPETLABS'
+alias pdb='cd $PUPPETLABS/puppetdb'
 alias sshmaster='ssh root@pe-centos6'
 alias sshagent='ssh root@pe-centos5'
 
@@ -49,3 +49,5 @@ function runPuppetdbAcceptanceTests() {
   rvm use 1.8.7
   ./runtest.sh $PUPPETLABS/puppetdb/acceptance/tests
 }
+
+# vim: filetype=sh

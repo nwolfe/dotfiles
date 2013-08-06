@@ -34,9 +34,9 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 ""    From https://github.com/spf13/spf13-vim/blob/master/.vimrc
 if has('statusline')
     set laststatus=2                              " Always show status line
-    set statusline=%<%f\                          " Filename
+    set statusline=%{fugitive#statusline()}       " Git branch
+    set statusline+=\ %<%f\                       " Filename
     set statusline+=%w%h%m%r                      " Options?
-    set statusline+=%{fugitive#statusline()}      " Git branch
     "set statusline+=\ [%{&ff}/%Y]                 " Filetype
     "set statusline+=\ [%{getcwd()}]               " Current directory
     set statusline+=%#warningmsg#
