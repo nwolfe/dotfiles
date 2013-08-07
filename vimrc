@@ -124,4 +124,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " TagBar plugin
-nmap <leader>tb :TagbarToggle<CR>
+nnoremap <leader>tb :TagbarToggle<CR>
+
+" NERDTree plugin
+nnoremap <leader>nt :NERDTreeToggle<CR>
