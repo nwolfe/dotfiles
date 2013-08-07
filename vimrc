@@ -96,11 +96,13 @@ nnoremap <leader>bp :bprevious<CR>
 " Un-highlight search matches on Enter
 nnoremap <CR> :nohlsearch<CR>
 
-" Window navigation shortcuts
+" Window navigation & resizing shortcuts
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <C-w>> 3<C-w>>
+nnoremap <C-w>< 3<C-w><
 
 " Scroll the viewport faster
 nnoremap <C-e> 3<C-e>
