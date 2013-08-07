@@ -113,7 +113,7 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-map <leader>e. :Vex %%<CR>
+"map <leader>e. :Vex %%<CR>
 " ^ Open file explorer in left window
 
 " Yank from cursor to end of line to be consistent with C and D
@@ -128,3 +128,4 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 " NERDTree plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
+autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree when vim starts with no files
