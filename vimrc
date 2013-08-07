@@ -122,3 +122,6 @@ nnoremap Y y$
 " Visual shifting does not exit Visual mode
 vnoremap < <gv
 vnoremap > >gv
+
+" TagBar plugin
+nmap <leader>tb :TagbarToggle<CR>
