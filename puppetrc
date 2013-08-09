@@ -3,8 +3,9 @@ DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
 
 alias p='cd $PUPPETLABS'
 alias pdb='cd $PUPPETLABS/puppetdb'
-alias sshmaster='ssh root@pe-centos6'
-alias sshagent='ssh root@pe-centos5'
+alias sshcent5='ssh root@pe-centos5'
+alias sshcent6='ssh root@pe-centos6'
+alias sshdeb6='ssh root@pe-debian6'
 
 function puppetEnv() {
   local PUPPET_HOME=$PUPPETLABS/puppet
