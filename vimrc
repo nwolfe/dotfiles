@@ -23,7 +23,7 @@ set shell=/bin/bash             " For embedded shell to work properly
 set visualbell                  " ...not audio bell
 set splitright                  " Split to the right side instead of left
 "set splitbelow                  " Split below instead of above
-set number                      " Absolute, or relativenumber
+set relativenumber              " Absolute, or relativenumber
 set modeline                    " Enable modelines in files
 set wildmenu                    " Bash-style file & command Tab completion
 set wildmode=list:longest
@@ -131,3 +131,6 @@ nnoremap <leader>tb :TagbarToggle<CR>
 " NERDTree plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
 autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree when vim starts with no files
+
+" Git shortcuts
+nnoremap <leader>gst :Gstatus<CR>
