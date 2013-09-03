@@ -90,12 +90,16 @@ function chpwd() {
 
 # Create executable shell script with hash-bang line
 function mkscript() {
-    if [ -e $1 ]; then
-        echo "ERROR: $1 already exists" 1>&2
-        return 1
-    fi
+  if [ -e $1 ]; then
+      echo "ERROR: $1 already exists" 1>&2
+      return 1
+  fi
 
-    echo "#!/bin/sh" > $1
-    chmod 777 $1
-    return 0
+  echo "#!/bin/sh" > $1
+  chmod 777 $1
+  return 0
+}
+
+function enable-no-password-login-on() {
+  cat ~/.ssh/id_rsa.pub | ssh root@$1 "cat >> ~/.ssh/authorized_keys"
 }
