@@ -134,3 +134,6 @@ autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree when vim starts
 
 " Git shortcuts
 nnoremap <leader>gst :Gstatus<CR>
+
+" Paredit plugin
+nnoremap <leader>pe :call PareditToggle()<CR>
