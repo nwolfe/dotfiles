@@ -19,7 +19,7 @@ set title                       " Show title
 set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
 set hidden                      " Switch away from a buffer with unsaved changes
-set shell=/bin/bash             " For embedded shell to work properly 
+set shell=/bin/bash             " For embedded shell to work properly
 set visualbell                  " ...not audio bell
 set splitright                  " Split to the right side instead of left
 "set splitbelow                  " Split below instead of above
@@ -111,10 +111,10 @@ nnoremap <C-y> 3<C-y>
 " Edit files from directory of current buffer
 " http://vimcasts.org/episodes/the-edit-command
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+"map <leader>ew :e %%
+"map <leader>es :sp %%
+"map <leader>ev :vsp %%
+"map <leader>et :tabe %%
 "map <leader>e. :Vex %%<CR>
 " ^ Open file explorer in left window
 
@@ -130,7 +130,7 @@ nnoremap <leader>tb :TagbarToggle<CR>
 
 " NERDTree plugin
 nnoremap <leader>nt :NERDTreeToggle<CR>
-autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree when vim starts with no files
+"autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree when vim starts with no files
 
 " Git shortcuts
 nnoremap <leader>gst :Gstatus<CR>
