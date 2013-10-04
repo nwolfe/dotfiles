@@ -14,7 +14,7 @@ filetype plugin indent on
 colorscheme jellybeans
 
 set showcmd                     " Display incomplete commands
-set showmatch                   " Highlight matching parens
+set noshowmatch                 " Don't highlight matching parens
 set title                       " Show title
 set history=500                 " Keep # lines of command line history
 set autoread                    " Auto-reload buffers when file changed on disk
@@ -48,7 +48,7 @@ endif
 "" Swap/Backup Files
 set noswapfile
 set nobackup
-set nowritebackup 
+set nowritebackup
 
 "" Cursor
 set ruler                       " Show cursor position at bottom

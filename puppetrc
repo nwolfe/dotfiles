@@ -51,4 +51,21 @@ function runPuppetdbAcceptanceTests() {
   ./runtest.sh $PUPPETLABS/puppetdb/acceptance/tests
 }
 
+# Issue curl query to PuppetDB
+function query() {
+  local FLAGS=-G
+  if [ "$1" = "-v" ]; then
+    FLAGS+=v
+    shift
+  fi
+  local ENDPOINT=$1; shift
+  local PARAMS="http://localhost:8080/v3/$ENDPOINT "
+  for param
+  do
+    PARAMS+="--data-urlencode '$param' "
+  done
+
+  eval curl $FLAGS $PARAMS
+}
+
 # vim: filetype=sh
