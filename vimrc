@@ -40,7 +40,7 @@ if has('statusline')
     "set statusline+=\ [%{&ff}/%Y]                 " Filetype
     "set statusline+=\ [%{getcwd()}]               " Current directory
     set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
+    "set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
     set statusline+=%=%-14.(%l,%c%V%)\ %p%%       " Right-aligned file nav info
 endif
@@ -52,7 +52,7 @@ set nowritebackup
 
 "" Cursor
 set ruler                       " Show cursor position at bottom
-set cursorline                  " Underline the line the cursor is on
+"set cursorline                  " Underline the line the cursor is on
 set scrolloff=3                 " Begin scrolling the screen # lines from cursor
 set sidescrolloff=2
 
@@ -71,19 +71,19 @@ set ignorecase                  " Searches ignore case...
 set smartcase                   " ...unless they contain at least one capital letter
 
 "" File Explorer
-let g:netrw_liststyle=3         " Enable tree-view
+"let g:netrw_liststyle=3         " Enable tree-view
 "let g:netrw_preview=1           " Preview files in vertical split
 "let g:netrw_browse_split=4      " Files open in previous buffer
 "let g:netrw_winsize=30          " Narrow window
 
 "" Ruby
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading=1
-autocmd FileType ruby,eruby let g:rubycomplete_rails=1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global=1
+"autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading=1
+"autocmd FileType ruby,eruby let g:rubycomplete_rails=1
+"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global=1
 
 " Improve Powertab? autocomplete menu color
-highlight Pmenu ctermbg=blue gui=bold
+"highlight Pmenu ctermbg=blue gui=bold
 
 "" Mappings
 let mapleader=","
