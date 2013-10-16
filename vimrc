@@ -94,7 +94,7 @@ nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
 
 " Un-highlight search matches on Enter
-nnoremap <CR> :nohlsearch<CR>
+nnoremap <leader><CR> :nohlsearch<CR>
 
 " Window navigation & resizing shortcuts
 nnoremap <C-h> <C-w>h
