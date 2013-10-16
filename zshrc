@@ -81,6 +81,7 @@ alias la='ls -A'
 
 # Shortcuts
 alias v='vim'
+alias repl='lein trampoline repl'
 
 ### FUNCTIONS
 # List directory contents after cd
