@@ -1,8 +1,10 @@
 export PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
-DEFAULT_PUPPET_TESTDIR=$PUPPETLABS/conf/puppet
+CONFIG_DIR=$PUPPETLABS/config
+DEFAULT_PUPPET_TESTDIR=$CONFIG_DIR/puppet
 
 alias p='cd $PUPPETLABS'
 alias pdb='cd $PUPPETLABS/puppetdb'
+alias tk='cd $PUPPETLABS/trapperkeeper'
 alias sshcent5='ssh root@pe-centos5'
 alias sshcent6='ssh root@pe-centos6'
 alias sshdeb6='ssh root@pe-debian6'
@@ -42,7 +44,7 @@ function puppetdbPostgresEnv() {
 
 function runPuppetdb() {
   cd $PUPPETLABS/puppetdb
-  lein run services -c $PUPPETLABS/conf/puppetdb/config.ini
+  lein run services -c $CONFIG_DIR/puppetdb/config.ini
 }
 
 function runPuppetdbAcceptanceTests() {
