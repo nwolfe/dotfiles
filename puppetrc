@@ -44,7 +44,9 @@ function puppetdbPostgresEnv() {
 
 function runPuppetdb() {
   cd $PUPPETLABS/puppetdb
-  lein run services -c $CONFIG_DIR/puppetdb/config.ini
+  local COMMAND="lein run services --config $CONFIG_DIR/puppetdb/config.ini"
+  echo $COMMAND
+  echo -n $COMMAND | pbcopy
 }
 
 function runPuppetdbAcceptanceTests() {
