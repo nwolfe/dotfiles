@@ -1,5 +1,5 @@
 export PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
-CONFIG_DIR=$PUPPETLABS/config
+CONFIG_DIR=$PUPPETLABS/conf
 DEFAULT_PUPPET_TESTDIR=$CONFIG_DIR/puppet
 
 alias p='cd $PUPPETLABS'
@@ -44,7 +44,7 @@ function puppetdbPostgresEnv() {
 
 function runPuppetdb() {
   cd $PUPPETLABS/puppetdb
-  local COMMAND="lein run services --config $CONFIG_DIR/puppetdb/config.ini"
+  local COMMAND="lein trampoline run services --config $CONFIG_DIR/puppetdb/config.ini"
   echo $COMMAND
   echo -n $COMMAND | pbcopy
 }
