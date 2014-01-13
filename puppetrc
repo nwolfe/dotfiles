@@ -5,7 +5,7 @@ DEFAULT_PUPPET_TESTDIR=$CONFIG_DIR/puppet
 alias p='cd $PUPPETLABS'
 alias pdb='cd $PUPPETLABS/puppetdb'
 alias tk='cd $PUPPETLABS/trapperkeeper'
-alias sshcent5='ssh root@pe-centos5'
+alias jvm='cd $PUPPETLABS/jvm-puppet'
 alias sshcent6='ssh root@pe-centos6'
 alias sshdeb6='ssh root@pe-debian6'
 
