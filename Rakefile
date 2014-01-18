@@ -1,8 +1,9 @@
 require 'rake'
 
-task :install do
-  Dir['*'].each do |file|
-    next if file == "Rakefile"
+SKIP = %w[Rakefile README.md osx puppetrc]
+
+task :install do Dir['*'].each do |file|
+    next if SKIP.include? file
 
     if File.exist? File.join(ENV['HOME'], ".#{file}")
       maybe_replace file
@@ -14,7 +15,9 @@ end
 
 def install(file)
   puts "Linking ~/.#{file}"
-  system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+  source = File.join(ENV['PWD'], file)
+  target = File.join(ENV['HOME'], '.' + file)
+  `ln -s "#{source}" "#{target}"`
 end
 
 def maybe_replace(file)
@@ -22,7 +25,7 @@ def maybe_replace(file)
 
   case $stdin.gets.chomp 
   when 'y'
-    system %Q{rm "$HOME/.#{file}"}
+    `rm "#{File.join(ENV['HOME'], '.' + file)}"`
     install file
   else 
     puts "skipping ~/.#{file}"
