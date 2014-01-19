@@ -64,6 +64,7 @@ fi
 ### ENVIRONMENT
 VISUAL=vim
 TERM=xterm-256color
+export PATH=/usr/local/bin:$PATH
 
 ### ALIASES
 # Navigation

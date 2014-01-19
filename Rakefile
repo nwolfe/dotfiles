@@ -2,7 +2,9 @@ require 'rake'
 
 SKIP = %w[Rakefile README.md osx puppetrc]
 
-task :install do Dir['*'].each do |file|
+task :install do
+  `git submodule update`
+  Dir['*'].each do |file|
     next if SKIP.include? file
 
     if File.exist? File.join(ENV['HOME'], ".#{file}")
