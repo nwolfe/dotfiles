@@ -54,12 +54,17 @@ source $ZSH/oh-my-zsh.sh
 ### MY ADDITIONS ###
 source $HOME/.dotfiles/puppetrc
 
-# Source all files in scripts/ if there is any
-if [ -d $HOME/scripts ] && [ `ls $HOME/scripts` ]; then
-  for script in $HOME/scripts/*
-    do source $script
-  done
-fi
+# Source scripts in HOME and dotfiles
+function source_files() {
+  if [ -d $1 ] && [ `ls $1` ]; then
+    for script in $1/*
+      do source $script
+    done
+  fi
+}
+
+source_files $HOME/scripts
+source_files scripts
 
 ### ENVIRONMENT
 VISUAL=vim
