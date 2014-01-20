@@ -1,4 +1,5 @@
 #!/bin/sh
+# Modifications to the environment, usually exports and PATH overrides
 
 export VISUAL=vim
 export TERM=xterm-256color

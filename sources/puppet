@@ -1,9 +1,16 @@
 #!/bin/sh
+# All things related to Puppet, PuppetDB, Puppet Labs
 
+# Global environment variable for convenience use
 export PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
 CONF_DIR=$PUPPETLABS/conf
 DEFAULT_PUPPET_TESTDIR=$CONF_DIR/puppet
 
+# Add Puppet to the environment so we can run it.
+#
+# Usage:
+#
+#   % puppetEnv
 function puppetEnv() {
   local PUPPET_HOME=$PUPPETLABS/puppet
   local FACTER_HOME=$PUPPETLABS/facter
@@ -11,6 +18,14 @@ function puppetEnv() {
   export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
 }
 
+# Prints and copies the full command to run the Puppet master.
+# Doesn't actually run the master.
+# Requires Puppet to be on the path (run 'puppetEnv').
+#
+# Usage:
+#
+#   % runMaster
+#   % (paste command in)
 function runMaster() {
   local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
   local COMMAND="puppet master --autosign=true --no-daemonize --debug --verbose --confdir=$TESTDIR/master/conf --vardir=$TESTDIR/master/var --certname localhost"
@@ -18,6 +33,14 @@ function runMaster() {
   echo -n $COMMAND | pbcopy
 }
 
+# Prints and copies the full command to run the Puppet agent.
+# Doesn't actually run the agent.
+# Requires Puppet to be on the path (run 'puppetEnv').
+#
+# Usage:
+#
+#   % runAgent
+#   % (paste command in)
 function runAgent() {
   local TESTDIR=${1:-$DEFAULT_PUPPET_TESTDIR}
   local COMMAND="puppet agent --no-daemonize --debug --trace --verbose --confdir=$TESTDIR/agent/conf --vardir=$TESTDIR/agent/var --server localhost --onetime --certname localhost-puppetdb"
@@ -25,11 +48,21 @@ function runAgent() {
   echo -n $COMMAND | pbcopy
 }
 
+# Add PuppetDB to the environment so the Puppet master can use it.
+#
+# Usage:
+#
+#   % puppetdbEnv
 function puppetdbEnv() {
   export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
 }
 
 # Set environment variables to make PuppetDB use PostgreSQL instead of HSQL when running 'lein test'
+# Switches PuppetDB tests to use PostgreSQL instead of HSQL.
+#
+# Usage:
+#
+#   % puppetdbPostgresEnv
 function puppetdbPostgresEnv() {
   export PUPPETDB_DBTYPE=postgres
   export PUPPETDB_DBSUBNAME=puppetdb_tests
@@ -37,6 +70,13 @@ function puppetdbPostgresEnv() {
   export PUPPETDB_DBPASSWORD=puppetdb
 }
 
+# Prints and copies the full command to run PuppetDB.
+# Doesn't actually run PuppetDB.
+#
+# Usage:
+#
+#   % runPuppetDB
+#   % (paste command in)
 function runPuppetdb() {
   cd $PUPPETLABS/puppetdb
   local COMMAND="lein trampoline run services --config $CONF_DIR/puppetdb/config.ini"
@@ -44,13 +84,24 @@ function runPuppetdb() {
   echo -n $COMMAND | pbcopy
 }
 
+# Prepares the environment and runs the PuppetDB acceptance tests.
+#
+# Usage:
+#
+#   % runPuppetdbAcceptanceTests
 function runPuppetdbAcceptanceTests() {
   cd $PUPPETLABS/puppet-acceptance
   rvm use 1.8.7
   ./runtest.sh $PUPPETLABS/puppetdb/acceptance/tests
 }
 
-# Issue curl query to PuppetDB
+# Issue curl query to PuppetDB.
+# Supports optional -v verbose flag.
+# Requires PuppetDB to be running (run 'runPuppetDb').
+#
+# Usage:
+#
+#   % query [-v] reports 'query=[...]'
 function query() {
   local FLAGS=-G
   if [ "$1" = "-v" ]; then
@@ -67,6 +118,11 @@ function query() {
   eval curl $FLAGS $PARAMS
 }
 
-function enable-no-password-login-on() {
+# Copy public SSH key over to remote machine.  Assumes root user.
+#
+# Usage:
+#
+#   % enableNoPasswordLoginOn pe-centos6
+function enableNoPasswordLoginOn() {
   cat ~/.ssh/id_rsa.pub | ssh root@$1 "cat >> ~/.ssh/authorized_keys"
 }
