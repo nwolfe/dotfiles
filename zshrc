@@ -51,24 +51,23 @@ plugins+=(lein)
 
 source $ZSH/oh-my-zsh.sh
 
-### MY ADDITIONS ###
-source $HOME/.dotfiles/puppetrc
+### NATES STUFF ###
 
 # Source scripts in HOME and dotfiles
 function source_files() {
   if [ -d $1 ] && [ `ls $1` ]; then
-    for script in $1/*
-      do source $script
+    for file in $1/*
+      do source $file
     done
   fi
 }
 
 source_files $HOME/scripts
-source_files $HOME/.dotfiles/scripts
+source_files ./sources
 
 ### ENVIRONMENT
-VISUAL=vim
-TERM=xterm-256color
+export VISUAL=vim
+export TERM=xterm-256color
 export PATH=/usr/local/bin:$PATH
 
 ### ALIASES

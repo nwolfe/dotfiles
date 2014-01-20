@@ -1,3 +1,5 @@
+#!/bin/sh
+
 export PUPPETLABS=/Users/nwolfe/workspace/puppetlabs
 CONF_DIR=$PUPPETLABS/conf
 DEFAULT_PUPPET_TESTDIR=$CONF_DIR/puppet
@@ -64,5 +66,3 @@ function query() {
 
   eval curl $FLAGS $PARAMS
 }
-
-# vim: filetype=sh
