@@ -63,7 +63,7 @@ function source_files() {
 }
 
 source_files $HOME/scripts
-source_files ./sources
+source_files $HOME/.dotfiles/sources
 
 ### ENVIRONMENT
 export VISUAL=vim
