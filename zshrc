@@ -64,7 +64,7 @@ function source_files() {
 }
 
 source_files $HOME/scripts
-source_files scripts
+source_files $HOME/.dotfiles/scripts
 
 ### ENVIRONMENT
 VISUAL=vim

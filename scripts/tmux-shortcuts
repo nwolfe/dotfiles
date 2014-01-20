@@ -1,0 +1,7 @@
+# Usage:
+#   tmx "work"
+#
+# => tmux -2 new -s "work"
+function tmx() {
+  tmux -2 new -s $1
+}
