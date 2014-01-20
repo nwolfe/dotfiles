@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export VISUAL=vim
+export TERM=xterm-256color
+export PATH=/usr/local/bin:$PATH

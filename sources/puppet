@@ -66,3 +66,7 @@ function query() {
 
   eval curl $FLAGS $PARAMS
 }
+
+function enable-no-password-login-on() {
+  cat ~/.ssh/id_rsa.pub | ssh root@$1 "cat >> ~/.ssh/authorized_keys"
+}
