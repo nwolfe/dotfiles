@@ -3,7 +3,7 @@ require 'rake'
 SKIP = %w[Rakefile README.md osx sources]
 
 task :install do
-  `git submodule update`
+  _fetch_submodules
   Dir['*'].each do |file|
     next if SKIP.include? file
 
@@ -32,4 +32,9 @@ def _maybe_replace(file)
   else
     puts "skipping ~/.#{file}"
   end
+end
+
+def _fetch_submodules()
+  `git submodule init`
+  `git submodule update`
 end
