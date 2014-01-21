@@ -1,6 +1,6 @@
 require 'rake'
 
-SKIP = %w[Rakefile README.md osx puppetrc]
+SKIP = %w[Rakefile README.md osx sources]
 
 task :install do
   `git submodule update`
@@ -8,28 +8,28 @@ task :install do
     next if SKIP.include? file
 
     if File.exist? File.join(ENV['HOME'], ".#{file}")
-      maybe_replace file
+      _maybe_replace file
     else
-      install file
+      _install(file)
     end
   end
 end
 
-def install(file)
+def _install(file)
   puts "Linking ~/.#{file}"
   source = File.join(ENV['PWD'], file)
   target = File.join(ENV['HOME'], '.' + file)
   `ln -s "#{source}" "#{target}"`
 end
 
-def maybe_replace(file)
+def _maybe_replace(file)
   print "overwrite ~/.#{file}? [yn] "
 
-  case $stdin.gets.chomp 
+  case $stdin.gets.chomp
   when 'y'
     `rm "#{File.join(ENV['HOME'], '.' + file)}"`
-    install file
-  else 
+    _install file
+  else
     puts "skipping ~/.#{file}"
   end
 end
