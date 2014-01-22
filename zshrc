@@ -62,5 +62,5 @@ function source_files() {
   fi
 }
 
-source_files $HOME/scripts
+source_files $HOME/sources
 source_files $HOME/.dotfiles/sources
