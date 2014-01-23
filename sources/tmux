@@ -1,6 +1,9 @@
 #!/bin/sh
 # Conveniences for working with tmux
 
+# Enable 256 coloring by default
+alias tmux='tmux -2'
+
 # Usage:
 #   tmx "work"
 #
