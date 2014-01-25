@@ -8,14 +8,16 @@ DEFAULT_NOTEFILE=notes
 # $1 = absolute path to notefile (e.g. /users/foo/bar)
 # $2 = notefile name (e.g. bar)
 __save_changes() {
-  git add $1
-  git commit -m "$2 notes" $1 > /dev/null
+  if [ -e $1 ]; then
+    git add $1
+    git commit -m "$2 notes" $1 > /dev/null
+  fi
   return 0
 }
 
 # Returns the full path to $1 notefile
 __absolute_path() {
-  echo $NOTES_HOME/${1}.txt
+  echo $NOTES_HOME/${1}.md
 }
 
 # Edit the $1 notefile in your favorite editor
