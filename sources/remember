@@ -1,0 +1,56 @@
+#!/bin/sh
+# Simple tool for remembering (writing) notes
+
+NOTES_HOME=$HOME/notes
+DEFAULT_NOTEFILE=notes
+
+# Returns the full path to $1 notefile
+_absolute_path() {
+  echo $NOTES_HOME/${1}.txt
+}
+
+# Edit the $1 notefile in your favorite editor
+_edit_notefile() {
+  $VISUAL $(_absolute_path ${1//:/})
+}
+
+# Edit the default notefile in your favorite editor
+_edit_default() {
+  _edit_notefile $DEFAULT_NOTEFILE
+}
+
+# Write (append) the note to the $1 notefile
+_write_note() {
+  if [ ${1:(-1)} = ":" ]; then
+    notefile=${1//:/}
+    shift
+  else
+    notefile=$DEFAULT_NOTEFILE
+  fi
+  echo $* >> $(_absolute_path $notefile)
+}
+
+# Remember something!
+#
+# Examples
+#   $ rem This is cool!
+#   $ rem "This is cool!"
+#   > echo "This is cool!" >> ~/notes/notes.txt
+#
+#   $ rem foo: So is this!
+#   $ rem foo: "So is this!"
+#   > echo "So is this!" >> ~/notes/foo.txt
+#
+#   $ rem
+#   > $VISUAL ~/notes/notes.txt
+#
+#   $ rem foo
+#   $ rem foo:
+#   > $VISUAL ~/notes/foo.txt
+rem() {
+  case $# in
+    0) _edit_default ;;
+    1) _edit_notefile $1 ;;
+    *) _write_note $* ;;
+  esac
+}
