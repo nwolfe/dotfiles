@@ -1,7 +1,7 @@
 #!/bin/sh
 # Simple tool for remembering (writing) notes
 
-NOTES_HOME=$HOME/notes
+NOTES_HOME=$HOME/.dotfiles/notes
 DEFAULT_NOTEFILE=notes
 
 # Returns the full path to $1 notefile
