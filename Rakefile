@@ -1,7 +1,6 @@
 require 'rake'
 
 # TODO: Add support for Y/N to all
-# TODO: Test _maybe_replace on a dest directory (not a link)
 
 task :install do
   _fetch_submodules
@@ -14,8 +13,9 @@ def _fetch_submodules()
 end
 
 def _install_dotfiles()
-  Dir['*'].each do |file|
-    next if %w[Rakefile README.md osx sources].include? file
+  ignore = %w[Rakefile README.md osx sources]
+  install = Dir['*'].reject { |file| ignore.include? file }
+  install.each do |file|
     puts # newline for readability
     source = File.join ENV['PWD'], file
     dest = File.join ENV['HOME'], '.' + file
@@ -27,20 +27,20 @@ def _maybe_install(source, dest)
   if File.exist? dest
     _maybe_replace source, dest
   else
-    _install source, dest
+    ln_s source, dest
   end
 end
 
 def _maybe_replace(source, dest)
   print "overwrite #{dest}? [yn] "
-
   case $stdin.gets.chomp
   when 'y'
-    rm dest # TODO: This might fail when dest is a directory
-    _install source, dest
+    if File.directory? dest
+      rm_r dest
+    else
+      rm dest
+    end
+    ln_s source, dest
+  when 'Y'
   end
-end
-
-def _install(source, dest)
-  ln_s source, dest
 end
