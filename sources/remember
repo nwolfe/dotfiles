@@ -1,7 +1,8 @@
 #!/bin/sh
 # Simple tool for remembering (writing) notes
 
-NOTES_HOME=$HOME/.dotfiles/notes
+DOTFILES=$HOME/.dotfiles
+NOTES_HOME=$DOTFILES/notes
 DEFAULT_NOTEFILE=notes
 
 # Commit the notefile with a default message.
@@ -9,8 +10,8 @@ DEFAULT_NOTEFILE=notes
 # $2 = notefile name (e.g. bar)
 __save_changes() {
   if [ -e $1 ]; then
-    git add $1
-    git commit -m "$2 notes" $1 > /dev/null
+    git --work-tree $DOTFILES --git-dir $DOTFILES/.git add $1
+    git --work-tree $DOTFILES --git-dir $DOTFILES/.git commit -m "$2 notes" $1 > /dev/null
   fi
   return 0
 }
