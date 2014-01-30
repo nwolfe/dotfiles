@@ -4,6 +4,11 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias p='cd $PUPPETLABS'
+alias pdb='cd $PUPPETLABS/puppetdb'
+alias tk='cd $PUPPETLABS/trapperkeeper'
+alias jvm='cd $PUPPETLABS/jvm-puppet'
+alias ca='cd $PUPPETLABS/jvm-certificate-authority'
 
 # Verify destruction
 alias rm='rm -iv' # Verbose, print removed files
@@ -24,3 +29,5 @@ alias la='ls -A'
 alias v='vim'
 alias repl='lein trampoline repl'
 alias tmux='tmux -2' # Ensure 256 colors
+alias sshcent6='ssh root@pe-centos6'
+alias sshdeb6='ssh root@pe-debian6'
