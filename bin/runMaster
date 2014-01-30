@@ -1,0 +1,5 @@
+#!/bin/bash
+
+command="puppet master --autosign=true --no-daemonize --debug --verbose --confdir=$PUPPETLABS_CONF/puppet/master/conf --vardir=$PUPPETLABS_CONF/puppet/master/var --certname localhost"
+echo $command
+echo -n $command | pbcopy

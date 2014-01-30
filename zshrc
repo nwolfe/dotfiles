@@ -53,8 +53,6 @@ source $ZSH/oh-my-zsh.sh
 
 ### NATES STUFF ###
 
-export PATH=$PATH:$HOME/bin
-
 # Do an `ls` after a `cd`. Hook called by zsh
 chpwd() {
   ls

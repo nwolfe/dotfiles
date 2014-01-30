@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd $PUPPETLABS/puppetdb
+command="lein trampoline run services --config $PUPPETLABS_CONF/puppetdb/config.ini"
+echo $command
+echo -n $command | pbcopy

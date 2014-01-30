@@ -1,0 +1,3 @@
+#!/bin/sh
+
+export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
