@@ -16,7 +16,7 @@ alias cp='cp -i'
 # -F  Append special character denoting file type
 # -o  Long format, omit owner
 # -g  Long format, omit group
-alias ls='ls -hGF'
+alias ls='ls -hG'
 alias ll='ls -og'
 alias la='ls -A'
 
