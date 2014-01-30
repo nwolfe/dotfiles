@@ -53,11 +53,18 @@ source $ZSH/oh-my-zsh.sh
 
 ### NATES STUFF ###
 
+export PATH=$PATH:$HOME/bin
+
+# Do an `ls` after a `cd`. Hook called by zsh
+chpwd() {
+  ls
+}
+
 # Source scripts in HOME and dotfiles
 function source_files() {
   if [ -d $1 ] && [ "$(ls -A $1)" ]; then
-    for file in $1/*
-      do source $file
+    for file in $1/*; do
+      source $file
     done
   fi
 }

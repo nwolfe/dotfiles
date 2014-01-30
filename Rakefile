@@ -14,11 +14,12 @@ def _fetch_submodules()
 end
 
 def _install_dotfiles()
-  ignore = %w[Rakefile README.md osx sources notes]
+  _maybe_install _cwd('bin'), _home('bin')
+  ignore = %w[Rakefile README.md osx sources notes bin]
   install = Dir['*'].reject { |file| ignore.include? file }
   install.each do |file|
-    source = File.join ENV['PWD'], file
-    dest = File.join ENV['HOME'], '.' + file
+    source = _cwd file
+    dest = _home '.' + file
     _maybe_install source, dest
   end
 end
@@ -50,4 +51,12 @@ def _replace(source, dest)
     rm dest
   end
   ln_s source, dest
+end
+
+def _cwd(file)
+  File.join ENV['PWD'], file
+end
+
+def _home(file)
+  File.join ENV['HOME'], file
 end
