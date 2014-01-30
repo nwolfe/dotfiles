@@ -30,8 +30,6 @@ ZSH_THEME="wezm"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
-# ** Uncommented for use of 'tree' command so it wouldn't try to autocorrect to 'tee'
-# ** Recommented for lack of using 'tree'
 # DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
@@ -58,14 +56,7 @@ chpwd() {
   ls
 }
 
-# Source scripts in HOME and dotfiles
-function source_files() {
-  if [ -d $1 ] && [ "$(ls -A $1)" ]; then
-    for file in $1/*; do
-      source $file
-    done
-  fi
-}
-
-source_files $HOME/sources
-source_files $HOME/.dotfiles/sources
+# Source things like env, aliases, functions, etc.
+for sourcefile ($HOME/.dotfiles/sources/*); do
+  source $sourcefile
+done
