@@ -1,5 +1,21 @@
 #!/bin/sh
-# Simple tool for remembering (writing) notes
+# Remember something!
+#
+# Examples
+#   $ rem This is cool!
+#   $ rem "This is cool!"
+#   > echo "This is cool!" >> ~/notes/notes.txt
+#
+#   $ rem foo: So is this!
+#   $ rem foo: "So is this!"
+#   > echo "So is this!" >> ~/notes/foo.txt
+#
+#   $ rem
+#   > $VISUAL ~/notes/notes.txt
+#
+#   $ rem foo
+#   $ rem foo:
+#   > $VISUAL ~/notes/foo.txt
 
 DOTFILES=$HOME/.dotfiles
 NOTES_HOME=$DOTFILES/notes
@@ -47,27 +63,8 @@ __write_note() {
   __save_changes $filepath $notefile
 }
 
-# Remember something!
-#
-# Examples
-#   $ rem This is cool!
-#   $ rem "This is cool!"
-#   > echo "This is cool!" >> ~/notes/notes.txt
-#
-#   $ rem foo: So is this!
-#   $ rem foo: "So is this!"
-#   > echo "So is this!" >> ~/notes/foo.txt
-#
-#   $ rem
-#   > $VISUAL ~/notes/notes.txt
-#
-#   $ rem foo
-#   $ rem foo:
-#   > $VISUAL ~/notes/foo.txt
-rem() {
-  case $# in
-    0) __edit_default ;;
-    1) __edit_notefile $1 ;;
-    *) __write_note $* ;;
-  esac
-}
+case $# in
+  0) __edit_default ;;
+  1) __edit_notefile $1 ;;
+  *) __write_note $* ;;
+esac
