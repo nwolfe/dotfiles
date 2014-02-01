@@ -15,7 +15,7 @@ end
 
 def _install_dotfiles()
   _maybe_install _cwd('bin'), _home('bin')
-  ignore = %w[Rakefile README.md osx sources notes bin]
+  ignore = %w[Rakefile README.md osx sources bin]
   install = Dir['*'].reject { |file| ignore.include? file }
   install.each do |file|
     source = _cwd file
