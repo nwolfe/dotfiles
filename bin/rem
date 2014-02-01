@@ -24,7 +24,7 @@ DEFAULT_NOTEFILE=notes
 # Commit the notefile with a default message.
 # $1 = absolute path to notefile (e.g. /users/foo/bar)
 # $2 = notefile name (e.g. bar)
-__save_changes() {
+save_changes() {
   if [ -e $1 ]; then
     git --work-tree $DOTFILES --git-dir $DOTFILES/.git add $1
     git --work-tree $DOTFILES --git-dir $DOTFILES/.git commit -m "$2 notes" $1 > /dev/null
@@ -33,38 +33,38 @@ __save_changes() {
 }
 
 # Returns the full path to $1 notefile
-__absolute_path() {
+absolute_path() {
   echo $NOTES_HOME/${1}.md
 }
 
 # Edit the $1 notefile in your favorite editor
-__edit_notefile() {
+edit_notefile() {
   notefile=${1//:/}
-  filepath=$(__absolute_path $notefile)
+  filepath=$(absolute_path $notefile)
   $VISUAL $filepath
-  __save_changes $filepath $notefile
+  save_changes $filepath $notefile
 }
 
 # Edit the default notefile in your favorite editor
-__edit_default() {
-  __edit_notefile $DEFAULT_NOTEFILE
+edit_default() {
+  edit_notefile $DEFAULT_NOTEFILE
 }
 
 # Write (append) the note to the $1 notefile
-__write_note() {
+write_note() {
   if [ ${1:(-1)} = ":" ]; then
     notefile=${1//:/}
     shift
   else
     notefile=$DEFAULT_NOTEFILE
   fi
-  filepath=$(__absolute_path $notefile)
+  filepath=$(absolute_path $notefile)
   echo $* >> $filepath
-  __save_changes $filepath $notefile
+  save_changes $filepath $notefile
 }
 
 case $# in
-  0) __edit_default ;;
-  1) __edit_notefile $1 ;;
-  *) __write_note $* ;;
+  0) edit_default ;;
+  1) edit_notefile $1 ;;
+  *) write_note $* ;;
 esac
