@@ -1,6 +1,0 @@
-#!/bin/sh
-
-export PUPPETDB_DBTYPE=postgres
-export PUPPETDB_DBSUBNAME=puppetdb_tests
-export PUPPETDB_DBUSER=puppetdb
-export PUPPETDB_DBPASSWORD=puppetdb
