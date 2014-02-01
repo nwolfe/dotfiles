@@ -17,10 +17,8 @@
 #   $ rem foo:
 #   > $VISUAL ~/notes/foo.txt
 
-# TODO get rid of this definition here
-DOTFILES=$HOME/.dotfiles
-NOTES_HOME=$DOTFILES/notes
-GIT_REPO=$DOTFILES
+NOTES_HOME=$HOME/notes
+GIT_REPO=$NOTES_HOME
 DEFAULT_NOTEFILE=notes
 
 # Commit the notefile with a default message.
