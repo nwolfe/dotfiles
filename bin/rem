@@ -20,6 +20,7 @@
 NOTES_HOME=$HOME/notes
 GIT_REPO=$NOTES_HOME
 DEFAULT_NOTEFILE=notes
+FILE_FORMAT=md
 
 # Commit the notefile with a default message.
 # $1 = absolute path to notefile (e.g. /users/foo/bar)
@@ -34,7 +35,7 @@ save_changes() {
 
 # Returns the full path to $1 notefile
 absolute_path() {
-  echo $NOTES_HOME/${1}.md
+  echo $NOTES_HOME/${1}.$FILE_FORMAT
 }
 
 # Edit the $1 notefile in your favorite editor
