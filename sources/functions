@@ -6,3 +6,7 @@ puppetEnv() {
   export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
   export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
 }
+
+puppetdbEnv() {
+  export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
+}
