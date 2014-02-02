@@ -60,3 +60,17 @@ end
 def _home(file)
   File.join ENV['HOME'], file
 end
+
+namespace :install do
+  task :dotfiles do
+    _install_dotfiles
+  end
+
+  task :submodules do
+    _fetch_submodules
+  end
+
+  task :rbenv do
+    `brew install rbenv`
+  end
+end
