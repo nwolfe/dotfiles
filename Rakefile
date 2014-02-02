@@ -14,14 +14,13 @@ def _fetch_submodules()
 end
 
 def _install_dotfiles()
-  _maybe_install _cwd('bin'), _home('bin')
-  ignore = %w[Rakefile README.md osx sources bin]
-  install = Dir['*'].reject { |file| ignore.include? file }
-  install.each do |file|
+  Dir['lib/*.symlink'].each do |file|
     source = _cwd file
-    dest = _home '.' + file
+    dest = _home '.' + File.basename(file, '.symlink')
     _maybe_install source, dest
   end
+  _maybe_install _cwd('vim'), _home('.vim')
+  _maybe_install _cwd('bin'), _home('bin')
 end
 
 def _maybe_install(source, dest)
