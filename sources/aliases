@@ -24,6 +24,7 @@ alias cp='cp -i'
 alias ls='ls -hG'
 alias ll='ls -og'
 alias la='ls -A'
+alias l1='ls -1'
 
 # Shortcuts
 alias v='vim'
