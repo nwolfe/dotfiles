@@ -6,4 +6,5 @@ tags
 .nrepl-port
 *#*
 places
+backups
 .smex-items
