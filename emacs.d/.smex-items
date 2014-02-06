@@ -1,0 +1,27 @@
+
+;; ----- smex-history -----
+(
+ ansi-term
+ eshell
+ shell
+ eval-buffer
+ package-install
+ package-refresh-contents
+ package-initialize
+)
+
+;; ----- smex-data -----
+(
+ (recover-file . 2)
+ (load-theme . 5)
+ (package-install . 6)
+ (eval-buffer . 13)
+ (ansi-term . 3)
+ (magit-log . 1)
+ (recover-this-file . 1)
+ (shell-command . 1)
+ (package-initialize . 1)
+ (package-refresh-contents . 1)
+ (shell . 1)
+ (eshell . 1)
+)

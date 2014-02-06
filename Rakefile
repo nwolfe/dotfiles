@@ -20,6 +20,7 @@ def _install_dotfiles()
     _maybe_install source, dest
   end
   _maybe_install _cwd('vim'), _home('.vim')
+  _maybe_install _cwd('emacs.d'), _home('.emacs.d')
   _maybe_install _cwd('bin'), _home('bin')
 end
 
