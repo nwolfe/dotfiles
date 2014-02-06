@@ -4,3 +4,4 @@ tags
 *.class
 .lein-repl-history
 .nrepl-port
+*#*
