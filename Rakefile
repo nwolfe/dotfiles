@@ -27,7 +27,7 @@ def _maybe_install(source, dest)
   unless @NO_TO_ALL
     puts # newline for readability
     if File.exist? dest
-      _replace source, dest if _should_replace? dest
+      ln_sf source, dest if _should_replace? dest
     else
       ln_s source, dest
     end
@@ -41,15 +41,6 @@ def _should_replace?(dest)
   @YES_TO_ALL = (choice == 'Y')
   @NO_TO_ALL = (choice == 'N')
   return choice.downcase == 'y'
-end
-
-def _replace(source, dest)
-  if File.directory? dest
-    rm_r dest
-  else
-    rm dest
-  end
-  ln_s source, dest
 end
 
 def _cwd(file)
