@@ -10,15 +10,18 @@
   (package-refresh-contents))
 
 (defvar packages '(starter-kit
-			 starter-kit-lisp
-			 starter-kit-ruby
-			 starter-kit-bindings
-			 starter-kit-eshell
-                         color-theme-solarized
-                         clojure-mode
-                         clojure-test-mode
-                         cider
-                         ))
+                   starter-kit-lisp
+                   starter-kit-ruby
+                   starter-kit-bindings
+                   starter-kit-eshell
+                   color-theme-solarized
+                   clojure-mode
+                   clojure-test-mode
+                   cider
+                   markdown-mode
+                   auto-complete
+                   projectile
+                   ))
 
 (dolist (p packages)
   (when (not (package-installed-p p))
@@ -32,4 +35,6 @@
 (add-to-list 'load-path "~/.emacs.d/themes")
 (load-theme 'tomorrow-night t)
 
-
+;; activate global modes
+(projectile-global-mode)
+(global-auto-complete-mode)

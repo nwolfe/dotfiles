@@ -5,6 +5,3 @@ tags
 .lein-repl-history
 .nrepl-port
 *#*
-places
-backups
-.smex-items
