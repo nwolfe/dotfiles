@@ -4,3 +4,4 @@ backups
 .saves-*
 projectile-bookmarks.eld
 ac-comphist.dat
+ace-jump-mode-*
