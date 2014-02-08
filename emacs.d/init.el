@@ -9,19 +9,21 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar packages '(starter-kit
-                   starter-kit-lisp
-                   starter-kit-ruby
-                   starter-kit-bindings
-                   starter-kit-eshell
-                   color-theme-solarized
-                   clojure-mode
-                   clojure-test-mode
-                   cider
-                   markdown-mode
-                   auto-complete
-                   projectile
-                   ))
+(defvar packages
+  '(starter-kit
+    starter-kit-lisp
+    starter-kit-ruby
+    starter-kit-bindings
+    starter-kit-eshell
+    color-theme-solarized
+    clojure-mode
+    clojure-test-mode
+    cider
+    markdown-mode
+    auto-complete
+    projectile
+    ace-jump-mode
+    ))
 
 (dolist (p packages)
   (when (not (package-installed-p p))
@@ -33,8 +35,11 @@
 ;;   tomorrow-night
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/themes")
-(load-theme 'tomorrow-night t)
+(load-theme 'tomorrow-night-bright t)
 
 ;; activate global modes
 (projectile-global-mode)
 (global-auto-complete-mode)
+
+;; keybindings
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
