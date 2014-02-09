@@ -2,9 +2,13 @@
 # Modifications to the environment, usually exports and PATH overrides
 
 # Set Emacs as default system editors.
-# Empty string as alternate editor starts a server if there isn't one.
-export EDITOR="emacsclient --alternate-editor=''"
-export VISUAL="emacsclient --alternate-editor=''"
+#
+#   --tty                    Open frame in current terminal,
+#                            not in last active frame.
+#
+#   --alternate-editor=''    Start daemon server if there isn't one.
+export EDITOR="emacsclient --tty --alternate-editor=''"
+export VISUAL=$EDITOR
 
 export TERM=xterm-256color
 export PATH=/usr/local/bin:$HOME/bin:$PATH
