@@ -21,6 +21,7 @@ def _install_dotfiles()
   end
   _maybe_install _cwd('vim'), _home('.vim')
   _maybe_install _cwd('bin'), _home('bin')
+  _maybe_install _cwd('live-packs'), _home('.live-packs')
 end
 
 def _maybe_install(source, dest)
@@ -58,9 +59,5 @@ namespace :install do
 
   task :submodules do
     _fetch_submodules
-  end
-
-  task :rbenv do
-    `brew install rbenv`
   end
 end
