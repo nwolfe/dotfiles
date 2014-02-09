@@ -27,9 +27,7 @@ alias la='ls -A'
 alias l1='ls -1'
 
 # Shortcuts
-alias v='vim'
-alias e='emacsclient -t'
-alias repl='lein trampoline repl'
+alias e='eval $EDITOR'
 alias tmux='tmux -2' # Ensure 256 colors
-alias sshcent6='ssh root@pe-centos6' # Work VM
-alias sshdeb6='ssh root@pe-debian6'  # Work VM
+alias sshcent6='ssh root@pe-centos6'
+alias sshdeb6='ssh root@pe-debian6'
