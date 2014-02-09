@@ -11,11 +11,11 @@
 #   > echo "So is this!" >> ~/notes/foo.txt
 #
 #   $ rem
-#   > $VISUAL ~/notes/notes.txt
+#   > $EDITOR ~/notes/notes.txt
 #
 #   $ rem foo
 #   $ rem foo:
-#   > $VISUAL ~/notes/foo.txt
+#   > $EDITOR ~/notes/foo.txt
 
 NOTES_HOME=$HOME/notes
 GIT_REPO=$NOTES_HOME
@@ -42,7 +42,7 @@ absolute_path() {
 edit_notefile() {
   notefile=${1//:/}
   filepath=$(absolute_path $notefile)
-  $VISUAL $filepath
+  $EDITOR $filepath
   save_changes $filepath $notefile
 }
 
