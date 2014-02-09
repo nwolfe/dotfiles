@@ -1,7 +1,8 @@
 #!/bin/sh
 # Modifications to the environment, usually exports and PATH overrides
 
-export VISUAL=vim
+export EDITOR='emacsclient -t'
+export VISUAL='emacsclient -t'
 export TERM=xterm-256color
 export PATH=/usr/local/bin:$HOME/bin:$PATH
 export PUPPETLABS=$HOME/workspace/puppetlabs
