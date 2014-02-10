@@ -11,7 +11,7 @@ My configuration files
 * `vim/`: VIM home; symlinked into home directory
 * `live-packs/`: Emacs Live customization home; symlinked into home directory
 * `completion/`: ZSH command completion files
-* `osx`: Better defaults for Mac OS - manually sourced
+* `misc/`: Better defaults for Mac OS, oh-my-zsh theme, etc.
 
 ## Installation
 
@@ -26,4 +26,4 @@ $ rake install
 
 #### Mac OS
 
-Configuration is in the [osx](./osx) file. You must source it manually.
+Configuration is in the [osx](./misc/osx) file. You must source it manually.

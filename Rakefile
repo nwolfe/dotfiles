@@ -6,6 +6,7 @@ require 'rake'
 task :install do
   _fetch_submodules
   _install_dotfiles
+  _install_ohmyzsh_theme
 end
 
 def _fetch_submodules()
@@ -22,6 +23,16 @@ def _install_dotfiles()
   _maybe_install _cwd('vim'), _home('.vim')
   _maybe_install _cwd('bin'), _home('bin')
   _maybe_install _cwd('live-packs'), _home('.live-packs')
+end
+
+def _install_ohmyzsh_theme()
+  theme = 'goodsam.zsh-theme'
+  oh_my_zsh_themes = File.join ENV['HOME'], '.oh-my-zsh', 'themes'
+  if File.exist? oh_my_zsh_themes
+    source = File.join ENV['PWD'], 'misc', theme
+    dest = File.join oh_my_zsh_themes, theme
+    _maybe_install source, dest
+  end
 end
 
 def _maybe_install(source, dest)
