@@ -3,11 +3,15 @@
 
 # Set Emacs as default system editors.
 #
+# Use full path to executable for command-line git to work properly,
+# otherwise it finds the built-in version that doesn't support the
+# various flags used below.
+#
 #   --tty                    Open frame in current terminal,
 #                            not in last active frame.
 #
 #   --alternate-editor=''    Start daemon server if there isn't one.
-export EDITOR="emacsclient --tty --alternate-editor=''"
+export EDITOR="/usr/local/bin/emacsclient --tty --alternate-editor=''"
 export VISUAL=$EDITOR
 
 export TERM=xterm-256color
