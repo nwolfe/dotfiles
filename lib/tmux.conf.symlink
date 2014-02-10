@@ -10,6 +10,7 @@ set-option -g default-command "reattach-to-user-namespace -l zsh"
 set -g default-terminal "screen-256color"
 
 # vim key bindings in copy/choice modes
+# TODO change this to emacs
 setw -g mode-keys vi
 
 # start window index at 1
@@ -72,8 +73,10 @@ set-window-option -g clock-mode-style 12
 ################
 
 # prefix
+# (hit ` twice to insert character)
 unbind C-b
-set -g prefix C-a
+set -g prefix `
+bind-key ` send-prefix
 
 # reload config file
 unbind r
