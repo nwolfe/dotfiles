@@ -21,3 +21,8 @@
 
 ;; Activate global modes
 (projectile-global-mode)
+
+;; Redirect yasnippets
+(setq yas-snippet-dirs
+      '("~/.live-packs/nwolfe-pack/snippets"
+        "~/.emacs.d/etc/snippets"))
