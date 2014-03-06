@@ -15,7 +15,7 @@
   (package-refresh-contents))
 
 ;; Install extra packages
-(dolist (p '(projectile))
+(dolist (p '(projectile coffee-mode puppet-mode))
   (when (not (package-installed-p p))
     (package-install p)))
 
