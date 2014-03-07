@@ -27,3 +27,6 @@
       '("~/.live-packs/nwolfe-pack/snippets"
         "~/.emacs.d/etc/snippets"))
 (yas-reload-all)
+
+;; Enable puppet-mode for .pp files
+(add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
