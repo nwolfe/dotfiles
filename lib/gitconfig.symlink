@@ -1,5 +1,5 @@
 [core]
-  editor = vim
+  editor = zile
   excludesfile = /Users/nwolfe/.gitignore
 [user]
   email = nwolfe@puppetlabs.com
