@@ -68,7 +68,7 @@ set-window-option -g clock-mode-colour colour64 #green
 set-window-option -g clock-mode-style 12
 
 # thyme pomodoro timer integration
-set-option -g status-right '#(cat ~/.thyme-tmux)'
+set-option -g status-left '#(cat ~/.thyme-tmux)'
 set-option -g status-interval 1
 
 ################
