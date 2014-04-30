@@ -31,5 +31,5 @@ alias e='eval $EDITOR'
 alias tmux='tmux -2' # Ensure 256 colors
 alias sshcent6='ssh root@pe-centos6'
 alias sshdeb6='ssh root@pe-debian6'
-alias destroyMasterSSL='rm -rf $PUPPETLABS_CONF/puppet/master/conf/ssl'
-alias destroyAgentSSL='rm -rf $PUPPETLABS_CONF/puppet/agent/conf/ssl'
+alias removeMasterSSL='rm -rf $PUPPETLABS_CONF/puppet/master/conf/ssl'
+alias removeAgentSSL='rm -rf $PUPPETLABS_CONF/puppet/agent/conf/ssl'
