@@ -2,7 +2,7 @@
 # Hook for zsh autocompletion.
 # See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
 
-COMPLETION_DIR=$HOME/.dotfiles/completion
+COMPLETION_DIR=$DOTFILES/completion
 
 # add custom completion scripts
 fpath=($COMPLETION_DIR $fpath)

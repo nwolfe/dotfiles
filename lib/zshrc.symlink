@@ -59,7 +59,9 @@ chpwd() {
   ls
 }
 
+export DOTFILES=$HOME/.dotfiles
+
 # Source things like env, aliases, functions, etc.
-for sourcefile ($HOME/.dotfiles/sources/*); do
+for sourcefile ($DOTFILES/sources/*); do
   source $sourcefile
 done
