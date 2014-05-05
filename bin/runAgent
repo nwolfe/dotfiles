@@ -1,5 +1,5 @@
 #!/bin/bash
 
-command="puppet agent --no-daemonize --debug --trace --verbose --confdir=$PUPPETLABS_CONF/puppet/agent/conf --vardir=$PUPPETLABS_CONF/puppet/agent/var --server localhost --onetime --certname localhost-puppetdb"
+command="puppet agent --no-daemonize --debug --trace --verbose --confdir=$PUPPETLABS_CONF/puppet/agent/conf --vardir=$PUPPETLABS_CONF/puppet/agent/var --server localhost --onetime --certname my-agent"
 echo $command
 echo -n $command | pbcopy
