@@ -10,12 +10,18 @@
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 ;; Install extra packages
-(dolist (p '(projectile coffee-mode puppet-mode))
+(dolist (p '(coffee-mode
+             puppet-mode
+             projectile
+             helm
+             helm-projectile))
   (when (not (package-installed-p p))
     (package-install p)))
 
