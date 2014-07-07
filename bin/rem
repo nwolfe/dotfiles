@@ -3,7 +3,6 @@
 #
 # Examples
 #   $ rem This is cool!
-#   $ rem "This is cool!"
 #   > echo "This is cool!" >> ~/notes/notes.txt
 #
 #   $ rem foo: So is this!
