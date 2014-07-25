@@ -1,0 +1,7 @@
+#!/bin/sh
+# Provides the SSL files in $PUPPETLABS_CONF to a curl command
+
+CACERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/ca/ca_crt.pem
+CERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/certs/localhost.pem
+KEY=$PUPPETLABS_CONF/puppet/master/conf/ssl/private_keys/localhost.pem
+curl --cacert $CACERT --cert $CERT --key $KEY $@
