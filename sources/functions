@@ -1,19 +1,29 @@
 #!/bin/sh
 
-puppetEnv() {
+puppet-env() {
   PUPPET_HOME=$PUPPETLABS/puppet
   FACTER_HOME=$PUPPETLABS/facter
   export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
   export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
+  echo "Exported RUBYLIB, PATH"
 }
 
-puppetdbEnv() {
+puppetdb-env() {
   export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
+  echo "Exported RUBYLIB"
 }
 
-puppetdbPostgresEnv() {
+puppetdb-postgres-env() {
   export PUPPETDB_DBTYPE=postgres
   export PUPPETDB_DBSUBNAME=puppetdb_tests
   export PUPPETDB_DBUSER=puppetdb
   export PUPPETDB_DBPASSWORD=puppetdb
+  echo "Exported PUPPETDB_DBTYPE, PUPPETDB_DBSUBNAME, PUPPETDB_DBUSER, PUPPETDB_DBPASSWORD"
+}
+
+puppet-ssl-env() {
+  export CACERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/ca/ca_crt.pem
+  export CERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/certs/localhost.pem
+  export KEY=$PUPPETLABS_CONF/puppet/master/conf/ssl/private_keys/localhost.pem
+  echo "Exported CACERT, CERT, KEY"
 }
