@@ -1,8 +1,0 @@
-#!/bin/sh
-# Convenience around curl that provides the cacert/cert/key
-# SSL files in $PUPPETLABS_CONF and pretty-prints the output
-
-CACERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/ca/ca_crt.pem
-CERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/certs/localhost.pem
-KEY=$PUPPETLABS_CONF/puppet/master/conf/ssl/private_keys/localhost.pem
-curl --insecure --cacert $CACERT --cert $CERT --key $KEY $@ | python -mjson.tool
