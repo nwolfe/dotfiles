@@ -22,8 +22,14 @@ puppetdb-postgres-env() {
 }
 
 puppet-ssl-env() {
-  export CACERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/ca/ca_crt.pem
-  export CERT=$PUPPETLABS_CONF/puppet/master/conf/ssl/certs/localhost.pem
-  export KEY=$PUPPETLABS_CONF/puppet/master/conf/ssl/private_keys/localhost.pem
+  MODE=${1:-'master'}
+  export CACERT=$PUPPETLABS_CONF/$MODE/conf/ssl/ca/ca_crt.pem
+  export CERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/localhost.pem
+  export KEY=$PUPPETLABS_CONF/$MODE/conf/ssl/private_keys/localhost.pem
   echo "Exported CACERT, CERT, KEY"
+}
+
+remove-ssl() {
+  MODE=${1:-'master'}
+  rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
 }

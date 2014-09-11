@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SCRIPT=$1
 
@@ -7,5 +7,5 @@ if [[ -e $SCRIPT ]]; then
   exit 1
 fi
 
-echo "#!/bin/sh" > $SCRIPT
-chmod 777 $SCRIPT
+echo "#!/bin/bash" > $SCRIPT
+chmod 755 $SCRIPT

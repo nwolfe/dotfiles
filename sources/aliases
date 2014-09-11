@@ -9,7 +9,7 @@ alias ppdb='cd $PUPPETLABS/puppetdb'
 alias ptk='cd $PUPPETLABS/trapperkeeper'
 alias pps='cd $PUPPETLABS/puppet-server'
 alias pca='cd $PUPPETLABS/jvm-certificate-authority'
-alias pconf='cd $PUPPETLABS_CONF/puppet/master/conf'
+alias pconf='cd $PUPPETLABS_CONF'
 
 # Verify destruction
 alias rm='rm -iv' # Verbose, print removed files
@@ -32,5 +32,3 @@ alias e='eval $EDITOR'
 alias tmux='tmux -2' # Ensure 256 colors
 alias sshcent6='ssh root@pe-centos6'
 alias sshdeb6='ssh root@pe-debian6'
-alias remove-master-ssl='rm -rf $PUPPETLABS_CONF/puppet/master/conf/ssl'
-alias remove-agent-ssl='rm -rf $PUPPETLABS_CONF/puppet/agent/conf/ssl'

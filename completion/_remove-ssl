@@ -1,0 +1,4 @@
+#compdef remove-ssl
+# Complete: remove-ssl [master|server|agent]
+
+_arguments "1: :(master server agent)"

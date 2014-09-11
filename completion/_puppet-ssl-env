@@ -1,0 +1,4 @@
+#compdef puppet-ssl-env
+# Complete: puppet-ssl-env [master|server]
+
+_arguments "1: :(master server)"
