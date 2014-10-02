@@ -61,3 +61,10 @@
     (back-to-indentation)
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
+
+;; Copied from Prelude
+(defun prelude-switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+   Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
