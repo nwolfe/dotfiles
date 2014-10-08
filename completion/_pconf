@@ -1,0 +1,4 @@
+#compdef pconf
+# Complete: pconf [master|server|agent]
+
+_arguments "1: :(master server agent)"

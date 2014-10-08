@@ -33,3 +33,8 @@ remove-ssl() {
   MODE=${1:-'master'}
   rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
 }
+
+pconf() {
+  MODE=${1:-'..'}
+  cd $PUPPETLABS_CONF/$MODE/conf
+}
