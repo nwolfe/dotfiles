@@ -41,6 +41,7 @@ absolute_path() {
 edit_notefile() {
   notefile=${1//:/}
   filepath=$(absolute_path $notefile)
+  touch $filepath
   eval $EDITOR $filepath
   save_changes $filepath $notefile
 }
