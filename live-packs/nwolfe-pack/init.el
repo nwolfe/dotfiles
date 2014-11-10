@@ -68,3 +68,6 @@
    Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+;; Org-mode highlighting
+(setq org-src-fontify-natively t)
