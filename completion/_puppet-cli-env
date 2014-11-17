@@ -1,0 +1,4 @@
+#compdef puppet-cli-env
+# Complete: puppet-cli-env [master|server]
+
+_arguments "1: :(master server)"

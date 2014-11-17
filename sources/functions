@@ -29,6 +29,13 @@ puppet-ssl-env() {
   echo "Exported CACERT, CERT, KEY"
 }
 
+puppet-cli-env() {
+    MODE=${1:-'master'}
+    export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
+    export VARDIR=$PUPPETLABS_CONF/$MODE/var
+    echo "Exported CONFDIR, VARDIR"
+}
+
 remove-ssl() {
   MODE=${1:-'master'}
   rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
