@@ -1,7 +1,11 @@
 #!/bin/sh
 
 puppet-env() {
-  PUPPET_HOME=$PUPPETLABS/puppet
+  if [[ "$1" == "." ]]; then
+    PUPPET_HOME=$PWD
+  else
+    PUPPET_HOME=${1:-$PUPPETLABS/puppet}
+  fi
   FACTER_HOME=$PUPPETLABS/facter
   export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
   export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
@@ -30,10 +34,10 @@ puppet-ssl-env() {
 }
 
 puppet-cli-env() {
-    MODE=${1:-'master'}
-    export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
-    export VARDIR=$PUPPETLABS_CONF/$MODE/var
-    echo "Exported CONFDIR, VARDIR"
+  MODE=${1:-'master'}
+  export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
+  export VARDIR=$PUPPETLABS_CONF/$MODE/var
+  echo "Exported CONFDIR, VARDIR"
 }
 
 remove-ssl() {
