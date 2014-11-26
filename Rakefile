@@ -4,14 +4,11 @@ require 'rake'
 @NO_TO_ALL = false
 
 task :install do
-  _fetch_submodules
   _install_dotfiles
-  _install_ohmyzsh_theme
-end
-
-def _fetch_submodules()
-  `git submodule init`
-  `git submodule update`
+  _install_binaries
+  _install_vim
+  # _install_ohmyzsh_theme
+  # _install_emacs_live
 end
 
 def _install_dotfiles()
@@ -20,8 +17,17 @@ def _install_dotfiles()
     dest = _home '.' + File.basename(file)
     _maybe_install source, dest
   end
-  _maybe_install _cwd('vim'), _home('.vim')
+end
+
+def _install_binaries()
   _maybe_install _cwd('bin'), _home('bin')
+end
+
+def _install_vim()
+  _maybe_install _cwd('vim'), _home('.vim')
+end
+
+def _install_emacs_live()
   _maybe_install _cwd('live-packs'), _home('.live-packs')
 end
 
@@ -64,14 +70,4 @@ end
 
 def _home(file)
   File.join ENV['HOME'], file
-end
-
-namespace :install do
-  task :dotfiles do
-    _install_dotfiles
-  end
-
-  task :submodules do
-    _fetch_submodules
-  end
 end
