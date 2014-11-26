@@ -15,9 +15,9 @@ def _fetch_submodules()
 end
 
 def _install_dotfiles()
-  Dir['lib/*.symlink'].each do |file|
+  Dir['lib/*'].each do |file|
     source = _cwd file
-    dest = _home '.' + File.basename(file, '.symlink')
+    dest = _home '.' + File.basename(file)
     _maybe_install source, dest
   end
   _maybe_install _cwd('vim'), _home('.vim')
@@ -41,7 +41,10 @@ def _maybe_install(source, dest)
     if File.exist? dest
       ln_sf source, dest if _should_replace? dest
     else
-      ln_s source, dest
+      # Use the force option to overwrite dead symlinks.
+      # File.exist? will return false if the symlink is dead, but
+      # ln_s will fail because it thinks the symlink is a file
+      ln_sf source, dest
     end
   end
 end
