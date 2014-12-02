@@ -1,9 +1,9 @@
+[include]
+  # Non-VCS file to keep secrets (user name, email, password, tokens, etc)
+  path = ~/.gitconfig.local
 [core]
-  editor = zile
-  excludesfile = /Users/nwolfe/.gitignore
-[user]
-  email = nwolfe@puppetlabs.com
-  name = Nate Wolfe
+  editor = vim
+  excludesfile = ~/.gitignore
 [color]
   ui = true
 [push]
