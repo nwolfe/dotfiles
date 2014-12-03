@@ -62,6 +62,21 @@ chpwd() {
 export DOTFILES=$HOME/.dotfiles
 
 # Source things like env, aliases, functions, etc.
-for sourcefile ($DOTFILES/sources/*); do
+for sourcefile in $DOTFILES/sources/*; do
   source $sourcefile
 done
+
+# Hook for zsh autocompletion.
+# See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
+
+COMPLETION_DIR=$DOTFILES/completion
+
+# add custom completion scripts
+fpath=($COMPLETION_DIR $fpath)
+
+# initialize compsys
+autoload -U compinit
+compinit
+
+# show completion menu when number of options is at least 2
+zstyle ':completion:*' menu select=2
