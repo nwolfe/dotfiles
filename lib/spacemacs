@@ -10,7 +10,7 @@
  dotspacemacs-configuration-layer-path '("~/.dotfiles/config-layers/")
 
  ;; List of contribution to load.
- dotspacemacs-configuration-layers '(clojure nwolfe)
+ dotspacemacs-configuration-layers '(nwolfe github clojure)
 
  ;; If non nil the frame is maximized when Emacs starts up (Emacs 24.4+ only)
  dotspacemacs-fullscreen-at-startup t
@@ -40,10 +40,22 @@
    startup."
 )
 
+(defun nate/enable-dotfiles-in-shell-command ()
+  "Honor .bashrc when executing a shell command (ie. M-!) so we
+   can call custom functions and aliases defined in ~/.dotfiles."
+  (setq shell-file-name "bash")
+  (setq shell-command-switch "-ic"))
+
+(defun nate/clean-whitespace ()
+  "Remove trailing whitespace and trailing blank lines on file save."
+  (let ((whitespace-style '(trailing empty)))
+    (whitespace-cleanup)))
+
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
    This function is called at the very end of Spacemacs initialization."
   (load-theme 'monokai t)
-)
+  (nate/enable-dotfiles-in-shell-command)
+  (add-hook 'before-save-hook 'nate/clean-whitespace))
 
 ;; Custom variables
