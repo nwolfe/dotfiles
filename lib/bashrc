@@ -1,2 +1,8 @@
+# -*- mode: sh -*-
 export TERM=xterm-256color
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export DOTFILES=$HOME/.dotfiles
+
+# Source things like env, aliases, functions, etc.
+for sourcefile in $DOTFILES/sources/*; do
+  source $sourcefile
+done
