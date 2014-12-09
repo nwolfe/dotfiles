@@ -1,16 +1,12 @@
-;; (defun clojure/init-cider-mode ()
-;;   (use-package cider
-;;     :config))
+(defvar clojure-packages
+  '(clojure-mode
+    cider
+    align-cljlet
+    smartparens
+    rainbow-delimiters
+    ))
 
-;; (evil-leader/set-key-for-mode 'clojure-mode
-;;   "d r j" 'cider-jack-in
-;;   "d r l" 'cider-load-buffer
-;;   "d r n" 'cider-repl-set-ns
-;;   "d r z" 'cider-switch-to-repl-buffer)
-
-(defvar clojure-packages '(clojure-mode cider align-cljlet))
-
-(defun fancy-symbols ()
+(defun clojure/fancify-symbols ()
   (font-lock-add-keywords 'clojure-mode
     `(("(\\(fn\\)[\[[:space:]]"
        (0 (progn (compose-region (match-beginning 1)
@@ -22,10 +18,25 @@
        (0 (progn (compose-region (match-beginning 1)
                                  (match-end 1) "∈")))))))
 
+(defun clojure/bind-keys ()
+  (evil-leader/set-key-for-mode 'clojure-mode
+    "mps" 'sp-forward-slurp-sexp))
+
 (defun clojure/init-clojure-mode ()
   (use-package clojure-mode
     :config
     (progn
       (add-hook 'clojure-mode-hook 'smartparens-strict-mode)
       (add-hook 'clojure-mode-hook 'evil-lisp-state)
-      (fancy-symbols))))
+      (add-hook 'clojure-mode-hook 'cider-mode)
+      (clojure/fancify-symbols)
+      (clojure/bind-keys)
+      )))
+
+(defun clojure/init-cider ()
+  (use-package cider
+    :config
+    (progn
+      (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+      (add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
+      (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode))))
