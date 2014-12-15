@@ -10,7 +10,7 @@
  dotspacemacs-configuration-layer-path '("~/.dotfiles/config-layers/")
 
  ;; List of contribution to load.
- dotspacemacs-configuration-layers '(nwolfe github clojure)
+ dotspacemacs-configuration-layers '(nwolfe git clojure)
 
  ;; If non nil the frame is maximized when Emacs starts up (Emacs 24.4+ only)
  dotspacemacs-fullscreen-at-startup t
@@ -38,6 +38,8 @@
 (defun dotspacemacs/init ()
   "User initialization for Spacemacs. This function is called at the very
    startup."
+  ;; Enable github PRs, gists, and browse GH file in 'git' layer
+  (setq-default git-enable-github-support t)
 )
 
 (defun nate/enable-dotfiles-in-shell-command ()
