@@ -10,10 +10,10 @@
  dotspacemacs-configuration-layer-path '("~/.dotfiles/config-layers/")
 
  ;; List of contribution to load.
- dotspacemacs-configuration-layers '(nwolfe git clojure)
+ dotspacemacs-configuration-layers '(nwolfe git clojure colors)
 
  ;; If non nil the frame is maximized when Emacs starts up (Emacs 24.4+ only)
- dotspacemacs-fullscreen-at-startup t
+ dotspacemacs-fullscreen-at-startup nil
 
  ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth scrolling
  ;; overrides the default behavior of Emacs which recenters the point when
@@ -33,14 +33,7 @@
  dotspacemacs-default-package-repository nil
  )
 
-;; Functions
-
-(defun dotspacemacs/init ()
-  "User initialization for Spacemacs. This function is called at the very
-   startup."
-  ;; Enable github PRs, gists, and browse GH file in 'git' layer
-  (setq-default git-enable-github-support t)
-)
+;; Nate's functions
 
 (defun nate/enable-dotfiles-in-shell-command ()
   "Honor .bashrc when executing a shell command (ie. M-!) so we
@@ -48,16 +41,49 @@
   (setq shell-file-name "bash")
   (setq shell-command-switch "-ic"))
 
-(defun nate/clean-whitespace ()
+(defun nate/clean-whitespace-on-save ()
   "Remove trailing whitespace and trailing blank lines on file save."
-  (let ((whitespace-style '(trailing empty)))
-    (whitespace-cleanup)))
+  (add-hook 'before-save-hook
+            (lambda ()
+              (let ((whitespace-style '(trailing empty)))
+                (whitespace-cleanup)))))
+
+(defun nate/configure-rcirc ()
+  "Configuration for rcirc. Sensitive configuration (passwords)
+   is saved in ~/.emacs-secrets/pinit-rcirc.el"
+  ;; Auto-connect to these channels
+  (setq rcirc-server-alist
+        '(("chat.freenode.net"
+           :channels ("#puppet" "#trapperkeeper" "#emacs"))))
+
+  ;; Text should fill the whole frame before line wrapping
+  (setq rcirc-fill-column 'frame-width)
+
+  ;; Kill all channel buffers when the server buffer is killed
+  (setq rcirc-kill-channel-buffers t)
+
+  (setq rcirc-default-nick "nwolfe")
+  (setq rcirc-default-full-name "Nate Wolfe"))
+
+;; Functions
+
+(defun dotspacemacs/init ()
+  "User initialization for Spacemacs.
+   This function is called at the very startup."
+  ;; Put my non-VCS secrets directory on the load path for things like
+  ;; rcirc configuration that contains passwords
+  (add-to-list 'load-path "~/.emacs-secrets")
+
+  ;; Enable github PRs, gists, and browse GH file in 'git' layer
+  (setq-default git-enable-github-support t))
 
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
    This function is called at the very end of Spacemacs initialization."
   (load-theme 'monokai t)
   (nate/enable-dotfiles-in-shell-command)
-  (add-hook 'before-save-hook 'nate/clean-whitespace))
+  (nate/clean-whitespace-on-save)
+  (nate/configure-rcirc)
+  (global-aggressive-indent-mode 1))
 
 ;; Custom variables
