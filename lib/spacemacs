@@ -54,7 +54,7 @@
   ;; Auto-connect to these channels
   (setq rcirc-server-alist
         '(("chat.freenode.net"
-           :channels ("#puppet" "#trapperkeeper" "#emacs"))))
+           :channels ("#puppet" "#trapperkeeper" "#emacs" "#clojure"))))
 
   ;; Text should fill the whole frame before line wrapping
   (setq rcirc-fill-column 'frame-width)
