@@ -31,6 +31,8 @@
  ;; specified with an installed package.
  ;; Not used for now.
  dotspacemacs-default-package-repository nil
+
+ dotspacemacs-default-theme 'monokai
  )
 
 ;; Nate's functions
@@ -65,7 +67,13 @@
   (setq rcirc-default-nick "nwolfe")
   (setq rcirc-default-full-name "Nate Wolfe"))
 
-;; Functions
+(defun nate/configure-paradox ()
+  "Configuration for Paradox package manager. GitHub
+   token is saved in ~/.emacs-secrets/pinit-paradox.el"
+  (require 'pinit-paradox)
+  (setq paradox-automatically-star nil))
+
+;; Spacemacs Functions
 
 (defun dotspacemacs/init ()
   "User initialization for Spacemacs.
@@ -80,10 +88,10 @@
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
    This function is called at the very end of Spacemacs initialization."
-  (load-theme 'monokai t)
   (nate/enable-dotfiles-in-shell-command)
   (nate/clean-whitespace-on-save)
   (nate/configure-rcirc)
+  (nate/configure-paradox)
   (global-aggressive-indent-mode 1))
 
 ;; Custom variables
