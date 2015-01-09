@@ -1,0 +1,5 @@
+#!/bin/bash
+
+command="lein run --config $PUPPETLABS_CONF/server/puppet-server.conf"
+echo $command
+echo -n $command | pbcopy
