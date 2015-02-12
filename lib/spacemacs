@@ -137,12 +137,16 @@
   (require 'pinit-paradox)
   (setq paradox-automatically-star nil))
 
+(defun nate/configure-powerline ()
+  ;; Turn off the separator for now - there's some UI
+  ;; issue causing the separators to look strange
+  (setq powerline-default-separator 'nil))
+
 ;; Initialization Hooks
 ;; --------------------
 
 (defun dotspacemacs/init ()
-  "User initialization for Spacemacs.
-   This function is called at the very startup."
+  "User initialization for Spacemacs. This is called at the very startup."
   ;; Put my non-VCS secrets directory on the load path for things like
   ;; rcirc configuration that contains passwords
   (add-to-list 'load-path "~/.emacs-secrets"))
@@ -154,6 +158,7 @@
   (nate/clean-whitespace-on-save)
   (nate/configure-rcirc)
   (nate/configure-paradox)
+  (nate/configure-powerline)
   (global-aggressive-indent-mode 1))
 
 ;; Custom variables
