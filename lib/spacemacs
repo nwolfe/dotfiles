@@ -23,6 +23,11 @@
 
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '()
+
+ ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
+ ;; are declared in a layer which is not a member of
+ ;; the list `dotspacemacs-configuration-layers'
+ dotspacemacs-delete-orphan-packages t
  )
 
 ;; Settings
@@ -38,7 +43,15 @@
  ;; List of themes, the first of the list is loaded when spacemacs starts.
  ;; Press <SPC> T n to cycle to the next theme in the list (works great
  ;; with 2 themes variants, one dark and one light)
- dotspacemacs-themes '(monokai solarized-light solarized-dark)
+ dotspacemacs-themes '(monokai solarized-light solarized-dark leuven zenburn)
+
+ ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
+ ;; size to make separators look not too crappy.
+ dotspacemacs-default-font '("Source Code Pro"
+                             :size 13
+                             :weight normal
+                             :width normal
+                             :powerline-scale 1.1)
 
  ;; The leader key
  dotspacemacs-leader-key "SPC"
