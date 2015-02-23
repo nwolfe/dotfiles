@@ -13,6 +13,7 @@
  ;; List of configuration layers to load.
  dotspacemacs-configuration-layers
  '(nwolfe
+   markdown
    (git :variables
         ;; Enable github PRs, gists, and browse file on GitHub
         git-enable-github-support t)
