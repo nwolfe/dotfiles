@@ -1,51 +1,51 @@
 #!/bin/sh
 
 puppet-env() {
-  if [[ "$1" == "." ]]; then
-    PUPPET_HOME=$PWD
-  else
-    PUPPET_HOME=${1:-$PUPPETLABS/puppet}
-  fi
-  FACTER_HOME=$PUPPETLABS/facter
-  export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
-  export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
-  echo "Exported RUBYLIB, PATH"
+    if [[ "$1" == "." ]]; then
+        PUPPET_HOME=$PWD
+    else
+        PUPPET_HOME=${1:-$PUPPETLABS/puppet}
+    fi
+    FACTER_HOME=$PUPPETLABS/facter
+    export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
+    export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
+    echo "Exported RUBYLIB, PATH"
 }
 
 puppetdb-env() {
-  export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
-  echo "Exported RUBYLIB"
+    export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
+    echo "Exported RUBYLIB"
 }
 
 puppetdb-postgres-env() {
-  export PUPPETDB_DBTYPE=postgres
-  export PUPPETDB_DBSUBNAME=puppetdb_tests
-  export PUPPETDB_DBUSER=puppetdb
-  export PUPPETDB_DBPASSWORD=puppetdb
-  echo "Exported PUPPETDB_DBTYPE, PUPPETDB_DBSUBNAME, PUPPETDB_DBUSER, PUPPETDB_DBPASSWORD"
+    export PUPPETDB_DBTYPE=postgres
+    export PUPPETDB_DBSUBNAME=puppetdb_tests
+    export PUPPETDB_DBUSER=puppetdb
+    export PUPPETDB_DBPASSWORD=puppetdb
+    echo "Exported PUPPETDB_DBTYPE, PUPPETDB_DBSUBNAME, PUPPETDB_DBUSER, PUPPETDB_DBPASSWORD"
 }
 
 puppet-ssl-env() {
-  MODE=${1:-'master'}
-  export CACERT=$PUPPETLABS_CONF/$MODE/conf/ssl/ca/ca_crt.pem
-  export CERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/localhost.pem
-  export KEY=$PUPPETLABS_CONF/$MODE/conf/ssl/private_keys/localhost.pem
-  echo "Exported CACERT, CERT, KEY"
+    MODE=${1:-'master'}
+    export CACERT=$PUPPETLABS_CONF/$MODE/conf/ssl/ca/ca_crt.pem
+    export CERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/localhost.pem
+    export KEY=$PUPPETLABS_CONF/$MODE/conf/ssl/private_keys/localhost.pem
+    echo "Exported CACERT, CERT, KEY"
 }
 
 puppet-cli-env() {
-  MODE=${1:-'master'}
-  export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
-  export VARDIR=$PUPPETLABS_CONF/$MODE/var
-  echo "Exported CONFDIR, VARDIR"
+    MODE=${1:-'master'}
+    export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
+    export VARDIR=$PUPPETLABS_CONF/$MODE/var
+    echo "Exported CONFDIR, VARDIR"
 }
 
 remove-ssl() {
-  MODE=${1:-'master'}
-  rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
+    MODE=${1:-'master'}
+    rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
 }
 
 pconf() {
-  MODE=${1:-'..'}
-  cd $PUPPETLABS_CONF/$MODE/conf
+    MODE=${1:-'..'}
+    cd $PUPPETLABS_CONF/$MODE/conf
 }
