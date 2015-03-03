@@ -1,1 +1,1 @@
-(defvar nwolfe-packages '(ag))
+(defvar nwolfe-packages '())
