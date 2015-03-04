@@ -7,6 +7,7 @@ task :install do
   _install_dotfiles
   _install_binaries
   _install_vim
+  _install_lein_profile
   # _install_ohmyzsh_theme
   # _install_emacs_live
 end
@@ -29,6 +30,13 @@ end
 
 def _install_emacs_live()
   _maybe_install _cwd('live-packs'), _home('.live-packs')
+end
+
+def _install_lein_profile()
+  source = File.join ENV['PWD'], 'misc', 'profiles.clj'
+  destination = File.join ENV['HOME'], '.lein', 'profiles.clj'
+  mkdir_p _home('.lein')
+  _maybe_install source, destination
 end
 
 def _install_ohmyzsh_theme()
