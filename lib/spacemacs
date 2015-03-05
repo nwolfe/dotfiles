@@ -71,6 +71,7 @@
    dotspacemacs-configuration-layers
    '(extra-langs
      markdown
+     osx
      (git :variables
           ;; Enable github PRs, gists, and browse file on GitHub
           git-enable-github-support t)
