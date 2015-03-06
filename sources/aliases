@@ -5,10 +5,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias pp='cd $PUPPETLABS'
-alias ppdb='cd $PUPPETLABS/puppetdb'
-alias ptk='cd $PUPPETLABS/trapperkeeper'
 alias pps='cd $PUPPETLABS/puppet-server'
-alias pca='cd $PUPPETLABS/jvm-certificate-authority'
 
 # Verify destruction
 alias rm='rm -iv' # Verbose, print removed files
