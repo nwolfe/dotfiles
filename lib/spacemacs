@@ -193,8 +193,7 @@
   (nate/configure-rcirc)
   (nate/configure-paradox)
   (nate/configure-powerline)
-  (nate/configure-cider)
-  (global-aggressive-indent-mode 1))
+  (nate/configure-cider))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
