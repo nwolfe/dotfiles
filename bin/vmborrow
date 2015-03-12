@@ -1,0 +1,19 @@
+#!/bin/bash
+
+OS=$1
+
+if [ -z $OS ]; then
+   echo "OS argument required"
+   exit 1
+fi
+
+response=$(curl -d --url http://vmpooler.delivery.puppetlabs.net/vm/$OS)
+echo "$response"
+
+extracthostname="
+import json, sys
+res = json.load(sys.stdin)
+print res['$OS']['hostname']"
+hostname=$(python -c "$extracthostname" <<< "$response")
+
+echo -n $hostname | pbcopy

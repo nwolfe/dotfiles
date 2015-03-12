@@ -1,0 +1,17 @@
+#compdef vmborrow
+# Complete: vmborrow [centos-6-x86_64|debian-7-x86_64|redhat-6-x86_64|...]
+
+# Commonly used OSes, taken from http://vmpooler.delivery.puppetlabs.net/vm
+_arguments "1: :(
+centos-6-x86_64
+centos-7-x86_64
+
+debian-7-x86_64
+debian-8-x86_64
+
+redhat-6-x86_64
+redhat-7-x86_64
+
+ubuntu-1404-x86_64
+ubuntu-1410-x86_64
+)"
