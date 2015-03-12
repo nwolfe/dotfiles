@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Remember something!
 #
 # Examples
@@ -19,7 +19,7 @@
 NOTES_HOME=$HOME/notes
 GIT_REPO=$NOTES_HOME
 DEFAULT_NOTEFILE=notes
-FILE_FORMAT=md
+FILE_FORMAT=org
 
 # Commit the notefile with a default message.
 # $1 = absolute path to notefile (e.g. /users/foo/bar)
