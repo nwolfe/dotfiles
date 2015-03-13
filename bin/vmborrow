@@ -16,4 +16,4 @@ res = json.load(sys.stdin)
 print res['$OS']['hostname']"
 hostname=$(python -c "$extracthostname" <<< "$response")
 
-echo -n $hostname | pbcopy
+echo -n "ssh root@$hostname" | pbcopy
