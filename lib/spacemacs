@@ -10,12 +10,6 @@
    sensitive configuration data outside of VCS."
   (add-to-list 'load-path "~/.emacs-secrets"))
 
-(defun nate/enable-dotfiles-in-shell-command ()
-  "Honor .bashrc when executing a shell command (ie. M-!) so we
-   can call custom functions and aliases defined in ~/.dotfiles."
-  (setq shell-file-name "bash")
-  (setq shell-command-switch "-ic"))
-
 (defun nate/clean-whitespace-on-save ()
   "Remove trailing whitespace and trailing blank lines on file save."
   (add-hook 'before-save-hook
@@ -50,11 +44,6 @@
   ;; Turn off the separator for now - there's some UI
   ;; issue causing the separators to look strange
   (setq powerline-default-separator 'nil))
-
-(defun nate/configure-cider ()
-  ;; Extend smartparens-strict-mode to REPL
-  (if dotspacemacs-smartparens-strict-mode
-      (add-hook 'cider-repl-mode-hook #'smartparens-strict-mode)))
 
 ;; Spacemacs configuration functions
 ;; ---------------------------------
@@ -192,12 +181,10 @@
 (defun dotspacemacs/config ()
   "Configuration function. This function is called at the very end of Spacemacs
    initialization after layers configuration."
-  (nate/enable-dotfiles-in-shell-command)
   (nate/clean-whitespace-on-save)
   (nate/configure-rcirc)
   (nate/configure-paradox)
-  (nate/configure-powerline)
-  (nate/configure-cider))
+  (nate/configure-powerline))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
