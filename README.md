@@ -4,7 +4,7 @@ My configuration files
 
 ## Contents
 
-* `Rakefile`: Installer; run `rake install`
+* `install`: Installer; run `./install`
 * `lib/`: Dotfiles to be symlinked into home directory
 * `bin/`: Executables; directory symlinked into home directory and added to $PATH
 * `sources/`: Files sourced upon startup (e.g. aliases, functions, exports)
@@ -15,13 +15,13 @@ My configuration files
 
 ## Installation
 
-A Rakefile is provided to handle installation. It will symlink most files into your home directory.
-It will also run a few `git` commands to fetch the VIM plugin submodules.
+An install script is provided to handle installation. It will symlink most
+files into your home directory.
 
 ```sh
 $ git clone git@github.com:nwolfe/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
-$ rake install
+$ ./install
 ```
 
 #### Mac OS
