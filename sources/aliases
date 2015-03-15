@@ -26,3 +26,8 @@ alias l1='ls -1'
 # Shortcuts
 alias e='eval $EDITOR'
 alias tmux='tmux -2' # Ensure 256 colors
+
+# Start graphical emacs from my home directory.
+# Despite exec-path-from-shell being installed in my Emacs,
+# I don't have quite the environment/PATH that I do in terminal
+alias gemacs='/Applications/Emacs.app/Contents/MacOS/Emacs --chdir /Users/nwolfe &'
