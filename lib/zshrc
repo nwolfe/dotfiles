@@ -51,7 +51,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(brew osx lein colored-man jsontools
          git git-extras git-remote-branch
-         ruby rake rbenv bundler gem)
+         ruby rake rbenv gem)
 
 source $ZSH/oh-my-zsh.sh
 
