@@ -8,7 +8,7 @@
 (defun nate/enable-secrets-directory ()
   "Add the secrets directory to the load path so we can store
    sensitive configuration data outside of VCS."
-  (add-to-list 'load-path "~/.emacs-secrets"))
+  (add-to-list 'load-path "~/.seacrest/emacs"))
 
 (defun nate/clean-whitespace-on-save ()
   "Remove trailing whitespace and trailing blank lines on file save."
