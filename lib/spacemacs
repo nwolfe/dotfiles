@@ -63,7 +63,8 @@
      osx
      (git :variables
           ;; Enable github PRs, gists, and browse file on GitHub
-          git-enable-github-support t)
+          git-enable-github-support t
+          git-magit-status-fullscreen t)
      (clojure :variables
               clojure-enable-fancify-symbols t)
      (colors :variables
