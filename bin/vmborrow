@@ -7,6 +7,7 @@ if [ -z $OS ]; then
    exit 1
 fi
 
+## Borrow a VM from the pooler
 response=$(curl -d --url http://vmpooler.delivery.puppetlabs.net/vm/$OS)
 echo "$response"
 
@@ -16,4 +17,15 @@ res = json.load(sys.stdin)
 print res['$OS']['hostname']"
 hostname=$(python -c "$extracthostname" <<< "$response")
 
-echo -n "ssh root@$hostname" | pbcopy
+## Install vmreturn utility script on VM
+noprompts='-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+script=/usr/bin/vmreturn
+mkscript="touch $script; chmod 755 $script; cat > $script"
+ssh $noprompts root@$hostname $mkscript <<-VMRETURN
+#!/bin/bash
+curl -X DELETE --url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}
+shutdown -h now
+VMRETURN
+
+## Log in to the borrowed VM
+exec ssh $noprompts root@$hostname

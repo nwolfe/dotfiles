@@ -1,9 +1,0 @@
-#!/bin/bash
-
-command="curl \
--X DELETE \
---url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}; \
-shutdown -h now"
-
-echo $command
-echo -n $command | pbcopy
