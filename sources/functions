@@ -12,19 +12,6 @@ puppet-env() {
     echo "Exported RUBYLIB, PATH"
 }
 
-puppetdb-env() {
-    export RUBYLIB=$RUBYLIB:$PUPPETLABS/puppetdb/puppet/lib
-    echo "Exported RUBYLIB"
-}
-
-puppetdb-postgres-env() {
-    export PUPPETDB_DBTYPE=postgres
-    export PUPPETDB_DBSUBNAME=puppetdb_tests
-    export PUPPETDB_DBUSER=puppetdb
-    export PUPPETDB_DBPASSWORD=puppetdb
-    echo "Exported PUPPETDB_DBTYPE, PUPPETDB_DBSUBNAME, PUPPETDB_DBUSER, PUPPETDB_DBPASSWORD"
-}
-
 # Exports CACERT, CERT, and KEY for use with curl.
 #
 # Arguments:
