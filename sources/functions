@@ -1,5 +1,15 @@
 #!/bin/sh
 
+# Adds Facter and Puppet to the RUBYLIB and PATH for running Puppet via CLI.
+#
+# Arguments:
+#   $1  Location of Puppet repository; use '.' for current working directory.
+#       Defaults to '$PUPPETLABS/puppet'.
+#
+# Examples:
+#   > puppet-env .
+#   Exported RUBYLIB, PATH
+#   > puppet master --configprint confdir
 puppet-env() {
     if [[ "$1" == "." ]]; then
         PUPPET_HOME=$PWD
@@ -52,11 +62,19 @@ puppet-cli-env() {
     echo "Exported CODEDIR, CONFDIR, VARDIR, RUNDIR, LOGDIR"
 }
 
+# Deletes the SSLDIR for master, server, or agent.
+#
+# Arguments:
+#   $1  One of 'master', 'server', or 'agent'.
 remove-ssl() {
     MODE=${1:-'master'}
     rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
 }
 
+# Go to the top-level configuration directory for the master, server, or agent.
+#
+# Arguments:
+#   $1  One of 'master', 'server', or 'agent'.
 pconf() {
     MODE=${1:-'..'}
     cd $PUPPETLABS_CONF/$MODE/conf
