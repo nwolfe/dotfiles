@@ -25,19 +25,44 @@ puppetdb-postgres-env() {
     echo "Exported PUPPETDB_DBTYPE, PUPPETDB_DBSUBNAME, PUPPETDB_DBUSER, PUPPETDB_DBPASSWORD"
 }
 
+# Exports CACERT, CERT, and KEY for use with curl.
+#
+# Arguments:
+#   $1  Confdir to search under, one of 'master', 'server', or 'agent'.
+#       Defaults to 'master'.
+#   $2  Subject name for certificate and key. Defaults to 'localhost'.
+#
+# Examples:
+#   > puppet-ssl-env master localhost
+#   Exported CACERT, CERT, KEY for localhost
+#   > curl --cacert CACERT --cert CERT --key KEY https://localhost:8140/...
 puppet-ssl-env() {
     MODE=${1:-'master'}
-    export CACERT=$PUPPETLABS_CONF/$MODE/conf/ssl/ca/ca_crt.pem
-    export CERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/localhost.pem
-    export KEY=$PUPPETLABS_CONF/$MODE/conf/ssl/private_keys/localhost.pem
-    echo "Exported CACERT, CERT, KEY"
+    SUBJECT=${2:-'localhost'}
+    export CACERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/ca.pem
+    export CERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/$SUBJECT.pem
+    export KEY=$PUPPETLABS_CONF/$MODE/conf/ssl/private_keys/$SUBJECT.pem
+    echo "Exported CACERT, CERT, KEY for $SUBJECT"
 }
 
+# Exports top-level directories CODEDIR, CONFDIR, VARDIR, RUNDIR, and LOGDIR
+# for use with various Puppet CLI tools.
+#
+# Arguments:
+#   $1  Directories for one of 'master', 'server', 'agent'
+#
+# Examples:
+#   > puppet-cli-env
+#   Exported CODEDIR, CONFDIR, VARDIR, RUNDIR, LOGDIR
+#   > puppet cert list --codedir $CODEDIR --confdir $CONFDIR --vardir $VARDIR ...
 puppet-cli-env() {
     MODE=${1:-'master'}
+    export CODEDIR=$PUPPETLABS_CONF/$MODE/code
     export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
     export VARDIR=$PUPPETLABS_CONF/$MODE/var
-    echo "Exported CONFDIR, VARDIR"
+    export RUNDIR=$VARDIR/run
+    export LOGDIR=$VARDIR/log
+    echo "Exported CODEDIR, CONFDIR, VARDIR, RUNDIR, LOGDIR"
 }
 
 remove-ssl() {
