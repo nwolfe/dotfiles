@@ -1,17 +1,17 @@
 #!/bin/bash
 
-command="puppet agent \
---codedir=$PUPPETLABS_CONF/agent/code \
---confdir=$PUPPETLABS_CONF/agent/conf \
---vardir=$PUPPETLABS_CONF/agent/var \
---logdir=$PUPPETLABS_CONF/agent/var/log \
---rundir=$PUPPETLABS_CONF/agent/var/run \
---no-daemonize \
---onetime \
---debug \
---trace \
---verbose \
---server localhost \
+command="puppet agent
+--codedir=$PUPPETLABS_CONF/agent/code
+--confdir=$PUPPETLABS_CONF/agent/conf
+--vardir=$PUPPETLABS_CONF/agent/var
+--logdir=$PUPPETLABS_CONF/agent/var/log
+--rundir=$PUPPETLABS_CONF/agent/var/run
+--no-daemonize
+--onetime
+--debug
+--trace
+--verbose
+--server localhost
 --certname my-agent"
 
 echo $command

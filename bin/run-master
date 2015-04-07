@@ -1,5 +1,16 @@
 #!/bin/bash
 
-command="puppet master --autosign=true --no-daemonize --debug --verbose --confdir=$PUPPETLABS_CONF/master/conf --vardir=$PUPPETLABS_CONF/master/var --certname localhost"
+command="puppet master
+--codedir=$PUPPETLABS_CONF/master/code
+--confdir=$PUPPETLABS_CONF/master/conf
+--vardir=$PUPPETLABS_CONF/master/var
+--logdir=$PUPPETLABS_CONF/master/var/log
+--rundir=$PUPPETLABS_CONF/master/var/run
+--autosign=true
+--no-daemonize
+--debug
+--verbose
+--certname localhost"
+
 echo $command
 echo -n $command | pbcopy
