@@ -8,7 +8,7 @@
 (defun nate/enable-secrets-directory ()
   "Add the secrets directory to the load path so we can store
    sensitive configuration data outside of VCS."
-  (add-to-list 'load-path "~/.seacrest/emacs"))
+  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
 (defun nate/clean-whitespace-on-save ()
   "Remove trailing whitespace and trailing blank lines on file save."
@@ -18,15 +18,11 @@
                 (whitespace-cleanup)))))
 
 (defun nate/configure-rcirc ()
-  "Configuration for rcirc. Sensitive configuration (passwords)
-   is saved in ~/.emacs-secrets/pinit-rcirc.el"
+  "Configuration for rcirc. User password is saved in ~/.authinfo.gpg"
   ;; Auto-connect to these channels
   (setq rcirc-server-alist
-        '(("chat.freenode.net"
+        '(("irc.freenode.net"
            :channels ("#puppet" "#trapperkeeper" "#emacs" "#clojure"))))
-
-  ;; Text should fill the whole frame before line wrapping
-  (setq rcirc-fill-column 'frame-width)
 
   ;; Kill all channel buffers when the server buffer is killed
   (setq rcirc-kill-channel-buffers t)
@@ -35,8 +31,8 @@
   (setq rcirc-default-full-name "Nate Wolfe"))
 
 (defun nate/configure-paradox ()
-  "Configuration for Paradox package manager. GitHub
-   token is saved in ~/.emacs-secrets/pinit-paradox.el"
+  "Configuration for Paradox package manager. GitHub token
+   is saved in ~/.seacrest/emacs/load-path/pinit-paradox.el"
   (require 'pinit-paradox)
   (setq paradox-automatically-star nil))
 
@@ -68,7 +64,10 @@
      (clojure :variables
               clojure-enable-fancify-symbols t)
      (colors :variables
-             colors-enable-rainbow-identifiers t))
+             colors-enable-rainbow-identifiers t)
+     (rcirc :variables
+            ;; Read sensitive configuration from ~/.authinfo.gpg
+            rcirc-enable-authinfo-support t))
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
