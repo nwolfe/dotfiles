@@ -24,6 +24,9 @@
         '(("irc.freenode.net"
            :channels ("#puppet" "#trapperkeeper" "#emacs" "#clojure"))))
 
+  ;; Don't start IRC buffers in insert mode
+  (setq evil-normal-state-modes '(rcirc-mode))
+
   ;; Kill all channel buffers when the server buffer is killed
   (setq rcirc-kill-channel-buffers t)
 
