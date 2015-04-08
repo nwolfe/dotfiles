@@ -61,6 +61,7 @@
      markdown
      osx
      perspectives
+     puppet
      (git :variables
           ;; Enable github PRs, gists, and browse file on GitHub
           git-enable-github-support t
