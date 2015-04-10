@@ -1,8 +1,10 @@
 #!/bin/bash
 
-command="lein run \
---bootstrap-config $PUPPETLABS_CONF/server/bootstrap.cfg \
---config $PUPPETLABS_CONF/server/puppet-server.conf"
+VERSION=${1:-'v4'}
+
+command="lein run
+--bootstrap-config $PUPPETLABS_CONF/server/$VERSION/bootstrap.cfg
+--config $PUPPETLABS_CONF/server/$VERSION/puppet-server.conf"
 
 echo $command
 echo -n $command | pbcopy

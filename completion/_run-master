@@ -1,0 +1,4 @@
+#compdef run-master
+# Complete: run-master [v3|v4]
+
+_arguments "1: :(v3 v4)"

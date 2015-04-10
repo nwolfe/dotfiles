@@ -1,0 +1,4 @@
+#compdef run-server
+# Complete: run-server [v3|v4]
+
+_arguments "1: :(v3 v4)"

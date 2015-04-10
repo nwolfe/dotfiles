@@ -1,18 +1,38 @@
 #!/bin/bash
 
-command="puppet agent
---codedir=$PUPPETLABS_CONF/agent/code
---confdir=$PUPPETLABS_CONF/agent/conf
---vardir=$PUPPETLABS_CONF/agent/var
---logdir=$PUPPETLABS_CONF/agent/var/log
---rundir=$PUPPETLABS_CONF/agent/var/run
---no-daemonize
---onetime
---debug
---trace
---verbose
---server localhost
---certname my-agent"
+VERSION=${1:-'v4'}
+
+case $VERSION in
+    v3) command="puppet agent
+        --confdir=$PUPPETLABS_CONF/agent/$VERSION/conf
+        --vardir=$PUPPETLABS_CONF/agent/$VERSION/var
+        --no-daemonize
+        --onetime
+        --debug
+        --trace
+        --verbose
+        --server localhost
+        --certname my-agent"
+        ;;
+
+    v4) command="puppet agent
+        --codedir=$PUPPETLABS_CONF/agent/$VERSION/code
+        --confdir=$PUPPETLABS_CONF/agent/$VERSION/conf
+        --vardir=$PUPPETLABS_CONF/agent/$VERSION/var
+        --logdir=$PUPPETLABS_CONF/agent/$VERSION/var/log
+        --rundir=$PUPPETLABS_CONF/agent/$VERSION/var/run
+        --no-daemonize
+        --onetime
+        --debug
+        --trace
+        --verbose
+        --server localhost
+        --certname my-agent"
+        ;;
+
+    *) echo "Unrecognized version"
+       ;;
+esac
 
 echo $command
 echo -n $command | pbcopy

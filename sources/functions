@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Adds Facter and Puppet to the RUBYLIB and PATH for running Puppet via CLI.
 #
@@ -27,18 +27,22 @@ puppet-env() {
 # Arguments:
 #   $1  Confdir to search under, one of 'master', 'server', or 'agent'.
 #       Defaults to 'master'.
-#   $2  Subject name for certificate and key. Defaults to 'localhost'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
+#   $3  Subject name for certificate and key. Defaults to 'localhost'.
 #
 # Examples:
-#   > puppet-ssl-env master localhost
+#   > puppet-ssl-env master v4 localhost
 #   Exported CACERT, CERT, KEY for localhost
 #   > curl --cacert CACERT --cert CERT --key KEY https://localhost:8140/...
 puppet-ssl-env() {
     MODE=${1:-'master'}
-    SUBJECT=${2:-'localhost'}
-    export CACERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/ca.pem
-    export CERT=$PUPPETLABS_CONF/$MODE/conf/ssl/certs/$SUBJECT.pem
-    export KEY=$PUPPETLABS_CONF/$MODE/conf/ssl/private_keys/$SUBJECT.pem
+    VERSION=${2:-'v4'}
+    SUBJECT=${3:-'localhost'}
+    CONFDIR=$PUPPETLABS_CONF/$MODE/$VERSION/conf
+    export CACERT=$CONFDIR/ssl/certs/ca.pem
+    export CERT=$CONFDIR/ssl/certs/$SUBJECT.pem
+    export KEY=$CONFDIR/ssl/private_keys/$SUBJECT.pem
     echo "Exported CACERT, CERT, KEY for $SUBJECT"
 }
 
@@ -46,7 +50,10 @@ puppet-ssl-env() {
 # for use with various Puppet CLI tools.
 #
 # Arguments:
-#   $1  Directories for one of 'master', 'server', 'agent'
+#   $1  Directories for one of 'master', 'server', 'agent'.
+#       Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
 #
 # Examples:
 #   > puppet-cli-env
@@ -54,9 +61,11 @@ puppet-ssl-env() {
 #   > puppet cert list --codedir $CODEDIR --confdir $CONFDIR --vardir $VARDIR ...
 puppet-cli-env() {
     MODE=${1:-'master'}
-    export CODEDIR=$PUPPETLABS_CONF/$MODE/code
-    export CONFDIR=$PUPPETLABS_CONF/$MODE/conf
-    export VARDIR=$PUPPETLABS_CONF/$MODE/var
+    VERSION=${2:-'v4'}
+    CONFIGDIR=$PUPPETLABS_CONF/$MODE/$VERSION
+    export CODEDIR=$CONFIGDIR/code
+    export CONFDIR=$CONFIGDIR/conf
+    export VARDIR=$CONFIGDIR/var
     export RUNDIR=$VARDIR/run
     export LOGDIR=$VARDIR/log
     echo "Exported CODEDIR, CONFDIR, VARDIR, RUNDIR, LOGDIR"
@@ -65,17 +74,28 @@ puppet-cli-env() {
 # Deletes the SSLDIR for master, server, or agent.
 #
 # Arguments:
-#   $1  One of 'master', 'server', or 'agent'.
+#   $1  One of 'master', 'server', or 'agent'. Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
 remove-ssl() {
     MODE=${1:-'master'}
-    rm -rf $PUPPETLABS_CONF/$MODE/conf/ssl
+    VERSION=${2:-'v4'}
+    rm -rf $PUPPETLABS_CONF/$MODE/$VERSION/conf/ssl
 }
 
 # Go to the top-level configuration directory for the master, server, or agent.
+# Goes to the $PUPPETLABS_CONF if no arguments are provided.
 #
 # Arguments:
-#   $1  One of 'master', 'server', or 'agent'.
+#   $1  One of 'master', 'server', or 'agent'. Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
 pconf() {
-    MODE=${1:-'..'}
-    cd $PUPPETLABS_CONF/$MODE/conf
+    if [[ $# -eq 0 ]]; then
+        cd $PUPPETLABS_CONF
+    else
+        MODE=${1:-'master'}
+        VERSION=${2:-'v4'}
+        cd $PUPPETLABS_CONF/$MODE/$VERSION/conf
+    fi
 }
