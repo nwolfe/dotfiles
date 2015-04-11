@@ -19,19 +19,19 @@
 
 (defun nate/configure-rcirc ()
   "Configuration for rcirc. User password is saved in ~/.authinfo.gpg"
-  ;; Auto-connect to these channels
+  (setq rcirc-default-nick "nwolfe")
+  (setq rcirc-default-full-name "Nate Wolfe")
   (setq rcirc-server-alist
         '(("irc.freenode.net"
-           :channels ("#puppet" "#trapperkeeper" "#emacs" "#clojure"))))
-
-  ;; Don't start IRC buffers in insert mode
-  (setq evil-normal-state-modes '(rcirc-mode))
+           :channels ("#puppet" "#trapperkeeper" "#emacs" "#clojure"))
+          ("irc.quakenet.org"
+           :channels ("#rgrd"))))
 
   ;; Kill all channel buffers when the server buffer is killed
   (setq rcirc-kill-channel-buffers t)
 
-  (setq rcirc-default-nick "nwolfe")
-  (setq rcirc-default-full-name "Nate Wolfe"))
+  ;; Don't start IRC buffers in insert mode
+  (setq evil-normal-state-modes '(rcirc-mode)))
 
 (defun nate/configure-paradox ()
   "Configuration for Paradox package manager. GitHub token
