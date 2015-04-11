@@ -65,8 +65,7 @@
      nwolfe
      (git :variables
           ;; Enable github PRs, gists, and browse file on GitHub
-          git-enable-github-support t
-          git-magit-status-fullscreen t)
+          git-enable-github-support t)
      (clojure :variables
               clojure-enable-fancify-symbols t)
      (colors :variables
