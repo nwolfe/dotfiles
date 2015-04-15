@@ -44,6 +44,10 @@
   ;; issue causing the separators to look strange
   (setq powerline-default-separator 'nil))
 
+(defun nate/configure-magit ()
+  ;; Tell magit I've seen all of its warnings from the new version.
+  (setq magit-last-seen-setup-instructions "1.4.0"))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -190,7 +194,8 @@
   (nate/clean-whitespace-on-save)
   (nate/configure-rcirc)
   (nate/configure-paradox)
-  (nate/configure-powerline))
+  (nate/configure-powerline)
+  (nate/configure-magit))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
