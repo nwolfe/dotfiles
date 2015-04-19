@@ -61,22 +61,28 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(extra-langs
-     markdown
-     osx
-     perspectives
-     puppet
-     nwolfe
-     (git :variables
-          ;; Enable github PRs, gists, and browse file on GitHub
-          git-enable-github-support t)
+   '(
+     auto-completion
+     better-defaults
      (clojure :variables
               clojure-enable-fancify-symbols t)
      (colors :variables
              colors-enable-rainbow-identifiers t)
+     extra-langs
+     (git :variables
+          ;; Enable github PRs, gists, and browse file on GitHub
+          git-enable-github-support t)
+     markdown
+     nwolfe
+     org
+     osx
+     perspectives
+     puppet
      (rcirc :variables
             ;; Read sensitive configuration from ~/.authinfo.gpg
-            rcirc-enable-authinfo-support t))
+            rcirc-enable-authinfo-support t)
+     syntax-checking
+     )
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -92,12 +98,26 @@
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
+   ;; is `emacs' then the `holy-mode' is enabled at startup.
+   dotspacemacs-editing-style 'vim
+
+   ;; If non nil output loading progress in `*Messages*' buffer.
+   dotspacemacs-verbose-loading nil
+
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
    ;; banner, `random' chooses a random text banner in `core/banners'
    ;; directory. A string value must be a path to a .PNG file.
    ;; If the value is nil then no banner is displayed.
    dotspacemacs-startup-banner 'official
+
+   ;; t if you always want to see the changelog at startup
+   dotspacemacs-always-show-changelog t
+
+   ;; List of items to show in the startup buffer. if nil it is disabled.
+   ;; Possible values are: `recents', `bookmarks', `projects'.
+   dotspacemacs-startup-lists '(recents projects)
 
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
@@ -118,9 +138,15 @@
    ;; The leader key
    dotspacemacs-leader-key "SPC"
 
+   ;; The leader key accessible in `emacs state' and `insert state'
+   dotspacemacs-emacs-leader-key "M-m"
+
    ;; Major mode leader key is a shortcut key which is the equivalent of
-   ;; pressing `<leader> m`
+   ;; pressing `<leader> m'
    dotspacemacs-major-mode-leader-key ","
+
+   ;; Major mode leader accessible in `emacs state' and `insert state'
+   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
 
    ;; The command key used for Evil commands (ex-commands) and
    ;; Emacs commands (M-x).
@@ -128,7 +154,7 @@
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
 
-   ;; If non nil the paste micro-state is enabled. While enabled pressing `p`
+   ;; If non nil the paste micro-state is enabled. While enabled pressing `p'
    ;; several times cycles between the kill ring content.
    dotspacemacs-enable-paste-micro-state t
 
@@ -140,9 +166,6 @@
    ;; may increase the boot time on some systems and emacs builds, set it to
    ;; nil to boost the loading time.
    dotspacemacs-loading-progress-bar t
-
-   ;; Enable micro-state for helm buffer when pressing on TAB.
-   dotspacemacs-helm-micro-state t
 
    ;; If non nil the frame is fullscreen when Emacs starts up (Emacs 24.4+ only).
    dotspacemacs-fullscreen-at-startup nil
@@ -178,6 +201,10 @@
 
    ;; If non nil advises quit functions to keep server open when quitting.
    dotspacemacs-persistent-server nil
+
+   ;; List of search tool executable names. Spacemacs uses the first installed
+   ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
+   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
 
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
