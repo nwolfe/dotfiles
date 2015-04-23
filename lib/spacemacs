@@ -23,7 +23,8 @@
   (setq rcirc-default-full-name "Nate Wolfe")
   (setq rcirc-server-alist
         '(("irc.freenode.net"
-           :channels ("#puppet" "#trapperkeeper" "#emacs" "#clojure"))
+           :channels ("#puppet" "#puppet-dev" "#trapperkeeper"
+                      "#emacs" "#clojure"))
           ("irc.quakenet.org"
            :channels ("#rgrd"))))
 
