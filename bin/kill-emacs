@@ -1,4 +1,0 @@
-#!/bin/sh
-# Connects to the Emacs daemon and force kills it.
-
-emacsclient --eval "(kill-emacs)"
