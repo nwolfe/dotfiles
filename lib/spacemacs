@@ -69,6 +69,7 @@
               clojure-enable-fancify-symbols t)
      (colors :variables
              colors-enable-rainbow-identifiers t)
+     emacs-lisp
      extra-langs
      (git :variables
           ;; Enable github PRs, gists, and browse file on GitHub
@@ -82,8 +83,16 @@
      (rcirc :variables
             ;; Read sensitive configuration from ~/.authinfo.gpg
             rcirc-enable-authinfo-support t)
+     (shell :variables
+            shell-default-shell 'eshell)
      syntax-checking
      )
+
+   ;; List of additional packages that will be installed without being wrapped
+   ;; in a layer. If you need some configuration for these packages then
+   ;; consider creating a layer. You can also put the configuration in
+   ;; `dotspacemacs/config'.
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -155,9 +164,13 @@
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
 
+   ;; If non nil then `ido' replaces `helm' for some commands. For now only
+   ;; `find-files' (SPC f f) is replaced.
+   dotspacemacs-use-ido nil
+
    ;; If non nil the paste micro-state is enabled. While enabled pressing `p'
    ;; several times cycles between the kill ring content.
-   dotspacemacs-enable-paste-micro-state t
+   dotspacemacs-enable-paste-micro-state nil
 
    ;; Guide-key delay in seconds. The Guide-key is the popup buffer listing
    ;; the commands bound to the current keystrokes.
@@ -199,6 +212,10 @@
 
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode t
+
+   ;; Select a scope to highlight delimeters. Possible values are `all',
+   ;; `current', or `nil'. Default is `all'.
+   dotspacemacs-highlight-delimeters 'all
 
    ;; If non nil advises quit functions to keep server open when quitting.
    dotspacemacs-persistent-server nil
