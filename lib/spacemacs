@@ -71,6 +71,7 @@
              colors-enable-rainbow-identifiers t)
      emacs-lisp
      extra-langs
+     eyebrowse
      (git :variables
           ;; Enable github PRs, gists, and browse file on GitHub
           git-enable-github-support t)
@@ -78,7 +79,6 @@
      nwolfe
      org
      osx
-     perspectives
      puppet
      (rcirc :variables
             ;; Read sensitive configuration from ~/.authinfo.gpg
