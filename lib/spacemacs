@@ -75,9 +75,8 @@
      emacs-lisp
      extra-langs
      eyebrowse
-     (git :variables
-          ;; Enable github PRs, gists, and browse file on GitHub
-          git-enable-github-support t)
+     git
+     github
      markdown
      nwolfe
      org
