@@ -49,6 +49,9 @@
   ;; Tell magit I've seen all of its warnings from the new version.
   (setq magit-last-seen-setup-instructions "1.4.0"))
 
+(defun nate/configure-projectile ()
+  (setq projectile-switch-project-action 'projectile-recentf))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -240,7 +243,8 @@
   (nate/configure-rcirc)
   (nate/configure-paradox)
   (nate/configure-powerline)
-  (nate/configure-magit))
+  (nate/configure-magit)
+  (nate/configure-projectile))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
