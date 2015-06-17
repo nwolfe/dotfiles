@@ -52,6 +52,10 @@
 (defun nate/configure-projectile ()
   (setq projectile-switch-project-action 'projectile-recentf))
 
+(defun nate/configure-deft ()
+  (setq deft-directory "~/notes")
+  (setq deft-extension "org"))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -72,6 +76,7 @@
               clojure-enable-fancify-symbols t)
      (colors :variables
              colors-enable-rainbow-identifiers t)
+     deft
      emacs-lisp
      extra-langs
      eyebrowse
@@ -243,7 +248,8 @@
   (nate/configure-paradox)
   (nate/configure-powerline)
   (nate/configure-magit)
-  (nate/configure-projectile))
+  (nate/configure-projectile)
+  (nate/configure-deft))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
