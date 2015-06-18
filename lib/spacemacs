@@ -10,6 +10,10 @@
    sensitive configuration data outside of VCS."
   (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
+;; TODO This makes it really hard to write English prose such as documentation
+;;      as the combination of frequent saves and this behavior is painful.
+;;      Perhaps we can condition this around the current mode and have it not
+;;      do anything for Markdown and Org modes?
 (defun nate/clean-whitespace-on-save ()
   "Remove trailing whitespace and trailing blank lines on file save."
   (add-hook 'before-save-hook
@@ -244,7 +248,7 @@
 (defun dotspacemacs/config ()
   "Configuration function. This function is called at the very end of Spacemacs
    initialization after layers configuration."
-  (nate/clean-whitespace-on-save)
+  ;; (nate/clean-whitespace-on-save)
   (nate/configure-rcirc)
   (nate/configure-paradox)
   (nate/configure-powerline)
