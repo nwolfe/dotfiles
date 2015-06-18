@@ -92,6 +92,7 @@
             rcirc-enable-authinfo-support t)
      (shell :variables
             shell-default-shell 'eshell)
+     spotify
      syntax-checking
      )
 
