@@ -21,22 +21,29 @@
               (let ((whitespace-style '(trailing empty)))
                 (whitespace-cleanup)))))
 
-(defun nate/configure-rcirc ()
-  "Configuration for rcirc. User password is saved in ~/.authinfo.gpg"
-  (setq rcirc-default-nick "nwolfe")
-  (setq rcirc-default-full-name "Nate Wolfe")
-  (setq rcirc-server-alist
-        '(("irc.freenode.net"
-           :channels ("#puppet" "#puppet-dev" "#trapperkeeper"
-                      "#emacs" "#clojure"))
-          ("irc.quakenet.org"
-           :channels ("#rgrd"))))
+(defun nate/configure-erc ()
+  "Configure IRC. To connect to all servers, call `M-x nate/irc-jack-in'."
+  (setq erc-nick "nwolfe"
+        erc-user-full-name "Nate Wolfe"
+        erc-prompt-for-nickserv-password nil
+        erc-hide-list '("JOIN" "NICK" "PART" "QUIT" "MODE")
+        erc-autojoin-channels-alist
+        '(("1.0.0" ;; irc.gitter.im
+           "#syl20bnr/spacemacs")
+          ("freenode"
+           "#puppet" "#puppet-dev" "#trapperkeeper"
+           "#emacs" "#clojure" "#reddit-cyberpunk")
+          ("quakenet"
+           "#rgrd")))
 
-  ;; Kill all channel buffers when the server buffer is killed
-  (setq rcirc-kill-channel-buffers t)
-
-  ;; Don't start IRC buffers in insert mode
-  (setq evil-normal-state-modes '(rcirc-mode)))
+  ;; Put the server connect calls into a function so they
+  ;; aren't called at Emacs startup. I have to call it manually.
+  (defun nate/irc-jack-in ()
+    "Connect to all of my IRC servers."
+    (interactive)
+    (erc-tls :server "irc.gitter.im" :password nil)
+    (erc :server "irc.freenode.net")
+    (erc :server "irc.quakenet.org")))
 
 (defun nate/configure-paradox ()
   "Configuration for Paradox package manager. GitHub token
@@ -82,6 +89,7 @@
              colors-enable-rainbow-identifiers t)
      deft
      emacs-lisp
+     erc
      extra-langs
      eyebrowse
      git
@@ -91,9 +99,6 @@
      org
      osx
      puppet
-     (rcirc :variables
-            ;; Read sensitive configuration from ~/.authinfo.gpg
-            rcirc-enable-authinfo-support t)
      (shell :variables
             shell-default-shell 'eshell)
      spotify
@@ -249,7 +254,7 @@
   "Configuration function. This function is called at the very end of Spacemacs
    initialization after layers configuration."
   ;; (nate/clean-whitespace-on-save)
-  (nate/configure-rcirc)
+  (nate/configure-erc)
   (nate/configure-paradox)
   (nate/configure-powerline)
   (nate/configure-magit)
