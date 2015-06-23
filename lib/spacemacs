@@ -36,6 +36,9 @@
           ("quakenet"
            "#rgrd")))
 
+  ;; Don't start buffers in insert mode
+  (setq evil-normal-state-modes '(erc-mode))
+
   ;; Put the server connect calls into a function so they
   ;; aren't called at Emacs startup. I have to call it manually.
   (defun nate/irc-jack-in ()
