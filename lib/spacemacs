@@ -10,6 +10,11 @@
    sensitive configuration data outside of VCS."
   (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
+(defun nate/follow-symlinks ()
+  "Treat symlinks like regular files; don't ask me
+   for confirmation when opening a symlink file."
+  (setq vc-follow-symlinks t))
+
 ;; TODO This makes it really hard to write English prose such as documentation
 ;;      as the combination of frequent saves and this behavior is painful.
 ;;      Perhaps we can condition this around the current mode and have it not
@@ -263,6 +268,7 @@
   "Configuration function. This function is called at the very end of Spacemacs
    initialization after layers configuration."
   ;; (nate/clean-whitespace-on-save)
+  (nate/follow-symlinks)
   (nate/configure-erc)
   (nate/configure-paradox)
   (nate/configure-powerline)
