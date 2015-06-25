@@ -99,7 +99,7 @@
   (setq magit-last-seen-setup-instructions "1.4.0"))
 
 (defun nate/configure-projectile ()
-  (setq projectile-switch-project-action 'projectile-recentf))
+  (setq projectile-switch-project-action 'projectile-dired))
 
 (defun nate/configure-deft ()
   (setq deft-directory "~/notes")
