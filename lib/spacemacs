@@ -45,8 +45,27 @@
           ("quakenet"
            "#rgrd")))
 
+  ;; Filter foolish content
+  ;; "\\[GitHub\\].* labeled an issue in"
+  ;; "\\[GitHub\\].* unlabeled an issue in"
+  (setq erc-foolish-content '("Users on #.*"
+                              "\\[GitHub\\].* starred"
+                              "\\[GitHub\\].* forked"
+                              "\\[GitHub\\].* synchronize a Pull Request"))
+  (defun nate/erc-filter-foolish-content (msg)
+    "Ignore messages that match `erc-foolish-content'."
+    (when (erc-list-match erc-foolish-content msg)
+      (setq erc-insert-this nil)))
+  (add-hook 'erc-insert-pre-hook 'nate/erc-filter-foolish-content)
+
   ;; Don't start buffers in insert mode
   (setq evil-normal-state-modes '(erc-mode))
+
+  ;; Don't wrap long lines
+  (add-hook 'erc-join-hook 'toggle-truncate-lines)
+
+  ;; Automatically insert newlines
+  (erc-fill-mode t)
 
   ;; Put the server connect calls into a function so they
   ;; aren't called at Emacs startup. I have to call it manually.
