@@ -149,7 +149,8 @@
      erc
      extra-langs
      eyebrowse
-     git
+     (git :variables
+          git-use-magit-next t)
      github
      markdown
      nwolfe
