@@ -124,6 +124,9 @@
   (setq deft-directory "~/notes")
   (setq deft-extension "org"))
 
+(defun nate/initialize-ruby ()
+  (setq ruby-version-manager 'rbenv))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -154,6 +157,7 @@
      org
      osx
      puppet
+     ruby
      (shell :variables shell-default-shell 'eshell)
      spotify
      syntax-checking
@@ -308,7 +312,8 @@
 
   ;; User initialization goes below
 
-  (nate/enable-secrets-directory))
+  (nate/enable-secrets-directory)
+  (nate/initialize-ruby))
 
 (defun dotspacemacs/config ()
   "Configuration function. This function is called at the very end of Spacemacs
