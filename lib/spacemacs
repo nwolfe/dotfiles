@@ -150,7 +150,7 @@
      erc
      extra-langs
      eyebrowse
-     (git :variables git-use-magit-next t)
+     git
      github
      markdown
      nwolfe
@@ -161,6 +161,7 @@
      (shell :variables shell-default-shell 'eshell)
      spotify
      syntax-checking
+     version-control
      )
 
    ;; List of additional packages that will be installed without being wrapped
