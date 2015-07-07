@@ -127,6 +127,9 @@
 (defun nate/initialize-ruby ()
   (setq ruby-version-manager 'rbenv))
 
+(defun nate/configure-version-control ()
+  (setq diff-hl-side 'left))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -326,7 +329,8 @@
   (nate/configure-powerline)
   (nate/configure-magit)
   (nate/configure-projectile)
-  (nate/configure-deft))
+  (nate/configure-deft)
+  (nate/configure-version-control))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
