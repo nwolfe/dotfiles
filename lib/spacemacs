@@ -296,8 +296,9 @@
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode t
 
-   ;; Select a scope to highlight delimeters. Possible values are `all',
-   ;; `current', or `nil'. Default is `all'.
+   ;; Select a scope to highlight delimeters. Possible values are `any',
+   ;; `current', `all', or `nil'. Default is `all' (highlight any scope
+   ;; and emphasize the current one).
    dotspacemacs-highlight-delimeters 'all
 
    ;; If non nil advises quit functions to keep server open when quitting.
