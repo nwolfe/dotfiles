@@ -127,6 +127,13 @@
 (defun nate/configure-version-control ()
   (setq diff-hl-side 'left))
 
+(defun nate/configure-environment ()
+  (exec-path-from-shell-copy-envs
+   '("DOTFILES"
+     "EDITOR"
+     "PUPPETLABS"
+     "PUPPETLABS_CONF")))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -328,7 +335,8 @@
   (nate/configure-magit)
   (nate/configure-projectile)
   (nate/configure-deft)
-  (nate/configure-version-control))
+  (nate/configure-version-control)
+  (nate/configure-environment))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
