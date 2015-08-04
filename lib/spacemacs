@@ -15,16 +15,15 @@
    for confirmation when opening a symlink file."
   (setq vc-follow-symlinks t))
 
-;; TODO This makes it really hard to write English prose such as documentation
-;;      as the combination of frequent saves and this behavior is painful.
-;;      Perhaps we can condition this around the current mode and have it not
-;;      do anything for Markdown and Org modes?
 (defun nate/clean-whitespace-on-save ()
-  "Remove trailing whitespace and trailing blank lines on file save."
+  "Remove trailing whitespace and trailing blank lines on file save,
+   unless it's a markdown or org file."
   (add-hook 'before-save-hook
             (lambda ()
-              (let ((whitespace-style '(trailing empty)))
-                (whitespace-cleanup)))))
+              (unless (or (equal 'markdown-mode major-mode)
+                          (equal 'org-mode major-mode))
+                (let ((whitespace-style '(trailing empty)))
+                  (whitespace-cleanup))))))
 
 (defun nate/configure-erc ()
   "Configure IRC. Passwords are stored in `~/.authinfo.gpg'.
@@ -327,7 +326,7 @@
 (defun dotspacemacs/config ()
   "Configuration function. This function is called at the very end of Spacemacs
    initialization after layers configuration."
-  ;; (nate/clean-whitespace-on-save)
+  (nate/clean-whitespace-on-save)
   (nate/follow-symlinks)
   (nate/configure-erc)
   (nate/configure-paradox)
