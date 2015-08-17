@@ -166,7 +166,7 @@
      puppet
      (shell :variables shell-default-shell 'eshell)
      spotify
-     syntax-checking
+     spell-checking
      version-control
      yaml
      )
