@@ -156,7 +156,6 @@
      deft
      emacs-lisp
      erc
-     extra-langs
      eyebrowse
      git
      github
@@ -169,6 +168,7 @@
      spotify
      syntax-checking
      version-control
+     yaml
      )
 
    ;; List of additional packages that will be installed without being wrapped
