@@ -133,6 +133,24 @@
      "PUPPETLABS"
      "PUPPETLABS_CONF")))
 
+(defun nate/configure-email ()
+  ;; Only support work email for now
+  ;; TODO Get rid of double group entries
+  ;; TODO Proper way to add new groups/labels for specific topics?
+  ;; TODO* Spacemacs-ify GNUs keybindings!?
+  (setq
+   user-mail-address "nwolfe@puppetlabs.com"
+   nnml-directory "~/email"
+   message-directory "~/email"
+   message-send-mail-function 'smtpmail-send-it
+   smtpmail-default-smtp-server "smtp.gmail.com"
+   gnus-message-archive-method '(nnimap "imap.gmail.com")
+   gnus-message-archive-group "[Gmail]/Sent Mail"
+   gnus-secondary-select-methods '((nnimap "gmail"
+                                           (nnimap-address "imap.gmail.com")
+                                           (nnimap-server-port 993)
+                                           (nnimap-stream ssl)))))
+
 (defun nate/initialize-ruby ()
   (setq ruby-version-manager 'rbenv))
 
@@ -167,6 +185,7 @@
      eyebrowse
      git
      github
+     gnus
      markdown
      nwolfe
      org
@@ -374,7 +393,8 @@
   (nate/configure-projectile)
   (nate/configure-deft)
   (nate/configure-version-control)
-  (nate/configure-environment))
+  (nate/configure-environment)
+  (nate/configure-email))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
