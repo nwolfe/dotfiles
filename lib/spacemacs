@@ -151,9 +151,6 @@
                                            (nnimap-server-port 993)
                                            (nnimap-stream ssl)))))
 
-(defun nate/initialize-ruby ()
-  (setq ruby-version-manager 'rbenv))
-
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -191,7 +188,6 @@
      org
      osx
      puppet
-     ruby
      (shell :variables shell-default-shell 'eshell)
      spotify
      spell-checking
@@ -378,8 +374,7 @@
 (defun dotspacemacs/user-init ()
   "Initialization function for user code. This is called immediately after
    `dotspacemacs/init'."
-  (nate/enable-secrets-directory)
-  (nate/initialize-ruby))
+  (nate/enable-secrets-directory))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
