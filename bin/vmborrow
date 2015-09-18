@@ -27,5 +27,8 @@ curl -X DELETE --url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}
 shutdown -h now
 VMRETURN
 
+## Install .curlrc to pick up vmpooler auth token when returning
+scp $noprompts ~/.curlrc root@$hostname:~/.curlrc
+
 ## Log in to the borrowed VM
 exec ssh $noprompts root@$hostname
