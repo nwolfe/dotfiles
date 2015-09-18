@@ -134,12 +134,10 @@
      "PUPPETLABS_CONF")))
 
 (defun nate/configure-email ()
-  ;; Only support work email for now
   ;; TODO Get rid of double group entries
   ;; TODO Proper way to add new groups/labels for specific topics?
   ;; TODO* Spacemacs-ify GNUs keybindings!?
   (setq
-   user-mail-address "nwolfe@puppetlabs.com"
    nnml-directory "~/email"
    message-directory "~/email"
    message-send-mail-function 'smtpmail-send-it
