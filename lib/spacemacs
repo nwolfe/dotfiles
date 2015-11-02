@@ -180,12 +180,12 @@
      eyebrowse
      git
      github
-     gnus
      markdown
      nwolfe
      org
      osx
      puppet
+     ruby
      (shell :variables shell-default-shell 'eshell)
      spotify
      spell-checking
@@ -349,6 +349,10 @@
    ;; point when it reaches the top or bottom of the screen
    dotspacemacs-smooth-scrolling t
 
+   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'.
+   ;; (default nil)
+   dotspacemacs-global-line-numbers nil
+
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode t
@@ -370,7 +374,12 @@
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
-   dotspacemacs-default-package-repository nil))
+   dotspacemacs-default-package-repository nil
+
+   ;; Delete trailing whitespace while saving buffer. Possible values are `all',
+   ;; `trailing', `changed', or `nil'. Default is `changed' (cleanup whitespace
+   ;; on changed lines).
+   dotspacemacs-whitespace-cleanup 'changed))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code. This is called immediately after
