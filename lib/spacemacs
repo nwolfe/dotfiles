@@ -207,6 +207,10 @@
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
   )
 
+(defun nate/configure-spell-checking ()
+  ;; Disable spell-checking the whole buffer (on buffer open)
+  (remove-hook 'flyspell-mode-hook 'flyspell-buffer))
+
 ;; Spacemacs configuration functions
 ;; ---------------------------------
 
@@ -457,7 +461,8 @@
   (nate/configure-deft)
   (nate/configure-version-control)
   (nate/configure-environment)
-  (nate/configure-email))
+  (nate/configure-email)
+  (nate/configure-spell-checking))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
