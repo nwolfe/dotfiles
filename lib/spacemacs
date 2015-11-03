@@ -135,6 +135,9 @@
 
 (defun nate/configure-email ()
   ;; TODO "View as PDF" action busted - fix it or get rid of it
+  ;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
+  ;; TODO Prevent email files from showing up in Recent Files list
+  ;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
   ;; TODO get rid of duplicates emails
   ;;      - possible way to get duplicate:
   ;;        1. fetch new mail
@@ -146,13 +149,13 @@
   ;;          - Don't ever fetch Trash? I'd like to be able to search trash
   ;;          - Fetch Trash but mark as read? This seems best
   (add-to-load-path "/usr/local/share/emacs/site-lisp")
-  (require 'mu4e)
   (setq user-mail-address "nwolfe@puppetlabs.com"
         user-full-name "Nate Wolfe"
         message-signature (concat "Nate Wolfe\n"
                                   "Software Engineer\n"
                                   "Puppet Labs\n\n"
                                   "Sent with my mu4e\n"))
+  (require 'mu4e)
   (setq mu4e-maildir "~/Mail")
   (setq mu4e-drafts-folder "/drafts")
   (setq mu4e-sent-folder "/sent")
