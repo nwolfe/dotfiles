@@ -210,10 +210,6 @@
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
   )
 
-(defun nate/configure-spell-checking ()
-  ;; Disable spell-checking the whole buffer (on buffer open)
-  (remove-hook 'flyspell-mode-hook 'flyspell-buffer))
-
 (defun nate/configure-org-babel ()
   ;; Enable shell language execution support in source blocks.
   ;; See http://orgmode.org/manual/Languages.html#Languages
@@ -473,7 +469,6 @@
   (nate/configure-version-control)
   (nate/configure-environment)
   (nate/configure-email)
-  (nate/configure-spell-checking)
   (nate/configure-org-babel))
 
 ;; Do not write anything past this comment. This is where Emacs will
