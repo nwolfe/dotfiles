@@ -15,16 +15,6 @@
    for confirmation when opening a symlink file."
   (setq vc-follow-symlinks t))
 
-(defun nate/clean-whitespace-on-save ()
-  "Remove trailing whitespace and trailing blank lines on file save,
-   unless it's a markdown or org file."
-  (add-hook 'before-save-hook
-            (lambda ()
-              (unless (or (equal 'markdown-mode major-mode)
-                          (equal 'org-mode major-mode))
-                (let ((whitespace-style '(trailing empty)))
-                  (whitespace-cleanup))))))
-
 (defun nate/configure-erc ()
   "Configure IRC. Passwords are stored in `~/.authinfo.gpg'.
    Associated commands:
@@ -458,7 +448,6 @@
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
    Spacemacs initialization after layers configuration."
-  (nate/clean-whitespace-on-save)
   (nate/follow-symlinks)
   (nate/configure-erc)
   (nate/configure-paradox)
