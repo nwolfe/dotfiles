@@ -211,7 +211,8 @@
 ;; ---------------------------------
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration."
+  "Configuration Layers declaration. You should not put any user
+   code in this function besides modifying the variable values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -219,8 +220,8 @@
    dotspacemacs-distribution 'spacemacs
 
    ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/.dotfiles/spacemacs-layers/")
+   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+   dotspacemacs-configuration-layer-path '()
 
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
@@ -239,7 +240,6 @@
      git
      github
      markdown
-     nwolfe
      org
      osx
      puppet
@@ -255,7 +255,7 @@
    ;; in a layer. If you need some configuration for these packages then
    ;; consider creating a layer. You can also put the configuration in
    ;; `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(json-reformat)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -267,7 +267,8 @@
 
 (defun dotspacemacs/init ()
   "Initialization function. This function is called at the very startup of
-   Spacemacs initialization before layers configuration."
+   Spacemacs initialization before layers configuration. You should not put
+   any user code in this function besides modifying the variable values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
