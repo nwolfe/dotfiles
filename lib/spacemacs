@@ -236,7 +236,6 @@
      deft
      emacs-lisp
      erc
-     eyebrowse
      git
      github
      markdown
@@ -245,6 +244,7 @@
      puppet
      ruby
      (shell :variables shell-default-shell 'eshell)
+     spacemacs-layouts
      spotify
      spell-checking
      version-control
