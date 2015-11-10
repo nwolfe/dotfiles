@@ -126,9 +126,11 @@
 (defun nate/configure-email ()
   ;; TODO "View as PDF" action busted - fix it or get rid of it
   ;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
+  ;; TODO Would it be better to only fetch "All Mail" label from GMail?
+  ;;      - Then do all filtering & sorting in mu4e
   ;; TODO Prevent email files from showing up in Recent Files list
   ;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
-  ;; TODO get rid of duplicates emails
+  ;; TODO Get rid of duplicate emails
   ;;      - possible way to get duplicate:
   ;;        1. fetch new mail
   ;;        2. read message, move to trash

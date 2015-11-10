@@ -9,7 +9,6 @@ My configuration files
 * `bin/`: Executables; directory symlinked into home directory and added to $PATH
 * `sources/`: Files sourced upon startup (e.g. aliases, functions, exports)
 * `vim/`: VIM home; symlinked into home directory
-* `live-packs/`: Emacs Live customization home; symlinked into home directory
 * `completion/`: ZSH command completion files
 * `misc/`: Better defaults for Mac OS, oh-my-zsh theme, etc.
 
