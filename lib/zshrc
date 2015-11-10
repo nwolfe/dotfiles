@@ -60,14 +60,21 @@ source $ZSH/oh-my-zsh.sh
 
 # Do an `ls` after a `cd`. Hook called by zsh
 chpwd() {
-  ls
+    ls
 }
 
 export DOTFILES=$HOME/.dotfiles
 
+# Source .seacrest things if they exist
+if [ -d $HOME/.seacrest ]; then
+    for sourcefile in $HOME/.seacrest/shell/sources/*; do
+        source $sourcefile
+    done
+fi
+
 # Source things like env, aliases, functions, etc.
 for sourcefile in $DOTFILES/sources/*; do
-  source $sourcefile
+    source $sourcefile
 done
 
 # Hook for zsh autocompletion.

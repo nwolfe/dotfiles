@@ -8,7 +8,8 @@ if [ -z $OS ]; then
 fi
 
 ## Borrow a VM from the pooler
-response=$(curl -s --data --url http://vmpooler.delivery.puppetlabs.net/vm/$OS)
+token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
+response=$(curl $token --silent --data --url http://vmpooler.delivery.puppetlabs.net/vm/$OS)
 echo "$response"
 
 extracthostname="
@@ -23,13 +24,10 @@ script=/usr/bin/vmreturn
 mkscript="touch $script; chmod 755 $script; cat > $script"
 ssh $noprompts root@$hostname $mkscript <<-VMRETURN
 #!/bin/bash
-curl -X DELETE --url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}
+curl $token -X DELETE --url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}
 echo # newline for readability
 shutdown -h now
 VMRETURN
-
-## Install .curlrc to pick up vmpooler auth token when returning
-scp $noprompts ~/.curlrc root@$hostname:~/.curlrc
 
 ## Log in to the borrowed VM
 exec ssh $noprompts root@$hostname
