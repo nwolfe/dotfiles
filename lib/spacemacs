@@ -140,6 +140,18 @@
   ;;        * Possible solutions:
   ;;          - Don't ever fetch Trash? I'd like to be able to search trash
   ;;          - Fetch Trash but mark as read? This seems best
+  ;; TODO Consider this mail structure:
+  ;;      - 1 mail folder (maildir) per email account
+  ;;        * Allows for other email accounts to be integrated
+  ;;        * Instead of folders for Inbox, Starred, Puppet Server, Dev, etc.
+  ;;      - Then file system might look like:
+  ;;        ~/Mail
+  ;;         |-- PuppetLabs/
+  ;;         |-- a1979shakedown/
+  ;;         |-- pdxncw/
+  ;;         |-- nathaniel.c.wolfe/
+  ;;      - Only sync 'All Mail' folder per email account
+  ;;      - Use bookmarks/saved-searches for folders/labels within
   (add-to-load-path "/usr/local/share/emacs/site-lisp")
   (setq user-mail-address "nwolfe@puppetlabs.com"
         user-full-name "Nate Wolfe"
