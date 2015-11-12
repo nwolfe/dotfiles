@@ -2,228 +2,6 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
-;; My custom configuration functions
-;; ---------------------------------
-
-(defun nate/enable-secrets-directory ()
-  "Add the secrets directory to the load path so we can store
-   sensitive configuration data outside of VCS."
-  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
-
-(defun nate/follow-symlinks ()
-  "Treat symlinks like regular files; don't ask me
-   for confirmation when opening a symlink file."
-  (setq vc-follow-symlinks t))
-
-(defun nate/configure-erc ()
-  "Configure IRC. Passwords are stored in `~/.authinfo.gpg'.
-   Associated commands:
-   * `nate/irc-jack-in' Connect to all servers
-   * `nate/irc-layout'  Configure current frame with channel windows"
-  (setq erc-nick "nwolfe"
-        erc-user-full-name "Nate Wolfe"
-        erc-prompt-for-nickserv-password nil
-        erc-hide-list '("JOIN" "NICK" "PART" "QUIT" "MODE")
-        erc-join-buffer 'bury
-        erc-autojoin-channels-alist
-        '(("1.0.0" ;; irc.gitter.im
-           "#syl20bnr/spacemacs")
-          ("freenode"
-           "#puppet" "#puppet-dev" "#trapperkeeper"
-           "#emacs" "#clojure" "#reddit-cyberpunk")
-          ("quakenet"
-           "#rgrd")))
-
-  ;; Filter foolish content
-  ;; "\\[GitHub\\].* labeled an issue in"
-  ;; "\\[GitHub\\].* unlabeled an issue in"
-  (setq erc-foolish-content '("Users on #.*"
-                              "\\[GitHub\\].* starred"
-                              "\\[GitHub\\].* forked"
-                              "\\[GitHub\\].* synchronize a Pull Request"))
-  (defun nate/erc-filter-foolish-content (msg)
-    "Ignore messages that match `erc-foolish-content'."
-    (when (erc-list-match erc-foolish-content msg)
-      (setq erc-insert-this nil)))
-  (add-hook 'erc-insert-pre-hook 'nate/erc-filter-foolish-content)
-
-  ;; Don't start buffers in insert mode
-  (setq evil-normal-state-modes '(erc-mode))
-
-  ;; Don't wrap long lines
-  (add-hook 'erc-join-hook 'toggle-truncate-lines)
-
-  ;; Automatically insert newlines
-  (erc-fill-mode t)
-
-  ;; Put the server connect calls into a function so they
-  ;; aren't called at Emacs startup. I have to call it manually.
-  (defun nate/irc-jack-in ()
-    "Connect to all of my IRC servers."
-    (interactive)
-    ;; Nil password forces it to read from `~/.authinfo.gpg'
-    (erc-tls :server "irc.gitter.im" :password nil)
-    (erc :server "irc.freenode.net")
-    (erc :server "irc.quakenet.org"))
-
-  (defun nate/irc-layout ()
-    "Configure the current frame with windows for each IRC channel.
-     The layout is a table with balanced cells like:
-
-     cyberpunk | spacemacs | emacs
-     rgrd      | puppet    | clojure
-
-     Note that not all IRC channels get a dedicated window."
-    (interactive)
-    (delete-other-windows)
-    (switch-to-buffer "#reddit-cyberpunk")
-    (split-window-horizontally-and-switch)
-    (switch-to-buffer "#syl20bnr/spacemacs")
-    (split-window-horizontally-and-switch)
-    (switch-to-buffer "#emacs")
-    (split-window-vertically-and-switch)
-    (switch-to-buffer "#clojure")
-    (select-window-2)
-    (split-window-vertically-and-switch)
-    (switch-to-buffer "#puppet")
-    (select-window-1)
-    (split-window-vertically-and-switch)
-    (switch-to-buffer "#rgrd")
-    (balance-windows)))
-
-(defun nate/configure-paradox ()
-  "Configuration for Paradox package manager. GitHub token
-   is saved in ~/.seacrest/emacs/load-path/pinit-paradox.el"
-  (require 'pinit-paradox)
-  (setq paradox-automatically-star nil))
-
-(defun nate/configure-powerline ()
-  ;; Turn off the separator for now - there's some UI
-  ;; issue causing the separators to look strange
-  (setq powerline-default-separator 'nil))
-
-(defun nate/configure-magit ()
-  ;; Tell magit I've seen all of its warnings from the new version.
-  (setq magit-last-seen-setup-instructions "1.4.0"))
-
-(defun nate/configure-projectile ()
-  (setq projectile-switch-project-action 'projectile-dired))
-
-(defun nate/configure-deft ()
-  (setq deft-directory "~/notes")
-  (setq deft-extension "org"))
-
-(defun nate/configure-version-control ()
-  (setq diff-hl-side 'left))
-
-(defun nate/configure-environment ()
-  (exec-path-from-shell-copy-envs
-   '("DOTFILES"
-     "EDITOR"
-     "PUPPETLABS"
-     "PUPPETLABS_CONF")))
-
-(defun nate/configure-email ()
-  ;; TODO "View as PDF" action busted - fix it or get rid of it
-  ;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
-  ;; TODO Would it be better to only fetch "All Mail" label from GMail?
-  ;;      - Then do all filtering & sorting in mu4e
-  ;; TODO Prevent email files from showing up in Recent Files list
-  ;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
-  ;; TODO Get rid of duplicate emails
-  ;;      - possible way to get duplicate:
-  ;;        1. fetch new mail
-  ;;        2. read message, move to trash
-  ;;        3. update mail server (read mail is now in Trash)
-  ;;        4. (sometime later) fetch new mail
-  ;;        5. read message now shows up in Trash folder, as unread
-  ;;        * Possible solutions:
-  ;;          - Don't ever fetch Trash? I'd like to be able to search trash
-  ;;          - Fetch Trash but mark as read? This seems best
-  ;; TODO Consider this mail structure:
-  ;;      - 1 mail folder (maildir) per email account
-  ;;        * Allows for other email accounts to be integrated
-  ;;        * Instead of folders for Inbox, Starred, Puppet Server, Dev, etc.
-  ;;      - Then file system might look like:
-  ;;        ~/Mail
-  ;;         |-- PuppetLabs/
-  ;;         |-- a1979shakedown/
-  ;;         |-- pdxncw/
-  ;;         |-- nathaniel.c.wolfe/
-  ;;      - Only sync 'All Mail' folder per email account
-  ;;      - Use bookmarks/saved-searches for folders/labels within
-  (add-to-load-path "/usr/local/share/emacs/site-lisp")
-  (setq user-mail-address "nwolfe@puppetlabs.com"
-        user-full-name "Nate Wolfe"
-        message-signature (concat "Nate Wolfe\n"
-                                  "Software Engineer\n"
-                                  "Puppet Labs\n\n"
-                                  "Sent with my mu4e\n"))
-  (require 'mu4e)
-  (setq mu4e-maildir "~/Mail")
-  (setq mu4e-drafts-folder "/drafts")
-  (setq mu4e-sent-folder "/sent")
-  (setq mu4e-trash-folder "/trash")
-  (setq mu4e-maildir-shortcuts
-        '(("/INBOX"  . ?i)
-          ("/sent"   . ?s)
-          ("/trash"  . ?t)
-          ("/drafts" . ?d)))
-  (setq mu4e-sent-messages-behavior 'delete)
-  (setq mu4e-get-mail-command "offlineimap"
-        mu4e-update-interval 600)
-
-  (require 'smtpmail)
-  (setq message-send-mail-function 'smtpmail-send-it
-        smtpmail-stream-type 'starttls
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587)
-  (setq message-kill-buffer-on-exit t)
-
-  (setq mu4e-view-show-images t
-        mu4e-show-images t
-        mu4e-view-image-max-width 800)
-  (setq mu4e-view-show-addresses t)
-  (setq mu4e-use-fancy-chars t)
-  (setq mu4e-headers-skip-duplicates t)
-  (setq mail-user-agent 'mu4e-user-agent)
-  (when (fboundp 'imagemagick-register-types)
-    (imagemagick-register-types))
-  ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
-
-  ;; For nasty HTML messages that are impossible to look at
-  ;; use `a V' to open it as a tmpfile in your browser
-  (add-to-list 'mu4e-view-actions
-               '("View in browser" . mu4e-action-view-in-browser) t)
-
-  (require 'gnus-dired)
-  ;; Make the `gnus-dired-mail-buffers' function also work on
-  ;; message-mode derived modes, such as mu4e-compose-mode
-  (defun gnus-dired-mail-buffers ()
-    "Return a list of active message buffers."
-    (let (buffers)
-      (save-current-buffer
-        (dolist (buffer (buffer-list t))
-          (set-buffer buffer)
-          (when (and (derived-mode-p 'message-mode)
-                     (null message-sent-message-via))
-            (push (buffer-name buffer) buffers))))
-      (nreverse buffers)))
-  (setq gnus-dired-mail-mode 'mu4e-user-agent)
-  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
-  )
-
-(defun nate/configure-org-babel ()
-  ;; Enable shell language execution support in source blocks.
-  ;; See http://orgmode.org/manual/Languages.html#Languages
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((sh . t))))
-
-;; Spacemacs configuration functions
-;; ---------------------------------
-
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration. You should not put any user
    code in this function besides modifying the variable values."
@@ -459,10 +237,225 @@
    ;; on changed lines).
    dotspacemacs-whitespace-cleanup 'changed))
 
+(defun nate/enable-secrets-directory ()
+  "Add the secrets directory to the load path so we can store
+   sensitive configuration data outside of VCS."
+  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code. This is called immediately after
    `dotspacemacs/init'."
   (nate/enable-secrets-directory))
+
+(defun nate/follow-symlinks ()
+  "Treat symlinks like regular files; don't ask me
+   for confirmation when opening a symlink file."
+  (setq vc-follow-symlinks t))
+
+(defun nate/configure-erc ()
+  "Configure IRC. Passwords are stored in `~/.authinfo.gpg'.
+   Associated commands:
+   * `nate/irc-jack-in' Connect to all servers
+   * `nate/irc-layout'  Configure current frame with channel windows"
+  (setq erc-nick "nwolfe"
+        erc-user-full-name "Nate Wolfe"
+        erc-prompt-for-nickserv-password nil
+        erc-hide-list '("JOIN" "NICK" "PART" "QUIT" "MODE")
+        erc-join-buffer 'bury
+        erc-autojoin-channels-alist
+        '(("1.0.0" ;; irc.gitter.im
+           "#syl20bnr/spacemacs")
+          ("freenode"
+           "#puppet" "#puppet-dev" "#trapperkeeper"
+           "#emacs" "#clojure" "#reddit-cyberpunk")
+          ("quakenet"
+           "#rgrd")))
+
+  ;; Filter foolish content
+  ;; "\\[GitHub\\].* labeled an issue in"
+  ;; "\\[GitHub\\].* unlabeled an issue in"
+  (setq erc-foolish-content '("Users on #.*"
+                              "\\[GitHub\\].* starred"
+                              "\\[GitHub\\].* forked"
+                              "\\[GitHub\\].* synchronize a Pull Request"))
+  (defun nate/erc-filter-foolish-content (msg)
+    "Ignore messages that match `erc-foolish-content'."
+    (when (erc-list-match erc-foolish-content msg)
+      (setq erc-insert-this nil)))
+  (add-hook 'erc-insert-pre-hook 'nate/erc-filter-foolish-content)
+
+  ;; Don't start buffers in insert mode
+  (setq evil-normal-state-modes '(erc-mode))
+
+  ;; Don't wrap long lines
+  (add-hook 'erc-join-hook 'toggle-truncate-lines)
+
+  ;; Automatically insert newlines
+  (erc-fill-mode t)
+
+  ;; Put the server connect calls into a function so they
+  ;; aren't called at Emacs startup. I have to call it manually.
+  (defun nate/irc-jack-in ()
+    "Connect to all of my IRC servers."
+    (interactive)
+    ;; Nil password forces it to read from `~/.authinfo.gpg'
+    (erc-tls :server "irc.gitter.im" :password nil)
+    (erc :server "irc.freenode.net")
+    (erc :server "irc.quakenet.org"))
+
+  (defun nate/irc-layout ()
+    "Configure the current frame with windows for each IRC channel.
+     The layout is a table with balanced cells like:
+
+     cyberpunk | spacemacs | emacs
+     rgrd      | puppet    | clojure
+
+     Note that not all IRC channels get a dedicated window."
+    (interactive)
+    (delete-other-windows)
+    (switch-to-buffer "#reddit-cyberpunk")
+    (split-window-horizontally-and-switch)
+    (switch-to-buffer "#syl20bnr/spacemacs")
+    (split-window-horizontally-and-switch)
+    (switch-to-buffer "#emacs")
+    (split-window-vertically-and-switch)
+    (switch-to-buffer "#clojure")
+    (select-window-2)
+    (split-window-vertically-and-switch)
+    (switch-to-buffer "#puppet")
+    (select-window-1)
+    (split-window-vertically-and-switch)
+    (switch-to-buffer "#rgrd")
+    (balance-windows)))
+
+(defun nate/configure-paradox ()
+  "Configuration for Paradox package manager. GitHub token
+   is saved in ~/.seacrest/emacs/load-path/pinit-paradox.el"
+  (require 'pinit-paradox)
+  (setq paradox-automatically-star nil))
+
+(defun nate/configure-powerline ()
+  ;; Turn off the separator for now - there's some UI
+  ;; issue causing the separators to look strange
+  (setq powerline-default-separator 'nil))
+
+(defun nate/configure-magit ()
+  ;; Tell magit I've seen all of its warnings from the new version.
+  (setq magit-last-seen-setup-instructions "1.4.0"))
+
+(defun nate/configure-projectile ()
+  (setq projectile-switch-project-action 'projectile-dired))
+
+(defun nate/configure-deft ()
+  (setq deft-directory "~/notes")
+  (setq deft-extension "org"))
+
+(defun nate/configure-version-control ()
+  (setq diff-hl-side 'left))
+
+(defun nate/configure-environment ()
+  (exec-path-from-shell-copy-envs
+   '("DOTFILES"
+     "EDITOR"
+     "PUPPETLABS"
+     "PUPPETLABS_CONF")))
+
+(defun nate/configure-email ()
+  ;; TODO "View as PDF" action busted - fix it or get rid of it
+  ;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
+  ;; TODO Would it be better to only fetch "All Mail" label from GMail?
+  ;;      - Then do all filtering & sorting in mu4e
+  ;; TODO Prevent email files from showing up in Recent Files list
+  ;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
+  ;; TODO Get rid of duplicate emails
+  ;;      - possible way to get duplicate:
+  ;;        1. fetch new mail
+  ;;        2. read message, move to trash
+  ;;        3. update mail server (read mail is now in Trash)
+  ;;        4. (sometime later) fetch new mail
+  ;;        5. read message now shows up in Trash folder, as unread
+  ;;        * Possible solutions:
+  ;;          - Don't ever fetch Trash? I'd like to be able to search trash
+  ;;          - Fetch Trash but mark as read? This seems best
+  ;; TODO Consider this mail structure:
+  ;;      - 1 mail folder (maildir) per email account
+  ;;        * Allows for other email accounts to be integrated
+  ;;        * Instead of folders for Inbox, Starred, Puppet Server, Dev, etc.
+  ;;      - Then file system might look like:
+  ;;        ~/Mail
+  ;;         |-- PuppetLabs/
+  ;;         |-- a1979shakedown/
+  ;;         |-- pdxncw/
+  ;;         |-- nathaniel.c.wolfe/
+  ;;      - Only sync 'All Mail' folder per email account
+  ;;      - Use bookmarks/saved-searches for folders/labels within
+  (add-to-load-path "/usr/local/share/emacs/site-lisp")
+  (setq user-mail-address "nwolfe@puppetlabs.com"
+        user-full-name "Nate Wolfe"
+        message-signature (concat "Nate Wolfe\n"
+                                  "Software Engineer\n"
+                                  "Puppet Labs\n\n"
+                                  "Sent with my mu4e\n"))
+  (require 'mu4e)
+  (setq mu4e-maildir "~/Mail")
+  (setq mu4e-drafts-folder "/drafts")
+  (setq mu4e-sent-folder "/sent")
+  (setq mu4e-trash-folder "/trash")
+  (setq mu4e-maildir-shortcuts
+        '(("/INBOX"  . ?i)
+          ("/sent"   . ?s)
+          ("/trash"  . ?t)
+          ("/drafts" . ?d)))
+  (setq mu4e-sent-messages-behavior 'delete)
+  (setq mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 600)
+
+  (require 'smtpmail)
+  (setq message-send-mail-function 'smtpmail-send-it
+        smtpmail-stream-type 'starttls
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587)
+  (setq message-kill-buffer-on-exit t)
+
+  (setq mu4e-view-show-images t
+        mu4e-show-images t
+        mu4e-view-image-max-width 800)
+  (setq mu4e-view-show-addresses t)
+  (setq mu4e-use-fancy-chars t)
+  (setq mu4e-headers-skip-duplicates t)
+  (setq mail-user-agent 'mu4e-user-agent)
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
+  ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
+
+  ;; For nasty HTML messages that are impossible to look at
+  ;; use `a V' to open it as a tmpfile in your browser
+  (add-to-list 'mu4e-view-actions
+               '("View in browser" . mu4e-action-view-in-browser) t)
+
+  (require 'gnus-dired)
+  ;; Make the `gnus-dired-mail-buffers' function also work on
+  ;; message-mode derived modes, such as mu4e-compose-mode
+  (defun gnus-dired-mail-buffers ()
+    "Return a list of active message buffers."
+    (let (buffers)
+      (save-current-buffer
+        (dolist (buffer (buffer-list t))
+          (set-buffer buffer)
+          (when (and (derived-mode-p 'message-mode)
+                     (null message-sent-message-via))
+            (push (buffer-name buffer) buffers))))
+      (nreverse buffers)))
+  (setq gnus-dired-mail-mode 'mu4e-user-agent)
+  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
+
+(defun nate/configure-org-babel ()
+  ;; Enable shell language execution support in source blocks.
+  ;; See http://orgmode.org/manual/Languages.html#Languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((sh . t))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
