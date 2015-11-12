@@ -237,20 +237,12 @@
    ;; on changed lines).
    dotspacemacs-whitespace-cleanup 'changed))
 
-(defun nate/enable-secrets-directory ()
-  "Add the secrets directory to the load path so we can store
-   sensitive configuration data outside of VCS."
-  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
-
 (defun dotspacemacs/user-init ()
   "Initialization function for user code. This is called immediately after
    `dotspacemacs/init'."
-  (nate/enable-secrets-directory))
-
-(defun nate/follow-symlinks ()
-  "Treat symlinks like regular files; don't ask me
-   for confirmation when opening a symlink file."
-  (setq vc-follow-symlinks t))
+  ;; Add the secrets directory to the load path so we can store sensitive
+  ;; configuration data outside of VCS.
+  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
 (defun nate/configure-erc ()
   "Configure IRC. Passwords are stored in `~/.authinfo.gpg'.
@@ -327,38 +319,6 @@
     (split-window-vertically-and-switch)
     (switch-to-buffer "#rgrd")
     (balance-windows)))
-
-(defun nate/configure-paradox ()
-  "Configuration for Paradox package manager. GitHub token
-   is saved in ~/.seacrest/emacs/load-path/pinit-paradox.el"
-  (require 'pinit-paradox)
-  (setq paradox-automatically-star nil))
-
-(defun nate/configure-powerline ()
-  ;; Turn off the separator for now - there's some UI
-  ;; issue causing the separators to look strange
-  (setq powerline-default-separator 'nil))
-
-(defun nate/configure-magit ()
-  ;; Tell magit I've seen all of its warnings from the new version.
-  (setq magit-last-seen-setup-instructions "1.4.0"))
-
-(defun nate/configure-projectile ()
-  (setq projectile-switch-project-action 'projectile-dired))
-
-(defun nate/configure-deft ()
-  (setq deft-directory "~/notes")
-  (setq deft-extension "org"))
-
-(defun nate/configure-version-control ()
-  (setq diff-hl-side 'left))
-
-(defun nate/configure-environment ()
-  (exec-path-from-shell-copy-envs
-   '("DOTFILES"
-     "EDITOR"
-     "PUPPETLABS"
-     "PUPPETLABS_CONF")))
 
 (defun nate/configure-email ()
   ;; TODO "View as PDF" action busted - fix it or get rid of it
@@ -450,27 +410,42 @@
   (setq gnus-dired-mail-mode 'mu4e-user-agent)
   (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
 
-(defun nate/configure-org-babel ()
-  ;; Enable shell language execution support in source blocks.
-  ;; See http://orgmode.org/manual/Languages.html#Languages
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((sh . t))))
-
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
    Spacemacs initialization after layers configuration."
-  (nate/follow-symlinks)
+  ;; Configuration for Paradox package manager. GitHub token
+  ;; is saved in ~/.seacrest/emacs/load-path/pinit-paradox.el
+  (require 'pinit-paradox)
+  (setq paradox-automatically-star nil)
+
+  ;; Treat symlinks like regular files; don't ask me for confirmation when
+  ;; opening a symlink file.
+  (setq vc-follow-symlinks t)
+
+  ;; Turn off the separator for now - there's some UI
+  ;; issue causing the separators to look strange
+  (setq powerline-default-separator 'nil)
+
+  ;; Tell magit I've seen all of its warnings from the new version.
+  (setq magit-last-seen-setup-instructions "1.4.0")
+
+  ;; Enable shell language execution support in source blocks.
+  ;; See http://orgmode.org/manual/Languages.html#Languages
+  (org-babel-do-load-languages 'org-babel-load-languages '((sh . t)))
+
+  (setq deft-directory "~/notes")
+  (setq deft-extension "org")
+
+  (setq diff-hl-side 'left)
+
+  (setq projectile-switch-project-action 'projectile-dired)
+
+  (exec-path-from-shell-copy-envs
+   '("DOTFILES" "EDITOR" "PUPPETLABS" "PUPPETLABS_CONF"))
+
   (nate/configure-erc)
-  (nate/configure-paradox)
-  (nate/configure-powerline)
-  (nate/configure-magit)
-  (nate/configure-projectile)
-  (nate/configure-deft)
-  (nate/configure-version-control)
-  (nate/configure-environment)
   (nate/configure-email)
-  (nate/configure-org-babel))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
