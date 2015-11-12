@@ -433,6 +433,9 @@
   ;; See http://orgmode.org/manual/Languages.html#Languages
   (org-babel-do-load-languages 'org-babel-load-languages '((sh . t)))
 
+  ;; Auto-wrap long lines by default (in non-programming modes)
+  (add-hook 'text-mode-hook 'auto-fill-mode)
+
   (setq deft-directory "~/notes")
   (setq deft-extension "org")
 
