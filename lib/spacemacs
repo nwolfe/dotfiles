@@ -35,6 +35,7 @@
      org
      osx
      puppet
+     ranger
      ruby
      (shell :variables shell-default-shell 'eshell)
      spotify
@@ -445,6 +446,9 @@
 
   ;; Auto-wrap long lines by default (in non-programming modes)
   (add-hook 'text-mode-hook 'auto-fill-mode)
+
+  ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
+  (add-hook 'dired-mode-hook 'deer)
 
   (setq deft-directory "~/notes")
   (setq deft-extension "org")
