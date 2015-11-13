@@ -32,6 +32,8 @@
      git
      github
      markdown
+     (mu4e :variables
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp")
      org
      osx
      puppet
@@ -331,43 +333,41 @@
     (switch-to-buffer "#rgrd")
     (balance-windows)))
 
+;; TODO "View as PDF" action busted - fix it or get rid of it
+;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
+;; TODO Would it be better to only fetch "All Mail" label from GMail?
+;;      - Then do all filtering & sorting in mu4e
+;; TODO Prevent email files from showing up in Recent Files list
+;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
+;; TODO Get rid of duplicate emails
+;;      - possible way to get duplicate:
+;;        1. fetch new mail
+;;        2. read message, move to trash
+;;        3. update mail server (read mail is now in Trash)
+;;        4. (sometime later) fetch new mail
+;;        5. read message now shows up in Trash folder, as unread
+;;        * Possible solutions:
+;;          - Don't ever fetch Trash? I'd like to be able to search trash
+;;          - Fetch Trash but mark as read? This seems best
+;;          - Does this go away if I only sync All Mail?
+;; TODO Consider this mail structure:
+;;      - 1 mail folder (maildir) per email account
+;;        * Allows for other email accounts to be integrated
+;;        * Instead of folders for Inbox, Starred, Puppet Server, Dev, etc.
+;;      - Then file system might look like:
+;;        ~/Mail
+;;         |-- Work/
+;;         |-- Personal1/
+;;         |-- Personal2/
+;;      - Only sync 'All Mail' folder per email account
+;;      - Use bookmarks/saved-searches for folders/labels within
 (defun nate/configure-email ()
-  ;; TODO "View as PDF" action busted - fix it or get rid of it
-  ;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
-  ;; TODO Would it be better to only fetch "All Mail" label from GMail?
-  ;;      - Then do all filtering & sorting in mu4e
-  ;; TODO Prevent email files from showing up in Recent Files list
-  ;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
-  ;; TODO Get rid of duplicate emails
-  ;;      - possible way to get duplicate:
-  ;;        1. fetch new mail
-  ;;        2. read message, move to trash
-  ;;        3. update mail server (read mail is now in Trash)
-  ;;        4. (sometime later) fetch new mail
-  ;;        5. read message now shows up in Trash folder, as unread
-  ;;        * Possible solutions:
-  ;;          - Don't ever fetch Trash? I'd like to be able to search trash
-  ;;          - Fetch Trash but mark as read? This seems best
-  ;; TODO Consider this mail structure:
-  ;;      - 1 mail folder (maildir) per email account
-  ;;        * Allows for other email accounts to be integrated
-  ;;        * Instead of folders for Inbox, Starred, Puppet Server, Dev, etc.
-  ;;      - Then file system might look like:
-  ;;        ~/Mail
-  ;;         |-- PuppetLabs/
-  ;;         |-- a1979shakedown/
-  ;;         |-- pdxncw/
-  ;;         |-- nathaniel.c.wolfe/
-  ;;      - Only sync 'All Mail' folder per email account
-  ;;      - Use bookmarks/saved-searches for folders/labels within
-  (add-to-load-path "/usr/local/share/emacs/site-lisp")
   (setq user-mail-address "nwolfe@puppetlabs.com"
         user-full-name "Nate Wolfe"
         message-signature (concat "Nate Wolfe\n"
                                   "Software Engineer\n"
                                   "Puppet Labs\n\n"
                                   "Sent with my mu4e\n"))
-  (require 'mu4e)
   (setq mu4e-maildir "~/Mail")
   (setq mu4e-drafts-folder "/drafts")
   (setq mu4e-sent-folder "/sent")
@@ -381,7 +381,6 @@
   (setq mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 600)
 
-  (require 'smtpmail)
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-stream-type 'starttls
         smtpmail-default-smtp-server "smtp.gmail.com"
@@ -400,26 +399,25 @@
     (imagemagick-register-types))
   ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
 
-  ;; For nasty HTML messages that are impossible to look at
-  ;; use `a V' to open it as a tmpfile in your browser
-  (add-to-list 'mu4e-view-actions
-               '("View in browser" . mu4e-action-view-in-browser) t)
-
-  (require 'gnus-dired)
+  ;; Attach a file as an attachment to a new email message with `C-c RET C-a'.
+  ;; TODO Is this necessary anymore? Does `deer' help?
+  ;; (require 'gnus-dired)
   ;; Make the `gnus-dired-mail-buffers' function also work on
   ;; message-mode derived modes, such as mu4e-compose-mode
-  (defun gnus-dired-mail-buffers ()
-    "Return a list of active message buffers."
-    (let (buffers)
-      (save-current-buffer
-        (dolist (buffer (buffer-list t))
-          (set-buffer buffer)
-          (when (and (derived-mode-p 'message-mode)
-                     (null message-sent-message-via))
-            (push (buffer-name buffer) buffers))))
-      (nreverse buffers)))
-  (setq gnus-dired-mail-mode 'mu4e-user-agent)
-  (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode))
+  ;; See http://zmalltalker.com/linux/mu.html
+  ;; (defun gnus-dired-mail-buffers ()
+  ;;   "Return a list of active message buffers."
+  ;;   (let (buffers)
+  ;;     (save-current-buffer
+  ;;       (dolist (buffer (buffer-list t))
+  ;;         (set-buffer buffer)
+  ;;         (when (and (derived-mode-p 'message-mode)
+  ;;                    (null message-sent-message-via))
+  ;;           (push (buffer-name buffer) buffers))))
+  ;;     (nreverse buffers)))
+  ;; (setq gnus-dired-mail-mode 'mu4e-user-agent)
+  ;; (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
