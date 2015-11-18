@@ -9,7 +9,7 @@ My configuration files
 * `bin/`: Executables; directory symlinked into home directory and added to $PATH
 * `sources/`: Files sourced upon startup (e.g. aliases, functions, exports)
 * `vim/`: VIM home; symlinked into home directory
-* `completion/`: ZSH command completion files
+* `completion/`: ZSH command completion files; see also `sources/completions`
 * `misc/`: Better defaults for Mac OS, oh-my-zsh theme, etc.
 
 ## Installation
@@ -22,6 +22,8 @@ $ git clone git@github.com:nwolfe/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ./install
 ```
+
+> IMPORTANT: Install script must be run from the dotfiles/ directory
 
 #### Mac OS
 

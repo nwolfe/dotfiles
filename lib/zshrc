@@ -77,17 +77,23 @@ for sourcefile in $DOTFILES/sources/*; do
     source $sourcefile
 done
 
-# Hook for zsh autocompletion.
-# See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
+## Auto-completion support
+## * Standalone completion files from $DOTFILES/completion (added to zsh FPATH)
+## * Completion functions from $DOTFILES/sources/completions (sourced manually)
+## See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
 
+# Add custom completion scripts for commands that warrant a dedicated file
 COMPLETION_DIR=$DOTFILES/completion
-
-# add custom completion scripts
 fpath=($COMPLETION_DIR $fpath)
 
-# initialize compsys
+# Initialize compsys
 autoload -U compinit
 compinit
 
-# show completion menu when number of options is at least 2
+# Set reusable completion functions on various commands.
+# Completion functions defined in $DOTFILES/sources/completions
+compdef _component-version puppet-cli-env puppet-ssl-env remove-ssl pconf
+compdef _version run-agent run-master run-server
+
+# Show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2

@@ -1,4 +1,0 @@
-#compdef run-agent
-# Complete: run-agent [v3|v4]
-
-_arguments "1: :(v3 v4)"
