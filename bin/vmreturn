@@ -2,7 +2,7 @@
 
 command="curl \
 -X DELETE \
---url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}; \
+--url http://vmpooler.delivery.puppetlabs.net/api/v1/vm/\${HOSTNAME%%.*}; \
 shutdown -h now"
 
 echo $command

@@ -21,8 +21,7 @@ then
 else
     ## Borrow a VM from the pooler
     token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
-    # TODO update URL to v1 API
-    url=http://vmpooler.delivery.puppetlabs.net/vm/$OS
+    url=http://vmpooler.delivery.puppetlabs.net/api/v1/vm/$OS
     response=$(curl $token --silent --data --url $url)
     # echo "$response"
 
@@ -32,10 +31,9 @@ else
     ## Install vmreturn utility script on VM
     script=/usr/bin/vmreturn
     mkscript="touch $script; chmod 755 $script; cat > $script"
-    # TODO update URL to v1 API
     ssh $noprompts root@$hostname $mkscript <<-VMRETURN
 #!/bin/bash
-curl $token -X DELETE --url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}
+curl $token -X DELETE --url http://vmpooler.delivery.puppetlabs.net/api/v1/vm/\${HOSTNAME%%.*}
 echo # newline for readability
 shutdown -h now
 VMRETURN

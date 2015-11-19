@@ -1,7 +1,7 @@
 #compdef vmborrow
 # Complete: vmborrow [centos-6-x86_64|debian-7-x86_64|redhat-6-x86_64|...]
 
-# Commonly used OSes, taken from http://vmpooler.delivery.puppetlabs.net/vm
+# Commonly used OSes, from http://vmpooler.delivery.puppetlabs.net/api/v1/vm
 _arguments "1: :(
 centos-6-x86_64
 centos-7-x86_64
@@ -21,8 +21,8 @@ ubuntu-1410-x86_64
 
 # Currently borrowed VM hostnames, for easy re-access
 _borrowed_vms() {
-    url=https://vmpooler.delivery.puppetlabs.net/api/v1/token/$VMPOOLER_TOKEN
-    response=$(curl --silent --insecure $url)
+    url=http://vmpooler.delivery.puppetlabs.net/api/v1/token/$VMPOOLER_TOKEN
+    response=$(curl --silent $url)
     cmd="
 import json, sys
 res = json.load(sys.stdin)['$VMPOOLER_TOKEN']
