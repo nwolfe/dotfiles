@@ -1,9 +1,21 @@
 #!/bin/bash
 
-command="curl \
--X DELETE \
+## Prints out and copies to the pasteboard a curl command that will return
+## the host machine to the VM pooler.
+## If a VM hostname is provided as $1, instead returns that VM to the pooler.
+
+token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
+
+if [ $1 ]; then
+    hostname=$1
+    noprompts='-q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+    ssh $noprompts root@$hostname 'shutdown -h now'
+    curl $token -X DELETE --url http://vmpooler.delivery.puppetlabs.net/api/v1/vm/$hostname
+else
+    command="curl $token -X DELETE \
 --url http://vmpooler.delivery.puppetlabs.net/api/v1/vm/\${HOSTNAME%%.*}; \
 shutdown -h now"
 
-echo $command
-echo -n $command | pbcopy
+    echo $command
+    echo -n $command | pbcopy
+fi
