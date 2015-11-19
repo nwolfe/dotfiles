@@ -7,27 +7,39 @@ if [ -z $OS ]; then
    exit 1
 fi
 
-## Borrow a VM from the pooler
-token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
-response=$(curl $token --silent --data --url http://vmpooler.delivery.puppetlabs.net/vm/$OS)
-echo "$response"
-
-extracthostname="
-import json, sys
-res = json.load(sys.stdin)
-print res['$OS']['hostname']"
-hostname=$(python -c "$extracthostname" <<< "$response")
-
-## Install vmreturn utility script on VM
+# Flags to attach to ssh/scp to avoid warnings and prompts
 noprompts='-q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-script=/usr/bin/vmreturn
-mkscript="touch $script; chmod 755 $script; cat > $script"
-ssh $noprompts root@$hostname $mkscript <<-VMRETURN
+
+if [[ !($OS == centos* ||
+        $OS == debian* ||
+        $OS == fedora* ||
+        $OS == redhat* ||
+        $OS == ubuntu*) ]]
+then
+    ## Assume it's a previously-borrowed VM hostname and reuse it
+    hostname=$OS
+else
+    ## Borrow a VM from the pooler
+    token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
+    # TODO update URL to v1 API
+    url=http://vmpooler.delivery.puppetlabs.net/vm/$OS
+    response=$(curl $token --silent --data --url $url)
+    # echo "$response"
+
+    gethost="import json, sys; print json.load(sys.stdin)['$OS']['hostname']"
+    hostname=$(python -c "$gethost" <<< "$response")
+
+    ## Install vmreturn utility script on VM
+    script=/usr/bin/vmreturn
+    mkscript="touch $script; chmod 755 $script; cat > $script"
+    # TODO update URL to v1 API
+    ssh $noprompts root@$hostname $mkscript <<-VMRETURN
 #!/bin/bash
 curl $token -X DELETE --url http://vmpooler.delivery.puppetlabs.net/vm/\${HOSTNAME%%.*}
 echo # newline for readability
 shutdown -h now
 VMRETURN
+fi
 
 ## Log in to the borrowed VM
 exec ssh $noprompts root@$hostname

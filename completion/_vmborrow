@@ -19,6 +19,19 @@ ubuntu-1404-x86_64
 ubuntu-1410-x86_64
 )"
 
+# Currently borrowed VM hostnames, for easy re-access
+_borrowed_vms() {
+    url=https://vmpooler.delivery.puppetlabs.net/api/v1/token/$VMPOOLER_TOKEN
+    response=$(curl --silent --insecure $url)
+    cmd="
+import json, sys
+res = json.load(sys.stdin)['$VMPOOLER_TOKEN']
+if 'vms' in res: print ' '.join(res['vms']['running'])"
+    python -c $cmd <<< $response
+}
+
+_arguments "1: :($(_borrowed_vms))"
+
 # Local Variables:
 # mode: sh
 # End:
