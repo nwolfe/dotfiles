@@ -3,3 +3,7 @@
 
 # Tab complete with the notefiles (ignoring the extension)
 _arguments "1: :($(ls $HOME/notes | awk -F'.' '{print $1}'))"
+
+# Local Variables:
+# mode: sh
+# End:
