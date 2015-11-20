@@ -3,7 +3,7 @@
 OS=$1
 
 if [ -z $OS ]; then
-   echo "OS argument required"
+   echo "OS or VM hostname argument required"
    exit 1
 fi
 
@@ -16,8 +16,14 @@ if [[ !($OS == centos* ||
         $OS == redhat* ||
         $OS == ubuntu*) ]]
 then
-    ## Assume it's a previously-borrowed VM hostname and reuse it
-    hostname=$OS
+    ## Assume it's a previously-borrowed VM hostname and reuse it.
+    if [[ $OS == _* ]]; then
+        # Auto-completion prepends an `_` to borrowed VM hostnames for sorting.
+        # Strip off the leading underscore from the hostname.
+        hostname=${OS:1}
+    else
+        hostname=$OS
+    fi
 else
     ## Borrow a VM from the pooler
     token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
