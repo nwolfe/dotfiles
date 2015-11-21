@@ -41,7 +41,7 @@
      ruby
      (shell :variables shell-default-shell 'eshell)
      spotify
-     spell-checking
+     (spell-checking :variables spell-checking-enable-by-default nil)
      version-control
      yaml
      )
