@@ -37,7 +37,7 @@
      org
      osx
      puppet
-     ranger
+     ;; ranger
      ruby
      (shell :variables shell-default-shell 'eshell)
      spotify
@@ -450,7 +450,7 @@
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
   ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
-  (add-hook 'dired-mode-hook 'deer)
+  ;; (add-hook 'dired-mode-hook 'deer)
 
   (setq deft-directory "~/notes")
   (setq deft-extension "org")
