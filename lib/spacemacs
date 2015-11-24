@@ -419,9 +419,8 @@
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
    Spacemacs initialization after layers configuration."
-  ;; Configuration for Paradox package manager
-  (require 'pinit-paradox)
-  (setq paradox-automatically-star nil)
+  ;; Don't require a GitHub token when using Paradox package manager
+  (setq paradox-github-token t)
 
   ;; Treat symlinks like regular files; don't ask me for confirmation when
   ;; opening a symlink file.
