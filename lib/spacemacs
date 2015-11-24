@@ -257,8 +257,6 @@
 (defun dotspacemacs/user-init ()
   "Initialization function for user code. This is called immediately after
    `dotspacemacs/init'."
-  ;; Add the secrets directory to the load path so we can store sensitive
-  ;; configuration data outside of VCS.
   (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
 (defun nate/configure-erc ()
@@ -366,12 +364,7 @@
 ;;      - Only sync 'All Mail' folder per email account
 ;;      - Use bookmarks/saved-searches for folders/labels within
 (defun nate/configure-email ()
-  (setq user-mail-address "nwolfe@puppetlabs.com"
-        user-full-name "Nate Wolfe"
-        message-signature (concat "Nate Wolfe\n"
-                                  "Software Engineer\n"
-                                  "Puppet Labs\n\n"
-                                  "Sent with my mu4e\n"))
+  (require 'email-config)
   (setq mu4e-maildir "~/Mail")
   (setq mu4e-drafts-folder "/drafts")
   (setq mu4e-sent-folder "/sent")
@@ -426,8 +419,7 @@
 (defun dotspacemacs/user-config ()
   "Configuration function for user code. This is called at the very end of
    Spacemacs initialization after layers configuration."
-  ;; Configuration for Paradox package manager. GitHub token
-  ;; is saved in ~/.seacrest/emacs/load-path/pinit-paradox.el
+  ;; Configuration for Paradox package manager
   (require 'pinit-paradox)
   (setq paradox-automatically-star nil)
 
