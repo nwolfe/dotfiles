@@ -1,0 +1,39 @@
+#compdef vmsnap
+# Complete: vmsnap [<vm1>|<vm2>|...] [<vm-snapshot1>|<vm-snapshot2|...]
+
+api=http://vmpooler.delivery.puppetlabs.net/api/v1
+
+# Currently borrowed VM hostnames
+_borrowed_vms() {
+    response=$(curl --silent $api/token/$VMPOOLER_TOKEN)
+    cmd="
+import json, sys
+res = json.load(sys.stdin)['$VMPOOLER_TOKEN']
+if 'vms' in res: print ' '.join(res['vms']['running'])"
+    python -c $cmd <<< $response
+}
+
+_vm_snapshots() {
+    vm=$1
+    response=$(curl --silent $api/vm/$vm)
+    cmd="
+import json, sys
+res = json.load(sys.stdin)
+if '$vm' in res and 'snapshots' in res['$vm']:
+    print ' '.join(res['$vm']['snapshots'])"
+    python -c $cmd <<< $response
+}
+
+_arguments "1: :->vm" "2: :->snapshot"
+case $state in
+    vm)
+        _arguments "1: :($(_borrowed_vms))"
+        ;;
+    snapshot)
+        _arguments "2: :($(_vm_snapshots $words[2]))"
+        ;;
+esac
+
+# Local Variables:
+# mode: sh
+# End:

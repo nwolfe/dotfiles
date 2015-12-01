@@ -25,10 +25,11 @@ then
         hostname=$OS
     fi
 else
+    api=http://vmpooler.delivery.puppetlabs.net/api/v1
+
     ## Borrow a VM from the pooler
     token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
-    url=http://vmpooler.delivery.puppetlabs.net/api/v1/vm/$OS
-    response=$(curl $token --silent --data --url $url)
+    response=$(curl $token --silent --data --url $api/vm/$OS)
     # echo "$response"
 
     gethost="import json, sys; print json.load(sys.stdin)['$OS']['hostname']"
@@ -37,12 +38,21 @@ else
     ## Install vmreturn utility script on VM
     script=/usr/bin/vmreturn
     mkscript="touch $script; chmod 755 $script; cat > $script"
-    ssh $noprompts root@$hostname $mkscript <<-VMRETURN
+    ssh $noprompts root@$hostname $mkscript <<VMRETURN
 #!/bin/bash
-curl $token -X DELETE --url http://vmpooler.delivery.puppetlabs.net/api/v1/vm/\${HOSTNAME%%.*}
+curl $token -X DELETE --url $api/vm/\${HOSTNAME%%.*}
 echo # newline for readability
 shutdown -h now
 VMRETURN
+
+    ## Install vmsnap utility script on VM
+    script=/usr/bin/vmsnap
+    mkscript="touch $script; chmod 755 $script; cat > $script"
+    ssh $noprompts root@$hostname $mkscript <<VMSNAP
+#!/bin/bash
+curl $token -X POST --url $api/vm/\${HOSTNAME%%.*}/snapshot
+echo # newline for readability
+VMSNAP
 fi
 
 ## Log in to the borrowed VM

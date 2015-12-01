@@ -1,0 +1,20 @@
+#!/bin/bash
+
+## Reverts VMPooler VM $1 back to snapshot $2
+
+VM=$1
+SNAPSHOT=$2
+
+if [ -z $VM ]; then
+    echo "VM hostname required"
+    exit 1
+fi
+
+if [ -z $SNAPSHOT ]; then
+    echo "VM snapshot required"
+    exit 1
+fi
+
+token="-H X-AUTH-TOKEN:$VMPOOLER_TOKEN"
+api=http://vmpooler.delivery.puppetlabs.net/api/v1/vm
+curl $token -X POST --url $api/$VM/snapshot/$SNAPSHOT
