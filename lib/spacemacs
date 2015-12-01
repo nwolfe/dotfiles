@@ -426,18 +426,20 @@
   ;; Auto-wrap long lines by default (in non-programming modes)
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
-  ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
-  ;; (add-hook 'dired-mode-hook 'deer)
+  ;; Put version control symbols on left side instead of right
+  (setq diff-hl-side 'left)
+  (setq git-gutter-fr+-side 'left-fringe)
 
   (setq deft-directory "~/notes")
   (setq deft-extension "org")
-
-  (setq diff-hl-side 'left)
 
   (setq projectile-switch-project-action 'projectile-dired)
 
   (exec-path-from-shell-copy-envs
    '("DOTFILES" "EDITOR" "PUPPETLABS" "PUPPETLABS_CONF"))
+
+  ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
+  ;; (add-hook 'dired-mode-hook 'deer)
 
   (nate/configure-erc)
   (nate/configure-email)
