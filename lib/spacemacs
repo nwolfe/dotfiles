@@ -50,7 +50,7 @@
    ;; in a layer. If you need some configuration for these packages then
    ;; consider creating a layer. You can also put the configuration in
    ;; `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(json-reformat)
+   dotspacemacs-additional-packages '(json-reformat mu4e-maildirs-extension)
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -392,28 +392,14 @@
   (setq mu4e-use-fancy-chars t)
   (setq mu4e-headers-skip-duplicates t)
   (setq mail-user-agent 'mu4e-user-agent)
+  (setq mu4e-html2text-command "html2text -utf8 -width 72")
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
-  ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
 
-  ;; Attach a file as an attachment to a new email message with `C-c RET C-a'.
-  ;; TODO Is this necessary anymore? Does `deer' help?
-  ;; (require 'gnus-dired)
-  ;; Make the `gnus-dired-mail-buffers' function also work on
-  ;; message-mode derived modes, such as mu4e-compose-mode
-  ;; See http://zmalltalker.com/linux/mu.html
-  ;; (defun gnus-dired-mail-buffers ()
-  ;;   "Return a list of active message buffers."
-  ;;   (let (buffers)
-  ;;     (save-current-buffer
-  ;;       (dolist (buffer (buffer-list t))
-  ;;         (set-buffer buffer)
-  ;;         (when (and (derived-mode-p 'message-mode)
-  ;;                    (null message-sent-message-via))
-  ;;           (push (buffer-name buffer) buffers))))
-  ;;     (nreverse buffers)))
-  ;; (setq gnus-dired-mail-mode 'mu4e-user-agent)
-  ;; (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
+  (mu4e-maildirs-extension)
+  (add-hook 'mu4e-main-mode-hook
+            (lambda ()
+              (mu4e-maildirs-extension-force-update '(4))))
   )
 
 (defun dotspacemacs/user-config ()
