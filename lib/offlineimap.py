@@ -16,6 +16,6 @@
 import re, os
 
 def get_authinfo_pass(machine, login):
+    s = "machine %s login %s password (.*)" % (machine, login)
     authinfo = os.popen("gpg -q --no-tty -d ~/.authinfo.gpg").read()
-    s = "machine %s login %s password ([^ ]*)" % (machine, login)
     return re.compile(s).search(authinfo).group(1)
