@@ -335,12 +335,7 @@
     (switch-to-buffer "#rgrd")
     (balance-windows)))
 
-;; TODO "View as PDF" action busted - fix it or get rid of it
-;; TODO The "GitHub" folder/label doesn't seem to work? Nothing in it
-;; TODO Would it be better to only fetch "All Mail" label from GMail?
-;;      - Then do all filtering & sorting in mu4e
-;; TODO Prevent email files from showing up in Recent Files list
-;;      - e.g. "~/Mail/drafts/cur/20151103-657de5-natebook-pro:2,DS"
+;; TODO "View as PDF" action busted - fix it or get rid of it?
 ;; TODO Get rid of duplicate emails
 ;;      - possible way to get duplicate:
 ;;        1. fetch new mail
@@ -352,28 +347,17 @@
 ;;          - Don't ever fetch Trash? I'd like to be able to search trash
 ;;          - Fetch Trash but mark as read? This seems best
 ;;          - Does this go away if I only sync All Mail?
-;; TODO Consider this mail structure:
-;;      - 1 mail folder (maildir) per email account
-;;        * Allows for other email accounts to be integrated
-;;        * Instead of folders for Inbox, Starred, Puppet Server, Dev, etc.
-;;      - Then file system might look like:
-;;        ~/Mail
-;;         |-- Work/
-;;         |-- Personal1/
-;;         |-- Personal2/
-;;      - Only sync 'All Mail' folder per email account
-;;      - Use bookmarks/saved-searches for folders/labels within
 (defun nate/configure-email ()
   (require 'email-config)
   (setq mu4e-maildir "~/Mail")
-  (setq mu4e-drafts-folder "/drafts")
-  (setq mu4e-sent-folder "/sent")
-  (setq mu4e-trash-folder "/trash")
+  (setq mu4e-drafts-folder "/PuppetLabs/drafts")
+  (setq mu4e-sent-folder "/PuppetLabs/sent")
+  (setq mu4e-trash-folder "/PuppetLabs/trash")
   (setq mu4e-maildir-shortcuts
-        '(("/INBOX"  . ?i)
-          ("/sent"   . ?s)
-          ("/trash"  . ?t)
-          ("/drafts" . ?d)))
+        '(("/PuppetLabs/archive" . ?a)
+          ("/PuppetLabs/sent"    . ?s)
+          ("/PuppetLabs/trash"   . ?t)
+          ("/PuppetLabs/drafts"  . ?d)))
   (setq mu4e-sent-messages-behavior 'delete)
   (setq mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 600)
