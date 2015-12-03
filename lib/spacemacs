@@ -362,6 +362,12 @@
   (setq mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 600)
 
+  (setq mu4e-bookmarks
+        '(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+          ("date:today..now" "Today's messages" ?t)
+          ("date:7d..now" "Last 7 days" ?w)
+          ("flag:flagged" "Important" ?i)))
+
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-stream-type 'starttls
         smtpmail-default-smtp-server "smtp.gmail.com"
