@@ -348,25 +348,12 @@
 ;;          - Fetch Trash but mark as read? This seems best
 ;;          - Does this go away if I only sync All Mail?
 (defun nate/configure-email ()
-  (require 'email-config)
   (setq mu4e-maildir "~/Mail")
-  (setq mu4e-drafts-folder "/PuppetLabs/drafts")
-  (setq mu4e-sent-folder "/PuppetLabs/sent")
-  (setq mu4e-trash-folder "/PuppetLabs/trash")
-  (setq mu4e-maildir-shortcuts
-        '(("/PuppetLabs/archive" . ?a)
-          ("/PuppetLabs/sent"    . ?s)
-          ("/PuppetLabs/trash"   . ?t)
-          ("/PuppetLabs/drafts"  . ?d)))
+  (require 'email-config)
+
   (setq mu4e-sent-messages-behavior 'delete)
   (setq mu4e-get-mail-command "offlineimap"
         mu4e-update-interval 600)
-
-  (setq mu4e-bookmarks
-        '(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
-          ("date:today..now" "Today's messages" ?t)
-          ("date:7d..now" "Last 7 days" ?w)
-          ("flag:flagged" "Important" ?i)))
 
   (setq message-send-mail-function 'smtpmail-send-it
         smtpmail-stream-type 'starttls
