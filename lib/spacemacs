@@ -352,18 +352,6 @@
     (switch-to-buffer "#rgrd")
     (balance-windows)))
 
-;; TODO "View as PDF" action busted - fix it or get rid of it?
-;; TODO Get rid of duplicate emails
-;;      - possible way to get duplicate:
-;;        1. fetch new mail
-;;        2. read message, move to trash
-;;        3. update mail server (read mail is now in Trash)
-;;        4. (sometime later) fetch new mail
-;;        5. read message now shows up in Trash folder, as unread
-;;        * Possible solutions:
-;;          - Don't ever fetch Trash? I'd like to be able to search trash
-;;          - Fetch Trash but mark as read? This seems best
-;;          - Does this go away if I only sync All Mail?
 (defun nate/configure-email ()
   (setq mu4e-maildir "~/Mail")
   (require 'email-config)
@@ -390,17 +378,26 @@
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
-  (mu4e-maildirs-extension)
-  (add-hook 'mu4e-main-mode-hook
-            (lambda ()
-              (mu4e-maildirs-extension-force-update '(4))))
-
+  ;; Same as defaults except use :thread-subject instead of :subject to only
+  ;; show subject lines once, on the original message line. Replies will have
+  ;; blank subject lines.
   (setq mu4e-headers-fields
         '((:human-date . 12)
           (:flags . 6)
           (:mailing-list . 10)
           (:from . 22)
           (:thread-subject)))
+
+  ;; Invoke maildirs extension to show unread/total counts
+  (mu4e-maildirs-extension)
+
+  ;; Don't expand the maildir tree; seeing the folders isn't useful
+  (setq mu4e-maildirs-extension-default-collapse-level 0)
+
+  ;; Refresh the unread/total counts when switching to the main mu4e buffer
+  (add-hook 'mu4e-main-mode-hook
+            (lambda ()
+              (mu4e-maildirs-extension-force-update '(4))))
   )
 
 (defun dotspacemacs/user-config ()
