@@ -431,6 +431,11 @@
   (setq diff-hl-side 'left)
   (setq git-gutter-fr+-side 'left-fringe)
 
+  ;; Move focus to new splits on easier keybindings
+  (spacemacs/set-leader-keys
+    "wv" 'split-window-right-and-focus
+    "ws" 'split-window-below-and-focus)
+
   (setq deft-directory "~/notes")
   (setq deft-extension "org")
 
