@@ -40,6 +40,7 @@
      ;; ranger
      ruby
      (shell :variables shell-default-shell 'eshell)
+     spacemacs-layouts
      spotify
      (spell-checking :variables spell-checking-enable-by-default nil)
      version-control
