@@ -277,10 +277,10 @@
    `dotspacemacs/init'."
   (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
-(defun nate/configure-erc ()
+(defun ncw/configure-erc ()
   "Configure IRC. Associated commands:
-   * `nate/irc-jack-in' Connect to all servers
-   * `nate/irc-layout'  Configure current frame with channel windows"
+   * `ncw/irc-jack-in' Connect to all servers
+   * `ncw/irc-layout'  Configure current frame with channel windows"
   (require 'ncw-irc-config)
 
   (setq erc-prompt-for-nickserv-password nil
@@ -302,15 +302,15 @@
                               "\\[GitHub\\].* starred"
                               "\\[GitHub\\].* forked"
                               "\\[GitHub\\].* synchronize a Pull Request"))
-  (defun nate/erc-filter-foolish-content (msg)
+  (defun ncw/erc-filter-foolish-content (msg)
     "Ignore messages that match `erc-foolish-content'."
     (when (erc-list-match erc-foolish-content msg)
       (setq erc-insert-this nil)))
-  (add-hook 'erc-insert-pre-hook 'nate/erc-filter-foolish-content))
+  (add-hook 'erc-insert-pre-hook 'ncw/erc-filter-foolish-content))
 
-(defun nate/configure-email ()
+(defun ncw/configure-email ()
   (setq mu4e-maildir "~/Mail")
-  (require 'email-config)
+  (require 'ncw-email-config)
 
   (setq mu4e-sent-messages-behavior 'delete)
   (setq mu4e-get-mail-command "offlineimap"
@@ -400,8 +400,8 @@
   ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
   ;; (add-hook 'dired-mode-hook 'deer)
 
-  (nate/configure-erc)
-  (nate/configure-email)
+  (ncw/configure-erc)
+  (ncw/configure-email)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
