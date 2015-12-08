@@ -278,23 +278,22 @@
   (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
 
 (defun nate/configure-erc ()
-  "Configure IRC. Passwords are stored in `~/.authinfo.gpg'.
-   Associated commands:
+  "Configure IRC. Associated commands:
    * `nate/irc-jack-in' Connect to all servers
    * `nate/irc-layout'  Configure current frame with channel windows"
-  (setq erc-nick "nwolfe"
-        erc-user-full-name "Nate Wolfe"
-        erc-prompt-for-nickserv-password nil
-        erc-hide-list '("JOIN" "NICK" "PART" "QUIT" "MODE")
-        erc-join-buffer 'bury
-        erc-autojoin-channels-alist
-        '(("1.0.0" ;; irc.gitter.im
-           "#syl20bnr/spacemacs")
-          ("freenode"
-           "#puppet" "#puppet-dev" "#trapperkeeper"
-           "#emacs" "#clojure" "#reddit-cyberpunk")
-          ("quakenet"
-           "#rgrd")))
+  (require 'ncw-irc-config)
+
+  (setq erc-prompt-for-nickserv-password nil
+        erc-hide-list '("JOIN" "NICK" "PART" "QUIT" "MODE"))
+
+  ;; Don't start buffers in insert mode
+  (setq evil-normal-state-modes '(erc-mode))
+
+  ;; Don't wrap long lines
+  (add-hook 'erc-join-hook 'toggle-truncate-lines)
+
+  ;; Automatically insert newlines
+  (erc-fill-mode t)
 
   ;; Filter foolish content
   ;; "\\[GitHub\\].* labeled an issue in"
@@ -307,51 +306,7 @@
     "Ignore messages that match `erc-foolish-content'."
     (when (erc-list-match erc-foolish-content msg)
       (setq erc-insert-this nil)))
-  (add-hook 'erc-insert-pre-hook 'nate/erc-filter-foolish-content)
-
-  ;; Don't start buffers in insert mode
-  (setq evil-normal-state-modes '(erc-mode))
-
-  ;; Don't wrap long lines
-  (add-hook 'erc-join-hook 'toggle-truncate-lines)
-
-  ;; Automatically insert newlines
-  (erc-fill-mode t)
-
-  ;; Put the server connect calls into a function so they
-  ;; aren't called at Emacs startup. I have to call it manually.
-  (defun nate/irc-jack-in ()
-    "Connect to all of my IRC servers."
-    (interactive)
-    ;; Nil password forces it to read from `~/.authinfo.gpg'
-    (erc-tls :server "irc.gitter.im" :password nil)
-    (erc :server "irc.freenode.net")
-    (erc :server "irc.quakenet.org"))
-
-  (defun nate/irc-layout ()
-    "Configure the current frame with windows for each IRC channel.
-     The layout is a table with balanced cells like:
-
-     cyberpunk | spacemacs | emacs
-     rgrd      | puppet    | clojure
-
-     Note that not all IRC channels get a dedicated window."
-    (interactive)
-    (delete-other-windows)
-    (switch-to-buffer "#reddit-cyberpunk")
-    (split-window-horizontally-and-switch)
-    (switch-to-buffer "#syl20bnr/spacemacs")
-    (split-window-horizontally-and-switch)
-    (switch-to-buffer "#emacs")
-    (split-window-vertically-and-switch)
-    (switch-to-buffer "#clojure")
-    (select-window-2)
-    (split-window-vertically-and-switch)
-    (switch-to-buffer "#puppet")
-    (select-window-1)
-    (split-window-vertically-and-switch)
-    (switch-to-buffer "#rgrd")
-    (balance-windows)))
+  (add-hook 'erc-insert-pre-hook 'nate/erc-filter-foolish-content))
 
 (defun nate/configure-email ()
   (setq mu4e-maildir "~/Mail")
