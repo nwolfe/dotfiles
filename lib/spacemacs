@@ -312,27 +312,35 @@
   (setq mu4e-maildir "~/Mail")
   (require 'ncw-email-config)
 
-  (setq mu4e-sent-messages-behavior 'delete)
-  (setq mu4e-get-mail-command "offlineimap"
-        mu4e-update-interval 600)
+  ;; Syncing messages
+  (setq mu4e-get-mail-command "offlineimap")
+  (setq mu4e-update-interval 600)
 
-  (setq message-send-mail-function 'smtpmail-send-it
-        smtpmail-stream-type 'starttls
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587)
-  (setq message-kill-buffer-on-exit t)
-
-  (setq mu4e-view-show-images t
-        mu4e-show-images t
-        mu4e-view-image-max-width 800)
+  ;; Viewing messages
+  (setq mu4e-show-images t)
+  (setq mu4e-view-show-images t)
+  (setq mu4e-view-image-max-width 800)
   (setq mu4e-view-show-addresses t)
   (setq mu4e-use-fancy-chars t)
-  (setq mu4e-headers-skip-duplicates t)
-  (setq mail-user-agent 'mu4e-user-agent)
   (setq mu4e-html2text-command "html2text -utf8 -width 72")
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
+
+  ;; Sending messages
+  (setq mail-user-agent 'mu4e-user-agent)
+  (setq smtpmail-stream-type 'starttls)
+  (setq message-send-mail-function 'smtpmail-send-it)
+  (setq smtpmail-default-smtp-server "smtp.gmail.com")
+  (setq smtpmail-smtp-server "smtp.gmail.com")
+  (setq smtpmail-smtp-service 587)
+  (setq message-kill-buffer-on-exit t)
+  (setq mu4e-sent-messages-behavior 'delete)
+
+  ;; Include sent messages in message threads from search results
+  (setq mu4e-headers-include-related t)
+
+  (setq mu4e-headers-leave-behavior 'apply)
+  (setq mu4e-headers-skip-duplicates t)
 
   ;; Same as defaults except use :thread-subject instead of :subject to only
   ;; show subject lines once, on the original message line. Replies will have
