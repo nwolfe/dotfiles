@@ -362,6 +362,11 @@
   (add-hook 'mu4e-main-mode-hook
             (lambda ()
               (mu4e-maildirs-extension-force-update '(4))))
+
+  ;; Define custom Mail layout - access with `SPC l o m'
+  (spacemacs|define-custom-layout "Mail"
+    :binding "m"
+    :body (mu4e))
   )
 
 (defun dotspacemacs/user-config ()
