@@ -326,7 +326,10 @@
   (setq mu4e-view-image-max-width 800)
   (setq mu4e-view-show-addresses t)
   (setq mu4e-use-fancy-chars t)
-  (setq mu4e-html2text-command "html2text -utf8 -width 72")
+  (setq mu4e-html2text-command
+        (if (executable-find "textutil")
+            "textutil -stdin -stdout -format html -convert txt"
+          "html2text -utf8 -width 72"))
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
 
