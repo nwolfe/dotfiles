@@ -409,6 +409,9 @@
     "wv" 'split-window-right-and-focus
     "ws" 'split-window-below-and-focus)
 
+  ;; Don't bother me with a warning popup when saving remote jarfiles
+  (add-to-list 'warning-suppress-types '(undo discard-info))
+
   (setq deft-directory "~/notes")
   (setq deft-extension "org")
 
