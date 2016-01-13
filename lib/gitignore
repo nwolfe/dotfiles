@@ -1,8 +1,18 @@
-vim/.netrwhist
 tags
-.DS_Store
-*.class
-.lein-repl-history
-.nrepl-port
+
+### EMACS
 *#*
 TODO.org
+
+### JAVA
+*.class
+
+### LEININGEN
+.lein-repl-history
+.nrepl-port
+
+### MAC OS
+.DS_Store
+
+### VIM
+vim/.netrwhist
