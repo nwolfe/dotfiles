@@ -55,5 +55,8 @@ echo # newline for readability
 VMSNAP
 fi
 
+## Copy VM hostname to clipboard for convenience
+echo -n $hostname | pbcopy
+
 ## Log in to the borrowed VM
 exec ssh $noprompts root@$hostname
