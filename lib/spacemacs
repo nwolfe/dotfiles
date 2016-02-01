@@ -11,6 +11,10 @@
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
 
+   ;; If non-nil layers with lazy install support are lazy installed.
+   ;; (default nil)
+   dotspacemacs-enable-lazy-installation nil
+
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -101,7 +105,7 @@
    dotspacemacs-always-show-changelog t
 
    ;; List of items to show in the startup buffer. if nil it is disabled.
-   ;; Possible values are: `recents', `bookmarks', `projects'.
+   ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; (default '(recents projects))
    dotspacemacs-startup-lists '(recents projects)
 
@@ -199,7 +203,7 @@
 
    ;; If non nil the paste micro-state is enabled. While enabled pressing `p'
    ;; several times cycles between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-transient-state nil
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
@@ -239,12 +243,18 @@
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
 
+   ;; If non nil show the titles of transient states. (default t)
+   dotspacemacs-show-transient-state-title t
+
+   ;; If non nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-color-guide t
+
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
 
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters the
-   ;; point when it reaches the top or bottom of the screen
+   ;; scrolling overrides the default behavior of Emacs which recenters point
+   ;; when it reaches the top or bottom of the screen
    dotspacemacs-smooth-scrolling t
 
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
@@ -429,8 +439,15 @@
   ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
   ;; (add-hook 'dired-mode-hook 'deer)
 
+  ;; Swap keys w/b with W/B so word motions operate on whitespace boundaries
+  (define-key evil-motion-state-map "w" 'evil-forward-WORD-begin)
+  (define-key evil-motion-state-map "W" 'evil-forward-word-begin)
+  (define-key evil-motion-state-map "b" 'evil-backward-WORD-begin)
+  (define-key evil-motion-state-map "B" 'evil-backward-word-begin)
+
   (ncw/configure-erc)
   (ncw/configure-email)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
