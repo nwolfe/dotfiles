@@ -291,7 +291,7 @@
   "Configure IRC. Associated commands:
    * `ncw/irc-jack-in' Connect to all servers
    * `ncw/irc-layout'  Configure current frame with channel windows"
-  (require 'ncw-irc-config)
+  (require 'ncw-irc-config nil t)
 
   (setq erc-prompt-for-nickserv-password nil
         erc-hide-list '("JOIN" "NICK" "PART" "QUIT" "MODE"))
@@ -320,7 +320,7 @@
 
 (defun ncw/configure-email ()
   (setq mu4e-maildir "~/Mail")
-  (require 'ncw-email-config)
+  (require 'ncw-email-config nil t)
 
   ;; Syncing messages
   (setq mu4e-get-mail-command "offlineimap")
