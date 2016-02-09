@@ -41,7 +41,6 @@
      org
      osx
      puppet
-     ;; ranger
      ruby
      (shell :variables shell-default-shell 'eshell)
      spacemacs-layouts
@@ -432,9 +431,6 @@
 
   (exec-path-from-shell-copy-envs
    '("DOTFILES" "EDITOR" "PUPPETLABS" "PUPPETLABS_CONF"))
-
-  ;; Replace dired with minimal ranger (deer) -- requires ranger layer!
-  ;; (add-hook 'dired-mode-hook 'deer)
 
   ;; Swap keys w/b with W/B so word motions operate on whitespace boundaries
   (define-key evil-motion-state-map "w" 'evil-forward-WORD-begin)
