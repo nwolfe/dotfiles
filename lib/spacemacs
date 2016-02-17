@@ -262,6 +262,12 @@
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode t
 
+   ;; If non-nil pressing the closing paranthesis `)' key in insert mode passes
+   ;; over any automatically added closing paranthesis, bracket, quote, etc.
+   ;; This can be temporarily disabled by pressing `C-q' before `)'.
+   ;; (default nil)
+   dotspacemacs-smart-closing-parenthesis nil
+
    ;; Select a scope to highlight delimeters. Possible values are `any',
    ;; `current', `all', or `nil'. Default is `all' (highlight any scope
    ;; and emphasize the current one). (default 'all)
