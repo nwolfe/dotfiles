@@ -438,12 +438,6 @@
   (exec-path-from-shell-copy-envs
    '("DOTFILES" "EDITOR" "PUPPETLABS" "PUPPETLABS_CONF"))
 
-  ;; Swap keys w/b with W/B so word motions operate on whitespace boundaries
-  (define-key evil-motion-state-map "w" 'evil-forward-WORD-begin)
-  (define-key evil-motion-state-map "W" 'evil-forward-word-begin)
-  (define-key evil-motion-state-map "b" 'evil-backward-WORD-begin)
-  (define-key evil-motion-state-map "B" 'evil-backward-word-begin)
-
   (ncw/configure-erc)
   (ncw/configure-email)
 
