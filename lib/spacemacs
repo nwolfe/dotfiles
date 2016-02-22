@@ -199,7 +199,7 @@
 
    ;; If non nil the paste micro-state is enabled. While enabled pressing `p'
    ;; several times cycles between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-enable-paste-transient-state t
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
