@@ -9,7 +9,7 @@ _borrowed_vms() {
     cmd="
 import json, sys
 res = json.load(sys.stdin)['$VMPOOLER_TOKEN']
-if 'vms' in res: print ' '.join(res['vms']['running'])"
+if 'vms' in res: print(' '.join(res['vms']['running']))"
     python -c $cmd <<< $response
 }
 
@@ -20,7 +20,7 @@ _vm_snapshots() {
 import json, sys
 res = json.load(sys.stdin)
 if '$vm' in res and 'snapshots' in res['$vm']:
-    print ' '.join(res['$vm']['snapshots'])"
+    print(' '.join(res['$vm']['snapshots']))"
     python -c $cmd <<< $response
 }
 

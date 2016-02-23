@@ -32,7 +32,7 @@ else
     response=$(curl $token --silent --data --url $api/vm/$OS)
     # echo "$response"
 
-    gethost="import json, sys; print json.load(sys.stdin)['$OS']['hostname']"
+    gethost="import json, sys; print(json.load(sys.stdin)['$OS']['hostname'])"
     hostname=$(python -c "$gethost" <<< "$response")
 
     ## Install vmreturn utility script on VM

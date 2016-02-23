@@ -22,7 +22,7 @@ _borrowed_vms() {
     cmd="
 import json, sys
 res = json.load(sys.stdin)['$VMPOOLER_TOKEN']
-if 'vms' in res: print ' '.join(map(lambda i: '_'+i, res['vms']['running']))"
+if 'vms' in res: print(' '.join(map(lambda i: '_'+i, res['vms']['running'])))"
     python -c $cmd <<< $response
 }
 
