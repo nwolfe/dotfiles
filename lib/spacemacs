@@ -42,7 +42,9 @@
      osx
      puppet
      ruby
-     (shell :variables shell-default-shell 'eshell)
+     (shell :variables
+            shell-default-shell 'multi-term
+            shell-default-term-shell "/bin/zsh")
      spacemacs-layouts
      spotify
      (spell-checking :variables spell-checking-enable-by-default nil)
