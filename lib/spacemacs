@@ -41,6 +41,7 @@
      org
      osx
      puppet
+     python
      ruby
      (shell :variables
             shell-default-shell 'multi-term
