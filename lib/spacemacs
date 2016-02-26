@@ -418,6 +418,9 @@
   ;; See http://orgmode.org/manual/Languages.html#Languages
   (org-babel-do-load-languages 'org-babel-load-languages '((sh . t)))
 
+  ;; Denote list sub-items with a different character
+  (setq org-list-demote-modify-bullet '(("-" . "*")))
+
   ;; Auto-wrap long lines by default (in non-programming modes)
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
