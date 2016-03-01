@@ -347,12 +347,22 @@
   (setq mu4e-view-image-max-width 800)
   (setq mu4e-view-show-addresses t)
   (setq mu4e-use-fancy-chars t)
-  (setq mu4e-html2text-command
-        (if (executable-find "textutil")
-            "textutil -stdin -stdout -format html -convert txt"
-          "html2text -utf8 -width 72"))
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
+
+  ;; BEGIN UNDER CONSTRUCTION
+  (require 'mu4e-contrib)
+  (setq mu4e-html2text-command 'mu4e-shr2text)
+  (setq shr-color-visible-luminance-min 60)
+  ;; (setq shr-color-visible-distance-min 10)
+  ;; (setq mu4e-html2text-command
+  ;;       ;; Other options:
+  ;;       ;;   "html2text -utf8 -nobs -width 72"
+  ;;       ;;   "textutil -stdin -stdout -format html -convert txt"
+  ;;       (if (executable-find "w3m")
+  ;;           "w3m -T text/html"
+  ;;         "html2text -utf8 -nobs -width 72"))
+  ;; END UNDER CONSTRUCTION
 
   ;; Sending messages
   (setq mail-user-agent 'mu4e-user-agent)
