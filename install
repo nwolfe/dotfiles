@@ -46,7 +46,6 @@ function uber_install {
     install_dotfiles
     install_lein_profile
     maybe_symlink $PWD/bin $HOME/bin
-    maybe_symlink $PWD/vim $HOME/.vim
 }
 
 uber_install

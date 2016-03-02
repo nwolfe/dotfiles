@@ -1,7 +1,7 @@
 " For more information on a setting type :help <setting>
 
-execute pathogen#infect()
-execute pathogen#helptags()
+" execute pathogen#infect()
+" execute pathogen#helptags()
 
 set nocompatible                " Use Vim settings instead of classic vi
 set encoding=utf-8
@@ -11,7 +11,7 @@ filetype plugin indent on
 
 "let g:solarized_termcolors=256  " Enable color support for Solarized scheme
 "set background=dark
-colorscheme jellybeans
+" colorscheme jellybeans
 
 set showcmd                     " Display incomplete commands
 set noshowmatch                 " Don't highlight matching parens
@@ -34,7 +34,7 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 ""    From https://github.com/spf13/spf13-vim/blob/master/.vimrc
 if has('statusline')
     set laststatus=2                              " Always show status line
-    set statusline=%{fugitive#statusline()}       " Git branch
+    " set statusline=%{fugitive#statusline()}       " Git branch
     set statusline+=\ %<%f\                       " Filename
     set statusline+=%w%h%m%r                      " Options?
     "set statusline+=\ [%{&ff}/%Y]                 " Filetype
@@ -126,14 +126,14 @@ vnoremap < <gv
 vnoremap > >gv
 
 " TagBar plugin
-nnoremap <leader>tb :TagbarToggle<CR>
+" nnoremap <leader>tb :TagbarToggle<CR>
 
 " NERDTree plugin
-nnoremap <leader>nt :NERDTreeToggle<CR>
+" nnoremap <leader>nt :NERDTreeToggle<CR>
 "autocmd vimenter * if !argc() | NERDTree | endif " Open NERDTree when vim starts with no files
 
 " Git shortcuts
-nnoremap <leader>gst :Gstatus<CR>
+" nnoremap <leader>gst :Gstatus<CR>
 
 " Paredit plugin
-nnoremap <leader>pe :call PareditToggle()<CR>
+" nnoremap <leader>pe :call PareditToggle()<CR>
