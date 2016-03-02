@@ -56,26 +56,15 @@ plugins=(brew osx lein colored-man jsontools
 
 source $ZSH/oh-my-zsh.sh
 
-### NATES STUFF ###
+################################################################################
 
-# Do an `ls` after a `cd`. Hook called by zsh
+# Defer to .bashrc for most configuration
+source $HOME/.bashrc
+
+# Automatically do an `ls` after `cd`-ing to a directory
 chpwd() {
     ls
 }
-
-export DOTFILES=$HOME/.dotfiles
-
-# Source .seacrest things if they exist
-if [ -d $HOME/.seacrest ]; then
-    for sourcefile in $HOME/.seacrest/shell/sources/*; do
-        source $sourcefile
-    done
-fi
-
-# Source things like env, aliases, functions, etc.
-for sourcefile in $DOTFILES/sources/*; do
-    source $sourcefile
-done
 
 ## Auto-completion support
 ## * Standalone completion files from $DOTFILES/completion (added to zsh FPATH)
@@ -83,8 +72,7 @@ done
 ## See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
 
 # Add custom completion scripts for commands that warrant a dedicated file
-COMPLETION_DIR=$DOTFILES/completion
-fpath=($COMPLETION_DIR $fpath)
+fpath=($DOTFILES/completion $fpath)
 
 # Initialize compsys
 autoload -U compinit

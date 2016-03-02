@@ -12,10 +12,8 @@
 #
 #   --alternate-editor=''    Start daemon server if there isn't one.
 export EDITOR="/usr/local/bin/emacsclient --tty --alternate-editor=''"
-export VISUAL=$EDITOR
-
-export TERM=xterm-256color
 export PATH=/usr/local/bin:$HOME/bin:$PATH
 export PUPPETLABS=$HOME/workspace/puppetlabs
 export PUPPETLABS_CONF=$PUPPETLABS/conf
 export PYENV_ROOT=/usr/local/var/pyenv
+export VISUAL=$EDITOR

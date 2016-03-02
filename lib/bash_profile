@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+export DOTFILES=$HOME/.dotfiles
+
+# Source .seacrest things if they exist
+if [ -d $HOME/.seacrest ]; then
+    source $HOME/.seacrest/shell/sources/env
+fi
+
+# Source environments
+source $DOTFILES/sources/env
+source $DOTFILES/sources/pyenv
+source $DOTFILES/sources/rbenv
