@@ -50,8 +50,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Full list of plugins: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
-plugins=(brew osx lein colored-man jsontools
-         gitfast
+plugins=(brew osx lein colored-man jsontools gitfast
+         python pyenv virtualenv
          ruby rake rbenv gem)
 
 source $ZSH/oh-my-zsh.sh
