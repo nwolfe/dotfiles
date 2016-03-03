@@ -300,7 +300,8 @@
 (defun dotspacemacs/user-init ()
   "Initialization function for user code. This is called immediately after
    `dotspacemacs/init'."
-  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
+  (add-to-list 'load-path "~/.seacrest/emacs/load-path")
+  (setq exec-path-from-shell-check-startup-files nil))
 
 (defun ncw/configure-erc ()
   "Configure IRC. Associated commands:
@@ -450,9 +451,6 @@
   (setq deft-extension "org")
 
   (setq projectile-switch-project-action 'projectile-dired)
-
-  (exec-path-from-shell-copy-envs
-   '("DOTFILES" "EDITOR" "PUPPETLABS" "PUPPETLABS_CONF"))
 
   (ncw/configure-erc)
   (ncw/configure-email)
