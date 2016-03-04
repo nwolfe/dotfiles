@@ -5,7 +5,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias pp='cd $PUPPETLABS'
-alias pps='cd $PUPPETLABS/puppet-server'
 
 # Verify destruction
 alias rm='rm -iv' # Verbose, print removed files
@@ -26,4 +25,3 @@ alias l1='ls -1'
 # Shortcuts
 alias be='bundle exec'
 alias tmux='tmux -2' # Ensure 256 colors
-alias gemacs='open -a Emacs'
