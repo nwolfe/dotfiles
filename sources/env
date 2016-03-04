@@ -12,7 +12,7 @@
 #
 #   --alternate-editor=''    Start daemon server if there isn't one.
 export EDITOR="/usr/local/bin/emacsclient --tty --alternate-editor=''"
-export PATH=/usr/local/bin:$HOME/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 export PUPPETLABS=$HOME/workspace/puppetlabs
 export PUPPETLABS_CONF=$PUPPETLABS/conf
 export PYENV_ROOT=/usr/local/var/pyenv
