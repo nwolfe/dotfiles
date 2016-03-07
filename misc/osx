@@ -1,3 +1,5 @@
+# -*- mode: shell-script; -*-
+
 # Finder: Allow quitting with Command + Q
 defaults write com.apple.finder QuitMenuItem -bool true
 
@@ -12,3 +14,6 @@ defaults write com.apple.dock mru-spaces -bool false
 #   Default initial is 15 (225ms)
 defaults write NSGlobalDomain KeyRepeat -int 1
 #defaults write NSGlobalDomain InitialKeyRepeat -int 0.02
+
+# Function Keys: Use F1, F2, etc as standard keys and not special features
+defaults write -g com.apple.keyboard.fnState -bool true
