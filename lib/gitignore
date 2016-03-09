@@ -14,5 +14,8 @@ TODO.org
 ### MAC OS
 .DS_Store
 
+### PYTHON
+.egg*
+
 ### VIM
 vim/.netrwhist
