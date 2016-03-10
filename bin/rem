@@ -3,21 +3,19 @@
 #
 # Examples
 #   $ rem This is cool!
-#   > echo "This is cool!" >> ~/notes/notes.txt
+#   > echo "This is cool!" >> $NOTES/notes.org
 #
 #   $ rem foo: So is this!
 #   $ rem foo: "So is this!"
-#   > echo "So is this!" >> ~/notes/foo.txt
+#   > echo "So is this!" >> $NOTES/foo.org
 #
 #   $ rem
-#   > $EDITOR ~/notes/notes.txt
+#   > $EDITOR $NOTES/notes.org
 #
 #   $ rem foo
 #   $ rem foo:
-#   > $EDITOR ~/notes/foo.txt
+#   > $EDITOR $NOTES/foo.org
 
-NOTES_HOME=$HOME/notes
-GIT_REPO=$NOTES_HOME
 DEFAULT_NOTEFILE=notes
 FILE_FORMAT=org
 
@@ -25,47 +23,47 @@ FILE_FORMAT=org
 # $1 = absolute path to notefile (e.g. /users/foo/bar)
 # $2 = notefile name (e.g. bar)
 save_changes() {
-  if [ -e $1 ]; then
-    git --work-tree $GIT_REPO --git-dir $GIT_REPO/.git add $1
-    git --work-tree $GIT_REPO --git-dir $GIT_REPO/.git commit -m "$2 notes" $1 > /dev/null
-  fi
-  return 0
+    if [ -e $1 ]; then
+        git --work-tree $NOTES --git-dir $NOTES/.git add $1
+        git --work-tree $NOTES --git-dir $NOTES/.git commit -m "$2 notes" $1 > /dev/null
+    fi
+    return 0
 }
 
 # Returns the full path to $1 notefile
 absolute_path() {
-  echo $NOTES_HOME/${1}.$FILE_FORMAT
+    echo $NOTES/${1}.$FILE_FORMAT
 }
 
 # Edit the $1 notefile in your favorite editor
 edit_notefile() {
-  notefile=${1//:/}
-  filepath=$(absolute_path $notefile)
-  touch $filepath
-  eval $EDITOR $filepath
-  save_changes $filepath $notefile
+    notefile=${1//:/}
+    filepath=$(absolute_path $notefile)
+    touch $filepath
+    eval $EDITOR $filepath
+    save_changes $filepath $notefile
 }
 
 # Edit the default notefile in your favorite editor
 edit_default() {
-  edit_notefile $DEFAULT_NOTEFILE
+    edit_notefile $DEFAULT_NOTEFILE
 }
 
 # Write (append) the note to the $1 notefile
 write_note() {
-  if [ ${1:(-1)} = ":" ]; then
-    notefile=${1//:/}
-    shift
-  else
-    notefile=$DEFAULT_NOTEFILE
-  fi
-  filepath=$(absolute_path $notefile)
-  echo $* >> $filepath
-  save_changes $filepath $notefile
+    if [ ${1:(-1)} = ":" ]; then
+        notefile=${1//:/}
+        shift
+    else
+        notefile=$DEFAULT_NOTEFILE
+    fi
+    filepath=$(absolute_path $notefile)
+    echo $* >> $filepath
+    save_changes $filepath $notefile
 }
 
 case $# in
-  0) edit_default ;;
-  1) edit_notefile $1 ;;
-  *) write_note $* ;;
+    0) edit_default ;;
+    1) edit_notefile $1 ;;
+    *) write_note $* ;;
 esac

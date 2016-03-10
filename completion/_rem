@@ -2,7 +2,7 @@
 # ZSH completion files for my rem tool
 
 # Tab complete with the notefiles (ignoring the extension)
-_arguments "1: :($(ls $HOME/notes | awk -F'.' '{print $1}'))"
+_arguments "1: :($(ls $NOTES | awk -F'.' '{print $1}'))"
 
 # Local Variables:
 # mode: sh
