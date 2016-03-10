@@ -298,8 +298,12 @@
    dotspacemacs-whitespace-cleanup 'changed))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code. This is called immediately after
-   `dotspacemacs/init'."
+  "Initialization function for user code.
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+This function is mostly useful for variables that need to be set before
+packages are loaded. If you are unsure, you should try setting them in
+`dotspacemacs/user-config' first."
   (add-to-list 'load-path "~/.seacrest/emacs/load-path")
   (setq exec-path-from-shell-check-startup-files nil))
 
@@ -409,8 +413,12 @@
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code. This is called at the very end of
-   Spacemacs initialization after layers configuration."
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
   ;; Don't require a GitHub token when using Paradox package manager
   (setq paradox-github-token t)
 
