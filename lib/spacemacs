@@ -413,6 +413,23 @@ packages are loaded. If you are unsure, you should try setting them in
     :body (mu4e))
   )
 
+(defun ncw/configure-org ()
+  (with-eval-after-load 'org
+    ;; Enable shell language execution support in source blocks.
+    ;; See http://orgmode.org/manual/Languages.html#Languages
+    (org-babel-do-load-languages 'org-babel-load-languages '((sh . t)))
+
+    ;; Denote list sub-items with a different character
+    (setq org-list-demote-modify-bullet '(("-" . "*")
+                                          ("*" . "+")))
+
+    (setq org-default-notes-file "capture.org")
+
+    (setq org-agenda-files '("~/org/capture.org"
+                             "~/org/todo.org"))
+    )
+  )
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -434,13 +451,6 @@ you should place your code here."
   ;; Tell magit I've seen all of its warnings from the new version.
   (setq magit-last-seen-setup-instructions "1.4.0")
 
-  ;; Enable shell language execution support in source blocks.
-  ;; See http://orgmode.org/manual/Languages.html#Languages
-  (org-babel-do-load-languages 'org-babel-load-languages '((sh . t)))
-
-  ;; Denote list sub-items with a different character
-  (setq org-list-demote-modify-bullet '(("-" . "*") ("*" . "+")))
-
   ;; Auto-wrap long lines by default (in non-programming modes)
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
@@ -460,12 +470,11 @@ you should place your code here."
   (setq deft-extension "org")
   (setq deft-recursive t)
 
-  (setq org-default-notes-file "capture.org")
-
   (setq projectile-switch-project-action 'projectile-dired)
 
   (ncw/configure-erc)
   (ncw/configure-email)
+  (ncw/configure-org)
 
   )
 
