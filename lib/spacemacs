@@ -476,6 +476,7 @@ you should place your code here."
   (ncw/configure-email)
   (ncw/configure-org)
 
+  (load-file "$DOTFILES/misc/functions.el")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
