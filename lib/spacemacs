@@ -413,10 +413,32 @@
     (setq org-list-demote-modify-bullet '(("-" . "*")
                                           ("*" . "+")))
 
-    (setq org-default-notes-file "capture.org")
+    (setq org-agenda-files '("~/org/todo.org"
+                             "~/org/capture.org"))
 
-    (setq org-agenda-files '("~/org/capture.org"
-                             "~/org/todo.org"))
+    ;; TO-DO entries have the following form:
+    ;;
+    ;;   * TODO <description you typed in>
+    ;;     <time of capture>
+    ;;     <any highlighted region during capture>
+    ;;     Link: <link to captured item>
+    ;;
+    ;; Options:
+    ;; - Put a blank line before the new entry for readability
+    ;; - Don't pollute layout/workspace with capture buffer
+    (setq org-capture-templates
+          '(("t" "TODO" entry (file "~/org/capture.org")
+             "* TODO %?\n\t%T\n\t%i\n\tLink: %l"
+             :empty-lines-before 1
+             :kill-buffer t)))
+
+    ;; Override existing key binding "SPC C t" to use our template
+    (defun ncw/capture-todo ()
+      "Capture a TODO item to ~/org/capture.org."
+      (interactive)
+      (org-capture nil "t"))
+    (spacemacs/set-leader-keys "Ct" 'ncw/capture-todo)
+
     )
   )
 
