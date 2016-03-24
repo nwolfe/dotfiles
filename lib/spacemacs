@@ -404,6 +404,11 @@
   )
 
 (defun ncw/configure-org ()
+
+  (setq deft-directory "~/org")
+  (setq deft-extension "org")
+  (setq deft-recursive t)
+
   (with-eval-after-load 'org
     ;; Enable shell language execution support in source blocks.
     ;; See http://orgmode.org/manual/Languages.html#Languages
@@ -488,10 +493,7 @@ you should place your code here."
   ;; Don't bother me with a warning popup when saving remote jarfiles
   (add-to-list 'warning-suppress-types '(undo discard-info))
 
-  (setq deft-directory "~/org")
-  (setq deft-extension "org")
-  (setq deft-recursive t)
-
+  ;; Open a dired buffer when switching to new projects
   (setq projectile-switch-project-action 'projectile-dired)
 
   ;; Make undo a bit more aggressive in how much it undoes
