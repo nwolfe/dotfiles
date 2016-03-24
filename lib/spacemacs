@@ -494,6 +494,9 @@ you should place your code here."
 
   (setq projectile-switch-project-action 'projectile-dired)
 
+  ;; Make undo a bit more aggressive in how much it undoes
+  (setq evil-want-fine-undo "No")
+
   (ncw/configure-erc)
   (ncw/configure-email)
   (ncw/configure-org)
