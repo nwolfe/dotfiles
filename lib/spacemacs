@@ -511,6 +511,9 @@ you should place your code here."
   ;; Make undo a bit more aggressive in how much it undoes
   (setq evil-want-fine-undo "No")
 
+  ;; Enable .agignore files in project roots
+  (setq helm-ag-use-agignore t)
+
   (ncw/configure-erc)
   (ncw/configure-email)
   (ncw/configure-org)
