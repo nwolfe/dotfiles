@@ -457,6 +457,22 @@
 
     ;; Hide various markup tags
     (add-hook 'org-mode-hook 'space-doc-mode)
+
+    ;; Actually render markup rather than just showing the markup characters.
+    ;; Taken from `spacemacs/view-org-file'.
+    (defun ncw/org-fancify-markup ()
+      (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\n")
+      (org-set-emph-re 'org-emphasis-regexp-components
+                       org-emphasis-regexp-components)
+      (setq-local org-emphasis-alist '(("*" bold)
+                                       ("/" italic)
+                                       ("_" underline)
+                                       ("=" org-verbatim verbatim)
+                                       ("~" org-kbd)
+                                       ("+"
+                                        (:strike-through t))))
+      (setq-local org-hide-emphasis-markers t))
+    (add-hook 'org-mode-hook 'ncw/org-fancify-markup)
     )
   )
 
