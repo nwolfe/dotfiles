@@ -510,6 +510,9 @@ you should place your code here."
   ;; Enable .agignore files in project roots
   (setq helm-ag-use-agignore t)
 
+  ;; Truncate long lines globally by default
+  (setq-default truncate-lines t)
+
   (ncw/configure-erc)
   (ncw/configure-email)
   (ncw/configure-org)
