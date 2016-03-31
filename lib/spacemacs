@@ -456,6 +456,8 @@
       (org-capture nil "t"))
     (spacemacs/set-leader-keys "Ct" 'ncw/capture-todo)
 
+    ;; Hide various markup tags
+    (add-hook 'org-mode-hook 'space-doc-mode)
     )
   )
 
