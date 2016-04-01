@@ -432,6 +432,16 @@
     (setq org-agenda-files '("~/org/todo.org"
                              "~/org/capture.org"))
 
+    ;; Custom workspace with todo.org on the left side,
+    ;; captures.org on the right, and cursor focus on todo.org.
+    (spacemacs|define-custom-layout "TODO"
+      :binding "t"
+      :body
+      (progn
+        (find-file (second (org-agenda-files)))
+        (split-window-horizontally)
+        (find-file (first (org-agenda-files)))))
+
     ;; TO-DO entries have the following form:
     ;;
     ;;   * TODO <description you typed in>
