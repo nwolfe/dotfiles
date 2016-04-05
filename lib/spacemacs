@@ -466,6 +466,7 @@
     (spacemacs/set-leader-keys "Ct" 'ncw/capture-todo)
 
     ;; Hide various markup tags
+    (require 'space-doc)
     (add-hook 'org-mode-hook 'space-doc-mode)
 
     ;; Actually render markup rather than just showing the markup characters.
