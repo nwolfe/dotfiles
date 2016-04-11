@@ -69,7 +69,7 @@
    ;; `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(json-reformat)
 
-   ;; A list of packages and/or extensions that will not be install and loaded.
+   ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
 
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
