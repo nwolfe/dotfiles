@@ -57,6 +57,7 @@
             shell-default-shell 'multi-term
             shell-default-height 40
             shell-default-term-shell "/bin/zsh")
+     spacemacs-helm
      spacemacs-layouts
      spotify
      (spell-checking :variables spell-checking-enable-by-default nil)
