@@ -3,8 +3,8 @@
   (async-shell-command
    (concat "cd $PUPPETLABS/ci-job-configs && "
            "source local/bin/activate && "
-           "jenkins-jobs --conf enterprise/builder.conf test "
-           "resources/:enterprise/projects "
+           "jenkins-jobs --conf jenkii/enterprise/builder.conf test "
+           "resources/:jenkii/enterprise/projects "
            "\"" arg "_*\"")))
 
 (defun ncw/jjb-test-prompt (arg)
