@@ -6,6 +6,9 @@ defaults write com.apple.finder QuitMenuItem -bool true
 # Finder: Show path bar
 defaults write com.apple.finder ShowPathbar -bool true
 
+# Finder: Show all filename extensions
+defaults read NSGlobalDomain AppleShowAllExtensions -bool
+
 # Spaces: Don't rearrange based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
