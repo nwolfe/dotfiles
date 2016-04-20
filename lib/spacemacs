@@ -551,5 +551,27 @@ you should place your code here."
   (load-file "$DOTFILES/misc/functions.el")
   )
 
+;; Full-width comment box from: http://irreal.org/blog/?p=374
+(defun ncw/comment-box (b e)
+  "Draw a comment box around the selected region, but extend the right side
+all the way up to (but not including) the fill column.
+
+This is an improved version of the built-in `comment-box' function."
+  (interactive "r")
+  (let ((e (copy-marker e t)))
+    (goto-char b)
+    (end-of-line)
+    ;; Take the mode-specific comment configuration into account.
+    ;; Also, stop 1 column short of the fill column since it looks better.
+    (insert-char ? (- fill-column (current-column)
+                      (length comment-start)
+                      (length comment-padding)
+                      (* 2 comment-add)
+                      (if (> comment-add 0) 1 0)
+                      1))
+    (comment-box b e 1)
+    (goto-char e)
+    (set-marker e nil)))
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
