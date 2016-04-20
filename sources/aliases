@@ -15,10 +15,10 @@ alias cp='cp -i'
 # -h  Human-readable file sizes
 # -G  Colored output
 # -F  Append special character denoting file type
-# -o  Long format, omit owner
-# -g  Long format, omit group
+# -A  Show hidden entries, but hide . and ..
+# -1  One entry per line
 alias ls='ls -hG'
-alias ll='ls -og'
+alias ll='ls -l'
 alias la='ls -A'
 alias l1='ls -1'
 
