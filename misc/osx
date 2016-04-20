@@ -1,5 +1,11 @@
 # -*- mode: shell-script; -*-
 
+################################################################################
+# For a more sophisticated example of OSX configuration see:                   #
+#                                                                              #
+# https://github.com/mathiasbynens/dotfiles/blob/master/.osx                   #
+################################################################################
+
 # Finder: Allow quitting with Command + Q
 defaults write com.apple.finder QuitMenuItem -bool true
 
@@ -20,3 +26,30 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Function Keys: Use F1, F2, etc as standard keys and not special features
 defaults write -g com.apple.keyboard.fnState -bool true
+
+# Spotlight: Restrict search results to only a few categories
+defaults write com.apple.Spotlight orderedItems -array \
+         '{ "name" = "APPLICATIONS";               "enabled" = 1; }' \
+         '{ "name" = "MENU_CONVERSION";            "enabled" = 1; }' \
+         '{ "name" = "MENU_EXPRESSION";            "enabled" = 1; }' \
+         '{ "name" = "MENU_DEFINITION";            "enabled" = 1; }' \
+         '{ "name" = "MENU_SPOTLIGHT_SUGGESTIONS"; "enabled" = 1; }' \
+         '{ "name" = "MENU_OTHER";                 "enabled" = 0; }' \
+         '{ "name" = "MENU_WEBSEARCH";             "enabled" = 0; }' \
+         '{ "name" = "SYSTEM_PREFS";               "enabled" = 0; }' \
+         '{ "name" = "DOCUMENTS";                  "enabled" = 0; }' \
+         '{ "name" = "DIRECTORIES";                "enabled" = 0; }' \
+         '{ "name" = "PRESENTATIONS";              "enabled" = 0; }' \
+         '{ "name" = "SPREADSHEETS";               "enabled" = 0; }' \
+         '{ "name" = "PDF";                        "enabled" = 0; }' \
+         '{ "name" = "MESSAGES";                   "enabled" = 0; }' \
+         '{ "name" = "CONTACT";                    "enabled" = 0; }' \
+         '{ "name" = "EVENT_TODO";                 "enabled" = 0; }' \
+         '{ "name" = "IMAGES";                     "enabled" = 0; }' \
+         '{ "name" = "BOOKMARKS";                  "enabled" = 0; }' \
+         '{ "name" = "MUSIC";                      "enabled" = 0; }' \
+         '{ "name" = "MOVIES";                     "enabled" = 0; }' \
+         '{ "name" = "FONTS";                      "enabled" = 0; }' \
+         '{ "name" = "SOURCE";                     "enabled" = 0; }'
+# Spotlight: Apply search result changes
+sudo mdutil -E / > /dev/null
