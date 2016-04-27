@@ -543,7 +543,7 @@ you should place your code here."
   ;; Truncate long lines globally by default
   (setq-default truncate-lines t)
 
-  (setq powerline-default-separator 'butt)
+  (setq powerline-default-separator 'bar)
 
   (ncw/configure-email)
   (ncw/configure-org)
