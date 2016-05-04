@@ -45,8 +45,6 @@
      git
      github
      markdown
-     (mu4e :variables
-           mu4e-installation-path "/usr/local/share/emacs/site-lisp")
      org
      osx
      puppet
@@ -541,7 +539,6 @@ you should place your code here."
 
   (setq powerline-default-separator 'bar)
 
-  (ncw/configure-email)
   (ncw/configure-org)
 
   (load-file "$DOTFILES/misc/functions.el")
