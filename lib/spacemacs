@@ -467,12 +467,8 @@
       (org-capture nil "t"))
     (spacemacs/set-leader-keys "Ct" 'ncw/capture-todo)
 
-    ;; Hide various markup tags
-    (require 'space-doc)
-    (add-hook 'org-mode-hook 'space-doc-mode)
-
-    ;; Actually render markup rather than just showing the markup characters.
-    ;; Taken from `spacemacs/view-org-file'.
+    ;; Hide markup characters and render with fancy emphasis
+    ;; Taken from `spacemacs/prettify-org-buffer'.
     (defun ncw/org-fancify-markup ()
       (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\n")
       (org-set-emph-re 'org-emphasis-regexp-components
