@@ -11,12 +11,12 @@
   (interactive "sJenkins: \nsName regex: ")
   (ncw/jjb-do-test jenkins job))
 
-(defun ncw/jjb-do-deploy (arg)
+(defun ncw/jjb-do-deploy (jenkins job)
   (async-shell-command
    (concat "cd $PUPPETLABS/ci-job-configs && "
            "source local/bin/activate && "
-           "cjc-manager deploy enterprise \"experimental_" arg "_*\"")))
+           "cjc-manager deploy " jenkins " \"" job "_*\"")))
 
-(defun ncw/jjb-deploy-prompt (arg)
-  (interactive "sName regex: ")
-  (ncw/jjb-do-deploy arg))
+(defun ncw/jjb-deploy-prompt (jenkins job)
+  (interactive "sJenkins: \nsName regex: ")
+  (ncw/jjb-do-deploy jenkins job))
