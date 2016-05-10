@@ -542,6 +542,7 @@ you should place your code here."
   (setq-default truncate-lines t)
 
   (setq powerline-default-separator 'bar)
+  (spaceline-compile)
 
   (ncw/configure-org)
 
