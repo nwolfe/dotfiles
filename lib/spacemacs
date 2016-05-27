@@ -67,7 +67,7 @@
    ;; in a layer. If you need some configuration for these packages then
    ;; consider creating a layer. You can also put the configuration in
    ;; `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(json-reformat)
+   dotspacemacs-additional-packages '(json-reformat dumb-jump)
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
@@ -488,6 +488,13 @@
     )
   )
 
+(defun ncw/configure-dumb-jump ()
+  ;; Lighter-weight "go to definition" than opening a REPL
+  (add-hook 'ruby-mode-hook 'dumb-jump-mode)
+  (spacemacs/set-leader-keys-for-major-mode 'ruby-mode
+    "gG" 'dumb-jump-go
+    "gB" 'dumb-jump-back))
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init', before layer configuration
@@ -545,6 +552,7 @@ you should place your code here."
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
 
+  (ncw/configure-dumb-jump)
   (ncw/configure-org)
 
   (load-file "$DOTFILES/misc/functions.el")
