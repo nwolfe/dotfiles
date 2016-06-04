@@ -38,7 +38,7 @@
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
      (clojure :variables clojure-enable-fancify-symbols t)
-     (colors :variables colors-enable-rainbow-identifiers t)
+     (colors :variables colors-colorize-identifiers 'all)
      deft
      emacs-lisp
      git
@@ -138,8 +138,8 @@
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
 
-   ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
-   ;; size to make separators look not too crappy.
+   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
+   ;; quickly tweak the mode-line size to make separators look not too crappy.
    ;; Good ones: "Source Code Pro", "Anonymous Pro", "mononoki", "menlo"
    dotspacemacs-default-font '("menlo"
                                :size 14
@@ -178,7 +178,11 @@
 
    ;; If non nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
-   dotspacemacs-retain-visual-mode-on-shift t
+   dotspacemacs-retain-visual-state-on-shift t
+
+   ;; If non nil, `J' and `K' move lines up and down when in visual mode.
+   ;; (default nil)
+   dotspacemacs-visual-line-move-text nil
 
    ;; If non nil, invert the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
