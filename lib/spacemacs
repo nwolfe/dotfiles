@@ -37,7 +37,6 @@
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
-     (clojure :variables clojure-enable-fancify-symbols t)
      (colors :variables colors-colorize-identifiers 'all)
      deft
      emacs-lisp
