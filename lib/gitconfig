@@ -16,3 +16,5 @@
   pr = "! f() { git fetch $1 pull/$2/head:PR-$2-$3 && git checkout PR-$2-$3; }; f"
 [diff]
   compactionHeuristic = true
+[commit]
+  gpgsign = true
