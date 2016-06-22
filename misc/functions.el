@@ -4,7 +4,7 @@
    (concat "cd $PUPPETLABS/ci-job-configs && "
            "source local/bin/activate && "
            "jenkins-jobs --conf jenkii/" jenkins "/builder.conf test "
-           "resources/:jenkii/" jenkins "/projects "
+           "resources:jenkii/" jenkins "/resources:jenkii/" jenkins "/projects "
            "\"" job "_*\"")))
 
 (defun ncw/jjb-test-prompt (jenkins job)
