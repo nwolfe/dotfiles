@@ -120,7 +120,7 @@
 
    ;; List of items to show in the startup buffer. if nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
-   ;; (default '(recents projects))
+   ;; (default '())
    dotspacemacs-startup-lists '(bookmarks)
 
    ;; Number of recent files to show in the startup buffer. Ignored if
