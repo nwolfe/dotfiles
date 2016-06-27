@@ -99,3 +99,33 @@ pconf() {
         cd $PUPPETLABS_CONF/$MODE/$VERSION/conf
     fi
 }
+
+# Deletes and re-creates the virtualenv folder and reinstalls
+# ci-job-configs dependencies if applicable.
+#
+# NOTE This needs to be a function and not a script so it's able to alter
+#      the current session via `source $VENV/bin/activatef`.
+#
+# Arguments:
+#   $1 Name of virtualenv folder to recreate. Defaults to 'local'.
+venv-reset() {
+    VENV=${1:-'local'}
+
+    # If active, deactivate the virtualenv just because
+    if which deactivate > /dev/null; then
+        deactivate
+    fi
+
+    if [ -d $VENV ]; then
+        rm -rf $VENV
+    fi
+
+    virtualenv $VENV
+    source $VENV/bin/activate
+
+    if [[ "ci-job-configs" == "${PWD##*/}" ]]; then
+        pip install -e ./jenkins-job-builder
+        pip install -e ./utils/cjc-manager
+        source $VENV/bin/activate
+    fi
+}
