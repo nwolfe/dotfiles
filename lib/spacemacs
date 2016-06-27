@@ -118,14 +118,12 @@
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
 
-   ;; List of items to show in the startup buffer. if nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
-   ;; (default '())
+   ;; List of items to show in startup buffer or an association list of the
+   ;; form `flist-type . list-size)'. If nil it is disabled.
+   ;; Possible values for list-type are:
+   ;; `recents', `bookmarks', `projects', `agenda', `todos'.
+   ;; (default '((recents . 5) (projects . 7)))
    dotspacemacs-startup-lists '(bookmarks)
-
-   ;; Number of recent files to show in the startup buffer. Ignored if
-   ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
-   dotspacemacs-startup-recent-list-size 5
 
    ;; Default major mode for the scratch buffer (default `text-mode').
    dotspacemacs-scratch-mode 'org-mode
