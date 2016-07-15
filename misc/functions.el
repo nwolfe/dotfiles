@@ -26,4 +26,4 @@
   (async-shell-command
    (concat "cd $PUPPETLABS/ci-job-configs && "
            "source local/bin/activate && "
-           "./utils/compare.sh " jenkins " " before-sha " " after-sha)))
+           "cjc-manager compare " jenkins " " before-sha " " after-sha)))

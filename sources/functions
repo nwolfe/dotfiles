@@ -104,7 +104,7 @@ pconf() {
 # ci-job-configs dependencies if applicable.
 #
 # NOTE This needs to be a function and not a script so it's able to alter
-#      the current session via `source $VENV/bin/activatef`.
+#      the current session via `source $VENV/bin/activate`.
 #
 # Arguments:
 #   $1 Name of virtualenv folder to recreate. Defaults to 'local'.
@@ -124,7 +124,6 @@ venv-reset() {
     source $VENV/bin/activate
 
     if [[ "ci-job-configs" == "${PWD##*/}" ]]; then
-        pip install -e ./jenkins-job-builder
         pip install -e ./utils/cjc-manager
         source $VENV/bin/activate
     fi
