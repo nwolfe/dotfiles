@@ -44,6 +44,7 @@
      git
      github
      helm
+     html
      markdown
      org
      osx
@@ -560,6 +561,9 @@ you should place your code here."
 
   ;; Truncate long lines globally by default
   (setq-default truncate-lines t)
+
+  ;; Enable xml-mode for .jelly files
+  (add-to-list 'auto-mode-alist '("\\.jelly\\'" . xml-mode))
 
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
