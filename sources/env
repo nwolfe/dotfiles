@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Modifications to the environment, usually exports and PATH overrides
 
 # Set Emacs as default system editors.
