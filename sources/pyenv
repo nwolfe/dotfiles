@@ -1,6 +1,0 @@
-#!/bin/bash
-# Provides access to pyenv
-
-if which pyenv > /dev/null; then
-    eval "$(pyenv init -)"
-fi

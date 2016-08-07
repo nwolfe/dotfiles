@@ -51,8 +51,8 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Full list of plugins: https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins
 plugins=(brew osx lein colored-man jsontools gitfast vagrant mvn
-         python pyenv virtualenv pip
-         ruby rake rbenv gem)
+         python virtualenv pip
+         ruby rake gem)
 
 source $ZSH/oh-my-zsh.sh
 

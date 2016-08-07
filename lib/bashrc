@@ -1,7 +1,190 @@
 # -*- mode: sh -*-
 
-# Source things like aliases, functions, etc.
-# Environment variables are defined in ~/.bash_profile.
-source $DOTFILES/sources/aliases
-source $DOTFILES/sources/completions
-source $DOTFILES/sources/functions
+# OSX is special; make rbenv/pyenv work properly in ITerm.
+# This isn't necessary in Emacs (and presumabely Linux).
+if [[ "" != $ITERM_PROFILE ]]; then
+    if which rbenv > /dev/null; then
+        eval "$(rbenv init -)"
+    fi
+    if which pyenv > /dev/null; then
+        eval "$(pyenv init -)"
+    fi
+fi
+
+################################################################################
+# ALIASES                                                                      #
+################################################################################
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias pp='cd $PUPPETLABS'
+
+# Verify destruction
+alias rm='rm -iv' # Verbose, print removed files
+alias mv='mv -i'
+alias cp='cp -i'
+
+# List directory contents
+# -h  Human-readable file sizes
+# -G  Colored output
+# -F  Append special character denoting file type
+# -A  Show hidden entries, but hide . and ..
+# -1  One entry per line
+alias ls='ls -hG'
+alias ll='ls -l'
+alias la='ls -A'
+alias l1='ls -1'
+
+# Shortcuts
+alias be='bundle exec'
+alias tmux='tmux -2' # Ensure 256 colors
+
+################################################################################
+# COMPLETIONS                                                                  #
+################################################################################
+
+# Completes: <command> [master|server|agent] [v3|v4]
+_component-version() {
+    _arguments "1: :(master server agent)"
+    _arguments "2: :(v3 v4)"
+}
+
+# Completes: <command> [v3|v4]
+_version() {
+    _arguments "1: :(v3 v4)"
+}
+
+################################################################################
+# FUNCTIONS                                                                    #
+################################################################################
+
+# Adds Facter and Puppet to the RUBYLIB and PATH for running Puppet via CLI.
+#
+# Arguments:
+#   $1  Location of Puppet repository; use '.' for current working directory.
+#       Defaults to '$PUPPETLABS/puppet'.
+#
+# Examples:
+#   > puppet-env .
+#   Exported RUBYLIB, PATH
+#   > puppet master --configprint confdir
+puppet-env() {
+    if [[ "$1" == "." ]]; then
+        PUPPET_HOME=$PWD
+    else
+        PUPPET_HOME=${1:-$PUPPETLABS/puppet}
+    fi
+    FACTER_HOME=$PUPPETLABS/facter
+    export RUBYLIB=$PUPPET_HOME/lib:$FACTER_HOME/lib
+    export PATH=$PATH:$PUPPET_HOME/bin:$FACTER_HOME/bin
+    echo "Exported RUBYLIB, PATH"
+}
+
+# Exports CACERT, CERT, and KEY for use with curl.
+#
+# Arguments:
+#   $1  Confdir to search under, one of 'master', 'server', or 'agent'.
+#       Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
+#   $3  Subject name for certificate and key. Defaults to 'localhost'.
+#
+# Examples:
+#   > puppet-ssl-env master v4 localhost
+#   Exported CACERT, CERT, KEY for localhost
+#   > curl --cacert CACERT --cert CERT --key KEY https://localhost:8140/...
+puppet-ssl-env() {
+    MODE=${1:-'master'}
+    VERSION=${2:-'v4'}
+    SUBJECT=${3:-'localhost'}
+    CONFDIR=$PUPPETLABS_CONF/$MODE/$VERSION/conf
+    export CACERT=$CONFDIR/ssl/certs/ca.pem
+    export CERT=$CONFDIR/ssl/certs/$SUBJECT.pem
+    export KEY=$CONFDIR/ssl/private_keys/$SUBJECT.pem
+    echo "Exported CACERT, CERT, KEY for $SUBJECT"
+}
+
+# Exports top-level directories CODEDIR, CONFDIR, VARDIR, RUNDIR, and LOGDIR
+# for use with various Puppet CLI tools.
+#
+# Arguments:
+#   $1  Directories for one of 'master', 'server', 'agent'.
+#       Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
+#
+# Examples:
+#   > puppet-cli-env
+#   Exported CODEDIR, CONFDIR, VARDIR, RUNDIR, LOGDIR
+#   > puppet cert list --codedir $CODEDIR --confdir $CONFDIR --vardir $VARDIR ...
+puppet-cli-env() {
+    MODE=${1:-'master'}
+    VERSION=${2:-'v4'}
+    CONFIGDIR=$PUPPETLABS_CONF/$MODE/$VERSION
+    export CODEDIR=$CONFIGDIR/code
+    export CONFDIR=$CONFIGDIR/conf
+    export VARDIR=$CONFIGDIR/var
+    export RUNDIR=$VARDIR/run
+    export LOGDIR=$VARDIR/log
+    echo "Exported CODEDIR, CONFDIR, VARDIR, RUNDIR, LOGDIR"
+}
+
+# Deletes the SSLDIR for master, server, or agent.
+#
+# Arguments:
+#   $1  One of 'master', 'server', or 'agent'. Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
+remove-ssl() {
+    MODE=${1:-'master'}
+    VERSION=${2:-'v4'}
+    rm -rf $PUPPETLABS_CONF/$MODE/$VERSION/conf/ssl
+}
+
+# Go to the top-level configuration directory for the master, server, or agent.
+# Goes to the $PUPPETLABS_CONF if no arguments are provided.
+#
+# Arguments:
+#   $1  One of 'master', 'server', or 'agent'. Defaults to 'master'.
+#   $2  Version of component to look under, one of 'v3' or 'v4'.
+#       Defaults to 'v4'.
+pconf() {
+    if [[ $# -eq 0 ]]; then
+        cd $PUPPETLABS_CONF
+    else
+        MODE=${1:-'master'}
+        VERSION=${2:-'v4'}
+        cd $PUPPETLABS_CONF/$MODE/$VERSION/conf
+    fi
+}
+
+# Deletes and re-creates the virtualenv folder and reinstalls
+# ci-job-configs dependencies if applicable.
+#
+# NOTE This needs to be a function and not a script so it's able to alter
+#      the current session via `source $VENV/bin/activate`.
+#
+# Arguments:
+#   $1 Name of virtualenv folder to recreate. Defaults to 'local'.
+venv-reset() {
+    VENV=${1:-'local'}
+
+    # If active, deactivate the virtualenv just because
+    if which deactivate > /dev/null; then
+        deactivate
+    fi
+
+    if [ -d $VENV ]; then
+        rm -rf $VENV
+    fi
+
+    virtualenv $VENV
+    source $VENV/bin/activate
+
+    if [[ "ci-job-configs" == "${PWD##*/}" ]]; then
+        pip install -e ./utils/cjc-manager
+        source $VENV/bin/activate
+    fi
+}
