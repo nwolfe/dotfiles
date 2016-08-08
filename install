@@ -100,4 +100,4 @@ link_dotfile git/gitconfig
 link_dotfile git/gitignore
 link_dotfile vim/vimrc
 link_dotfile vim/gvimrc
-link_dotfile spacemacs/spacemacs
+link_dotfile emacs/spacemacs
