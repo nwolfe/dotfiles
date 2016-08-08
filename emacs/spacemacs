@@ -570,7 +570,7 @@ you should place your code here."
   (ncw/configure-dumb-jump)
   (ncw/configure-org)
 
-  (require 'ncw-functions nil t)
+  (require 'ncw-jjb nil t)
   )
 
 ;; Full-width comment box from: http://irreal.org/blog/?p=374
