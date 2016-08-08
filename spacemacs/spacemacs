@@ -517,7 +517,8 @@ executes.
 This function is mostly useful for variables that need to be set before
 packages are loaded. If you are unsure, you should try setting them in
 `dotspacemacs/user-config' first."
-  (add-to-list 'load-path "~/.seacrest/emacs/load-path"))
+  (add-to-list 'load-path "~/.seacrest/emacs/load-path")
+  (add-to-list 'load-path "~/.dotfiles/spacemacs/load-path"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -569,7 +570,7 @@ you should place your code here."
   (ncw/configure-dumb-jump)
   (ncw/configure-org)
 
-  (load-file "$DOTFILES/misc/functions.el")
+  (require 'ncw-functions nil t)
   )
 
 ;; Full-width comment box from: http://irreal.org/blog/?p=374

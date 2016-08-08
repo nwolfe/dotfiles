@@ -27,3 +27,5 @@
    (concat "cd $PUPPETLABS/ci-job-configs && "
            "source local/bin/activate && "
            "cjc-manager compare " jenkins " " before-sha " " after-sha)))
+
+(provide 'ncw-functions)

@@ -1,51 +1,103 @@
 #!/bin/bash
 
-# Symlinks a file, but prompts the user if the file already exists.
-# Expected arguments:
-#   $1 = link from; source
-#   $2 = link to; target
+function symlink {
+    ln -s "$1" "$2"
+    echo "Linked '$1' to '$2'"
+}
+
+function maybe_symlink_file {
+    echo -n "  Backup & replace, Replace, View, Skip, Abort? (b/r/v/s/a) "
+    read answer
+    case $answer in
+        b|B) mv "$2" "$2.bak"
+             symlink "$1" "$2"
+             ;;
+        r|R) rm "$2"
+             symlink "$1" "$2"
+             ;;
+        v|V) less "$2"
+             maybe_symlink_file "$1" "$2"
+             ;;
+        s|S) # Do nothing
+             ;;
+        a|A) exit 0
+             ;;
+        *) echo "  Unknown selection"
+           maybe_symlink_file "$1" "$2"
+           ;;
+    esac
+}
+
+function maybe_symlink_directory {
+    echo -n "  Backup & replace, Replace, View, Skip, Abort? (b/r/v/s/a) "
+    read answer
+    case $answer in
+        b|B) mv "$2" "$2.bak"
+             symlink "$1" "$2"
+             ;;
+        r|R) rm -r "$2"
+             symlink "$1" "$2"
+             ;;
+        v|V) ls "$2"
+             maybe_symlink_directory "$1" "$2"
+             ;;
+        s|S) # Do nothing
+             ;;
+        a|A) exit 0
+             ;;
+        *) echo "  Unknown selection"
+           maybe_symlink_directory "$1" "$2"
+           ;;
+    esac
+}
+
+function maybe_symlink_symlink {
+    echo -n "  Replace, View, Skip, Abort? (r/v/s/a) "
+    read answer
+    case $answer in
+        r|R) rm "$2"
+             symlink "$1" "$2"
+             ;;
+        v|V) ls -l "$2"
+             maybe_symlink_symlink "$1" "$2"
+             ;;
+        s|S) # Do nothing
+             ;;
+        a|A) exit 0
+             ;;
+        *) echo "  Unknown selection"
+           maybe_symlink_symlink "$1" "$2"
+           ;;
+    esac
+}
+
 function maybe_symlink {
-    # If target exists as a file or symbolic
-    # link, then prompt for replacement
-    if [ -e "$2" ] || [ -h "$2" ]; then
-        echo -n "Backup and replace '$2'? (y/n) "
-        read answer
-        if [ "$answer" = "y" ]; then
-            echo "Okay...moving it to '$2.bak'"
-            mv "$2" "$2.bak"
-
-            echo "Linking '$1' to '$2'..."
-            ln -s "$1" "$2"
-        else
-            echo "Fine, leaving it alone...things might not work right though"
-        fi
-
+    if [ -h "$2" ]; then
+        echo "'$2' is already a SYMLINK."
+        maybe_symlink_symlink "$1" "$2"
+    elif [ -f "$2" ]; then
+        echo "'$2' is already a FILE."
+        maybe_symlink_file "$1" "$2"
+    elif [ -d "$2" ]; then
+        echo "'$2' is already a DIRECTORY."
+        maybe_symlink_directory "$1" "$2"
     else
-        echo "Linking '$1' to '$2'..."
-        ln -s "$1" "$2"
+        symlink "$1" "$2"
     fi
-    echo # newline
+    echo # Blank line for readability
 }
 
-# Symlinks all files from ./lib/ into ~/
-function install_dotfiles {
-    for dotfile in $PWD/lib/*; do
-        destination="$HOME/.$(basename $dotfile)"
-        maybe_symlink $dotfile $destination
-    done
+function link_dotfile {
+    maybe_symlink "$PWD/$1" "$HOME/.$(basename $1)"
 }
 
-# Install global leiningen profile
-function install_lein_profile {
-    mkdir -p $HOME/.lein
-    maybe_symlink $PWD/misc/profiles.clj $HOME/.lein/profiles.clj
-}
-
-# Install everything!
-function uber_install {
-    install_dotfiles
-    install_lein_profile
-    maybe_symlink $PWD/bin $HOME/bin
-}
-
-uber_install
+maybe_symlink $PWD/bin $HOME/bin
+link_dotfile bash/bash_profile
+link_dotfile bash/bashrc
+link_dotfile zsh/zshenv
+link_dotfile zsh/zshrc
+link_dotfile git/gitconfig
+link_dotfile git/gitignore
+link_dotfile vim/vimrc
+link_dotfile vim/gvimrc
+link_dotfile spacemacs/spacemacs
