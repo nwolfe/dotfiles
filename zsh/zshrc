@@ -66,20 +66,28 @@ chpwd() {
     ls
 }
 
-## Auto-completion support
-## * Standalone completion files from $DOTFILES/completion (added to zsh FPATH)
-## * Completion functions from $DOTFILES/sources/completions (sourced manually)
-## See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
+# Auto-completion support
+# See http://askql.wordpress.com/2011/01/11/zsh-writing-own-completion
 
 # Add custom completion scripts for commands that warrant a dedicated file
-fpath=($DOTFILES/completion $fpath)
+fpath=($DOTFILES/zsh/completion $fpath)
 
 # Initialize compsys
 autoload -U compinit
 compinit
 
+# Completes: <command> [master|server|agent] [v3|v4]
+_component-version() {
+    _arguments "1: :(master server agent)"
+    _arguments "2: :(v3 v4)"
+}
+
+# Completes: <command> [v3|v4]
+_version() {
+    _arguments "1: :(v3 v4)"
+}
+
 # Set reusable completion functions on various commands.
-# Completion functions defined in $DOTFILES/sources/completions
 compdef _component-version puppet-cli-env puppet-ssl-env remove-ssl pconf
 compdef _version run-agent run-master run-server
 

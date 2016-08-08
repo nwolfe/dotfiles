@@ -4,20 +4,24 @@ My configuration files for Bash, Vim, Emacs, OSX, etc.
 
 * Contents
 
-  - =install=: Installer; run ~./install~ from the root =dotfiles/= directory
-  - =lib/=: Dotfiles to be symlinked into home directory
-  - =bin/=: Executables; directory symlinked into home directory and added to =$PATH=
-  - =sources/=: Files sourced upon startup (e.g. aliases, functions, exports)
-  - =completion/=: ZSH command completion files; see also =sources/completions=
-  - =misc/=: Better defaults for Mac OS, oh-my-zsh theme, etc.
+ Most things are organized in directories named after the tool.
+ For example, Bash files like ~.bashrc~ and ~.bash_profile~ are in =bash/=.
+
+ However, there are a couple special directories that don't follow this pattern:
+
+ - =bin/=: Executables; directory symlinked into home directory and added to =$PATH=
+ - =misc/=: Miscellaneous things which don't yet have their own home directory
 
 * Installation
 
- An install script is provided to handle installation. It will symlink most
- files into your home directory.
+ Run [[./install][./install]] from the root repository directory.
+
+ It will symlink files into your home directory. If there are any existing
+ files or directories, the installer will ask you what you want to do with
+ it. It will not overwrite or destroy anything without asking you first.
 
  #+BEGIN_SRC sh
-   $ git clone git@github.com:nwolfe/dotfiles.git ~/.dotfiles
+   $ git clone https://github.com/nwolfe/dotfiles ~/.dotfiles
    $ cd ~/.dotfiles
    $ ./install
  #+END_SRC
