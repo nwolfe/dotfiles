@@ -40,6 +40,7 @@ alias l1='ls -1'
 # Shortcuts
 alias be='bundle exec'
 alias tmux='tmux -2' # Ensure 256 colors
+alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 
 ################################################################################
 # FUNCTIONS                                                                    #
