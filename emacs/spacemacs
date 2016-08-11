@@ -50,8 +50,7 @@
      osx
      puppet
      python
-     (ruby :variables
-           ruby-version-manager 'rbenv)
+     ruby
      (shell :variables
             shell-default-shell 'multi-term
             shell-default-height 40
