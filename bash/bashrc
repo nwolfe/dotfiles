@@ -22,7 +22,7 @@ alias ....='cd ../../..'
 alias pp='cd $PUPPETLABS'
 
 # Verify destruction
-alias rm='rm -iv' # Verbose, print removed files
+alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 
