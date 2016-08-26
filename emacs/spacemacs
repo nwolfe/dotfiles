@@ -463,6 +463,9 @@ you should place your code here."
   ;; Enable .agignore files in project roots
   (setq helm-ag-use-agignore t)
 
+  ;; Hide all all those magit buffers
+  (add-to-list 'helm-boring-buffer-regexp-list "\\*magit")
+
   ;; Truncate long lines globally by default
   (setq-default truncate-lines t)
 
