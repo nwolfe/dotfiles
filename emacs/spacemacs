@@ -133,11 +133,12 @@
 
    ;; List of items to show in startup buffer or an association list of the
    ;; form `flist-type . list-size)'. If nil it is disabled.
+   ;; Example for 5 recent files and 7 projects: '((recents . 5) (projects . 7))
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    ;; Possible values for list-type are:
    ;; `recents', `bookmarks', `projects', `agenda', `todos'.
-   ;; (default '((recents . 5) (projects . 7)))
+   ;; (default '())
    dotspacemacs-startup-lists '(bookmarks)
 
    ;; Default major mode for the scratch buffer (default `text-mode').
@@ -163,6 +164,13 @@
    ;; The leader key
    dotspacemacs-leader-key "SPC"
 
+   ;; The key used for Emacs commands (M-x) (after pressing the leader key).
+   ;; (default "SPC")
+   dotspacemacs-emacs-command-key "SPC"
+
+   ;; The key used for Vim Ex commands. (default ":")
+   dotspacemacs-ex-command-key ":"
+
    ;; The leader key accessible in `emacs state' and `insert state'.
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -174,10 +182,6 @@
    ;; Major mode leader accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
-
-   ;; The key used for Emacs commands (M-x) (after pressing the leader key).
-   ;; (default "SPC")
-   dotspacemacs-emacs-command-key "SPC"
 
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET. Setting it to a non-nil value allows
