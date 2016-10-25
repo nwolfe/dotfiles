@@ -42,6 +42,10 @@ alias be='bundle exec'
 alias tmux='tmux -2' # Ensure 256 colors
 alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 
+# Emacs
+alias emacs-server='/usr/local/bin/emacs --daemon'
+alias emacs-server-kill='/usr/local/bin/emacsclient -e "(spacemacs/kill-emacs)"'
+
 ################################################################################
 # FUNCTIONS                                                                    #
 ################################################################################
