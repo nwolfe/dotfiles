@@ -5,7 +5,7 @@
            "source local/bin/activate && "
            "jenkins-jobs --conf jenkii/" jenkins "/builder.conf test "
            "resources:jenkii/" jenkins "/resources:jenkii/" jenkins "/projects "
-           "\"" job "_*\"")))
+           "\"" job "\"")))
 
 (defun ncw/jjb-test-prompt (jenkins job)
   (interactive "sJenkins: \nsName regex: ")
@@ -15,7 +15,7 @@
   (async-shell-command
    (concat "cd $PUPPETLABS/ci-job-configs && "
            "source local/bin/activate && "
-           "cjc-manager deploy " jenkins " \"" job "_*\"")))
+           "cjc-manager deploy " jenkins " \"" job "\"")))
 
 (defun ncw/jjb-deploy-prompt (jenkins job)
   (interactive "sJenkins: \nsName regex: ")
