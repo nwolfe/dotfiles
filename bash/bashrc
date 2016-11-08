@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 # OSX is special; make rbenv/pyenv work properly in ITerm.
-# This isn't necessary in Emacs (and presumabely Linux).
+# This isn't necessary in Emacs (and presumably Linux).
 if [[ "" != $ITERM_PROFILE ]]; then
     if which rbenv > /dev/null; then
         eval "$(rbenv init -)"
@@ -44,7 +44,7 @@ alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 
 # Emacs
 alias emacs-server='/usr/local/bin/emacs --daemon'
-alias emacs-server-kill='/usr/local/bin/emacsclient -e "(spacemacs/kill-emacs)"'
+alias emacs-server-kill='/usr/local/bin/emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
 
 ################################################################################
 # FUNCTIONS                                                                    #
