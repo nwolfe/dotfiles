@@ -56,7 +56,6 @@
             shell-default-height 40
             shell-default-term-shell "/bin/zsh")
      spacemacs-layouts
-     spotify
      (spell-checking :variables spell-checking-enable-by-default nil)
      version-control
      yaml
