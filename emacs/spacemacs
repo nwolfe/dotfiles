@@ -448,6 +448,8 @@ executes.
 This function is mostly useful for variables that need to be set before
 packages are loaded. If you are unsure, you should try setting them in
 `dotspacemacs/user-config' first."
+  (setq custom-file "~/.emacs.d/.cache/.custom-settings")
+  (load-file custom-file)
   (add-to-list 'load-path "~/.seacrest/emacs/load-path")
   (add-to-list 'load-path "~/.dotfiles/emacs/load-path"))
 
@@ -529,23 +531,3 @@ This is an improved version of the built-in `comment-box' function."
     (comment-box b e 1)
     (goto-char e)
     (set-marker e nil)))
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(evil-want-Y-yank-to-eol t)
- '(package-selected-packages
-   (quote
-    (monokai-theme powerline pcre2el spinner org alert log4e gntp markdown-mode json-snatcher json-reformat hydra parent-mode multi window-purpose imenu-list projectile pkg-info epl request haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct flx magit-popup git-commit with-editor iedit anzu evil goto-chg undo-tree highlight diminish web-completion-data pos-tip company inf-ruby bind-map bind-key packed anaconda-mode pythonic f dash s avy async auto-complete popup package-build yasnippet persp-mode helm-ag evil-mc smartparens helm helm-core magit spacemacs-theme yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit spotify spaceline smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-mode rainbow-identifiers rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort puppet-mode pug-mode popwin pip-requirements pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode launchctl json-mode info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-spotify helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-helm flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode diff-hl deft cython-mode company-web company-statistics company-quickhelp company-anaconda column-enforce-mode color-identifiers-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
