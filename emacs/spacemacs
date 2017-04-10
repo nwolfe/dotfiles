@@ -338,10 +338,10 @@
    ;; (default nil)
    dotspacemacs-smart-closing-parenthesis nil
 
-   ;; Select a scope to highlight delimeters. Possible values are `any',
+   ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all', or `nil'. Default is `all' (highlight any scope
    ;; and emphasize the current one). (default 'all)
-   dotspacemacs-highlight-delimeters 'all
+   dotspacemacs-highlight-delimiters 'all
 
    ;; If non-nil advises quit functions to keep server open when quitting.
    ;; (default nil)
