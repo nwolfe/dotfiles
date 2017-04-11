@@ -47,7 +47,7 @@
      javascript
      markdown
      org
-     osx
+     ;; osx -- Disabling for now; makes `x' extremely slow to delete
      puppet
      python
      ruby
