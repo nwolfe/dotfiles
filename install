@@ -102,3 +102,4 @@ link_dotfile vim/vimrc
 link_dotfile vim/gvimrc
 link_dotfile emacs/spacemacs
 link_dotfile misc/tmux.conf
+link_dotfile misc/gemfile
