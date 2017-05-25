@@ -538,6 +538,7 @@ you should place your code here."
   (ncw/configure-org)
 
   (require 'ncw-jjb nil t)
+  (require 'ncw-magithub-config nil t)
   )
 
 ;; Full-width comment box from: http://irreal.org/blog/?p=374
