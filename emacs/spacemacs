@@ -501,7 +501,7 @@ before packages are loaded."
   (setq vc-follow-symlinks t)
 
   ;; Auto-wrap long lines by default (in non-programming modes)
-  (add-hook 'text-mode-hook 'auto-fill-mode)
+  ;; (add-hook 'text-mode-hook 'auto-fill-mode)
 
   ;; Put version control symbols on left side instead of right
   (setq diff-hl-side 'left)
