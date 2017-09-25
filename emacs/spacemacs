@@ -37,7 +37,7 @@ This function should only modify configuration layer settings."
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
-     (colors :variables colors-colorize-identifiers 'all)
+     (colors :variables colors-colorize-identifiers 'variables)
      deft
      emacs-lisp
      git
