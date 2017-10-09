@@ -57,6 +57,7 @@ This function should only modify configuration layer settings."
             shell-default-term-shell "/bin/zsh")
      (spell-checking :variables spell-checking-enable-by-default nil)
      themes-megapack
+     treemacs
      version-control
      yaml
      )
