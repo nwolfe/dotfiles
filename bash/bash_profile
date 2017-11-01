@@ -12,6 +12,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 export PUPPETLABS=$HOME/workspace/puppetlabs
 export PUPPETLABS_CONF=$PUPPETLABS/conf
 export VISUAL=$EDITOR
+export GOPATH=$HOME/workspace/go
 
 export RBENV_ROOT=/usr/local/opt/rbenv
 if which rbenv > /dev/null; then
