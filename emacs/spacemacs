@@ -551,6 +551,9 @@ before packages are loaded."
   ;; Enable xml-mode for .jelly files
   (add-to-list 'auto-mode-alist '("\\.jelly\\'" . xml-mode))
 
+  ;; Use shell mode for Bazel syntax
+  (add-to-list 'auto-mode-alist '("\\.bazel\\'" . shell-script-mode))
+
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
 
