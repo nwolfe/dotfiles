@@ -42,6 +42,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      github
+     go
      helm
      html
      javascript
