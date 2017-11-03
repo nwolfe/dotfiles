@@ -552,7 +552,7 @@ before packages are loaded."
   (add-to-list 'auto-mode-alist '("\\.jelly\\'" . xml-mode))
 
   ;; Use shell mode for Bazel syntax
-  (add-to-list 'auto-mode-alist '("\\.bazel\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
 
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
