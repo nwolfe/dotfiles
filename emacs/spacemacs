@@ -42,7 +42,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      github
-     go
+     (go :variables go-tab-width 4)
      helm
      html
      javascript
