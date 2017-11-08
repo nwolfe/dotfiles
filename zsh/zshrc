@@ -76,20 +76,5 @@ fpath=($DOTFILES/zsh/completion $fpath)
 autoload -U compinit
 compinit
 
-# Completes: <command> [master|server|agent] [v3|v4]
-_component-version() {
-    _arguments "1: :(master server agent)"
-    _arguments "2: :(v3 v4)"
-}
-
-# Completes: <command> [v3|v4]
-_version() {
-    _arguments "1: :(v3 v4)"
-}
-
-# Set reusable completion functions on various commands.
-compdef _component-version puppet-cli-env puppet-ssl-env remove-ssl pconf
-compdef _version run-agent run-master run-server
-
 # Show completion menu when number of options is at least 2
 zstyle ':completion:*' menu select=2

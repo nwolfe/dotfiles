@@ -9,7 +9,6 @@ export EDITOR=vim
 export DOTFILES=$HOME/.dotfiles
 export IPADDRESS=$(ifconfig en0 | grep inet | awk '{print $2}')
 export PUPPETLABS=$HOME/workspace/puppetlabs
-export PUPPETLABS_CONF=$PUPPETLABS/conf
 export VISUAL=$EDITOR
 export GOPATH=$HOME/workspace/go
 export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$GOPATH/bin:$PATH
