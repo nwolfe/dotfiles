@@ -542,10 +542,13 @@ before packages are loaded."
   ;; Enable .agignore files in project roots
   (setq helm-ag-use-agignore t)
 
-  ;; Hide all all those magit buffers
+  ;; Hide all those magit buffers
   (add-hook 'helm-major-mode-hook
             (lambda ()
               (add-to-list 'helm-boring-buffer-regexp-list "\\*magit")))
+
+  ;; Don't show recent commits in magit status
+  (setq magit-log-section-commit-count 0)
 
   ;; Truncate long lines globally by default
   (setq-default truncate-lines t)
