@@ -53,9 +53,8 @@ This function should only modify configuration layer settings."
      python
      ruby
      (shell :variables
-            shell-default-shell 'multi-term
-            shell-default-height 40
-            shell-default-term-shell "/bin/zsh")
+            shell-default-shell 'eshell
+            shell-default-height 40)
      (spell-checking :variables spell-checking-enable-by-default nil)
      themes-megapack
      (treemacs :variables
