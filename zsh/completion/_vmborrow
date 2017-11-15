@@ -1,16 +1,82 @@
 #compdef vmborrow
 # Complete: vmborrow [centos-6-x86_64|ubuntu-1504-x86_64|...]
 
-# Commonly used OSes, from http://vmpooler.delivery.puppetlabs.net/api/v1/vm
+# All OSes from http://vmpooler.delivery.puppetlabs.net/api/v1/vm
+# Time-stamp: <2017-11-15 13:06:26 nwolfe>
 _arguments "1: :(
+arista-4-i386
+centos-5-i386
+centos-5-x86_64
+centos-6-i386
 centos-6-x86_64
 centos-7-x86_64
-
-fedora-21-x86_64
-fedora-22-x86_64
-
+cisco-wrlinux-5-x86_64
+cisco-wrlinux-7-x86_64
+cisco-exr-9k-x86_64
+cisco-nxos-9k-x86_64
+cumulus-vx-25-x86_64
+debian-7-i386
+debian-7-x86_64
+debian-8-i386
+debian-8-x86_64
+debian-9-i386
+debian-9-x86_64
+fedora-14-i386
+fedora-24-i386
+fedora-24-x86_64
+fedora-25-i386
+fedora-25-x86_64
+fedora-26-x86_64
+opensuse-11-i386
+opensuse-11-x86_64
+oracle-5-i386
+oracle-5-x86_64
+oracle-6-i386
+oracle-6-x86_64
+oracle-7-x86_64
+osx-1010-x86_64
+osx-1011-x86_64
+osx-1012-x86_64
+redhat-5-i386
+redhat-5-x86_64
+redhat-6-i386
+redhat-6-x86_64
+redhat-7-x86_64
+scientific-5-i386
+scientific-5-x86_64
+scientific-6-i386
+scientific-6-x86_64
+scientific-7-x86_64
+sles-11-i386
+sles-11-x86_64
+sles-12-x86_64
+vro-6-x86_64
+vro-7-x86_64
+solaris-10-x86_64
+solaris-10-u8-x86_64
+solaris-11-x86_64
+solaris-112-x86_64
+ubuntu-1404-i386
 ubuntu-1404-x86_64
-ubuntu-1504-x86_64
+ubuntu-1604-i386
+ubuntu-1604-x86_64
+win-2003r2-x86_64
+win-2008-x86_64
+win-2008r2-x86_64
+win-2008r2-wmf5-x86_64
+win-2008r2-wmf5-gb-x86_64
+win-2012-x86_64
+win-2012r2-x86_64
+win-2012r2-ja-x86_64
+win-2012r2-core-x86_64
+win-2012r2-wmf5-x86_64
+win-2016-x86_64
+win-2016-core-x86_64
+win-7-x86_64
+win-7-fr-x86_64
+win-81-x86_64
+win-10-ent-i386
+win-10-ent-x86_64
 )"
 
 # Currently borrowed VM hostnames, for easy re-access

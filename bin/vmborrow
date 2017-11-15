@@ -10,11 +10,22 @@ fi
 # Flags to attach to ssh/scp to avoid warnings and prompts
 noprompts='-q -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
-if [[ !($OS == centos* ||
-        $OS == debian* ||
-        $OS == fedora* ||
-        $OS == redhat* ||
-        $OS == ubuntu*) ]]
+if [[ !($OS == arista*     ||
+        $OS == centos*     ||
+        $OS == cisco*      ||
+        $OS == cumulus*    ||
+        $OS == debian*     ||
+        $OS == fedora*     ||
+        $OS == opensuse*   ||
+        $OS == oracle*     ||
+        $OS == osx*        ||
+        $OS == redhat*     ||
+        $OS == scientific* ||
+        $OS == sles*       ||
+        $OS == vro*        ||
+        $OS == solaris*    ||
+        $OS == ubuntu*     ||
+        $OS == win*) ]]
 then
     ## Assume it's a previously-borrowed VM hostname and reuse it.
     if [[ $OS == _* ]]; then
