@@ -1,9 +1,1 @@
 # -*- mode: sh -*-
-
-# OSX is special; make rbenv work properly in ITerm.
-# This isn't necessary in Emacs (and presumably Linux).
-if [[ "" != $ITERM_PROFILE ]]; then
-    if which rbenv > /dev/null; then
-        eval "$(rbenv init -)"
-    fi
-fi
