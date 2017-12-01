@@ -1,0 +1,32 @@
+# -*- mode: sh -*-
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias pp='cd $PUPPETLABS'
+
+# Verify destruction
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+
+# List directory contents
+# -h  Human-readable file sizes
+# -G  Colored output
+# -F  Append special character denoting file type
+# -A  Show hidden entries, but hide . and ..
+# -1  One entry per line
+alias ls='ls -hG'
+alias ll='ls -l'
+alias la='ls -A'
+alias l1='ls -1'
+
+# Shortcuts
+alias be='bundle exec'
+alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
+alias gst='git status'
+
+# Emacs
+alias emacs-server='/usr/local/bin/emacs --daemon'
+alias emacs-server-kill='/usr/local/bin/emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
