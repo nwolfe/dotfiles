@@ -28,5 +28,5 @@ alias cp='cp -i'
 alias gst='git status'
 
 # Emacs
-alias emacs-server='/usr/local/bin/emacs --daemon'
-alias emacs-server-kill='/usr/local/bin/emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
+alias emacs-server='/usr/bin/emacs --daemon'
+alias emacs-server-kill='emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
