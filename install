@@ -19,6 +19,7 @@ function maybe_symlink_file {
              maybe_symlink_file "$1" "$2"
              ;;
         s|S) # Do nothing
+             echo "Skipped"
              ;;
         a|A) exit 0
              ;;
@@ -42,6 +43,7 @@ function maybe_symlink_directory {
              maybe_symlink_directory "$1" "$2"
              ;;
         s|S) # Do nothing
+             echo "Skipped"
              ;;
         a|A) exit 0
              ;;
@@ -62,6 +64,7 @@ function maybe_symlink_symlink {
              maybe_symlink_symlink "$1" "$2"
              ;;
         s|S) # Do nothing
+             echo "Skipped"
              ;;
         a|A) exit 0
              ;;
@@ -72,19 +75,30 @@ function maybe_symlink_symlink {
 }
 
 function maybe_symlink {
-    if [ -h "$2" ]; then
-        echo "'$2' is already a SYMLINK."
-        maybe_symlink_symlink "$1" "$2"
-    elif [ -f "$2" ]; then
-        echo "'$2' is already a FILE."
-        maybe_symlink_file "$1" "$2"
-    elif [ -d "$2" ]; then
-        echo "'$2' is already a DIRECTORY."
-        maybe_symlink_directory "$1" "$2"
-    else
-        symlink "$1" "$2"
-    fi
-    echo # Blank line for readability
+    echo -n "Link '$1' to '$2'? (y/n) "
+    read answer
+    case $answer in
+        y) if [ -h "$2" ]; then
+               echo "'$2' is already a SYMLINK."
+               maybe_symlink_symlink "$1" "$2"
+           elif [ -f "$2" ]; then
+               echo "'$2' is already a FILE."
+               maybe_symlink_file "$1" "$2"
+           elif [ -d "$2" ]; then
+               echo "'$2' is already a DIRECTORY."
+               maybe_symlink_directory "$1" "$2"
+           else
+               symlink "$1" "$2"
+           fi
+           echo # Blank line for readability
+           ;;
+        n) echo "Skipped"
+           echo # Blank line for readability
+           ;;
+        *) echo "  Unknown selection"
+           maybe_symlink "$1" "$2"
+           ;;
+    esac
 }
 
 function link_dotfile {
@@ -94,6 +108,7 @@ function link_dotfile {
 maybe_symlink $PWD/bin $HOME/bin
 link_dotfile bash/bash_profile
 link_dotfile bash/bashrc
+link_dotfile bash/bash_aliases
 link_dotfile zsh/zshenv
 link_dotfile zsh/zshrc
 link_dotfile git/gitconfig
