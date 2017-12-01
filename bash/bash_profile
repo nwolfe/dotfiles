@@ -5,6 +5,11 @@ if [ -d $HOME/.seacrest ]; then
     source $HOME/.seacrest/shell/sources/env
 fi
 
+# Source .bashrc if it exists
+if [ -f $HOME/.bashrc ]; then
+    source $HOME/.bashrc
+fi
+
 export EDITOR=vim
 export DOTFILES=$HOME/.dotfiles
 # export IPADDRESS=$(ifconfig en0 | grep inet | awk '{print $2}')
