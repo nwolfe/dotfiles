@@ -13,7 +13,7 @@ export VISUAL=$EDITOR
 export GOPATH_GO=$HOME/workspace/go
 export GOPATH_BAZEL=/home/vagrant/bazel/execroot/puppet_discovery/bazel-out/k8-fastbuild/bin/path
 export GOPATH=$GOPATH_GO:$GOPATH_BAZEL
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$GOPATH_GO/bin:$PATH
+export PATH=$HOME/bin:$GOPATH_GO/bin:$PATH
 
 export RBENV_ROOT=/usr/local/opt/rbenv
 if which rbenv > /dev/null; then
