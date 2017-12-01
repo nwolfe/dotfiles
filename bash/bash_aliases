@@ -17,14 +17,14 @@ alias cp='cp -i'
 # -F  Append special character denoting file type
 # -A  Show hidden entries, but hide . and ..
 # -1  One entry per line
-alias ls='ls -hG'
-alias ll='ls -l'
-alias la='ls -A'
-alias l1='ls -1'
+# alias ls='ls -hG'
+# alias ll='ls -l'
+# alias la='ls -A'
+# alias l1='ls -1'
 
 # Shortcuts
-alias be='bundle exec'
-alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
+# alias be='bundle exec'
+# alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias gst='git status'
 
 # Emacs
