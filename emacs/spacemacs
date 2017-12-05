@@ -567,6 +567,9 @@ before packages are loaded."
   ;; Use shell mode for Bazel syntax
   (add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
 
+  ;; Use Go syntax highlighting in Godoc buffers
+  (add-hook 'godoc-mode-hook 'go-mode)
+
   (setq powerline-default-separator 'bar)
   (spaceline-compile)
 
