@@ -75,9 +75,7 @@ This function should only modify configuration layer settings."
                                       bats-mode)
 
    ;; List of packages that cannot be updated.
-   ;; These are system packages and must be updated via the system package
-   ;; manager, e.g. `sudo apt-get install elpa-bind-key'
-   dotspacemacs-frozen-packages '(bind-key diminish use-package)
+   dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(magithub)
