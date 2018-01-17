@@ -26,7 +26,7 @@ alias cp='cp -i'
 # alias be='bundle exec'
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias gst='git status'
-alias pd='/home/nwolfe/workspace/go/src/github.com/puppetlabs/cloud-discovery/bazel-bin/workstation/cmd/cli/cli'
+alias pd='$PD_BAZEL_GENFILES/workstation/cli'
 
 # Emacs
 alias emacs-server='/usr/bin/emacs --daemon'

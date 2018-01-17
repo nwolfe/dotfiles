@@ -10,6 +10,8 @@ if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
+export PD_BAZEL_GENFILES=/home/nwolfe/workspace/puppetlabs/cloud-discovery/bazel-genfiles
+
 export EDITOR=vim
 export DOTFILES=$HOME/.dotfiles
 # export IPADDRESS=$(ifconfig en0 | grep inet | awk '{print $2}')
@@ -19,3 +21,4 @@ export GOPATH_GO=$HOME/workspace/go
 export GOPATH_BAZEL=/home/vagrant/bazel/execroot/puppet_discovery/bazel-out/k8-fastbuild/bin/path
 export GOPATH=$GOPATH_GO:$GOPATH_BAZEL
 export PATH=$HOME/bin:$GOPATH_GO/bin:$PATH
+export PDDIR=$PD_BAZEL_GENFILES/workstation/.puppet-discovery
