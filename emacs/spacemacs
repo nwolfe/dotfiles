@@ -593,6 +593,7 @@ before packages are loaded."
 
   (require 'ncw-jjb nil t)
   (require 'ncw-magithub-config nil t)
+  (require 'ncw-pd nil t)
   )
 
 ;; Full-width comment box from: http://irreal.org/blog/?p=374
