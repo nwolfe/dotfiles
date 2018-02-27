@@ -393,6 +393,9 @@ It should only modify the values of Spacemacs settings."
    ;; and emphasize the current one). (default 'all)
    dotspacemacs-highlight-delimiters 'all
 
+   ;; If non-nil, start an Emacs server if one is not already running.
+   dotspacemacs-enable-server t
+
    ;; If non-nil advises quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server t
