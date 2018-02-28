@@ -565,8 +565,9 @@ before packages are loaded."
   ;; Make undo a bit more aggressive in how much it undoes
   (setq evil-want-fine-undo "No")
 
-  ;; Enable .agignore files in project roots
+  ;; Enable .agignore files in project roots; search in .hidden files
   (setq helm-ag-use-agignore t)
+  (setq helm-ag-command-option "--hidden")
 
   ;; Hide all those magit buffers
   (add-hook 'helm-major-mode-hook
