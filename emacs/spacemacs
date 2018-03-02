@@ -74,7 +74,7 @@ This function should only modify configuration layer settings."
                                       json-reformat
                                       dumb-jump
                                       dockerfile-mode
-                                      bats-mode)
+                                      toml-mode)
 
    ;; List of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
