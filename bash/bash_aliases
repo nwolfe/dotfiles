@@ -26,8 +26,7 @@ alias cp='cp -i'
 # alias be='bundle exec'
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias gst='git status'
-alias pd='$PD_BAZEL_GENFILES/workstation/cli'
-alias pdtest='bazel test --test_verbose_timeout_warnings $(bazel query "tests(//... - //test/journey/... - //pdp/...)" | xargs)'
+alias pd='$PD_BAZEL_GENFILES/workstation/bin/dev-local/linux-amd64/puppet-discovery'
 
 # Emacs
 alias emacs-server='/usr/bin/emacs --daemon'

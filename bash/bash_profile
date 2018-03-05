@@ -19,4 +19,4 @@ export PUPPETLABS=$HOME/workspace/puppetlabs
 export VISUAL=$EDITOR
 export GOPATH=$HOME/workspace/go
 export PATH=$HOME/bin:$GOPATH/bin:$PATH
-export PDDIR=$PD_BAZEL_GENFILES/workstation/.puppet-discovery
+export PDDIR=$PD_BAZEL_GENFILES/workstation/bin/dev-local/linux-amd64/.puppet-discovery
