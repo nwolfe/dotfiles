@@ -574,6 +574,9 @@ before packages are loaded."
             (lambda ()
               (add-to-list 'helm-boring-buffer-regexp-list "\\*magit")))
 
+  ;; Disable helm popup windows
+  (setq helm-use-frame-when-more-than-two-windows nil)
+
   ;; Don't show recent commits in magit status
   (setq magit-log-section-commit-count 0)
 
