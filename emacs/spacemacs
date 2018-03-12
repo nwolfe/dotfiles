@@ -42,7 +42,9 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      github
-     (go :variables go-tab-width 4)
+     (go :variables
+         go-tab-width 4
+         godoc-at-point-function 'godoc-gogetdoc)
      helm
      html
      javascript
