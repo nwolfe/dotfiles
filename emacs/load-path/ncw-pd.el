@@ -8,7 +8,7 @@
   (async-shell-command (concat "cd $PUPPETLABS/cloud-discovery && "
                                "make -C workstation unit-tests")))
 
-(defun ncw/pd-buildcli ()
+(defun ncw/pd-build-cli ()
   (interactive)
   (async-shell-command (concat "cd $PUPPETLABS/cloud-discovery && "
                                "make -C workstation build")))
