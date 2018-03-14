@@ -1,0 +1,5 @@
+# -*- mode: conf; -*-
+
+# Remember credentials for 24 hours
+[credential]
+  helper = cache --timeout=86400

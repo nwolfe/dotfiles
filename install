@@ -113,6 +113,11 @@ link_dotfile zsh/zshenv
 link_dotfile zsh/zshrc
 link_dotfile git/gitconfig
 link_dotfile git/gitignore
+case $(uname -s) in
+    Linux) maybe_symlink $PWD/git/gitconfig.linux $HOME/.gitconfig.os ;;
+    Darwin) maybe_symlink $PWD/git/gitconfig.macos $HOME/.gitconfig.os ;;
+    *) echo "Unknown OS; skipping .gitconfig.os" ;;
+esac
 link_dotfile vim/vimrc
 link_dotfile vim/gvimrc
 link_dotfile emacs/spacemacs

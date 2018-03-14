@@ -3,6 +3,8 @@
 [include]
   # Non-VCS file to keep secrets (user name, email, password, tokens, etc)
   path = ~/.gitconfig.local
+  # Configuration that is specific to the operating system
+  path = ~/.gitconfig.os
 [core]
   editor = vim
   excludesfile = ~/.gitignore
@@ -14,8 +16,6 @@
   compactionHeuristic = true
 [commit]
   gpgsign = true
-[credential]
-  helper = osxkeychain
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
