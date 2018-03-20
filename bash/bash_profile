@@ -10,6 +10,7 @@ if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
+export PD_ANSWERS="{\"password\":\"@Admin\",\"licensePath\":\"/home/nwolfe/workspace/puppetlabs/cloud-discovery/workstation/internal/pkg/license/sample-license.json\"}"
 export PD_BAZEL_GENFILES=/home/nwolfe/workspace/puppetlabs/cloud-discovery/bazel-genfiles
 
 export EDITOR=vim
