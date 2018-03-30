@@ -10,15 +10,14 @@ if [ -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
-export PD_ANSWERS="{\"password\":\"@Admin\",\"licensePath\":\"/home/nwolfe/workspace/puppetlabs/cloud-discovery/workstation/internal/pkg/license/sample-license.json\"}"
-export PD_BAZEL_GENFILES=/home/nwolfe/workspace/puppetlabs/cloud-discovery/bazel-genfiles
-
-export EDITOR=vim
 export DOTFILES=$HOME/.dotfiles
-# export IPADDRESS=$(ifconfig en0 | grep inet | awk '{print $2}')
-export PUPPETLABS=$HOME/workspace/puppetlabs
+export EDITOR=vim
 export VISUAL=$EDITOR
 export GOHOME=/usr/local/go
 export GOPATH=$HOME/workspace/go
+export PUPPETLABS=$HOME/workspace/puppetlabs
+export PDANSWERS="{\"password\":\"@Admin\",\"licensePath\":\"/home/nwolfe/workspace/puppetlabs/cloud-discovery/workstation/internal/pkg/license/sample-license.json\"}"
+export PDHOME=/home/nwolfe/workspace/puppetlabs/cloud-discovery/bazel-genfiles/workstation/bin/dev-local/linux-amd64
+export PDDIR=$PDHOME/.puppet-discovery
+export PDBINARY=$PDHOME/puppet-discovery
 export PATH=$HOME/bin:$GOPATH/bin:$GOHOME/bin:$PATH
-export PDDIR=$PD_BAZEL_GENFILES/workstation/bin/dev-local/linux-amd64/.puppet-discovery

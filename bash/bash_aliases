@@ -26,7 +26,7 @@ alias cp='cp -i'
 # alias be='bundle exec'
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias gst='git status'
-alias pd='NON_INTERACTIVE=$PD_ANSWERS $PD_BAZEL_GENFILES/workstation/bin/dev-local/linux-amd64/puppet-discovery'
+alias pd='NON_INTERACTIVE=$PDANSWERS $PDBINARY'
 
 # Emacs
 alias emacs-server='/usr/bin/emacs --daemon'
