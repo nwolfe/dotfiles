@@ -6,7 +6,7 @@
 (defun ncw/pd-test-cli ()
   (interactive)
   (async-shell-command (concat "cd $PUPPETLABS/cloud-discovery && "
-                               "make -C workstation unit-tests")))
+                               "GOBUILD=true make -C workstation unit-tests")))
 
 (defun ncw/pd-build-cli ()
   (interactive)
