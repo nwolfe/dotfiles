@@ -592,8 +592,11 @@ before packages are loaded."
   ;; Use shell mode for Bazel syntax
   (add-to-list 'auto-mode-alist '("\\.bazel\\'" . python-mode))
 
-  ;; Use Go syntax highlighting in Godoc buffers
-  (add-hook 'godoc-mode-hook 'go-mode)
+  ;; Use Go syntax highlighting in Godoc buffers, but turn off coloring
+  (add-hook 'godoc-mode-hook
+            (lambda ()
+              (go-mode)
+              (color-identifiers-mode -1)))
 
   (ncw/configure-dumb-jump)
   (ncw/configure-org)
