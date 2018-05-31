@@ -53,3 +53,6 @@ defaults write com.apple.Spotlight orderedItems -array \
          '{ "name" = "SOURCE";                     "enabled" = 0; }'
 # Spotlight: Apply search result changes
 sudo mdutil -E / > /dev/null
+
+# Set hostname
+scutil --set HostName natebook-pro
