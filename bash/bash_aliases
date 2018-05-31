@@ -4,7 +4,7 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias pp='cd $PUPPETLABS'
+# alias pp='cd $PUPPETLABS'
 
 # Verify destruction
 alias rm='rm -i'
