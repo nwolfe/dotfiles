@@ -22,3 +22,4 @@ export VISUAL=$EDITOR
 # export PDBINARY=$PDHOME/puppet-discovery
 export PATH=$HOME/bin:$PATH
 export DEV_ROOT=$HOME/ws/puppet/
+export JAVA_HOME=$(/usr/libexec/java_home)
