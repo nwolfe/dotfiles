@@ -29,5 +29,6 @@ alias gst='git status'
 # alias pd='NON_INTERACTIVE=$PDANSWERS $PDBINARY'
 
 # Emacs
-alias emacs-server='/usr/bin/emacs --daemon'
+alias emacs-server='emacs --daemon'
 alias emacs-server-kill='emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
+alias e='emacsclient'
