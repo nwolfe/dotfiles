@@ -17,10 +17,9 @@ alias cp='cp -i'
 # -F  Append special character denoting file type
 # -A  Show hidden entries, but hide . and ..
 # -1  One entry per line
-# alias ls='ls -hG'
-# alias ll='ls -l'
-# alias la='ls -A'
-# alias l1='ls -1'
+alias ls='ls -FG'
+alias ll='ls -hl'
+alias la='ls -A'
 
 # Shortcuts
 # alias be='bundle exec'
