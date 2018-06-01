@@ -1,13 +1,10 @@
-### TAGS
-tags
-GPATH
-GRTAGS
-GTAGS
-
 ### EMACS
 *#*
 .projectile
 .agignore
+
+### IntelliJ IDEA
+*.iml
 
 ### JAVA
 *.class
@@ -21,6 +18,12 @@ GTAGS
 
 ### PYTHON
 .egg*
+
+### TAGS
+tags
+GPATH
+GRTAGS
+GTAGS
 
 ### VIM
 vim/.netrwhist
