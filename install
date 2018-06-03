@@ -105,7 +105,6 @@ function link_dotfile {
     maybe_symlink "$PWD/$1" "$HOME/.$(basename $1)"
 }
 
-maybe_symlink $PWD/bin $HOME/bin
 link_dotfile bash/bash_profile
 link_dotfile bash/bashrc
 link_dotfile bash/bash_aliases
@@ -122,3 +121,6 @@ link_dotfile vim/vimrc
 link_dotfile vim/gvimrc
 link_dotfile emacs/spacemacs
 link_dotfile misc/gemfile
+
+maybe_symlink $PWD/bin $HOME/bin
+maybe_symlink $PWD/emacs/doom.d $HOME/.doom.d
