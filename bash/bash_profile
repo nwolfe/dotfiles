@@ -1,9 +1,9 @@
 # -*- mode: sh -*-
 
 # Source .seacrest things if they exist
-# if [ -d $HOME/.seacrest ]; then
-#     source $HOME/.seacrest/shell/sources/env
-# fi
+if [ -d $HOME/.seacrest ]; then
+    source $HOME/.seacrest/shell/sources/env
+fi
 
 # Source .bashrc if it exists
 if [ -f $HOME/.bashrc ]; then
