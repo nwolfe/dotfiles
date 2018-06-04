@@ -1,1 +1,4 @@
-Add Gocode's ~/.config/gocode/config.json
+* Add Gocode's ~/.config/gocode/config.json
+- Automate System Package Installation:
+  * brew install the_silver_searcher
+  * brew install ripgrep
