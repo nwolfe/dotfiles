@@ -3,7 +3,8 @@
 ################################################################################
 # For a more sophisticated example of OSX configuration see:                   #
 #                                                                              #
-# https://github.com/mathiasbynens/dotfiles/blob/master/.osx                   #
+#   https://github.com/mathiasbynens/dotfiles/blob/master/.macos               #
+#   https://gist.github.com/tylerwalts/9375263                                 #
 ################################################################################
 
 # Finder: Allow quitting with Command + Q
