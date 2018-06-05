@@ -55,5 +55,5 @@ defaults write com.apple.Spotlight orderedItems -array \
 # Spotlight: Apply search result changes
 sudo mdutil -E / > /dev/null
 
-# Set hostname
-scutil --set HostName natebook-pro
+# Set hostname (related: ComputerName, LocalHostName)
+sudo scutil --set HostName natebook-pro
