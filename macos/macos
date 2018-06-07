@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+#########################################################################
+# For a more sophisticated example of MacOS configuration see:          #
+#                                                                       #
+#   https://github.com/mathiasbynens/dotfiles/blob/master/.macos        #
+#########################################################################
+
+# Finder: Allow quitting with Command + Q
+defaults write com.apple.finder QuitMenuItem -bool true
+
+# Finder: Show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: Show all filename extensions
+defaults read NSGlobalDomain AppleShowAllExtensions -bool
+
+# Spaces: Don't rearrange based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Dock: Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Fast Key Repeat
+#   Default key repeat is 2 (30ms)
+#   Default initial is 15 (225ms)
+defaults write NSGlobalDomain KeyRepeat -int 1
+#defaults write NSGlobalDomain InitialKeyRepeat -int 0.02
+
+# Function Keys: Use F1, F2, etc as standard keys and not special features
+defaults write -g com.apple.keyboard.fnState -bool true
+
+# Spotlight: Restrict search results to only a few categories
+#defaults write com.apple.Spotlight orderedItems -array \
+#         '{ "name" = "APPLICATIONS";               "enabled" = 1; }' \
+#         '{ "name" = "MENU_CONVERSION";            "enabled" = 1; }' \
+#         '{ "name" = "MENU_EXPRESSION";            "enabled" = 1; }' \
+#         '{ "name" = "MENU_DEFINITION";            "enabled" = 1; }' \
+#         '{ "name" = "MENU_SPOTLIGHT_SUGGESTIONS"; "enabled" = 1; }' \
+#         '{ "name" = "MENU_OTHER";                 "enabled" = 0; }' \
+#         '{ "name" = "MENU_WEBSEARCH";             "enabled" = 0; }' \
+#         '{ "name" = "SYSTEM_PREFS";               "enabled" = 0; }' \
+#         '{ "name" = "DOCUMENTS";                  "enabled" = 0; }' \
+#         '{ "name" = "DIRECTORIES";                "enabled" = 0; }' \
+#         '{ "name" = "PRESENTATIONS";              "enabled" = 0; }' \
+#         '{ "name" = "SPREADSHEETS";               "enabled" = 0; }' \
+#         '{ "name" = "PDF";                        "enabled" = 0; }' \
+#         '{ "name" = "MESSAGES";                   "enabled" = 0; }' \
+#         '{ "name" = "CONTACT";                    "enabled" = 0; }' \
+#         '{ "name" = "EVENT_TODO";                 "enabled" = 0; }' \
+#         '{ "name" = "IMAGES";                     "enabled" = 0; }' \
+#         '{ "name" = "BOOKMARKS";                  "enabled" = 0; }' \
+#         '{ "name" = "MUSIC";                      "enabled" = 0; }' \
+#         '{ "name" = "MOVIES";                     "enabled" = 0; }' \
+#         '{ "name" = "FONTS";                      "enabled" = 0; }' \
+#         '{ "name" = "SOURCE";                     "enabled" = 0; }'
+# Spotlight: Apply search result changes
+#sudo mdutil -E / > /dev/null
+
+# Set hostname (related: ComputerName, LocalHostName)
+sudo scutil --set HostName natebook-pro
+
+# Trackpad: Enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+#defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+#defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1

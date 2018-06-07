@@ -1,6 +1,6 @@
 #+TITLE: Dotfiles
 
-My configuration files for Bash, Vim, Emacs, OSX, etc.
+My configuration files for Bash, Vim, Emacs, MacOS, etc.
 
 * Contents
 
@@ -28,4 +28,6 @@ My configuration files for Bash, Vim, Emacs, OSX, etc.
 
 ** Mac OS
 
- Configuration is in the [[./misc/osx][misc/osx]] file. You must source it manually.
+Run [[./macos/macos]] to configure system preferences.
+
+Run [[./macos/brew]] to install and update Homebrew packages (requires Homebrew)

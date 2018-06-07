@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Install command-line tools using Homebrew.
+#
+# Run periodically to update/upgrade Homebrew and packages.
+#
+# See: https://github.com/mathiasbynens/dotfiles/blob/master/brew.sh
+
+# Make sure we’re using the latest Homebrew
+brew update
+
+# Upgrade any already-installed formulae
+brew upgrade
+
+# Text search tools for Emacs
+brew install the_silver_searcher
+brew install ripgrep
+
+# Miscellaneous
+brew install tree
+
+# Remove outdated versions from the cellar
+brew cleanup

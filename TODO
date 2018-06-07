@@ -1,10 +1,3 @@
-* Add Gocode's ~/.config/gocode/config.json
-- Automate System Package Installation:
-  * brew install the_silver_searcher
-  * brew install ripgrep
 - Add Mac OS Configuration:
   * Show date in clock
   * Show battery percentage
-  * Enable touch-to-click in trackpad
-  * Auto-hide dock
-  * Disable "Automatically rearrange Spaces based on most recent use"
