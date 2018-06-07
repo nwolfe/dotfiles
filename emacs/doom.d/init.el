@@ -3,14 +3,14 @@
 
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
-       eval              ; run code, run (also, repls)
+      ;eval              ; run code, run (also, repls)
        (evil +everywhere); come to the dark side, we have cookies
-       file-templates    ; auto-snippets for empty files
+      ;file-templates    ; auto-snippets for empty files
        (lookup           ; helps you navigate your code and documentation
         +devdocs         ; ...on devdocs.io online
         +docsets)        ; ...or in Dash docsets locally
       ;snippets          ; my elves. They type so I don't have to
-       spellcheck        ; tasing you for misspelling mispelling
+      ;spellcheck        ; tasing you for misspelling mispelling
        (syntax-checker   ; tasing you for every semicolon you forget
         +childframe)     ; use childframes for error popups (Emacs 26+ only)
        version-control   ; remember, remember that commit in November
@@ -22,8 +22,8 @@
       ;(helm             ; the *other* search engine for love and life
       ; +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-        +fuzzy)          ; enable fuzzy search backend for ivy
+       ivy               ; a search engine for love and life
+      ; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -39,7 +39,7 @@
         +defaults)       ; default popup rules
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+      ;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
 
        :emacs
@@ -53,7 +53,7 @@
        :tools
       ;editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
-       gist              ; interacting with github gists
+      ;gist              ; interacting with github gists
       ;macos             ; MacOS-specific commands
       ;make              ; run make tasks from Emacs
        magit             ;
@@ -80,7 +80,7 @@
       ;go                ; the hipster dialect
       ;(haskell +intero) ; a language that's lazier than I am
       ;hy                ; readability of scheme w/ speed of python
-       (java +meghanada) ; the poster child for carpal tunnel syndrome
+      ;(java +meghanada) ; the poster child for carpal tunnel syndrome
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
       ;julia             ; a better, faster MATLAB
       ;latex             ; writing papers in Emacs has never been so fun
@@ -90,7 +90,7 @@
       ;nim               ; python + lisp at the speed of c
       ;nix               ; I hereby declare "nix geht mehr!"
       ;ocaml             ; an objective camel
-      ;(org              ; organize your plain life in plain text
+       org               ; organize your plain life in plain text
       ; +attach          ; custom attachment system
       ; +babel           ; running code in org
       ; +capture         ; org-capture in and outside of Emacs
@@ -134,6 +134,5 @@
        ;; your own modules.
        (default
         +bindings
-       ;+snippets
         +evil-commands))
 
