@@ -23,3 +23,6 @@ export VISUAL=$EDITOR
 export PATH=$HOME/bin:$PATH
 export DEV_ROOT=$HOME/ws/puppet/
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Brighten the blue color of directories in ls output
+export LSCOLORS=Exfxcxdxbxegedabagacad
