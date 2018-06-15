@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Prints short git status summary across all repos under $DEV_ROOT.
+# Prints short git status summary across all Git repos under $DEV_ROOT.
 # Useful at the end of a ticket to see all the changes you made.
 #
 # EXAMPLE
@@ -30,11 +30,13 @@
 
 for repo in $(ls -d $DEV_ROOT/*/); do
     cd $repo
-    if ! git diff -s --exit-code; then
-        name=$(echo $repo | cut -d / -f 7)
-        branch=$(git rev-parse --abbrev-ref HEAD)
-        echo "$name ($branch)"
-        git status -s
-        echo
+    if [ -d .git ]; then
+        if ! git diff -s --exit-code; then
+            name=$(echo $repo | cut -d / -f 7)
+            branch=$(git rev-parse --abbrev-ref HEAD)
+            echo "$name ($branch)"
+            git status -s
+            echo
+        fi
     fi
 done
