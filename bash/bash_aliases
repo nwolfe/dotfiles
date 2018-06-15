@@ -30,5 +30,5 @@ alias gst='git status'
 # Emacs
 alias emacs-server='emacs --daemon'
 alias emacs-server-kill='emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
-alias e='emacsclient'
+alias e='emacs -nw'
 alias est='emacs -nw -f magit-status'
