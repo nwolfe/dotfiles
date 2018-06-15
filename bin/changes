@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# Prints short git status summary across all repos under $DEV_ROOT.
+# Useful at the end of a ticket to see all the changes you made.
+#
+# EXAMPLE
+#
+#  $ changes
+#  DistelliJavaModels (CDPE-159/gitlab-integration)
+#   M schema/GitLabBranch.json
+#   M src/main/java/com/distelli/models/GitLabBranch.java
+#   M src/main/java/com/distelli/models/repo/RepositoryManager.java
+#
+#  GitLabManager (CDPE-159/gitlab-integration)
+#   M pom.xml
+#   M src/main/java/com/distelli/gitlab/GitLabManager.java
+#
+#  RepositoryManager (CDPE-159/gitlab-integration)
+#   M pom.xml
+#   M src/main/java/com/distelli/repo/RepositoryManagerImpl.java
+#
+#  RollingDeploymentManager (CDPE-159/gitlab-integration)
+#   M pom.xml
+#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/RollingDeploymentTaskBase.java
+#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/helpers/TaskHelper.java
+#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/BlueGreenBranchTask.java
+#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/DirectMergeTask.java
+#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/IncrementalBranchTask.java
+#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/TemporaryBranchTask.java
+
+for repo in $(ls -d $DEV_ROOT/*/); do
+    cd $repo
+    if ! git diff -s --exit-code; then
+        name=$(echo $repo | cut -d / -f 7)
+        branch=$(git rev-parse --abbrev-ref HEAD)
+        echo "$name ($branch)"
+        git status -s
+        echo
+    fi
+done
