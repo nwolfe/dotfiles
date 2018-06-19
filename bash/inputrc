@@ -1,0 +1,21 @@
+# -*- mode: sh -*-
+
+# GNU Readline configuration
+#
+# This configures tab completion behavior.
+#
+# References:
+#   https://bluz71.github.io/2018/03/15/bash-shell-tweaks-tips.html
+#   https://github.com/mathiasbynens/dotfiles/blob/master/.inputrc
+
+# Show colors in tab completion results
+set colored-stats on
+
+# Ignore cases when tab completing
+set completion-ignore-case on
+
+# Don't tab complete hidden files unless pattern begins with a dot
+set match-hidden-files off
+
+# Add trailing slash when completing symlinks to directories
+set mark-symlinked-directories on

@@ -108,6 +108,7 @@ function link_dotfile {
 link_dotfile bash/bash_profile
 link_dotfile bash/bashrc
 link_dotfile bash/bash_aliases
+link_dotfile bash/inputrc
 link_dotfile zsh/zshenv
 link_dotfile zsh/zshrc
 link_dotfile git/gitconfig
