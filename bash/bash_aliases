@@ -22,13 +22,14 @@ alias ll='ls -hl'
 alias la='ls -A'
 
 # Shortcuts
-# alias be='bundle exec'
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
+alias gb='git branch'
+alias gcm='git checkout master'
+alias gco='git checkout'
 alias gst='git status'
-# alias pd='NON_INTERACTIVE=$PDANSWERS $PDBINARY'
 
 # Emacs
-alias emacs-server='emacs --daemon'
-alias emacs-server-kill='emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
+#alias emacs-server='emacs --daemon'
+#alias emacs-server-kill='emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
 alias e='emacs -nw'
 alias est='emacs -nw -f magit-status'
