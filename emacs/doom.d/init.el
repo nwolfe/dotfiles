@@ -19,10 +19,10 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto)           ; as-you-type code completion
-      ;(helm             ; the *other* search engine for love and life
-      ; +fuzzy)          ; enable fuzzy search backend for helm
+       (helm             ; the *other* search engine for love and life
+        +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+      ;(ivy              ; a search engine for love and life
       ; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
@@ -31,16 +31,22 @@
        doom-modeline     ; a snazzy Atom-inspired mode-line
       ;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
+       fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        nav-flash         ; blink the current line after jumping
        neotree           ; a project drawer, like NERDTree for vim
+      ;treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
+      ;pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
       ;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
+
+       :editor
+      ;parinfer          ; turn lisp into python, sort of
 
        :emacs
        dired             ; making dired pretty [functional]
@@ -64,10 +70,11 @@
       ;rotate-text       ; cycle region at point between text candidates
       ;tmux              ; an API for interacting with tmux
       ;upload            ; map local to remote projects via ssh/ftp
+      ;wakatime
 
        :lang
       ;assembly          ; assembly for fun or debugging
-      ;cc                ; C/C++/Obj-C madness
+      ;(cc +irony +rtags); C/C++/Obj-C madness
       ;crystal           ; ruby at the speed of c
       ;clojure           ; java with a lisp
       ;csharp            ; unity, .NET, and mono shenanigans
@@ -128,6 +135,10 @@
       ;impatient-mode    ; show off code over HTTP
 
        :config
+       ;; For literate config users. This will tangle+compile a config.org
+       ;; literate config in your `doom-private-dir' whenever it changes.
+      ;literate
+
        ;; The default module set reasonable defaults for Emacs. It also provides
        ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
        ;; and additional ex commands for evil-mode. Use it as a reference for
