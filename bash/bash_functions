@@ -20,3 +20,8 @@ pomv() {
     xpath $repo/pom.xml "project/version/text()" 2>/dev/null
     echo
 }
+
+# Opens the <repo> on GitHub in your browser
+repo() {
+    open "https://github.com/puppetlabs/$1"
+}
