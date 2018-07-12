@@ -3,48 +3,27 @@
 # Prints short git status summary across all Git repos under $DEV_ROOT.
 # Useful at the end of a ticket to see all the changes you made.
 #
-# EXAMPLE
-#
-#  $ changes
-#  DistelliJavaModels (CDPE-159/gitlab-integration) @ 1.824-SNAPSHOT
-#   M schema/GitLabBranch.json
-#   M src/main/java/com/distelli/models/GitLabBranch.java
-#   M src/main/java/com/distelli/models/repo/RepositoryManager.java
-#
-#  GitLabManager (CDPE-159/gitlab-integration) @ 1.44-SNAPSHOT
-#   M pom.xml
-#   M src/main/java/com/distelli/gitlab/GitLabManager.java
-#
-#  PipelinesInfra (CDPE-159/gitlab-integration) @ 1.118-SNAPSHOT
-#   M pom.xml
-#
-#  RepositoryManager (CDPE-159/gitlab-integration) @ 1.38-SNAPSHOT
-#   M pom.xml
-#   M src/main/java/com/distelli/repo/RepositoryManagerImpl.java
-#
-#  RollingDeploymentManager (CDPE-159/gitlab-integration) @ 1.21-SNAPSHOT
-#   M pom.xml
-#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/RollingDeploymentTaskBase.java
-#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/helpers/TaskHelper.java
-#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/BlueGreenBranchTask.java
-#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/DirectMergeTask.java
-#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/IncrementalBranchTask.java
-#   M src/main/java/com/puppet/pipelines/pfi/rollingdeploymentmanager/tasks/TemporaryBranchTask.java
+# ARGUMENTS:
+# -q    Quiet; print only the repo names, don't include git status output
 
 for repo in $(ls -d $DEV_ROOT/*/); do
     cd $repo
     if [ -d .git ]; then
         if ! git diff -s --exit-code; then
             name=$(echo $repo | cut -d / -f 7)
-            branch=$(git rev-parse --abbrev-ref HEAD)
-            output="$name ($branch)"
-            if [ -f pom.xml ]; then
-                version=$(xpath pom.xml '//project/version/text()' 2>/dev/null)
-                output="$output @ $version"
+            if [[ $1 == "-q" ]]; then
+                echo $name
+            else
+                branch=$(git rev-parse --abbrev-ref HEAD)
+                output="$name ($branch)"
+                if [ -f pom.xml ]; then
+                    version=$(xpath pom.xml '//project/version/text()' 2>/dev/null)
+                    output="$output @ $version"
+                fi
+                echo $output
+                git status -s
+                echo
             fi
-            echo $output
-            git status -s
-            echo
         fi
     fi
 done
