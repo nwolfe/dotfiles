@@ -10,7 +10,7 @@ for repo in $(ls -d $DEV_ROOT/*/); do
     cd $repo
     if [ -d .git ]; then
         if ! git diff -s --exit-code; then
-            name=$(echo $repo | cut -d / -f 7)
+            name=$(basename $repo)
             if [[ $1 == "-q" ]]; then
                 echo $name
             else

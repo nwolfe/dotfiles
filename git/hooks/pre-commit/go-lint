@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Run the Go linter on every .go file that we're about to commit.
+#
+# Filter out deleted files as that breaks golint.
+
+git diff --exit-code --name-only --staged --diff-filter=d \
+    | grep "$*.go$" \
+    | xargs golint -set_exit_status

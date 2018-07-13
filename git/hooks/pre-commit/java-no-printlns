@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# Prevent System.[out,err].print* calls from being committed.
+
+output=$(git diff --exit-code --name-only --staged --diff-filter=d \
+    | grep "$*.java$" | xargs grep -n "System\.out\|err\.print.*")
+
+if [ -z "$output" ]; then
+    exit 0
+else
+    echo "Found println's"
+    echo
+    echo "$output"
+    exit 1
+fi

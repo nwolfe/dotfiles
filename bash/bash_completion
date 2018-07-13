@@ -3,8 +3,7 @@
 _get_repos() {
     for repo in $(ls -d $DEV_ROOT/*/); do
         if [ -d $repo/.git ]; then
-            name=$(echo $repo | cut -d / -f 7)
-            echo $name
+            basename $repo
         fi
     done
 }
@@ -22,3 +21,18 @@ complete -F _repo_completion pp
 complete -F _repo_completion pomd
 complete -F _repo_completion pomv
 complete -F _repo_completion repo
+
+_get_pre_commit_hooks() {
+    find $DOTFILES/git/hooks/pre-commit -type f -exec basename {} \;
+}
+
+_pre_commit_hook_completion() {
+    if [ "${#COMP_WORDS[@]}" != "2" ]; then
+        return
+    fi
+
+    options=$(_get_pre_commit_hooks)
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
+}
+
+complete -F _pre_commit_hook_completion install-hook-pre-commit
