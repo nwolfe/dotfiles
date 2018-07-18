@@ -22,6 +22,6 @@ pomv() {
 }
 
 # Opens the <repo> on GitHub in your browser
-repo() {
+github() {
     open "https://github.com/puppetlabs/$1"
 }
