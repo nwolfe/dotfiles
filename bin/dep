@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+REPO=$1
+
+source $DOTFILES/bash/bash_functions
+
+echo -n "pomd: "
+pomd $REPO
+echo -n "pomv: "
+pomv $REPO

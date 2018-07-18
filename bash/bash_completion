@@ -20,6 +20,7 @@ _repo_completion() {
 complete -F _repo_completion pp
 complete -F _repo_completion pomd
 complete -F _repo_completion pomv
+complete -F _repo_completion dep
 complete -F _repo_completion github
 
 _get_pre_commit_hooks() {
