@@ -36,3 +36,17 @@ _pre_commit_hook_completion() {
 }
 
 complete -F _pre_commit_hook_completion install-hook-pre-commit
+
+_checkout_package_completion() {
+    # Account for the required "-n" flag
+    if [ "${#COMP_WORDS[@]}" != "3" ]; then
+        return
+    fi
+
+    # Regenerate list with:
+    #   $ list-pipelines-repos > /tmp/distelli-repos
+    options=$(cat /tmp/distelli-repos)
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[2]}"))
+}
+
+complete -F _checkout_package_completion checkout-package.py
