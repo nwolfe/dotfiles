@@ -21,7 +21,12 @@ pomv() {
     echo
 }
 
-# Opens the <repo> on GitHub in your browser
+# Opens the <repo> (or CWD) on GitHub in your browser
 github() {
-    open "https://github.com/puppetlabs/$1"
+    if [ -z "$1" ] || [ "$1" == "." ]; then
+        repo=$(basename $PWD)
+    else
+        repo=$1
+    fi
+    open "https://github.com/puppetlabs/$repo"
 }
