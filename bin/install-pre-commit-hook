@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# Run from the root of a Git repo to add any number of pre-commit hooks.
+#
+# Copies a special composite pre-commit file into .git/hooks/pre-commit
+# and then appends calls to the actual pre-commit checks to allow for
+# multiple hooks to be executed.
+
+HOOK=$1
+
+if [ -z $HOOK ]; then
+    echo "Hook file required"
+    exit 1
+fi
+
+newhook=$DOTFILES/git/hooks/pre-commit/$HOOK
+
+if [ ! -f $newhook ]; then
+    echo "Hook $HOOK not found"
+    exit 1
+fi
+
+if [ ! -d .git ]; then
+    echo "Must be at root of git repo"
+    exit 1
+fi
+
+hookfile=$PWD/.git/hooks/pre-commit
+
+# Install special pre-commit composite file if not already there
+if [ -f $hookfile ]; then
+    if ! grep -q "LABEL: pre-commit-composite-file" $hookfile; then
+        echo "Unknown pre-commit hook already exists"
+        exit 1
+    fi
+else
+    cp $DOTFILES/git/hooks/pre-commits $hookfile
+fi
+
+# Check if hook is already installed
+if grep -q "$newhook" $hookfile; then
+    echo "Hook $HOOK already installed"
+    exit 0
+fi
+
+# A hook that passes should have no output.
+# If there is output, echo it and set the exit code to fail the git hook.
+callhook="out=\$($newhook); if [ ! -z \"\$out\" ]; then echo \"\$out\"; echo; EXITCODE=1; fi"
+
+# Add a call to the new hook above the marker line
+gsed -i 's|# MARKER|'"$callhook"'\n&|g' $hookfile
+
+echo "Added $newhook to $hookfile"

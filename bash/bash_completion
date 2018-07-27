@@ -36,7 +36,7 @@ _pre_commit_hook_completion() {
     COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
 }
 
-complete -F _pre_commit_hook_completion install-hook-pre-commit
+complete -F _pre_commit_hook_completion install-pre-commit-hook
 
 _checkout_package_completion() {
     # Account for the required "-n" flag

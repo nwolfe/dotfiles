@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #
-# Check for System.[out,err].print* calls.
+# Check for "TODO(nwolfe)" comments.
 
 output=$(git diff --exit-code --name-only --staged --diff-filter=d \
-    | grep "$*.java$" | xargs grep -n "System\.out\|err\.print.*")
+    | xargs grep -n ".*TODO(nwolfe).*")
 
 if [ -z "$output" ]; then
     exit 0
 else
-    echo "Found println's"
+    echo "Found TODO's"
     echo
     echo "$output"
     exit 1

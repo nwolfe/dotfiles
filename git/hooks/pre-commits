@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# Composes multiple hooks into a single hook file for Git.
+#
+# LABEL: pre-commit-composite-file
+EXITCODE=0
+
+# MARKER
+
+exit $EXITCODE
