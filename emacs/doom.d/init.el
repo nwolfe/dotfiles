@@ -32,6 +32,7 @@
        evil-goggles      ; display visual hints when editing in evil
        fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
+      ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        neotree           ; a project drawer, like NERDTree for vim
       ;treemacs          ; a project drawer, like neotree but cooler
@@ -46,6 +47,7 @@
        window-select     ; visually switch windows
 
        :editor
+      ;multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
       ;rotate-text       ; cycle region at point between text candidates
 
@@ -54,6 +56,7 @@
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
       ;eshell            ; a consistent, cross-platform shell (WIP)
+       hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -115,6 +118,7 @@
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        sh                ; she sells (ba|z)sh shells on the C xor
+      ; +fish)
       ;solidity          ; do you need a blockchain? No.
       ;swift             ; who asked for emoji variables?
       ;web               ; the tubes
