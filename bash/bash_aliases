@@ -29,6 +29,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gst='git status'
+alias dc='docker-compose'
 
 # Emacs
 #alias emacs-server='emacs --daemon'
