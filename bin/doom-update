@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -x
+
+cd ~/.emacs.d/
+yes | make upgrade
+yes | make update
+make clean
+make
+yes | make compile
