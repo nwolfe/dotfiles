@@ -123,3 +123,8 @@ fi
 if [ -f /usr/local/share/bash-completion/bash_completion ]; then
     . /usr/local/share/bash-completion/bash_completion
 fi
+
+# Notify me ASAP if my SSH agent has no keys
+if ! ssh-add -l > /dev/null; then
+    echo "NOTICE: No SSH keys added to agent"
+fi
