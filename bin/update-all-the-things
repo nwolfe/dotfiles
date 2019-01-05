@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# One script to update them all.
+
+source $DOTFILES/utils/line.sh
+
+header() {
+    line =
+    echo "> $1"
+    line -
+}
+
+header "Doom Emacs"
+$DOTFILES/bin/doom-update
+
+header "MacOS Homebrew"
+$DOTFILES/macos/brew

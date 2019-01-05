@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-set -x
+source $DOTFILES/utils/log.sh
 
-cd ~/.emacs.d/
-yes | make upgrade
-yes | make update
-make clean
-make
-yes | make compile
+{
+    cd ~/.emacs.d/
+    echo "> UPGRADE"
+    yes | make upgrade
+    echo "> UPDATE"
+    yes | make update
+    echo "> CLEAN"
+    make clean
+    echo "> MAKE"
+    make
+    echo "> COMPILE"
+    yes | make compile
+} 2>&1 | log $0
