@@ -43,6 +43,7 @@
        window-select     ; visually switch windows
 
        :editor
+       fold                ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
@@ -52,11 +53,9 @@
        :emacs
        dired             ; making dired pretty [functional]
        ;;+ranger         ; bringing the goodness of ranger to dired
-       ;;+icons          ; colorful icons for dired-mode
-       ediff             ; comparing files in Emacs
+       ;;+icons)         ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
        ;;eshell            ; a consistent, cross-platform shell (WIP)
-       hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
        term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -68,8 +67,8 @@
        ;;ein               ; tame Jupyter notebooks with emacs
        gist              ; interacting with github gists
        ;;macos             ; MacOS-specific commands
-       ;;make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
+       ;;make              ; run make tasks from Emacs
        ;;password-store    ; password manager for nerds
        ;;pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
@@ -156,5 +155,5 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +evil-commands))
+       (default +bindings +smartparens))
 
