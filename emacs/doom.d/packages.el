@@ -2,3 +2,4 @@
 
 (package! puppet-mode)
 (package! powershell)
+(package! graphviz-dot-mode)
