@@ -11,7 +11,7 @@ source $DOTFILES/utils/log.sh
     echo "> CLEAN"
     make clean
     echo "> MAKE"
-    make
+    yes | make
     echo "> COMPILE"
     yes | make compile
 } 2>&1 | log $0
