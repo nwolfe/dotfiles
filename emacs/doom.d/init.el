@@ -23,7 +23,7 @@
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-modeline     ; a snazzy Atom-inspired mode-line
        ;;doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
+       ;;evil-goggles    ; display visual hints when editing in evil
        fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        ;;modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -41,7 +41,7 @@
        window-select     ; visually switch windows
 
        :editor
-       fold                ; (nigh) universal code folding
+       ;;fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who don't like vim
        ;;multiple-cursors  ; editing in many places at once
@@ -49,7 +49,7 @@
        ;;rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       dired             ; making dired pretty [functional]
+       ;;dired           ; making dired pretty [functional]
        ;;+ranger         ; bringing the goodness of ranger to dired
        ;;+icons)         ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
