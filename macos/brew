@@ -20,17 +20,19 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
     chsh -s /usr/local/bin/bash
 fi
 
-# Text search tools for Emacs
+# Emacs tools/dependencies
 brew install the_silver_searcher
 brew install ripgrep
+brew install gnu-tar
+brew install gnutls
+brew install coreutils
+brew install fd
+brew install markdown
 
 # Miscellaneous
 brew install tree
 brew install jq
-brew install gnu-sed   # For install-pre-commit-hook script
-brew install gnu-tar   # For doom-emacs
-brew install gnutls    # For doom-emacs
-brew install coreutils # For doom-emacs
+brew install gnu-sed   # install-pre-commit-hook script
 
 # Remove outdated versions from the cellar
 brew cleanup
