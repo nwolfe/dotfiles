@@ -14,4 +14,6 @@ source $DOTFILES/utils/log.sh
     yes | make
     echo "> COMPILE"
     yes | make compile
+    echo "> DOCTOR"
+    make doctor
 } 2>&1 | log $0
