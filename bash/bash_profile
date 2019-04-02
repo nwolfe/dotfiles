@@ -13,7 +13,7 @@ fi
 export DOTFILES=$HOME/.dotfiles
 export EDITOR=vim
 export VISUAL=$EDITOR
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:/usr/local/sbin:$PATH
 export DEV_ROOT=$HOME/ws/puppet/
 export JAVA_HOME=$(/usr/libexec/java_home)
 
