@@ -4,16 +4,25 @@ source $DOTFILES/utils/log.sh
 
 {
     cd ~/.emacs.d/
+
     echo "> UPGRADE"
     yes | make upgrade
+
     echo "> UPDATE"
     yes | make update
+
     echo "> CLEAN"
     make clean
+
     echo "> MAKE"
     yes | make
+
+    echo "> ENV REFRESH"
+    bin/doom env refresh
+
     echo "> COMPILE"
     yes | make compile
+
     echo "> DOCTOR"
     make doctor
 } 2>&1 | log $0
