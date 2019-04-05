@@ -36,3 +36,6 @@ brew install gnu-sed   # install-pre-commit-hook script
 
 # Remove outdated versions from the cellar
 brew cleanup
+
+# Try and catch issues early
+brew doctor
