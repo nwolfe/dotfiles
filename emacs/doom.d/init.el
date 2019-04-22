@@ -1,5 +1,12 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
+
+;; Copy this file to ~/.doom.d/init.el or ~/.config/doom/init.el ('doom
+;; quickstart' will do this for you). The `doom!' block below controls what
+;; modules are enabled and in what order they will be loaded. Remember to run
+;; 'doom refresh' after modifying it.
+;;
+;; More information about these modules (and what flags they support) can be
+;; found in modules/README.org.
 
 (doom! :feature
        ;;debugger            ; FIXME stepping through code, to help you add bugs
@@ -22,19 +29,19 @@
        doom                  ; what makes DOOM look the way it does
        doom-dashboard        ; a nifty splash screen for Emacs
        ;;doom-quit           ; DOOM quit-message prompts when you quit Emacs
-       ;;evil-goggles        ; display visual hints when editing in evil
        fill-column           ; a `fill-column' indicator
        hl-todo               ; highlight TODO/FIXME/NOTE tags
        ;;indent-guides       ; highlighted indent columns
        modeline              ; snazzy, Atom-inspired modeline, plus API
        nav-flash             ; blink the current line after jumping
        neotree               ; a project drawer, like NERDTree for vim
-       ;;treemacs            ; a project drawer, like neotree but cooler
+       ophints               ; highlight the region and operation acts on
        (popup                ; tame sudden yet inevitable temporary windows
         +all                 ; catch all popups that start with an asterix
         +defaults)           ; default popup rules
        ;;pretty-code         ; replace bits of code with pretty symbols
        ;;tabbar              ; FIXME an (incomplete) tab bar for Emacs
+       ;;treemacs            ; a project drawer, like neotree but cooler
        ;;unicode             ; extended unicode support for various languages
        vc-gutter             ; vcs diff in the fringe
        ;;vi-tilde-fringe     ; fringe tildes to mark beyond EOB
@@ -82,6 +89,7 @@
        ;;vterm               ; another terminals in Emacs
 
        :lang
+       ;;agda                ; types of types of types of types...
        ;;assembly            ; assembly for fun or debugging
        ;;(cc +irony +rtags)  ; C/C++/Obj-C madness
        ;;clojure             ; java with a lisp
@@ -114,9 +122,10 @@
        ;; +attach            ; custom attachment system
        ;; +babel             ; running code in org
        ;; +capture           ; org-capture in and outside of Emacs
-       ;; +export            ; Exporting org to whatever you want
-       ;; +present           ; Emacs for presentations
-       ;; +protocol)         ; Support for org-protocol:// links
+       ;; +export            ; exporting org to whatever you want
+       ;; +habit             ; keep track of your habits
+       ;; +present           ; emacs for presentations
+       ;; +protocol)         ; support for org-protocol:// links
        ;;perl                ; write code no one else can comprehend
        ;;php                 ; perl's insecure younger brother
        ;;plantuml            ; diagrams for confusing people more
@@ -124,7 +133,7 @@
        ;;python              ; beautiful is better than ugly
        ;;qt                  ; the 'cutest' gui framework ever
        ;;racket              ; a DSL for DSLs
-       ;;rest                ; Emacs as a REST client
+       ;;rest                ; emacs as a REST client
        ;;ruby                ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala               ; java, but good
@@ -132,7 +141,7 @@
        ;; +fish)             ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity            ; do you need a blockchain? No.
        ;;swift               ; who asked for emoji variables?
-       ;;terra               ; Earth and Moon in alignment for performance.
+       ;;terra               ; earth and moon in alignment for performance.
        ;;web                 ; the tubes
        ;;vala                ; GObjective-C
 
