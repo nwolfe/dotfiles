@@ -13,9 +13,15 @@ fi
 export DOTFILES=$HOME/.dotfiles
 export EDITOR=vim
 export VISUAL=$EDITOR
-export PATH=$HOME/bin:/usr/local/sbin:$PATH
 export DEV_ROOT=$HOME/ws/puppet/
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Brighten the blue color of directories in ls output
 export LSCOLORS=Exfxcxdxbxegedabagacad
+
+# Overwrite system Ruby with Homebrew version
+export PATH=/usr/local/opt/ruby/bin:$PATH
+# Homebrew recommended
+export PATH=/usr/local/sbin:$PATH
+# Personal scripts from dotfiles
+export PATH=$HOME/bin:$PATH
