@@ -6,23 +6,20 @@ source $DOTFILES/utils/log.sh
     cd ~/.emacs.d/
 
     echo "> UPGRADE"
-    yes | make upgrade
+    yes | bin/doom upgrade
 
     echo "> UPDATE"
-    yes | make update
-
-    echo "> CLEAN"
-    make clean
-
-    echo "> MAKE"
-    yes | make
+    yes | bin/doom update
 
     echo "> ENV REFRESH"
     bin/doom env refresh
 
+    echo "> REFRESH"
+    yes | bin/doom refresh
+
     echo "> COMPILE"
-    yes | make compile
+    yes | bin/doom compile
 
     echo "> DOCTOR"
-    make doctor
+    bin/doom doctor
 } 2>&1 | log $0
