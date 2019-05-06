@@ -124,6 +124,15 @@ if [ -f /usr/local/share/bash-completion/bash_completion ]; then
     . /usr/local/share/bash-completion/bash_completion
 fi
 
+# Enable bash-completion2
+if [ -r /usr/local/etc/profile.d/bash_completion.sh ]; then
+    . /usr/local/etc/profile.d/bash_completion.sh
+fi
+
+# Enable ENV variable tab completion
+# See: https://askubuntu.com/questions/70750/how-to-get-bash-to-stop-escaping-during-tab-completion
+shopt -s direxpand
+
 # Notify me ASAP if my SSH agent has no keys
 if ! ssh-add -l > /dev/null; then
     echo "NOTICE: No SSH keys added to agent"
