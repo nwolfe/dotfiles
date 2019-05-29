@@ -8,7 +8,11 @@
 ;; More information about these modules (and what flags they support) can be
 ;; found in modules/README.org.
 
-(doom! :completion
+(doom! :input
+       ;;chinese
+       ;;japanese
+
+       :completion
        company               ; the ultimate code completion backend
        ;;helm                ; the *other* search engine for love and life
        ;;ido                 ; the other *other* search engine...
@@ -54,10 +58,12 @@
        ;;+ranger             ; bringing the goodness of ranger to dired
        ;;+icons)             ; colorful icons for dired-mode
        electric              ; smarter, keyword-based electric-indent
-       ;;eshell              ; a consistent, cross-platform shell (WIP)
-       imenu                 ; an imenu sidebar and searchable code index
-       term                  ; terminals in Emacs
        vc                    ; version-control and Emacs, sitting in a tree
+
+       :term
+       ;;eshell              ; a consistent, cross-platform shell (WIP)
+       term                  ; terminals in Emacs
+       ;;vterm               ; another terminals in Emacs
 
        :tools
        ;;ansible
@@ -76,7 +82,7 @@
        ;;macos               ; MacOS-specific commands
        magit                 ; a git porcelain for Emacs
        ;;make                ; run make tasks from Emacs
-       ;;password-store      ; password manager for nerds
+       ;;pass                ; password manager for nerds
        ;;pdf                 ; pdf enhancements
        ;;prodigy             ; FIXME managing external services & code builders
        ;;rgb                 ; creating color strings
@@ -84,7 +90,6 @@
        ;;tmux                ; an API for interacting with tmux
        ;;upload              ; map local to remote projects via ssh/ftp
        ;;wakatime
-       ;;vterm               ; another terminals in Emacs
 
        :lang
        ;;agda                ; types of types of types of types...
@@ -101,6 +106,7 @@
        ;;elm                 ; care for a cup of TEA?
        emacs-lisp            ; drown in parentheses
        ;;ess                 ; emacs speaks statistics
+       ;;fsharp              ; ML stands for Microsoft's Language
        ;;go                  ; the hipster dialect
        ;;(haskell +intero)   ; a language that's lazier than I am
        ;;hy                  ; readability of scheme w/ speed of python
@@ -112,7 +118,7 @@
        ;;latex               ; writing papers in Emacs has never been so fun
        ;;ledger              ; an accounting system in Emacs
        ;;lua                 ; one-based indices? one-based indices
-       markdown              ; writing docs for people to ignore
+       ;;markdown            ; writing docs for people to ignore
        ;;nim                 ; python + lisp at the speed of c
        ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml               ; an objective camel
@@ -132,10 +138,10 @@
        ;;qt                  ; the 'cutest' gui framework ever
        ;;racket              ; a DSL for DSLs
        ;;rest                ; emacs as a REST client
-       ;;ruby                ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;;ruby                ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala               ; java, but good
-       sh                    ; she sells (ba|z|fi)sh shells on the C xor
+       sh                    ; she sells {ba,z,fi}sh shells on the C xor
        ;;solidity            ; do you need a blockchain? No.
        ;;swift               ; who asked for emoji variables?
        ;;terra               ; earth and moon in alignment for performance.
