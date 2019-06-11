@@ -17,7 +17,7 @@ _repo_completion() {
     COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
 }
 
-complete -F _repo_completion pp
+complete -F _repo_completion pl
 complete -F _repo_completion pomd
 complete -F _repo_completion pomv
 complete -F _repo_completion dep

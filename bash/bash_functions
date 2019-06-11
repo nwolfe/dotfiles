@@ -1,7 +1,7 @@
 # -*- mode: sh -*-
 
 # cd <repo>
-pp() {
+pl() {
     cd $DEV_ROOT/$1
 }
 
