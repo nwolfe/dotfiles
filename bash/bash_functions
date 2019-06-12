@@ -2,31 +2,43 @@
 
 # cd <repo>
 pl() {
-    cd $DEV_ROOT/$1
+    cd "$DEV_ROOT/$1" || return
 }
 
 # Prints version of <repo> from ./pom.xml
 pomd() {
-    grep $1 -A1 pom.xml | tail -1 | sed 's/.*<version>//' | sed 's/<\/version>//'
+    grep "$1" -A1 pom.xml | tail -1 | sed 's/.*<version>//' | sed 's/<\/version>//'
 }
 
 # Prints artifact version from [.|<repo>]/pom.xml
 pomv() {
-    if [ -z $1 ]; then
+    if [ -z "$1" ]; then
         repo=.
     else
-        repo=$DEV_ROOT/$1
+        repo="$DEV_ROOT/$1"
     fi
-    xpath $repo/pom.xml "project/version/text()" 2>/dev/null
+    xpath "$repo/pom.xml" "project/version/text()" 2>/dev/null
     echo
 }
 
 # Opens the <repo> (or CWD) on GitHub in your browser
 github() {
     if [ -z "$1" ] || [ "$1" == "." ]; then
-        repo=$(basename $PWD)
+        repo="."
     else
-        repo=$1
+        repo="$DEV_ROOT/$1"
     fi
-    open "https://github.com/puppetlabs/$repo"
+    url=$(git -C "$repo" remote get-url origin)
+    case $url in
+        http*) ;;
+        git*)
+            # Convert git@github.com:org/repo into https://github.com/org/repo
+            url=$(echo "$url" | sed 's/:/\//g' | sed 's/git@/https:\/\//g')
+            ;;
+        *)
+            echo "Unknown URL" >&2
+            return 1
+            ;;
+    esac
+    open "$url"
 }
