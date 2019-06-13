@@ -7,7 +7,7 @@ function symlink {
 
 function maybe_symlink_file {
     echo -n "  Backup & replace, Replace, View, Skip, Abort? (b/r/v/s/a) "
-    read answer
+    read -r answer
     case $answer in
         b|B) mv "$2" "$2.bak"
              symlink "$1" "$2"
@@ -31,7 +31,7 @@ function maybe_symlink_file {
 
 function maybe_symlink_directory {
     echo -n "  Backup & replace, Replace, View, Skip, Abort? (b/r/v/s/a) "
-    read answer
+    read -r answer
     case $answer in
         b|B) mv "$2" "$2.bak"
              symlink "$1" "$2"
@@ -55,7 +55,7 @@ function maybe_symlink_directory {
 
 function maybe_symlink_symlink {
     echo -n "  Replace, View, Skip, Abort? (r/v/s/a) "
-    read answer
+    read -r answer
     case $answer in
         r|R) rm "$2"
              symlink "$1" "$2"
@@ -76,7 +76,7 @@ function maybe_symlink_symlink {
 
 function maybe_symlink {
     echo -n "Link '$1' to '$2'? (y/n) "
-    read answer
+    read -r answer
     case $answer in
         y) if [ -h "$2" ]; then
                echo "'$2' is already a SYMLINK."
@@ -102,7 +102,7 @@ function maybe_symlink {
 }
 
 function link_dotfile {
-    maybe_symlink "$PWD/$1" "$HOME/.$(basename $1)"
+    maybe_symlink "$PWD/$1" "$HOME/.$(basename "$1")"
 }
 
 link_dotfile bash/bash_profile
@@ -115,8 +115,8 @@ link_dotfile zsh/zshrc
 link_dotfile git/gitconfig
 link_dotfile git/gitignore
 case $(uname -s) in
-    Linux) maybe_symlink $PWD/git/gitconfig.linux $HOME/.gitconfig.os ;;
-    Darwin) maybe_symlink $PWD/git/gitconfig.macos $HOME/.gitconfig.os ;;
+    Linux) maybe_symlink "$PWD/git/gitconfig.linux" "$HOME/.gitconfig.os" ;;
+    Darwin) maybe_symlink "$PWD/git/gitconfig.macos" "$HOME/.gitconfig.os" ;;
     *) echo "Unknown OS; skipping .gitconfig.os" ;;
 esac
 link_dotfile vim/vimrc
@@ -125,5 +125,5 @@ link_dotfile emacs/spacemacs
 link_dotfile misc/gemfile
 link_dotfile misc/hushlogin
 
-maybe_symlink $PWD/bin $HOME/bin
-maybe_symlink $PWD/emacs/doom.d $HOME/.doom.d
+maybe_symlink "$PWD/bin" "$HOME/bin"
+maybe_symlink "$PWD/emacs/doom.d" "$HOME/.doom.d"
