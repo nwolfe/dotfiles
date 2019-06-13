@@ -3,7 +3,7 @@
 source $DOTFILES/utils/log.sh
 
 {
-    cd ~/.emacs.d/
+    cd $EMACSDIR || return
 
     echo "> UPGRADE"
     yes | bin/doom upgrade
