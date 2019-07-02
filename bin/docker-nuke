@@ -2,7 +2,5 @@
 
 set -x
 
-yes | docker container prune
+yes | docker system prune
 yes | docker volume prune
-yes | docker network prune
-yes | docker image prune
