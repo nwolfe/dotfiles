@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# Optionally remove local/* images
+if [ "$1" = "--local" ] || [ "$1" = "-l" ]; then
+    images=$(docker images -q local/*)
+    if [ -n "$images" ]; then
+        set -x
+        docker rmi -f $images
+        set +x
+    fi
+fi
+
 set -x
 
 yes | docker system prune
