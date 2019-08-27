@@ -8,18 +8,10 @@ source $DOTFILES/utils/log.sh
     echo "> UPGRADE"
     yes | bin/doom upgrade
 
-    echo "> UPDATE"
-    yes | bin/doom update
-
-    echo "> ENV REFRESH"
-    bin/doom env refresh
-
-    echo "> REFRESH"
-    yes | bin/doom refresh
-
     echo "> COMPILE"
     yes | bin/doom compile
 
     echo "> DOCTOR"
     bin/doom doctor
+
 } 2>&1 | log $0
