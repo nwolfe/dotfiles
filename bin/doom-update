@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
-source $DOTFILES/utils/log.sh
+if pgrep -q Emacs; then
+    echo "Error: Emacs currently running, please close before updating"
+    exit 1
+fi
+
+source "$DOTFILES/utils/log.sh"
 
 {
-    cd $EMACSDIR || return
+    cd "$EMACSDIR" || return
 
     echo "> UPGRADE"
     yes | bin/doom upgrade
@@ -14,4 +19,4 @@ source $DOTFILES/utils/log.sh
     echo "> DOCTOR"
     bin/doom doctor
 
-} 2>&1 | log $0
+} 2>&1 | log "$0"
