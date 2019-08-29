@@ -5,18 +5,48 @@ if pgrep -q Emacs; then
     exit 1
 fi
 
+cd "$EMACSDIR" || return
+
+# shellcheck source=/Users/nwolfe/.dotfiles/utils/log.sh
 source "$DOTFILES/utils/log.sh"
+# shellcheck source=/Users/nwolfe/.dotfiles/utils/line.sh
+source "$DOTFILES/utils/line.sh"
+
+msg() {
+    line -
+    echo → "$@"
+}
 
 {
-    cd "$EMACSDIR" || return
+    # Check if we need to run one-time setup first
+    if [ ! -d "$EMACSDIR/.local" ]; then
+        msg REFRESH
+        bin/doom refresh
+        # executes:
+        # - autoremove
+        # - install
+        # - autoloads
+        # - recompile
+    fi
 
-    echo "> UPGRADE"
+    # Refresh ENV variables written to .local/env
+    msg ENV
+    bin/doom env
+
+    # Update Doom and elisp packages
+    msg UPGRADE
     yes | bin/doom upgrade
+    # executes:
+    # - doom clean
+    # - doom refresh
+    # - doom update
 
-    echo "> COMPILE"
-    yes | bin/doom compile
+    # Compile everything for speed
+    msg COMPILE
+    bin/doom -y compile
 
-    echo "> DOCTOR"
+    # Verify system/environment is okay
+    msg DOCTOR
     bin/doom doctor
 
 } 2>&1 | log "$0"
