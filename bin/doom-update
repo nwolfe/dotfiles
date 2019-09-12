@@ -35,7 +35,7 @@ msg() {
 
     # Update Doom and elisp packages
     msg UPGRADE
-    yes | bin/doom upgrade
+    bin/doom -y upgrade
     # executes:
     # - doom clean
     # - doom refresh
