@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#
+# Generates the projectile.projects file that contains all my
+# "projects" (i.e. git repos).
+#
+# This is a convenience; normally this file is populated by
+# projectile when you navigate to a file in that project.
+#
+# Useful when you blow away your .emacs.d/.local directory,
+# just run this afterwards to restore all your known projects.
+#
+# The format for the file is: ("path1" "path2" ...)
+
+# Note path may be specific to Doom Emacs
+_projects_file="$EMACSDIR"/.local/cache/projectile.projects
+
+write() {
+    # Use `pwd` to get the fully-expanded path, and then
+    # replace "/Users/nwolfe/" with "~/" for brevity.
+    cd "$1" || return
+    _path="$(pwd | sed 's/^\/Users\/nwolfe\//~\//g')"
+    echo -n "\"$_path\" " >> "$_projects_file"
+}
+
+# Begin list
+echo -n "(" > "$_projects_file"
+
+# Include special well-known projects
+write ~/.dotfiles/
+write ~/.emacs.d/
+
+# Include all git repos under $DEV_ROOT
+for project in "$DEV_ROOT"/*; do
+    cd "$project" || return
+    if [ -d .git ]; then
+        write "$project"
+    fi
+done
+
+# End list
+echo -n ")" >> "$_projects_file"
+
+# Show our work
+cat "$_projects_file"
+echo
