@@ -11,6 +11,7 @@ brew update
 
 # Upgrade any already-installed formulae
 brew upgrade
+brew cask upgrade
 
 # Shell -- install Bash 4 and set it as default shell
 brew install bash
