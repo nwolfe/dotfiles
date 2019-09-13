@@ -15,11 +15,22 @@
 _projects_file="$EMACSDIR"/.local/cache/projectile.projects
 
 write() {
-    # Use `pwd` to get the fully-expanded path, and then
-    # replace "/Users/nwolfe/" with "~/" for brevity.
+    # Start with the full path and apply changes to match
+    # projectile's behavior and prevent duplicate entries
     cd "$1" || return
-    _path="$(pwd | sed 's/^\/Users\/nwolfe\//~\//g')"
-    echo -n "\"$_path\" " >> "$_projects_file"
+    _path="$(pwd)"
+
+    # Replace "/Users/nwolfe/" with "~/"
+    _path="$(echo "$_path" | sed 's/^\/Users\/nwolfe\//~\//g')"
+
+    # Append trailing "/"
+    _path="${_path}/"
+
+    # Wrap in double quotes
+    _path="\"$_path\""
+
+    # Write with trailing space and no newline
+    echo -n "$_path " >> "$_projects_file"
 }
 
 # Begin list
