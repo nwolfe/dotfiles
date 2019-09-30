@@ -39,6 +39,7 @@ echo -n "(" > "$_projects_file"
 # Include special well-known projects
 write ~/.dotfiles/
 write ~/.emacs.d/
+write ~/Documents/org/notes
 
 # Include all git repos under $DEV_ROOT
 for project in "$DEV_ROOT"/*; do
