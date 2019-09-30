@@ -27,6 +27,10 @@ msg() {
         # - install
         # - autoloads
         # - recompile
+
+        # Recreate known projects for convenience
+        msg PROJECT SYNC
+        doom-project-sync
     fi
 
     # Refresh ENV variables written to .local/env
