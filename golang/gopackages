@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# Tracks installed go packages via go get.
+#
+# Source this file to install/update packages.
+
+set -x
+
+# Tooling dependencies
+go get -u github.com/motemen/gore/cmd/gore
+go get -u github.com/mdempsky/gocode
+go get -u github.com/rogpeppe/godef
+go get -u golang.org/x/tools/cmd/godoc
+go get -u golang.org/x/tools/cmd/goimports
+go get -u golang.org/x/tools/cmd/gorename
+go get -u golang.org/x/tools/cmd/guru
+
+# Libraries
+go get -u github.com/spf13/cobra/cobra
