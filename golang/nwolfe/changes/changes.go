@@ -16,6 +16,11 @@ var cmd = &cobra.Command{
 	},
 }
 
+var (
+	Short bool
+	Paths bool
+)
+
 func printChanges() error {
 	repos, err := utils.GetRepos()
 	if err != nil {
@@ -31,11 +36,24 @@ func printChanges() error {
 			if err != nil {
 				return err
 			}
-			fmt.Printf("%s (%s)\n", repo.Name, branch)
-			fmt.Println(status)
+			id := repo.Name
+			if Paths {
+				id = repo.Path
+			}
+			if Short {
+				fmt.Println(id)
+			} else {
+				fmt.Printf("%s (%s)\n", id, branch)
+				fmt.Println(status)
+			}
 		}
 	}
 	return nil
+}
+
+func init() {
+	cmd.Flags().BoolVarP(&Short, "short", "", false, "print only repo name")
+	cmd.Flags().BoolVarP(&Paths, "paths", "", false, "print repo paths instead of names")
 }
 
 func main() {
