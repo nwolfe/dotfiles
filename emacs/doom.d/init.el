@@ -46,6 +46,7 @@
        :editor
        (evil +everywhere)    ; come to the dark side, we have cookies
        ;;file-templates      ; auto-snippets for empty files
+       ;;god                 ; run Emacs commands without modifier keys
        ;;fold                ; (nigh) universal code folding
        ;;(format +onsave)    ; automated prettiness
        ;;lispy               ; vim for lisp, for people who don't like vim
@@ -126,10 +127,11 @@
        ;;nix                 ; I hereby declare "nix geht mehr!"
        ;;ocaml               ; an objective camel
        org                   ; organize your plain life in plain text
-       ;; +dragndrop         ; file drag & drop support
-       ;; +ipython           ; ipython support for babel
-       ;; +pandoc            ; pandoc integration into org's exporter
-       ;; +present)          ; using Emacs for presentations
+       ;; +dragndrop         ; drag & drop files/images into org buffers
+       ;; +hugo              ; use Emacs for hugo blogging
+       ;; +ipython           ; ipython/jupyter support for babel
+       ;; +pandoc            ; export-with-pandoc support
+       ;; +present)          ; using org-mode for presentations
        ;;perl                ; write code no one else can comprehend
        ;;php                 ; perl's insecure younger brother
        ;;plantuml            ; diagrams for confusing people more
@@ -147,7 +149,6 @@
        ;;swift               ; who asked for emoji variables?
        ;;terra               ; earth and moon in alignment for performance.
        ;;web                 ; the tubes
-       ;;vala                ; GObjective-C
 
        :email
        ;;(mu4e +gmail)       ; WIP
