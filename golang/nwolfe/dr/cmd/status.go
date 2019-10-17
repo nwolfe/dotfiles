@@ -21,6 +21,11 @@ func init() {
 }
 
 func printStatus() error {
+	config, err := loadConfiguration()
+	if err != nil {
+		return err
+	}
+
 	repos, err := utils.GetRepos()
 	if err != nil {
 		return err
@@ -30,6 +35,9 @@ func printStatus() error {
 	fmt.Fprintln(w, "REPOSITORY\tBRANCH\tSTATUS\tHEAD")
 
 	for _, repo := range repos {
+		if config.isIgnored(&repo) {
+			continue
+		}
 		repository := repo.Name
 		branch := getBranch(&repo)
 		diff := getDiff(&repo)

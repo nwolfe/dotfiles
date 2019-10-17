@@ -2,11 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
-	"path/filepath"
 
 	"github.com/spf13/cobra"
-	"gopkg.in/yaml.v3"
 	"nwolfe/utils"
 )
 
@@ -19,56 +16,6 @@ func init() {
 		},
 	}
 	rootCmd.AddCommand(latestCmd)
-
-	var configCmd = &cobra.Command{
-		Use:   "config",
-		Short: "Print configuration file",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return printConfig()
-		},
-	}
-	latestCmd.AddCommand(configCmd)
-}
-
-type configuration struct {
-	Ignored []string          `yaml:"ignored"`
-	Targets map[string]string `yaml:"targets"`
-}
-
-func (config configuration) isIgnored(repo *utils.Repo) bool {
-	for _, ignored := range config.Ignored {
-		if repo.Name == ignored {
-			return true
-		}
-	}
-	return false
-}
-
-func configurationFile() (string, error) {
-	devroot, err := utils.DevRoot()
-	if err != nil {
-		return "", err
-	}
-	return filepath.Join(devroot, "configs", "devroot", "latest.yaml"), nil
-}
-
-func loadConfiguration() (*configuration, error) {
-	configFile, err := configurationFile()
-	if err != nil {
-		return nil, err
-	}
-
-	bytes, err := ioutil.ReadFile(configFile)
-	if err != nil {
-		return nil, err
-	}
-
-	var config configuration
-	if err := yaml.Unmarshal(bytes, &config); err != nil {
-		return nil, err
-	}
-
-	return &config, nil
 }
 
 func pullLatest() error {
@@ -87,7 +34,7 @@ func pullLatest() error {
 			continue
 		}
 
-		targetBranch, ok := config.Targets[repo.Name]
+		targetBranch, ok := config.Latest.Targets[repo.Name]
 		if ok {
 			fmt.Printf("%s => %s\n", repo.Name, targetBranch)
 			out, err := updateRepo(&repo, targetBranch)
@@ -126,17 +73,4 @@ func updateRepo(repo *utils.Repo, targetBranch string) (string, error) {
 	// }
 
 	return out, nil
-}
-
-func printConfig() error {
-	config, err := loadConfiguration()
-	if err != nil {
-		return err
-	}
-	bytes, err := yaml.Marshal(config)
-	if err != nil {
-		return err
-	}
-	fmt.Println(string(bytes))
-	return nil
 }
