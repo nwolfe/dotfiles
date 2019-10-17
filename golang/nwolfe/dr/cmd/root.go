@@ -19,11 +19,14 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
+// Command-wide configuration. Global values are at the
+// top level, and subcommand-specific configuration is
+// under a section named after the subcommand.
 type configuration struct {
 	Ignored []string `yaml:"ignored"`
-	Latest  struct {
+	Pull struct {
 		Targets map[string]string `yaml:"targets"`
-	} `yaml:"latest"`
+	} `yaml:"pull"`
 }
 
 func (config configuration) isIgnored(repo *utils.Repo) bool {

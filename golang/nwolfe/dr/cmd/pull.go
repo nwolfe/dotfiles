@@ -8,14 +8,14 @@ import (
 )
 
 func init() {
-	var latestCmd = &cobra.Command{
-		Use:   "latest",
+	var pullCmd = &cobra.Command{
+		Use:   "pull",
 		Short: "Pull down latest changes for each repository",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return pullLatest()
 		},
 	}
-	rootCmd.AddCommand(latestCmd)
+	rootCmd.AddCommand(pullCmd)
 }
 
 func pullLatest() error {
@@ -34,7 +34,7 @@ func pullLatest() error {
 			continue
 		}
 
-		targetBranch, ok := config.Latest.Targets[repo.Name]
+		targetBranch, ok := config.Pull.Targets[repo.Name]
 		if ok {
 			fmt.Printf("%s => %s\n", repo.Name, targetBranch)
 			out, err := updateRepo(&repo, targetBranch)
