@@ -36,3 +36,11 @@ func (repo Repo) HeadOverview() (string, error) {
 		"log", "-1", "--color", "--abbrev=7", "--date=relative",
 		"--pretty=format:%C(bold white)%h%Creset %s %C(green)(%cr)%Creset")
 }
+
+func (repo Repo) Checkout(branch string) (string, error) {
+	return repo.Git("checkout", branch)
+}
+
+func (repo Repo) Pull() (string, error) {
+	return repo.Git("pull")
+}

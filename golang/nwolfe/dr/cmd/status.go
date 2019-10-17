@@ -12,7 +12,7 @@ import (
 func init() {
 	var statusCmd = &cobra.Command{
 		Use:   "status",
-		Short: "Status overview of each repository.",
+		Short: "Status overview of each repository",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return printStatus()
 		},
