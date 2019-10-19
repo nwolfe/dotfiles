@@ -109,6 +109,7 @@ link_dotfile bash/bash_profile
 link_dotfile bash/bashrc
 link_dotfile bash/bash_aliases
 link_dotfile bash/bash_functions
+link_dotfile bash/bash_completion
 link_dotfile bash/inputrc
 link_dotfile zsh/zshenv
 link_dotfile zsh/zshrc
