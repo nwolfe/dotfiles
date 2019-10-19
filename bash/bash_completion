@@ -51,3 +51,21 @@ _checkout_package_completion() {
 }
 
 complete -F _checkout_package_completion checkout-package.py
+
+_get_dr_subcommands() {
+    # Find subcommands from source files.
+    # Skip the root.go file because it's not actually a subcommand.
+    find "$DOTFILES"/golang/nwolfe/dr/cmd -type f ! -name "root.go" -exec basename {} .go \;
+}
+
+_dr_completion() {
+    # Prevents [tab][tab]... from repeatedly adding the completion
+    if [ "${#COMP_WORDS[@]}" != "2" ]; then
+        return
+    fi
+
+    options=$(_get_dr_subcommands)
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
+}
+
+complete -F _dr_completion dr
