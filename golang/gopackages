@@ -14,6 +14,9 @@ go get -u golang.org/x/tools/cmd/godoc
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/cmd/gorename
 go get -u golang.org/x/tools/cmd/guru
+go get -u golang.org/x/lint/golint
 
 # Libraries
+# Consider moving these into application-specific
+# package management files like godep
 go get -u github.com/spf13/cobra/cobra
