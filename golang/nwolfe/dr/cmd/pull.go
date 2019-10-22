@@ -1,10 +1,13 @@
 package cmd
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 	"nwolfe/utils"
+	"strings"
 )
 
 func init() {
@@ -19,6 +22,15 @@ func init() {
 }
 
 func pullLatest() error {
+	ok, err := promptConfirm()
+	if err != nil {
+		return err
+	}
+	if !ok {
+		return nil
+	}
+	fmt.Println("")
+
 	config, err := loadConfiguration()
 	if err != nil {
 		return err
@@ -38,7 +50,9 @@ func pullLatest() error {
 		if ok {
 			fmt.Printf("%s => %s\n", repo.Name, targetBranch)
 			out, err := updateRepo(&repo, targetBranch)
-			fmt.Println(out)
+			if out != "" {
+				fmt.Println(out)
+			}
 			if err != nil {
 				fmt.Println(err)
 				fmt.Println("")
@@ -67,10 +81,12 @@ func updateRepo(repo *utils.Repo, targetBranch string) (string, error) {
 		return out, err
 	}
 
-	// out, err = repo.BranchDelete(currentBranch)
-	// if err != nil {
-	// 	return out, err
-	// }
-
 	return out, nil
+}
+
+func promptConfirm() (bool, error) {
+	fmt.Print("Are you sure? [y/n] ")
+	r := bufio.NewReader(os.Stdin)
+	s, err := r.ReadString('\n')
+	return strings.Compare(s, "y") == 1, err
 }
