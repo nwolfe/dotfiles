@@ -6,17 +6,19 @@
 
 set -x
 
-# Tooling dependencies
+## Tooling dependencies
+# Most/all of these are dependencies of the doom-emacs golang module
 go get -u github.com/motemen/gore/cmd/gore
 go get -u github.com/mdempsky/gocode
 go get -u github.com/rogpeppe/godef
+go get -u github.com/cweill/gotests/...
 go get -u golang.org/x/tools/cmd/godoc
 go get -u golang.org/x/tools/cmd/goimports
 go get -u golang.org/x/tools/cmd/gorename
 go get -u golang.org/x/tools/cmd/guru
 go get -u golang.org/x/lint/golint
 
-# Libraries
+## Libraries
 # Consider moving these into application-specific
 # package management files like godep
 go get -u github.com/spf13/cobra/cobra
