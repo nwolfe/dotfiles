@@ -1,20 +1,23 @@
 # -*- mode: sh -*-
 
 # Source .seacrest things if they exist
-if [ -d $HOME/.seacrest ]; then
-    source $HOME/.seacrest/shell/sources/env
+if [ -d "$HOME"/.seacrest ]; then
+    # shellcheck source=/Users/nwolfe/.seacrest/shell/sources/env
+    source "$HOME"/.seacrest/shell/sources/env
 fi
 
 # Source .bashrc if it exists
-if [ -f $HOME/.bashrc ]; then
-    source $HOME/.bashrc
+if [ -f "$HOME"/.bashrc ]; then
+    # shellcheck source=/Users/nwolfe/.bashrc
+    source "$HOME"/.bashrc
 fi
 
 export DOTFILES=$HOME/.dotfiles
 export EDITOR=vim
 export VISUAL=$EDITOR
 export DEV_ROOT=$HOME/ws/puppet
-export JAVA_HOME=$(/usr/libexec/java_home)
+JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME
 export EMACSDIR=$HOME/.emacs.d/
 export GOPATH=$HOME/ws/go
 export GOBIN=$GOPATH/bin
