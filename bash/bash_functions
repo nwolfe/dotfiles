@@ -20,25 +20,3 @@ pomv() {
     xpath "$repo/pom.xml" "project/version/text()" 2>/dev/null
     echo
 }
-
-# Opens the <repo> (or CWD) on GitHub in your browser
-github() {
-    if [ -z "$1" ] || [ "$1" == "." ]; then
-        repo="."
-    else
-        repo="$DEV_ROOT/$1"
-    fi
-    url=$(git -C "$repo" remote get-url origin)
-    case $url in
-        http*) ;;
-        git*)
-            # Convert git@github.com:org/repo into https://github.com/org/repo
-            url=$(echo "$url" | sed 's/:/\//g' | sed 's/git@/https:\/\//g')
-            ;;
-        *)
-            echo "Unknown URL" >&2
-            return 1
-            ;;
-    esac
-    open "$url"
-}

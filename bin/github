@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# Opens the <repo> (or CWD) on GitHub in your browser
+
+# shellcheck source=/Users/nwolfe/.dotfiles/utils/debug.sh
+source "$DOTFILES"/utils/debug.sh && debug
+
+if [ -z "$1" ] || [ "$1" == "." ]; then
+    repo="."
+else
+    repo="$DEV_ROOT/$1"
+fi
+
+# Convert git@github.com:org/repo.git into https://github.com/org/repo
+urlify() {
+    url=$(echo "$1" | sed 's/:/\//g' | sed 's/git@/https:\/\//g')
+    echo "${url%.git}"
+}
+
+url=$(git -C "$repo" remote get-url origin)
+case $url in
+    http*) ;;
+    git*)
+        url=$(urlify "$url")
+        ;;
+    ssh*)
+        url=${url#"ssh://"}
+        url=$(urlify "$url")
+        ;;
+    *)
+        echo "Unknown URL" >&2
+        exit 1
+        ;;
+esac
+
+open "$url"
