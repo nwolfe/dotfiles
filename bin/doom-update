@@ -46,8 +46,10 @@ msg() {
     # - doom update
 
     # Compile everything for speed
+    # <2019-10-31 Thu>: Temporarily compile only core
+    # because full compilation has been buggy recently
     msg COMPILE
-    bin/doom -y compile
+    bin/doom -y compile core
 
     # Verify system/environment is okay
     msg DOCTOR
