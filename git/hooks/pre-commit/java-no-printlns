@@ -3,7 +3,7 @@
 # Check for System.[out,err].print* calls.
 
 output=$(git diff --exit-code --name-only --staged --diff-filter=d \
-    | grep "$*.java$" | xargs grep -n "System\.out\|err\.print.*")
+    | grep "$*.java$" | xargs grep -nH "System\.out\|err\.print.*")
 
 if [ -z "$output" ]; then
     exit 0

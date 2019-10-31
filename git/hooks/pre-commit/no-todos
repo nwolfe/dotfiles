@@ -3,7 +3,7 @@
 # Check for "TODO(nwolfe)" comments.
 
 output=$(git diff --exit-code --name-only --staged --diff-filter=d \
-    | xargs grep -n ".*TODO(nwolfe).*")
+    | xargs grep -nH ".*TODO(nwolfe).*")
 
 if [ -z "$output" ]; then
     exit 0
