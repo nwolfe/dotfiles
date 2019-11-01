@@ -11,10 +11,21 @@ cd "$EMACSDIR" || return
 source "$DOTFILES/utils/log.sh"
 # shellcheck source=/Users/nwolfe/.dotfiles/utils/line.sh
 source "$DOTFILES/utils/line.sh"
+# shellcheck source=/Users/nwolfe/.dotfiles/utils/git.sh
+source "$DOTFILES/utils/git.sh"
 
 msg() {
     line -
     echo → "$@"
+}
+
+view_changes() {
+    old=$(echo "$out" | grep "^  Old revision: .*$" | cut -d' ' -f5)
+    new=$(echo "$out" | grep "^  New revision: .*$" | cut -d' ' -f5)
+    if [ -n "$old" ] && [ -n "$new" ]; then
+        url=$(git_web_url .)
+        [ -n "$url" ] && open "$url/compare/$old...$new"
+    fi
 }
 
 {
@@ -39,11 +50,13 @@ msg() {
 
     # Update Doom and elisp packages
     msg UPGRADE
-    bin/doom -y upgrade
+    out="$(bin/doom -y upgrade)"
     # executes:
     # - doom clean
     # - doom refresh
     # - doom update
+    echo "$out"
+    view_changes "$out"
 
     # Compile everything for speed
     # <2019-10-31 Thu>: Temporarily compile only core
