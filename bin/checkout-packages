@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#
+# Attempt to checkout every dependency in the pom.xml file.
+#
+# A summary of failures is printed at the end, but it may be
+# useful to hide stdout when running so you see only the failures.
+
+if [ ! -f pom.xml ]; then
+    echo "ERROR: No pom.xml found" >&2
+    exit 1
+fi
+
+deps() {
+    # XPath query:
+    # - Returns artifactId values
+    # - Only considers dependencies under root.project.dependencies
+    # - Only considers dependencies with groupId that starts with com.distelli or com.puppet
+    # - Assumes the versionId node is literally below the groupId node
+    query="/project/dependencies/dependency/groupId[starts-with(text(), 'com.puppet') or starts-with(text(), 'com.distelli')]/following-sibling::artifactId/text()"
+    # Strip off all noise from the output, and sort the dependencies alphabetically (ignoring case)
+    2>&1 xpath pom.xml "$query" | tail -n+3 | sed 's/-- NODE --//g' | sort --ignore-case
+}
+
+# Accumulates success/failures for summary printing at the end
+checkouts=""
+failures=""
+
+for artifact in $(deps); do
+    # Determine repo name from artifactId
+    case $artifact in
+        *-api)
+            repo="${artifact%%-api}"
+            ;;
+        *-impl)
+            repo="${artifact%%-impl}"
+            ;;
+        *)
+            repo="$artifact"
+            ;;
+    esac
+
+    # Build title for display purposes
+    title="→ $repo"
+    if [ "$repo" != "$artifact" ]; then
+        title="$title ($artifact)"
+    fi
+
+    # Skip the repo if we already have it locally
+    if [ -d "$DEV_ROOT/$repo" ]; then
+        echo "$title"
+        echo "✔ Already exists"
+        echo
+        continue
+    fi
+
+    # Attempt checkout if we don't already have the repo
+    out="$(checkout-package.py -n "$repo" 2>&1)"
+    if [ $? == 0 ]; then
+        checkouts="$checkouts $artifact"
+        echo "$title"
+        echo "$out"
+        echo "✔ Success!"
+        echo
+    else
+        failures="$failures $artifact"
+        {
+            echo "$title"
+            echo "$out"
+            printf '\u274c\n' # Heavy red crossmark
+            echo
+        } >&2
+    fi
+done
+
+# Print summary
+if [ -n "$checkouts" ]; then
+    echo "Checkouts:"
+    for c in $checkouts; do
+        printf "\u2714 %s\n" "$c" # Heavy checkmark
+    done
+fi
+
+if [ -n "$failures" ]; then
+    echo "Failures:"
+    for f in $failures; do
+        printf "\u2718 %s\n" "$f" # Heavy crossmark
+    done
+fi
