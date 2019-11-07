@@ -2,4 +2,7 @@
 
 (defun ncw/idea-open ()
   (interactive)
-  (async-shell-command (concat "idea-open " (buffer-file-name))))
+  (async-shell-command
+   (format "idea-open %s %s"
+           (buffer-file-name)
+           (format-mode-line "%l"))))

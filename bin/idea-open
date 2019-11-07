@@ -6,6 +6,7 @@
 source "$DOTFILES/utils/debug.sh" && debug
 
 file="$1"
+line="$2"
 exe="/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea"
 
 # Ensure absolute path
@@ -63,7 +64,8 @@ if [[ "$file" =~ $DEV_ROOT ]]; then
     project="$DEV_ROOT$project"
 fi
 
-# Only consider directories with a pom.xml or .idea/
+# First open the Project in a new window if we found one.
+# Only consider directories with a pom.xml or .idea/.
 # NOTE may want to look for the other IDEA files here too
 if [ -n "$project" ]; then
     if [ -f "$project/pom.xml" ] || [ -d "$project/.idea" ]; then
@@ -71,4 +73,9 @@ if [ -n "$project" ]; then
     fi
 fi
 
-eval "$exe" "$file"
+# Open the file at the specified line number if provided
+if [ -n "$line" ]; then
+    eval "$exe" --line "$line" "$file"
+else
+    eval "$exe" "$file"
+fi
