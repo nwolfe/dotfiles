@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+#
+# Opens the specified file or folder in IntelliJ IDEA.
+
+# shellcheck source=/Users/nwolfe/.dotfiles/utils/debug.sh
+source "$DOTFILES/utils/debug.sh" && debug
+
+file="$1"
+exe="/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea"
+
+# Ensure absolute path
+case "$file" in
+    /*)
+        # Already absolute; nothing to do
+        ;;
+    *)
+        file="$PWD/$file"
+        ;;
+esac
+
+# Determine root project directory so we can first open
+# the proper Project in IDEA before navigating to the
+# desired file.
+#
+# Opening the proper Project allows for code navigation,
+# jumping to definition, etc. to work properly. Otherwise
+# the file will be opened more like a raw text file in
+# whatever is the currently opened Project.
+#
+# The challenge is finding the ROOT project directory
+# and not a subdirectory/submodule that might look like
+# a root because it has a pom file, .idea directory, etc.
+#
+# Assume the project is under $DEV_ROOT and then extract
+# from the filepath string the directory that is immediately
+# under the $DEV_ROOT directory.
+#
+# Have: /Users/me/ws/devroot/PROJECT/dir/.../foo.xml
+# Want: /Users/me/ws/devroot/PROJECT
+project=
+if [[ "$file" =~ $DEV_ROOT ]]; then
+    # Starting with an absolute path like:
+    # /Users/me/ws/devroot/PROJECT/dir/foo.xml
+   
+    # Strip off the leading $DEV_ROOT string
+    # PROJECT/dir/foo.xml
+    project="${file#$DEV_ROOT}"
+
+    # Reverse the string so we can use basename to find root dir
+    # lmx.oof/rid/TCEJORP
+    project="$(rev <<< "$project")"
+
+    # Find root (i.e. first) directory in path
+    # TCEJORP
+    project="$(basename "$project")"
+
+    # Turn string back into proper directory name
+    # PROJECT
+    project="$(rev <<< "$project")"
+
+    # Prepend $DEV_ROOT so it's a full path again
+    # /Users/me/ws/devroot/PROJECT
+    project="$DEV_ROOT$project"
+fi
+
+# Only consider directories with a pom.xml or .idea/
+# NOTE may want to look for the other IDEA files here too
+if [ -n "$project" ]; then
+    if [ -f "$project/pom.xml" ] || [ -d "$project/.idea" ]; then
+        eval "$exe" "$project"
+    fi
+fi
+
+eval "$exe" "$file"
