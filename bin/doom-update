@@ -59,10 +59,8 @@ view_changes() {
     view_changes "$out"
 
     # Compile everything for speed
-    # <2019-10-31 Thu>: Temporarily compile only core
-    # because full compilation has been buggy recently
     msg COMPILE
-    bin/doom -y compile core
+    bin/doom -y compile
 
     # Verify system/environment is okay
     msg DOCTOR
