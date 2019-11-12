@@ -19,25 +19,11 @@ msg() {
     echo → "$@"
 }
 
-view_changes() {
-    old=$(echo "$out" | grep "^  Old revision: .*$" | cut -d' ' -f5)
-    new=$(echo "$out" | grep "^  New revision: .*$" | cut -d' ' -f5)
-    if [ -n "$old" ] && [ -n "$new" ]; then
-        url=$(git_web_url .)
-        [ -n "$url" ] && open "$url/compare/$old...$new"
-    fi
-}
-
 {
     # Check if we need to run one-time setup first
     if [ ! -d "$EMACSDIR/.local" ]; then
         msg REFRESH
         bin/doom refresh
-        # executes:
-        # - autoremove
-        # - install
-        # - autoloads
-        # - recompile
 
         # Recreate known projects for convenience
         msg PROJECT SYNC
@@ -50,13 +36,7 @@ view_changes() {
 
     # Update Doom and elisp packages
     msg UPGRADE
-    out="$(bin/doom -y upgrade)"
-    # executes:
-    # - doom clean
-    # - doom refresh
-    # - doom update
-    echo "$out"
-    view_changes "$out"
+    yes | bin/doom upgrade
 
     # Compile everything for speed
     msg COMPILE
