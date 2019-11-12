@@ -8,7 +8,7 @@ fi
 cd "$EMACSDIR" || return
 
 # shellcheck source=/Users/nwolfe/.dotfiles/utils/log.sh
-source "$DOTFILES/utils/log.sh"
+#source "$DOTFILES/utils/log.sh"
 # shellcheck source=/Users/nwolfe/.dotfiles/utils/line.sh
 source "$DOTFILES/utils/line.sh"
 # shellcheck source=/Users/nwolfe/.dotfiles/utils/git.sh
@@ -19,7 +19,7 @@ msg() {
     echo → "$@"
 }
 
-{
+run() {
     # Check if we need to run one-time setup first
     if [ ! -d "$EMACSDIR/.local" ]; then
         msg REFRESH
@@ -45,5 +45,7 @@ msg() {
     # Verify system/environment is okay
     msg DOCTOR
     bin/doom doctor
+}
 
-} 2>&1 | log "$0"
+#run 2>&1 | log "$0"
+run
