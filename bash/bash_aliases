@@ -33,7 +33,7 @@ alias gst='git status'
 # alias emacs-server-kill='emacsclient -e "(spacemacs/save-buffers-kill-emacs)"'
 # alias e='emacs -nw'
 # alias est='emacs -nw -f magit-status'
-alias e=emacsclient
+alias e='emacsclient --no-wait'
 
 # Miscellaneous
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
