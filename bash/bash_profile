@@ -27,6 +27,8 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 
 # Overwrite system Ruby with Homebrew version
 export PATH=/usr/local/opt/ruby/bin:$PATH
+# System-wide gems installed via `gem install`. See `brew info ruby`.
+export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
 # Homebrew recommended
 export PATH=/usr/local/sbin:$PATH
 # Personal scripts from dotfiles
