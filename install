@@ -125,6 +125,7 @@ link_dotfile vim/gvimrc
 link_dotfile emacs/spacemacs
 link_dotfile misc/gemfile
 link_dotfile misc/hushlogin
+link_dotfile misc/vmfloaty.yml
 
 maybe_symlink "$PWD/bin" "$HOME/bin"
 maybe_symlink "$PWD/emacs/doom.d" "$HOME/.doom.d"
