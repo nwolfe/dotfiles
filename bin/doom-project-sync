@@ -21,7 +21,7 @@ write() {
     _path="$(pwd)"
 
     # Replace "/Users/nwolfe/" with "~/"
-    _path="$(echo "$_path" | sed 's/^\/Users\/nwolfe\//~\//g')"
+    _path="${_path/$HOME/\~}"
 
     # Append trailing "/"
     _path="${_path}/"
