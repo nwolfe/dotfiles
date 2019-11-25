@@ -5,7 +5,7 @@ if pgrep -q Emacs; then
     exit 1
 fi
 
-cd "$EMACSDIR" || return
+DOOM="$EMACSDIR/bin/doom"
 
 # shellcheck source=/Users/nwolfe/.dotfiles/utils/log.sh
 #source "$DOTFILES/utils/log.sh"
@@ -23,7 +23,7 @@ run() {
     # Check if we need to run one-time setup first
     if [ ! -d "$EMACSDIR/.local" ]; then
         msg REFRESH
-        bin/doom refresh
+        $DOOM refresh
 
         # Recreate known projects for convenience
         msg PROJECT SYNC
@@ -31,20 +31,20 @@ run() {
     fi
 
     # Refresh ENV variables written to .local/env
-    msg ENV
-    bin/doom env
+    #msg ENV
+    #$DOOM env
 
     # Update Doom and elisp packages
     msg UPGRADE
-    yes | bin/doom upgrade
+    yes | $DOOM upgrade
 
     # Compile everything for speed
     msg COMPILE
-    bin/doom -y compile
+    $DOOM -y compile
 
     # Verify system/environment is okay
     msg DOCTOR
-    bin/doom doctor
+    $DOOM doctor
 }
 
 #run 2>&1 | log "$0"
