@@ -31,8 +31,8 @@ run() {
     fi
 
     # Refresh ENV variables written to .local/env
-    #msg ENV
-    #$DOOM env
+    msg ENV
+    $DOOM env
 
     # Update Doom and elisp packages
     msg UPGRADE
