@@ -25,16 +25,17 @@ run() {
         msg REFRESH
         $DOOM refresh
 
+        # Write ENV variables to .local/env
+        msg ENV
+        $DOOM env
+
         # Recreate known projects for convenience
         msg PROJECT SYNC
         doom-project-sync
     fi
 
-    # Refresh ENV variables written to .local/env
-    msg ENV
-    $DOOM env
-
-    # Update Doom and elisp packages
+    # Update Doom and elisp packages.
+    # Regenerates env file if it exists.
     msg UPGRADE
     yes | $DOOM upgrade
 
