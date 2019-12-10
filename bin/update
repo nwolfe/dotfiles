@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# One script to update them all.
+
+target="${1:-all}"
+
+source "$DOTFILES"/utils/line.sh
+
+header() {
+    line =
+    echo "> $1"
+    line -
+}
+
+if [ "$target" = "doom" ] || [ "$target" = "all" ]; then
+    header "Doom Emacs"
+    "$DOTFILES"/bin/doom-update
+fi
+
+if [ "$target" = "brew" ] || [ "$target" = "all" ]; then
+    header "MacOS Homebrew"
+    "$DOTFILES"/macos/brew
+fi

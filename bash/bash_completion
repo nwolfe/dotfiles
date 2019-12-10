@@ -68,3 +68,15 @@ _dr_completion() {
 }
 
 complete -F _dr_completion dr
+
+_update_completion() {
+    # Prevents [tab][tab]... from repeatedly adding the completion
+    if [ "${#COMP_WORDS[@]}" != "2" ]; then
+        return
+    fi
+
+    options="all doom brew"
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
+}
+
+complete -F _update_completion update
