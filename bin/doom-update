@@ -7,11 +7,7 @@ fi
 
 DOOM="$EMACSDIR/bin/doom"
 
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/log.sh
-#source "$DOTFILES/utils/log.sh"
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/line.sh
 source "$DOTFILES/utils/line.sh"
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/git.sh
 source "$DOTFILES/utils/git.sh"
 
 msg() {
@@ -39,6 +35,10 @@ run() {
     msg UPGRADE
     yes | $DOOM upgrade
 
+    # Cleanup old compiled files, get everything in order...
+    msg REFRESH
+    $DOOM refresh
+
     # Compile everything for speed
     msg COMPILE
     $DOOM -y compile
@@ -48,5 +48,4 @@ run() {
     $DOOM doctor
 }
 
-#run 2>&1 | log "$0"
 run

@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
 # Use in place of `tee` to write to a logfile under $DOTFILES/.local/logs.
+#
+# Usage in a script called foo.sh:
+#
+#   source "$DOTFILES"/utils/log.sh
+#   echo foo | log "$0"
+#
+# Will tee the output to stdout and to the $DOTFILES/.local/logs/foo.sh file.
 
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/line.sh
 source "$DOTFILES/utils/line.sh"
 
 log() {
