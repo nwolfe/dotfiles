@@ -22,7 +22,6 @@ if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
 fi
 
 # Emacs tools/dependencies
-brew install the_silver_searcher
 brew install ripgrep
 brew install gnu-tar
 brew install gnutls
