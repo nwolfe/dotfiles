@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#
+# Removes local files that may be preventing Doom Emacs from
+# upgrading/compiling/etc.
+
+rm -rf "$EMACSDIR"/.local

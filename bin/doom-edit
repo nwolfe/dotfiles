@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# Open Doom Emacs configuration file in non-Emacs editor, because the assumption
+# is that Emacs is being updated at the moment so we need to use something like
+# Vim to edit the file.
+
+if pgrep -q Emacs; then
+    emacsclient --no-wait "$DOTFILES"/emacs/doom.d/init.el
+else
+    vim "$DOTFILES"/emacs/doom.d/init.el
+fi
