@@ -2,13 +2,11 @@
 
 # Source .seacrest things if they exist
 if [ -d "$HOME"/.seacrest ]; then
-    # shellcheck source=/Users/nwolfe/.seacrest/shell/sources/env
     source "$HOME"/.seacrest/shell/sources/env
 fi
 
 # Source .bashrc if it exists
 if [ -f "$HOME"/.bashrc ]; then
-    # shellcheck source=/Users/nwolfe/.bashrc
     source "$HOME"/.bashrc
 fi
 
@@ -21,6 +19,7 @@ export JAVA_HOME
 export EMACSDIR=$HOME/.emacs.d/
 export GOPATH=$HOME/ws/go
 export GOBIN=$GOPATH/bin
+export SHELL_SESSION_HISTORY=0
 
 # Brighten the blue color of directories in ls output
 export LSCOLORS=Exfxcxdxbxegedabagacad
