@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Required by CD4PE tests as they expect bolt to be installed on the local
+# machine by shelling out.
+#
+# Instead of installing bolt directly on my machine, run it in a container.
+#
+# This script will be found by the tests as long as it is on your PATH.
+#
+# Expected arguments from CD4PE BoltManagerImpl:
+# 1  plan
+# 2  run
+# 3  deployments::test
+# 4  --configfile
+# 5  /Users/nwolfe/ws/puppet/PipelinesInfra/target/3210451008771527974/bolt.yaml
+# 6  --format
+# 7  json
+# 8  --params
+# 9  @/Users/nwolfe/ws/puppet/PipelinesInfra/target/3210451008771527974/parameters.json
+
+configDir="$(dirname "$5")"
+docker run --rm --volume "${configDir}":"${configDir}" puppet/puppet-bolt $@
