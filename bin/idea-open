@@ -2,7 +2,6 @@
 #
 # Opens the specified file or folder in IntelliJ IDEA.
 
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/debug.sh
 source "$DOTFILES/utils/debug.sh" && debug
 
 file="$1"

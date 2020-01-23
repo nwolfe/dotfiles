@@ -2,10 +2,8 @@
 #
 # Opens the repo $1 (or CWD) on GitHub in your browser
 
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/debug.sh
 source "$DOTFILES/utils/debug.sh" && debug
 
-# shellcheck source=/Users/nwolfe/.dotfiles/utils/git.sh
 source "$DOTFILES/utils/git.sh"
 
 if [ -z "$1" ] || [ "$1" == "." ]; then
