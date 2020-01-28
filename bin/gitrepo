@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Opens the repo $1 (or CWD) on GitHub in your browser
+# Opens the repo $1 (or CWD) in your browser
 
 source "$DOTFILES/utils/debug.sh" && debug
 
