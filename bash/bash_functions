@@ -20,3 +20,8 @@ pomv() {
     xpath "$repo/pom.xml" "project/version/text()" 2>/dev/null
     echo
 }
+
+cheat() {
+    where="$1"; shift
+    IFS=+ curl "https://cheat.sh/$where $*"
+}
