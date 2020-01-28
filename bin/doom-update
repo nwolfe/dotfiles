@@ -18,8 +18,8 @@ msg() {
 run() {
     # Check if we need to run one-time setup first
     if [ ! -d "$EMACSDIR/.local" ]; then
-        msg REFRESH
-        $DOOM refresh
+        msg SYNC
+        $DOOM sync
 
         # Write ENV variables to .local/env
         msg ENV
@@ -36,8 +36,8 @@ run() {
     yes | $DOOM upgrade
 
     # Cleanup old compiled files, get everything in order...
-    msg REFRESH
-    $DOOM refresh
+    msg SYNC
+    $DOOM sync
 
     # Compile everything for speed
     msg COMPILE
