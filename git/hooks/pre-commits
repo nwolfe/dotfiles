@@ -5,6 +5,22 @@
 # LABEL: pre-commit-composite-file
 EXITCODE=0
 
+# List of fully-qualified scripts to execute as pre-commit hooks.
+hooks=(
 # MARKER
+)
+
+# A hook that passes should have no output. If there is output,
+# echo it and set the exit code to fail, but continue running
+# the remaining hooks.
+for i in "${hooks[@]}"; do
+    out="$($i)"
+    if [ -n "$out" ]; then
+        echo "> $i"
+        echo "$out"
+        echo
+        EXITCODE=1
+    fi
+done
 
 exit $EXITCODE

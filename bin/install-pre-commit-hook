@@ -43,11 +43,7 @@ if grep -q "$newhook" $hookfile; then
     exit 0
 fi
 
-# A hook that passes should have no output.
-# If there is output, echo it and set the exit code to fail the git hook.
-callhook="out=\$($newhook); if [ ! -z \"\$out\" ]; then echo \"\$out\"; echo; EXITCODE=1; fi"
-
 # Add a call to the new hook above the marker line
-gsed -i 's|# MARKER|'"$callhook"'\n&|g' $hookfile
+gsed -i 's|# MARKER|'"$newhook"'\n&|g' $hookfile
 
 echo "Added $newhook to $hookfile"
