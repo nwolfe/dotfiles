@@ -11,7 +11,7 @@ jar=~/Downloads/google-java-format-1.7-all-deps.jar
 # Get paths of changed .java files in previous commit.
 # Ignore files that were deleted.
 changed_java_files=$(git diff HEAD~1 HEAD --name-only --diff-filter=d \
-    | grep "$*.java$")
+    | grep "\.java$")
 
 # Exit early if there's no java files to format
 [ -z "$changed_java_files" ] && exit

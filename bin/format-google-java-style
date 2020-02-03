@@ -24,7 +24,7 @@ fi
 # Get paths of changed .java files in all commits between
 # the current branch and master. Ignore files that were deleted.
 changed_java_files=$(git diff master..HEAD --name-only --diff-filter=d \
-    | grep "^*.java$")
+    | grep "\.java$")
 
 # Exit early if there's no java files to format
 [ -z $changed_java_files ] && exit
