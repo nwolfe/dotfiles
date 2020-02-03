@@ -18,7 +18,6 @@ jar=/tmp/google-java-format-${version}-all-deps.jar
 # Download uberjar into /tmp directory if we don't have it
 if [ ! -f $jar ]; then
     > $jar curl -L https://github.com/google/google-java-format/releases/download/google-java-format-${version}/google-java-format-${version}-all-deps.jar
-    chmod 755 $jar
 fi
 
 # Get paths of changed .java files in all commits between
