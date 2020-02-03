@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#
+# Run the Google Java Format tool over changed .java files.
+#
+# Changed Java files are determined by diff'ing commits on
+# the current branch with master.
+#
+# Adds a commit with all formatting changes.
+#
+# Intended to be run on a development branch, either manually
+# or automatically in a git post-commit or pre-push hook.
+#
+# See https://github.com/google/google-java-format
+
+version=1.7
+jar=/tmp/google-java-format-${version}-all-deps.jar
+
+# Download uberjar into /tmp directory if we don't have it
+if [ ! -f $jar ]; then
+    > $jar curl -L https://github.com/google/google-java-format/releases/download/google-java-format-${version}/google-java-format-${version}-all-deps.jar
+    chmod 755 $jar
+fi
+
+# Get paths of changed .java files in all commits between
+# the current branch and master. Ignore files that were deleted.
+changed_java_files=$(git diff master..HEAD --name-only --diff-filter=d \
+    | grep "^*.java$")
+
+# Exit early if there's no java files to format
+[ -z $changed_java_files ] && exit
+
+# Run formatter and make changes directly to files
+java -jar $jar --replace --set-exit-if-changed $changed_java_files
+
+# Auto-commit formatting changes.
+# Disable all hooks during this commit so we don't recurse
+if [ $? -ne 0 ]; then
+    git add $changed_java_files
+    git -c core.hooksPath= commit --message "(maint) Apply $(basename $jar)"
+fi
