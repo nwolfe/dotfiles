@@ -12,6 +12,13 @@
 #
 # See https://github.com/google/google-java-format
 
+# Exit early if there are any changes to tracked files,
+# as we don't want to mix in our formatting changes
+if ! git diff --quiet || ! git diff --staged --quiet; then
+  2>&1 echo "ERROR: Commit or remove changes first"
+  exit 1
+fi
+
 version=1.7
 jar=/tmp/google-java-format-${version}-all-deps.jar
 
