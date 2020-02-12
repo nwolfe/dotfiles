@@ -5,7 +5,8 @@
 # Changed Java files are determined by diff'ing commits on
 # the current branch with master.
 #
-# Adds a commit with all formatting changes.
+# Adds a commit with all formatting changes. If the flag
+# --no-commit is specified, the files will be left unstaged.
 #
 # Intended to be run on a development branch, either manually
 # or automatically in a git post-commit or pre-push hook.
@@ -38,9 +39,13 @@ changed_java_files=$(git diff master..HEAD --name-only --diff-filter=d \
 # Run formatter and make changes directly to files
 java -jar $jar --replace --set-exit-if-changed $changed_java_files
 
-# Auto-commit formatting changes.
+# Exit if nothing was changed
+[ $? -eq 0 ] && exit
+
+# Don't commit changes if flag is specified
+[ "$1" = "--no-commit" ] && exit
+
+# Commit formatting changes.
 # Disable all hooks during this commit so we don't recurse
-if [ $? -ne 0 ]; then
-    git add $changed_java_files
-    git -c core.hooksPath= commit --message "(maint) Apply $(basename $jar)"
-fi
+git add $changed_java_files
+git -c core.hooksPath= commit --message "(maint) Apply $(basename $jar)"
