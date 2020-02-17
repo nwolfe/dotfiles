@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+#
+# Usage: bhtml2org <file> [<starting folder>]
+#
+# Convert Firefox bookmarks HTML file to Org-Mode.
+#
+# Specify a starting bookmark folder to limit
+# output to only that folder. For instance,
+# if the file is from Firefox, you probably
+# only want the "Bookmarks Toolbar" folder.
+#
+# Input file is expected to be bookmarks file
+# exported from Firefox. It is presumed that
+# the file has bookmark folders and bookmarks,
+# and folders may container other folders.
+#
+# Output file will be a structured Orgmode file
+# with bookmark folders as nested '*' headers and
+# bookmarks as list '-' items with hypertext links.
+
+from html.parser import HTMLParser
+from argparse import ArgumentParser
+
+class Item:
+    def __init__(self):
+        self.name = None
+        self.parent = None
+
+    def put(self, folder):
+        self.parent = folder
+        self._put(folder)
+
+    def _put(self, folder):
+        return
+
+    def visit(self, visitor):
+        visitor.visit(self)
+
+class ItemVisitor:
+    def __init__(self):
+        self.depth = 0
+
+    def visit_bookmark(self, bookmark):
+        return
+
+    def visit_folder(self, folder):
+        return
+
+    def visit(self, item):
+        if isinstance(item, Bookmark):
+            self.visit_bookmark(item)
+        elif isinstance(item, Folder):
+            self.depth += 1
+            self.visit_folder(item)
+            self.depth -= 1
+
+class Bookmark(Item):
+    def __init__(self):
+        Item.__init__(self)
+        self.link = None
+
+    def _put(self, folder):
+        folder.bookmarks.append(self)
+
+class Folder(Item):
+    def __init__(self):
+        Item.__init__(self)
+        self.folders = []
+        self.bookmarks = []
+
+    def _put(self, folder):
+        folder.folders.append(self)
+
+class BookmarkHTMLParser(HTMLParser):
+    def __init__(self, root):
+        HTMLParser.__init__(self)
+        self._folder = False
+        self._bookmark = False
+        self._curr_folder = root
+        self._curr_bookmark = None
+
+    def handle_starttag(self, tag, attrs):
+        self._folder = (tag == "h3")
+        self._bookmark = (tag == "a")
+        if self._folder:
+            folder = Folder()
+            folder.put(self._curr_folder)
+            self._curr_folder = folder
+        elif self._bookmark:
+            bookmark = Bookmark()
+            for k, v in attrs:
+                if k == "href":
+                    bookmark.link = v
+            bookmark.put(self._curr_folder)
+            self._curr_bookmark = bookmark
+
+    def handle_endtag(self, tag):
+        self._folder = False
+        self._bookmark = False
+        if tag == "dl":
+            self._curr_folder = self._curr_folder.parent
+
+    def handle_data(self, data):
+        if self._folder:
+            self._curr_folder.name = data
+        elif self._bookmark:
+            self._curr_bookmark.name = data
+
+class OrgmodePrinter(ItemVisitor):
+    def visit_bookmark(self, bookmark):
+        print("- [[%s][%s]]" % (bookmark.link, bookmark.name))
+
+    def visit_folder(self, folder):
+        print("%s %s" % (self.depth * "*", folder.name))
+        for mark in folder.bookmarks:
+            self.visit(mark)
+        for sub in folder.folders:
+            self.visit(sub)
+
+def main():
+    parser = ArgumentParser(description="Convert Firefox bookmarks HTML file to Org-Mode.")
+    parser.add_argument("file",
+                        help="bookmarks HTML file exported from Firefox")
+    parser.add_argument("-f", "--folder",
+                        required=False,
+                        help="start at this top-level bookmark folder")
+    args = parser.parse_args()
+
+    bookmarks = Folder()
+    bookmarks.name = "Bookmarks"
+
+    html_file = open(args.file, "r")
+    BookmarkHTMLParser(bookmarks).feed(html_file.read())
+
+    printer = OrgmodePrinter()
+    if args.folder:
+        for folder in bookmarks.folders:
+            if folder.name == args.folder:
+                printer.visit(folder)
+    else:
+        printer.visit(bookmarks)
+
+if __name__ == "__main__":
+    main()
