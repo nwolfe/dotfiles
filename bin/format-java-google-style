@@ -3,7 +3,7 @@
 # Run the Google Java Format tool over changed .java files.
 #
 # Changed Java files are determined by diff'ing commits on
-# the current branch with master.
+# the current branch with the upstream branch.
 #
 # Adds a commit with all formatting changes. If the flag
 # --no-commit is specified, the files will be left unstaged.
@@ -29,14 +29,19 @@ if [ ! -f $jar ]; then
 fi
 
 # Get paths of changed .java files in all commits between
-# the current branch and master. Ignore files that were deleted.
-changed_java_files=$(git diff master..HEAD --name-only --diff-filter=d \
+# the current branch and upstream. Ignore files that were deleted.
+upstream=$(git rev-parse --abbrev-ref '@{upstream}')
+changed_java_files=$(git diff "$upstream" HEAD --name-only --diff-filter=d \
     | grep "\.java$")
 
 # Exit early if there's no java files to format
 [ -z "$changed_java_files" ] && exit
 
-# Run formatter and make changes directly to files
+# Run formatter and make changes directly to files.
+#
+# Run from the root project directory since git diff
+# will return filepaths relative to the root directory
+cd "$(git rev-parse --show-toplevel)"
 java -jar $jar --replace --set-exit-if-changed $changed_java_files
 
 # Exit if nothing was changed
