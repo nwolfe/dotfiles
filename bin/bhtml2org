@@ -20,6 +20,7 @@
 
 from html.parser import HTMLParser
 from argparse import ArgumentParser
+from datetime import date
 
 class Item:
     def __init__(self):
@@ -107,11 +108,24 @@ class BookmarkHTMLParser(HTMLParser):
             self._curr_bookmark.name = data
 
 class OrgmodePrinter(ItemVisitor):
+    def __init__(self):
+        ItemVisitor.__init__(self)
+        self._first = True
+
     def visit_bookmark(self, bookmark):
         print("- [[%s][%s]]" % (bookmark.link, bookmark.name))
 
     def visit_folder(self, folder):
-        print("%s %s" % (self.depth * "*", folder.name))
+        # Prefer TITLE over root heading
+        if self._first:
+            self._first = False
+            self.depth -= 1
+            print("#+TITLE: Bookmarks")
+            print("#+DATE:  %s" % date.today())
+            print("#+STARTUP: overview")
+            print()
+        else:
+            print("%s %s" % (self.depth * "*", folder.name))
         for mark in folder.bookmarks:
             self.visit(mark)
         for sub in folder.folders:
