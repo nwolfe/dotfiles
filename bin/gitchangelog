@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# Generates output suitable for pasting into GitHub Pull Request
+# Descriptions, based on the new commits in the current branch.
+#
+# Each commit will be seperated by a '---' linebreak, and the
+# commit title and body will be printed.
+#
+# Intended to be ran when opening a pull request on GitHub and
+# filling out the description.
+#
+# Example output:
+#
+# (JIRA-1234) Commit Title
+#
+# Commit body
+#
+# ----
+# (JIRA-5678) Other Commit
+#
+# More body
+
+# Determine branch to compare against; default to master
+upstream=$(git rev-parse --abbrev-ref '@{upstream}' 2> /dev/null)
+[ -z "$upstream" ] && upstream=master
+
+format="%s%n%+b%n----"
+
+# Trim trailing '----' for cleanliness
+git log --reverse --pretty="format:${format}" "$upstream"..HEAD \
+    | tail -r | tail -n +2 | tail -r
