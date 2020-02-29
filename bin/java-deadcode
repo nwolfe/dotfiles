@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+#
+# Analyzes Java classes in current working directory for issues such as unused
+# code, code that is only tested but otherwise unused, and potentially
+# duplicated classes.
+#
+# Prints a summary of analyses to standard out, including the full filepath
+# of offending Java classes with a special identifier prepending each line.
+# The identifier is used to denote the offense and to maintain grouping of
+# lines when the output is piped to sort.
+#
+# Example of output and identifiers are as such:
+#
+#   X:main/java/a/b/c/Foo.java       } Denotes that Foo.java is unused
+#
+#   T1:main/java/a/b/c/Bar.java      } Denotes that Bar.java is unused
+#   T1:test/java/a/b/c/BarTest.java  } other than its own test
+#
+#   D1:main/java/a/b/c/Qux.java      } Denotes that Qux.java exists in
+#   D1:main/java/x/y/z/Qux.java      } multiple packages and may be duplicate
+#   D2:main/java/a/Baz.java          } Results are grouped by a common
+#   D2:main/java/b/Baz.java          } number, i.e. D1, D2, etc
+#
+# Options:
+#
+# --dead        Check for dead code
+#
+# --tested      Check for code that only has a test
+#
+# --dupes       Check for potentially duplicated classes
+#
+# --class       Interpret argument as class instead of directory
+
+opt_dead=false
+opt_tested=false
+opt_duplicated=false
+opt_class=false
+for i in "$@"; do
+    case $i in
+        --dead) opt_dead=true; shift; ;;
+        --tested) opt_tested=true; shift; ;;
+        --dupes) opt_duplicated=true; shift; ;;
+        --class) opt_class=true; shift; ;;
+    esac
+done
+if ! $opt_dead && ! $opt_tested && ! $opt_duplicated; then
+    opt_dead=true
+    opt_tested=true
+    opt_duplicated=true
+fi
+arg="$1"
+
+root="$(git rev-parse --show-toplevel)"
+
+check_class() {
+    _class="${1%.java}"
+    _class="$(basename "$_class")"
+    [ -z "$_class" ] && return 1
+
+    flags="--files-with-matches \
+        --glob !*.jsx \
+        --glob !*.js \
+        --glob !*.json \
+        --glob !*.txt"
+    # echo rg $flags "$_class" "$root"
+    results="$(rg $flags "$_class" "$root")"
+    count=$(echo "$results" | wc -l)
+    [ -z "$results" ] && count=0
+
+    # dead code; not referenced by anything
+    if $opt_dead; then
+        if [ "$count" -eq 1 ]; then
+            echo "$results" | awk '{print "X:"$0}'
+        fi
+    fi
+
+    # dead code that is tested
+    if $opt_tested; then
+        if [ "$count" -eq 2 ]; then
+            case "$results" in
+                *src/test/java/*)
+                    testct=$((testct+1))
+                    echo "$results" | awk "{print \"T$testct:\"\$0}"
+                    ;;
+            esac
+        fi
+    fi
+
+    # potential duplicate
+    if $opt_duplicated; then
+        if [ "$count" -gt 2 ]; then
+            # This logic is flawed and sometimes produces erroneous results
+            # when there are alot of inputs. For example, Accounts.java breaks
+            dupes="$(echo "$results" | xargs basename \
+                | sort | uniq -d | grep "$_class")"
+            if [ -n "$dupes" ]; then
+                dupect=$((dupect+1))
+                echo "$results" \
+                    | grep "\/${_class}.java" \
+                    | awk "{print \"D$dupect:\"\$0}"
+            fi
+        fi
+    fi
+}
+
+check_directory() {
+    shopt -s globstar
+    for file in "$1"/**/*.java; do
+        check_class "$file"
+    done
+}
+
+# If there's an argument, assume it's a directory
+# unless the --class flag is set
+if [ -n "$arg" ]; then
+    if $opt_class; then
+        check_class "$arg"
+    else
+        check_directory "$arg"
+    fi
+else
+    check_directory .
+fi
