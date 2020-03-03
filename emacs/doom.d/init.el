@@ -37,9 +37,7 @@
        nav-flash             ; blink the current line after jumping
        neotree               ; a project drawer, like NERDTree for vim
        ophints               ; highlight the region and operation acts on
-       (popup                ; tame sudden yet inevitable temporary windows
-        +all                 ; catch all popups that start with an asterix
-        +defaults)           ; default popup rules
+       (popup +defaults)     ; tame sudden yet inevitable temporary windows
        ;;pretty-code         ; replace bits of code with pretty symbols
        ;;tabs                ; tab bar for Emacs
        ;;treemacs            ; a project drawer, like neotree but cooler
@@ -90,8 +88,7 @@
        ;;ein                 ; tame Jupyter notebooks with emacs
        ;;(eval +overlay)     ; run code, run (also, repls)
        gist                  ; interacting with github gists
-       (lookup               ; helps you navigate your code and documentation
-        +docsets)            ; ...or in Dash docsets locally
+       lookup                ; navigate your code and its documentation
        ;;lsp
        ;;macos               ; MacOS-specific commands
        magit                 ; a git porcelain for Emacs
