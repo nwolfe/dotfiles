@@ -44,9 +44,12 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
-;; Disable annoying autosave/backup files
+;; Don't create #autosave# files
 (setq auto-save-default nil)
+;; Don't create backup~ files
 (setq make-backup-files nil)
+;; Don't create .# files
+(setq create-lockfiles nil)
 
 ;; Store "custom" file separately
 (setq custom-file "~/.emacs.d/custom.el")
