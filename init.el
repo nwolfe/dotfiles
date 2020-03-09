@@ -7,20 +7,21 @@
   ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
   ;; and `package-pinned-packages`. Most users will not need or want to do this.
   ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  ;;(add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
   )
 (package-initialize)
-
-;; Better defaults. No starter kits!
-;; TODO Get this as a package from MELPA instead?
-(add-to-list 'load-path "c:/Users/a1979/Documents/better-defaults")
-(require 'better-defaults)
 
 ;; Get 'use-package' to install other packages
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
+
+(use-package better-defaults)
+
+(use-package which-key
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.5))
 
 ;; Disable annoying autosave/backup files
 (setq auto-save-default nil)
@@ -41,3 +42,7 @@
 
 ;; Auto-update buffers when they are changed externally
 (global-auto-revert-mode t)
+
+;; Delete trailing spaces on file save.
+;; A newline is added to EOF by better-defaults package
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
