@@ -37,7 +37,7 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
-;; Comment line/region with Ctrl-Shift-/
+;; Comment line/region with "Ctrl-Shift-/"
 (global-set-key (kbd "C-?") 'comment-line)
 
 ;; Disable annoying autosave/backup files
@@ -67,8 +67,11 @@
 ;; A newline is added to EOF by better-defaults package
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Setup recent files. Use `recentf-open-files`.
+;; Setup recent files. Use "C-x C-r" to open recent files.
+;; NOTE this overrides the default keybinding for
+;; `find-file-read-only`.
 (require 'recentf)
 (setq recentf-max-saved-items 50
       recentf-max-menu-items 15)
 (recentf-mode 1)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
