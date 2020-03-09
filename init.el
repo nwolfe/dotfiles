@@ -10,7 +10,7 @@
   )
 (package-initialize)
 
-;; Get 'use-package' to install other packages
+;; Use 'use-package' to install other packages
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
@@ -22,6 +22,13 @@
   :config
   (which-key-mode)
   (setq which-key-idle-delay 0.5))
+
+;; Shortcut to open Emacs configuration file
+(defun ncw/configure-emacs ()
+  "Open Emacs configuration file (init.el)."
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
 ;; Disable annoying autosave/backup files
 (setq auto-save-default nil)
@@ -36,6 +43,9 @@
 
 ;; Show cursor location in modeline
 (column-number-mode 1)
+
+;; Better visual line wrapping
+(global-visual-line-mode 1)
 
 ;; No need for verbosity
 (fset 'yes-or-no-p 'y-or-n-p)
