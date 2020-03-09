@@ -53,10 +53,13 @@
 (load custom-file 'noerror)
 
 ;; Show cursor location in modeline
-(column-number-mode 1)
+(column-number-mode)
 
 ;; Better visual line wrapping
-(global-visual-line-mode 1)
+(global-visual-line-mode)
+
+;; Show absolute line numbers
+(global-linum-mode)
 
 ;; No need for verbosity
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -74,5 +77,5 @@
 (require 'recentf)
 (setq recentf-max-saved-items 50
       recentf-max-menu-items 15)
-(recentf-mode 1)
+(recentf-mode)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
