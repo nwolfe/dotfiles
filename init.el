@@ -23,4 +23,7 @@
 (setq org-startup-indented t)
 
 ;; Show cursor location in modeline
-(column-number-mode)
+(column-number-mode 1)
+
+;; No need for verbosity
+(fset 'yes-or-no-p 'y-or-n-p)
