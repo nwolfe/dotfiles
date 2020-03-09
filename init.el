@@ -46,3 +46,9 @@
 ;; Delete trailing spaces on file save.
 ;; A newline is added to EOF by better-defaults package
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Setup recent files. Use `recentf-open-files`.
+(require 'recentf)
+(setq recentf-max-saved-items 50
+      recentf-max-menu-items 15)
+(recentf-mode 1)
