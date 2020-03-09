@@ -44,9 +44,6 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
-;; Comment line/region with "Ctrl-Shift-/"
-(global-set-key (kbd "C-?") 'comment-line)
-
 ;; Disable annoying autosave/backup files
 (setq auto-save-default nil)
 (setq make-backup-files nil)
