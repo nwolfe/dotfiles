@@ -30,6 +30,13 @@
   (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
+(use-package org
+  :config
+  ;; Enable indent mode for all .org files
+  (setq org-startup-indented t)
+  ;; Auto-wrap lines when they exceed fill column
+  (add-hook 'org-mode-hook 'turn-on-auto-fill))
+
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
   "Open Emacs configuration file (init.el)."
@@ -47,9 +54,6 @@
 ;; Store "custom" file separately
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
-
-;; Enable indent mode for all .org files
-(setq org-startup-indented t)
 
 ;; Show cursor location in modeline
 (column-number-mode 1)
