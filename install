@@ -124,6 +124,7 @@ link_dotfile misc/gemfile
 link_dotfile misc/hushlogin
 link_dotfile misc/vmfloaty.yml
 link_dotfile misc/shellcheckrc
+link_dotfile emacs/zile
 
 maybe_symlink "$PWD/bin" "$HOME/bin"
 maybe_symlink "$PWD/emacs/doom.d" "$HOME/.doom.d"

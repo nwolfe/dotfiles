@@ -1,0 +1,5 @@
+;; See /usr/local/Cellar/zile/2.4.14_2/share/doc/zile/dotzile.sample
+(setq tab-width 4)
+(setq indent-tabs-mode nil)
+(setq auto-fill-mode t)
+(setq make-backup-files nil)
