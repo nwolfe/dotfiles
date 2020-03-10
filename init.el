@@ -37,6 +37,9 @@
   ;; Auto-wrap lines when they exceed fill column
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
+;; Enable auto-fill when writing git commit messages
+(add-hook 'vc-git-log-edit-mode-hook 'turn-on-auto-fill)
+
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
   "Open Emacs configuration file (init.el)."
