@@ -62,7 +62,7 @@
 (global-visual-line-mode)
 
 ;; Show absolute line numbers
-(global-linum-mode)
+;; (global-linum-mode)
 
 ;; No need for verbosity
 (fset 'yes-or-no-p 'y-or-n-p)
