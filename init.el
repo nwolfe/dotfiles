@@ -59,7 +59,7 @@
 (column-number-mode)
 
 ;; Better visual line wrapping
-(global-visual-line-mode)
+;; (global-visual-line-mode)
 
 ;; Show absolute line numbers
 ;; (global-linum-mode)
