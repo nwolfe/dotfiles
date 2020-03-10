@@ -37,6 +37,8 @@
   ;; Auto-wrap lines when they exceed fill column
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
+(use-package magit)
+
 ;; Enable auto-fill when writing git commit messages
 (add-hook 'vc-git-log-edit-mode-hook 'turn-on-auto-fill)
 
