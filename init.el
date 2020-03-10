@@ -39,9 +39,6 @@
 
 (use-package magit)
 
-;; Enable auto-fill when writing git commit messages
-(add-hook 'vc-git-log-edit-mode-hook 'turn-on-auto-fill)
-
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
   "Open Emacs configuration file (init.el)."
