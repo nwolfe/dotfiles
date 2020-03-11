@@ -2,22 +2,48 @@
 #
 # Run the Google Java Format tool over changed .java files.
 #
-# Changed Java files are determined by diff'ing commits on
-# the current branch with the upstream branch.
+# Does not reorder import statements.
 #
-# Adds a commit with all formatting changes. If the flag
-# --no-commit is specified, the files will be left unstaged.
+# Changed Java files are determined by diff'ing commits on
+# the current branch with the upstream branch, or master
+# if there is no upstream branch set.
+#
+# Adds a commit with all formatting changes.
 #
 # Intended to be run on a development branch, either manually
 # or automatically in a git post-commit or pre-push hook.
 #
+# Optional Parameters:
+#
+#  --no-commit    Leave changes unstaged instead of committing them
+#
+#  --allow-dirty  Run the formatter even if there are uncommitted changes
+#
 # See https://github.com/google/google-java-format
 
-# Exit early if there are any changes to tracked files,
-# as we don't want to mix in our formatting changes
-if ! git diff --quiet || ! git diff --staged --quiet; then
-  2>&1 echo "ERROR: Commit or remove changes first"
-  exit 1
+# Parse arguments
+opt_no_commit=false
+opt_allow_dirty=false
+for i in "$@"; do
+  case $i in
+    --no-commit)
+      opt_no_commit=true
+      ;;
+    --allow-dirty)
+      opt_allow_dirty=true
+      ;;
+    *)
+      ;;
+  esac
+done
+
+if ! $opt_allow_dirty; then
+  # Exit early if there are any changes to tracked files,
+  # as we don't want to mix in our formatting changes
+  if ! git diff --quiet || ! git diff --staged --quiet; then
+    2>&1 echo "ERROR: Commit or remove changes first"
+    exit 1
+  fi
 fi
 
 version=1.7
@@ -29,8 +55,10 @@ if [ ! -f $jar ]; then
 fi
 
 # Get paths of changed .java files in all commits between
-# the current branch and upstream. Ignore files that were deleted.
-upstream=$(git rev-parse --abbrev-ref '@{upstream}')
+# the current branch and upstream (or master).
+# Ignore files that were deleted.
+upstream=$(git rev-parse --abbrev-ref '@{upstream}' 2> /dev/null)
+[ -z "$upstream" ] && upstream=master
 changed_java_files=$(git diff "$upstream" HEAD --name-only --diff-filter=d \
     | grep "\.java$")
 
@@ -42,13 +70,17 @@ changed_java_files=$(git diff "$upstream" HEAD --name-only --diff-filter=d \
 # Run from the root project directory since git diff
 # will return filepaths relative to the root directory
 cd "$(git rev-parse --show-toplevel)"
-java -jar $jar --replace --set-exit-if-changed $changed_java_files
+java -jar $jar \
+  --replace \
+  --set-exit-if-changed \
+  --skip-sorting-imports \
+  $changed_java_files
 
 # Exit if nothing was changed
 [ $? -eq 0 ] && exit
 
 # Don't commit changes if flag is specified
-[ "$1" = "--no-commit" ] && exit
+$opt_no_commit && exit
 
 # Commit formatting changes.
 # Disable all hooks during this commit so we don't recurse
