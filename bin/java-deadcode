@@ -71,7 +71,7 @@ check_class() {
     [ -z "$_class" ] && return 1
 
     cmd="rg $rgflags $_class $root"
-    results="$(eval $cmd)"
+    results="$($cmd)"
     count=$(echo "$results" | wc -l)
     [ -z "$results" ] && count=0
 
