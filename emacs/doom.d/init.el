@@ -64,7 +64,7 @@
 
        :emacs
        ;;dired               ; making dired pretty [functional]
-       ;;electric            ; smarter, keyword-based electric-indent
+       electric              ; smarter, keyword-based electric-indent
        ibuffer               ; interactive buffer management
        vc                    ; version-control and Emacs, sitting in a tree
 
@@ -75,7 +75,7 @@
        ;;vterm               ; another terminals in Emacs
 
        :checkers
-       ;;syntax              ; tasing you for every semicolon you forget
+       syntax                ; tasing you for every semicolon you forget
        ;;spell               ; tasing you for misspelling mispelling
        ;;grammar             ; tasing grammar mistake every you make
 
