@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
 #
-# Open Doom Emacs configuration file in non-Emacs editor, because the assumption
-# is that Emacs is being updated at the moment so we need to use something like
-# Vim to edit the file.
+# Open Doom Emacs configuration file in non-Emacs editor, because the
+# assumption is that Emacs is being updated at the moment so we need
+# to use something like Vim to edit the file.
+
+_DOOM_INIT="$DOTFILES"/emacs/doom.d/init.el
+
+# Don't use $EDITOR because that is likely to be emacs(client)
+_ALT_EDITOR=zile
 
 if pgrep -q Emacs; then
-    emacsclient --no-wait "$DOTFILES"/emacs/doom.d/init.el
+    # Fall back to alternate editor if emacsclient fails,
+    # such as when Doom Emacs is updating itself via emacs
+    emacsclient --no-wait "$_DOOM_INIT" \
+        || "$_ALT_EDITOR" "$_DOOM_INIT"
 else
-    vim "$DOTFILES"/emacs/doom.d/init.el
+    "$_ALT_EDITOR" "$_DOOM_INIT"
 fi
