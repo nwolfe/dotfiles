@@ -30,17 +30,21 @@
 # --dupes       Check for potentially duplicated classes
 #
 # --class       Interpret argument as class instead of directory
+#
+# --verbose     Show search command and results in output
 
 opt_dead=false
 opt_tested=false
 opt_duplicated=false
 opt_class=false
+opt_verbose=false
 for i in "$@"; do
     case $i in
         --dead) opt_dead=true; shift; ;;
         --tested) opt_tested=true; shift; ;;
         --dupes) opt_duplicated=true; shift; ;;
         --class) opt_class=true; shift; ;;
+        --verbose) opt_verbose=true; shift; ;;
     esac
 done
 if ! $opt_dead && ! $opt_tested && ! $opt_duplicated; then
@@ -51,21 +55,34 @@ fi
 arg="$1"
 
 root="$(git rev-parse --show-toplevel)"
+rgflags='
+--files-with-matches
+--color always
+--glob !TAGS
+--glob !*.jsx
+--glob !*.js
+--glob !*.json
+--glob !*.txt
+'
 
 check_class() {
     _class="${1%.java}"
     _class="$(basename "$_class")"
     [ -z "$_class" ] && return 1
 
-    flags="--files-with-matches \
-        --glob !*.jsx \
-        --glob !*.js \
-        --glob !*.json \
-        --glob !*.txt"
-    # echo rg $flags "$_class" "$root"
-    results="$(rg $flags "$_class" "$root")"
+    cmd="rg $rgflags $_class $root"
+    results="$(eval $cmd)"
     count=$(echo "$results" | wc -l)
     [ -z "$results" ] && count=0
+
+    # print search command and results to stderr if verbose enabled
+    if $opt_verbose; then
+        # escape exclamation marks so the command is copy/paste-able
+        echo "-------------------- [ $_class ] --------------------"
+        echo $cmd | sed "s/!/\\\!/g"
+        echo "$results"
+        echo "Results from (" $count ") matched files:"
+    fi
 
     # dead code; not referenced by anything
     if $opt_dead; then
