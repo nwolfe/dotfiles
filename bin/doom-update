@@ -8,7 +8,6 @@ fi
 DOOM="$EMACSDIR/bin/doom"
 
 source "$DOTFILES/utils/line.sh"
-source "$DOTFILES/utils/git.sh"
 
 msg() {
     line -
@@ -37,11 +36,13 @@ run() {
 
     # Cleanup old compiled files, get everything in order...
     msg SYNC
-    $DOOM sync
+    $DOOM sync --prune
 
     # Compile everything for speed
+    msg BUILD
+    $DOOM build
     msg COMPILE
-    $DOOM -y compile
+    $DOOM -y compile :core
 
     # Verify system/environment is okay
     msg DOCTOR
