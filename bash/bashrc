@@ -66,6 +66,7 @@ alias e='emacsclient --no-wait'
 # Miscellaneous
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias cat=bat
+alias top='sudo htop'
 
 # cd <repo>
 pl() {
