@@ -16,53 +16,6 @@
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
 
-(use-package better-defaults)
-
-(use-package which-key
-  :config
-  (which-key-mode)
-  (setq which-key-idle-delay 0.5))
-
-(use-package company
-  :config
-  (setq company-idle-delay 0.1)
-  (setq company-global-modes '(not org-mode eshell-mode))
-  (setq company-minimum-prefix-length 1)
-  (add-hook 'after-init-hook 'global-company-mode))
-
-(use-package org ; builtin
-  :config
-  ;; Enable indent mode for all .org files
-  (setq org-startup-indented t)
-  ;; Auto-wrap lines when they exceed fill column
-  (add-hook 'org-mode-hook 'turn-on-auto-fill))
-
-(use-package magit
-  :config
-  (global-set-key (kbd "C-x g") 'magit-status))
-
-(use-package recentf ; builtin
-  :config
-  (recentf-mode))
-
-(use-package ivy
-  :config
-  (ivy-mode)
-  ;; Show recent files (from recentf-mode) in switch buffer list
-  (setq ivy-use-virtual-buffers t))
-
-(use-package swiper
-  :config
-  (global-set-key (kbd "C-s") 'swiper))
-
-(use-package avy
-  :config
-  (global-set-key (kbd "C-:") 'avy-goto-char-timer))
-
-(use-package amx
-  :config
-  (amx-mode))
-
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
   "Open Emacs configuration file (init.el)."
@@ -103,3 +56,51 @@
 ;; Delete trailing spaces on file save.
 ;; A newline is added to EOF by better-defaults package
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(use-package org ; builtin
+  :config
+  ;; Enable indent mode for all .org files
+  (setq org-startup-indented t)
+  ;; Auto-wrap lines when they exceed fill column
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq org-hide-emphasis-markers t))
+
+(use-package recentf ; builtin
+  :config
+  (recentf-mode))
+
+(use-package better-defaults)
+
+(use-package which-key
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.5))
+
+(use-package company
+  :config
+  (setq company-idle-delay 0.1)
+  (setq company-global-modes '(not org-mode eshell-mode))
+  (setq company-minimum-prefix-length 1)
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package magit
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
+
+(use-package ivy
+  :config
+  (ivy-mode)
+  ;; Show recent files (from recentf-mode) in switch buffer list
+  (setq ivy-use-virtual-buffers t))
+
+(use-package swiper
+  :config
+  (global-set-key (kbd "C-s") 'swiper))
+
+(use-package avy
+  :config
+  (global-set-key (kbd "C-:") 'avy-goto-char-timer))
+
+(use-package amx
+  :config
+  (amx-mode))
