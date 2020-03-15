@@ -57,7 +57,7 @@
 
 (use-package avy
   :config
-  (global-set-key (kbd "C-:") 'avy-goto-char))
+  (global-set-key (kbd "C-:") 'avy-goto-char-timer))
 
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
