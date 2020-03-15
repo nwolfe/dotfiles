@@ -30,7 +30,7 @@
   (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
-(use-package org
+(use-package org ; builtin
   :config
   ;; Enable indent mode for all .org files
   (setq org-startup-indented t)
@@ -38,6 +38,16 @@
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
 (use-package magit)
+
+(use-package recentf ; builtin
+  :config
+  (recentf-mode))
+
+(use-package ivy
+  :config
+  (ivy-mode)
+  ;; Show recent files (from recentf-mode) in switch buffer list
+  (setq ivy-use-virtual-buffers t))
 
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
@@ -75,12 +85,3 @@
 ;; Delete trailing spaces on file save.
 ;; A newline is added to EOF by better-defaults package
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-;; Setup recent files. Use "C-x C-r" to open recent files.
-;; NOTE this overrides the default keybinding for
-;; `find-file-read-only`.
-(require 'recentf)
-(setq recentf-max-saved-items 50
-      recentf-max-menu-items 15)
-(recentf-mode)
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
