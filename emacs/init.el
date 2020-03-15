@@ -26,7 +26,7 @@
 (use-package company
   :config
   (setq company-idle-delay 0.1)
-  (setq company-global-modes '(not org-mode))
+  (setq company-global-modes '(not org-mode eshell-mode))
   (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
