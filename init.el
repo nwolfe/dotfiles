@@ -49,6 +49,10 @@
   ;; Show recent files (from recentf-mode) in switch buffer list
   (setq ivy-use-virtual-buffers t))
 
+(use-package swiper
+  :config
+  (global-set-key (kbd "C-s") 'swiper))
+
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
   "Open Emacs configuration file (init.el)."
