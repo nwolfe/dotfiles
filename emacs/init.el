@@ -66,6 +66,10 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
+;; Color theme
+;; (load-theme 'dichromacy)
+(load-theme 'tango-dark)
+
 ;; Don't create #autosave# files
 (setq auto-save-default nil)
 ;; Don't create backup~ files
