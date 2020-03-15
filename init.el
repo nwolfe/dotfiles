@@ -55,6 +55,10 @@
   :config
   (global-set-key (kbd "C-s") 'swiper))
 
+(use-package avy
+  :config
+  (global-set-key (kbd "C-:") 'avy-goto-char))
+
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
   "Open Emacs configuration file (init.el)."
