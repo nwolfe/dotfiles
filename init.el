@@ -37,7 +37,9 @@
   ;; Auto-wrap lines when they exceed fill column
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
-(use-package magit)
+(use-package magit
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package recentf ; builtin
   :config
