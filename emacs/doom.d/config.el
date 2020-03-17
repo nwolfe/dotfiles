@@ -10,6 +10,9 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 
+;; Cursor jumping
+(global-set-key (kbd "C-:") 'avy-goto-char-timer)
+
 (defun ncw/idea-open ()
   "Shell out to `idea-open <file> <line>' to open current file in IntelliJ IDEA."
   (interactive)
