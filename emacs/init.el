@@ -52,6 +52,12 @@
 ;; A newline is added to EOF by better-defaults package
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; (Mac OS) Swap Option<->Command keys so Meta is easier to reach
+(if (boundp 'mac-command-modifier)
+    (setq mac-command-modifier 'meta))
+(if (boundp 'mac-option-modifier)
+    (setq mac-option-modifier 'super))
+
 (use-package org ; builtin
   :config
   ;; Enable indent mode for all .org files
