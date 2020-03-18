@@ -6,7 +6,7 @@ export VISUAL=$EDITOR
 export DEV_ROOT=$HOME/ws/puppet/
 JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME
-export EMACSDIR=$HOME/.emacs.d/
+export EMACSDIR=$HOME/.emacs.d
 export GOPATH=$HOME/ws/go
 export GOBIN=$GOPATH/bin
 export SHELL_SESSION_HISTORY=0
