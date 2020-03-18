@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Generates the projectile.projects file that contains all my
+# Generates the projectile projects file that contains all my
 # "projects" (i.e. git repos).
 #
 # This is a convenience; normally this file is populated by
@@ -11,8 +11,13 @@
 #
 # The format for the file is: ("path1" "path2" ...)
 
-# Note path may be specific to Doom Emacs
-_projects_file="$EMACSDIR"/.local/cache/projectile.projects
+if [ -f "$EMACSDIR"/projectile-bookmarks.eld ]; then
+    # Default projectile file (stock Emacs)
+    _projects_file="$EMACSDIR"/projectile-bookmarks.eld
+else
+    # Doom Emacs configured projectile file
+    _projects_file="$EMACSDIR"/.local/cache/projectile.projects
+fi
 
 write() {
     # Start with the full path and apply changes to match
@@ -53,5 +58,6 @@ done
 echo -n ")" >> "$_projects_file"
 
 # Show our work
+echo "$_projects_file"
 cat "$_projects_file"
 echo
