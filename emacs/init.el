@@ -12,6 +12,7 @@
 
 ;; Use 'use-package' to install other packages
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
@@ -40,12 +41,6 @@
 
 ;; Show cursor location in modeline
 (column-number-mode)
-
-;; Better visual line wrapping
-;; (global-visual-line-mode)
-
-;; Show absolute line numbers
-;; (global-linum-mode)
 
 ;; No need for verbosity
 (fset 'yes-or-no-p 'y-or-n-p)
