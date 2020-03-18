@@ -64,6 +64,9 @@
 ;; Treat symlinks like normal files; don't prompt me
 (setq vc-follow-symlinks t)
 
+;; 8 is just too many
+(setq-default tab-width 4)
+
 (use-package org ; builtin
   :config
   ;; Enable indent mode for all .org files
