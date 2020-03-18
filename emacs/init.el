@@ -111,3 +111,11 @@
 (use-package amx
   :config
   (amx-mode))
+
+;; TODO install ripgrep package?
+;; TODO install projectile-ripgrep package?
+(use-package projectile
+  :config
+  (projectile-mode)
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
