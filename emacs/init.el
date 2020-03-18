@@ -25,8 +25,11 @@
 (global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
 ;; Color theme
-(load-theme 'dichromacy)
-;; (load-theme 'tango-dark)
+(cond
+ ((string-equal "windows-nt" system-type)
+  (load-theme 'dichromacy))
+ ((string-equal "darwin" system-type)
+  (load-theme 'tango-dark)))
 
 ;; Don't create #autosave# files
 (setq auto-save-default nil)
