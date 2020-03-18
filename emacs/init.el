@@ -58,6 +58,9 @@
 (if (boundp 'mac-option-modifier)
     (setq mac-option-modifier 'super))
 
+;; Treat symlinks like normal files; don't prompt me
+(setq vc-follow-symlinks t)
+
 (use-package org ; builtin
   :config
   ;; Enable indent mode for all .org files
