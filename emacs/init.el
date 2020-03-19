@@ -118,7 +118,13 @@
 ;; TODO install ripgrep package?
 ;; TODO install projectile-ripgrep package?
 (use-package projectile
+  :after (ivy magit)
   :config
   (projectile-mode)
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-switch-project-action
+        (lambda ()
+          (magit-status)
+          (delete-other-windows)))
   :bind-keymap
   ("C-c p" . projectile-command-map))
