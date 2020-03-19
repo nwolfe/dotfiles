@@ -24,13 +24,6 @@
   (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "C-x C") 'ncw/configure-emacs)
 
-;; Color theme
-(cond
- ((string-equal "windows-nt" system-type)
-  (load-theme 'dichromacy))
- ((string-equal "darwin" system-type)
-  (load-theme 'tango-dark)))
-
 ;; Don't create #autosave# files
 (setq auto-save-default nil)
 ;; Don't create backup~ files
@@ -80,6 +73,10 @@
   (recentf-mode))
 
 (use-package better-defaults)
+
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one))
 
 (use-package which-key
   :config
