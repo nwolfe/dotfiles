@@ -128,3 +128,7 @@
           (delete-other-windows)))
   :bind-keymap
   ("C-c p" . projectile-command-map))
+
+(use-package hl-todo
+  :config
+  (global-hl-todo-mode))
