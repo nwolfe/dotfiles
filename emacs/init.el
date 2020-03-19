@@ -94,8 +94,8 @@
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package magit
-  :config
-  (global-set-key (kbd "C-x g") 'magit-status))
+  :bind
+  ("C-x g" . magit-status))
 
 (use-package ivy
   :config
@@ -104,12 +104,12 @@
   (setq ivy-use-virtual-buffers t))
 
 (use-package swiper
-  :config
-  (global-set-key (kbd "C-s") 'swiper))
+  :bind
+  ("C-s" . swiper))
 
 (use-package avy
-  :config
-  (global-set-key (kbd "C-:") 'avy-goto-char-timer))
+  :bind
+  ("C-:" . avy-goto-char-timer))
 
 (use-package amx
   :config
