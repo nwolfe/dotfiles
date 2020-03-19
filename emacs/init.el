@@ -60,6 +60,9 @@
 ;; 8 is just too many
 (setq-default tab-width 4)
 
+;; Insert matching parenthesis, etc.
+(electric-pair-mode)
+
 (use-package org ; builtin
   :config
   ;; Enable indent mode for all .org files
