@@ -132,3 +132,7 @@
 (use-package hl-todo
   :config
   (global-hl-todo-mode))
+
+(use-package git-gutter
+  :config
+  (global-git-gutter-mode))
