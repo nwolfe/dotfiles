@@ -136,3 +136,9 @@
 (use-package git-gutter
   :config
   (global-git-gutter-mode))
+
+(use-package dockerfile-mode)
+
+(use-package groovy-mode
+  :config
+  (setq groovy-indent-offset 2))
