@@ -1,7 +1,9 @@
+(defconst IS-MAC (eq system-type 'darwin))
+(defconst IS-WINDOWS (memq system-type '(windows-nt ms-dos)))
+
 ;; Enable MELPA
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
+(let* ((no-ssl (and IS-WINDOWS (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
@@ -16,6 +18,9 @@
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 (setq use-package-always-ensure t)
+;; Allow `:if' and `:ensure' to work together. See
+;; https://github.com/jwiegley/use-package/issues/637
+(setq use-package-keywords (cons :if (delq :if use-package-keywords)))
 
 ;; Shortcut to open Emacs configuration file
 (defun ncw/configure-emacs ()
@@ -49,10 +54,9 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; (Mac OS) Swap Option<->Command keys so Meta is easier to reach
-(if (boundp 'mac-command-modifier)
-    (setq mac-command-modifier 'meta))
-(if (boundp 'mac-option-modifier)
-    (setq mac-option-modifier 'super))
+(when IS-MAC
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier 'super))
 
 ;; Treat symlinks like normal files; don't prompt me
 (setq vc-follow-symlinks t)
@@ -136,8 +140,10 @@
   :config
   (global-git-gutter-mode))
 
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :if IS-MAC)
 
 (use-package groovy-mode
+  :if IS-MAC
   :config
   (setq groovy-indent-offset 2))
