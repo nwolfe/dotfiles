@@ -146,4 +146,5 @@
 (use-package groovy-mode
   :if IS-MAC
   :config
-  (setq groovy-indent-offset 2))
+  (setq groovy-indent-offset 2)
+  (add-hook 'groovy-mode-hook 'hl-todo-mode))
