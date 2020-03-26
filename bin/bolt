@@ -19,4 +19,4 @@
 # 9  @/Users/nwolfe/ws/puppet/PipelinesInfra/target/3210451008771527974/parameters.json
 
 configDir="$(dirname "$5")"
-docker run --rm --volume "${configDir}":"${configDir}" puppet/puppet-bolt $@
+docker run --rm --volume "${configDir}":"${configDir}" puppet/puppet-bolt:1.49.0 $@
