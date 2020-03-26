@@ -20,6 +20,8 @@
 (setq use-package-always-ensure t)
 ;; Allow `:if' and `:ensure' to work together. See
 ;; https://github.com/jwiegley/use-package/issues/637
+(setq use-package-keywords (cons :unless (delq :unless use-package-keywords)))
+(setq use-package-keywords (cons :when (delq :when use-package-keywords)))
 (setq use-package-keywords (cons :if (delq :if use-package-keywords)))
 
 ;; Shortcut to open Emacs configuration file
@@ -141,10 +143,10 @@
   (global-git-gutter-mode))
 
 (use-package dockerfile-mode
-  :if IS-MAC)
+  :unless IS-WINDOWS)
 
 (use-package groovy-mode
-  :if IS-MAC
+  :unless IS-WINDOWS
   :config
   (setq groovy-indent-offset 2)
   (add-hook 'groovy-mode-hook 'hl-todo-mode))
