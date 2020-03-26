@@ -97,6 +97,7 @@
   (setq company-idle-delay 0.1)
   (setq company-global-modes '(not org-mode eshell-mode))
   (setq company-minimum-prefix-length 1)
+  (setq company-dabbrev-downcase nil)
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package magit
