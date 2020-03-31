@@ -151,3 +151,6 @@
   :config
   (setq groovy-indent-offset 2)
   (add-hook 'groovy-mode-hook 'hl-todo-mode))
+
+(use-package markdown-mode
+  :unless IS-WINDOWS)
