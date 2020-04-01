@@ -144,8 +144,6 @@ point reaches the beginning or end of the buffer, stop there."
   :config
   (amx-mode))
 
-;; TODO install ripgrep package?
-;; TODO install projectile-ripgrep package?
 (use-package projectile
   :bind-keymap
   ("C-c p" . projectile-command-map)
@@ -156,6 +154,11 @@ point reaches the beginning or end of the buffer, stop there."
         (lambda ()
           (magit-status)
           (delete-other-windows))))
+
+(use-package ripgrep
+  :unless IS-WINDOWS
+  :config
+  (setq ripgrep-executable "/usr/local/bin/rg"))
 
 (use-package hl-todo
   :config
