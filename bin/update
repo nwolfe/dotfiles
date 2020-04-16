@@ -12,11 +12,6 @@ header() {
     line -
 }
 
-if [ "$target" = "doom" ] || [ "$target" = "all" ]; then
-    header "Doom Emacs"
-    "$DOTFILES"/bin/doom-update
-fi
-
 if [ "$target" = "brew" ] || [ "$target" = "all" ]; then
     header "MacOS Homebrew"
     "$DOTFILES"/macos/brew
