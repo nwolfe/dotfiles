@@ -182,3 +182,5 @@ point reaches the beginning or end of the buffer, stop there."
 
 (use-package yaml-mode
   :unless IS-WINDOWS)
+
+(use-package gist)
