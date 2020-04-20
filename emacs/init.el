@@ -180,6 +180,9 @@ point reaches the beginning or end of the buffer, stop there."
 (use-package markdown-mode
   :unless IS-WINDOWS)
 
+(use-package markdown-toc
+  :unless IS-WINDOWS)
+
 (use-package yaml-mode
   :unless IS-WINDOWS)
 
