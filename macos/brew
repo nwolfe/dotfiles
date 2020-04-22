@@ -13,6 +13,7 @@ brew update
 brew upgrade
 brew cask upgrade
 
+brew cask install firefox
 brew cask install rectangle
 brew cask install aerial
 brew cask install caffeine
@@ -25,6 +26,7 @@ if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
     chsh -s /usr/local/bin/bash
 fi
 
+brew install git
 brew install ripgrep
 brew install gnu-tar
 brew install gnutls
