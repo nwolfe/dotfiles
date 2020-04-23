@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+# Install CLI and GUI software using Homebrew.
 #
 # Run periodically to update/upgrade Homebrew and packages.
 #
@@ -17,6 +17,13 @@ brew cask install firefox
 brew cask install rectangle
 brew cask install aerial
 brew cask install caffeine
+
+# Emacs
+brew tap d12frosted/emacs-plus
+brew install emacs-plus --without-spacemacs-icon
+if ! test -h /Applications/Emacs.app; then
+    ln -s /usr/local/opt/emacs-plus/Emacs.app /Applications
+fi
 
 # Shell -- install Bash 4 and set it as default shell
 brew install bash
