@@ -14,16 +14,16 @@ export SHELL_SESSION_HISTORY=0
 # Brighten the blue color of directories in ls output
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
-# Overwrite system Ruby with Homebrew version
-export PATH=/usr/local/opt/ruby/bin:$PATH
-# System-wide gems installed via `gem install`. See `brew info ruby`.
-export PATH=/usr/local/lib/ruby/gems/2.6.0/bin:$PATH
-# Homebrew recommended
-export PATH=/usr/local/sbin:$PATH
-# Personal scripts from dotfiles
-export PATH=$HOME/bin:$PATH
-# Golang binaries
-export PATH=$GOPATH/bin:$PATH
+# /usr/local/ paths are Ruby-related; see `brew info ruby`
+export PATH=\
+$GOPATH/bin:\
+$HOME/bin:\
+/usr/local/sbin:\
+/usr/local/lib/ruby/gems/2.6.0/bin:\
+/usr/local/opt/ruby/bin:\
+$PATH
+
+alias path='echo -e ${PATH//:/\\n}'
 
 # Tell me all your seacrest
 [ -r ~/.seacrest/bashenv ] && . ~/.seacrest/bashenv
@@ -67,7 +67,6 @@ alias e='emacsclient --no-wait'
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias cat=bat
 alias top=htop
-alias path='echo -e ${PATH//:/\\n}'
 
 # cd <repo>
 pl() {
