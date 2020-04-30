@@ -14,13 +14,10 @@ export SHELL_SESSION_HISTORY=0
 # Brighten the blue color of directories in ls output
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
-# /usr/local/ paths are Ruby-related; see `brew info ruby`
 export PATH=\
-$GOPATH/bin:\
 $HOME/bin:\
+$GOPATH/bin:\
 /usr/local/sbin:\
-/usr/local/lib/ruby/gems/2.6.0/bin:\
-/usr/local/opt/ruby/bin:\
 $PATH
 
 alias path='echo -e ${PATH//:/\\n}'
