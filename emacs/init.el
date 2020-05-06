@@ -69,6 +69,9 @@
 ;; Insert matching parenthesis, etc.
 (electric-pair-mode)
 
+;; Prevent accidentally downcasing things
+(global-unset-key (kbd "M-l"))
+
 ;; Smarter move-to-beginning-of-line
 ;; http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
 (defun smarter-move-beginning-of-line (arg)
