@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Required by CD4PE tests as they expect bolt to be installed on the local
 # machine by shelling out.
@@ -7,7 +7,9 @@
 #
 # This script will be found by the tests as long as it is on your PATH.
 #
-# Expected arguments from CD4PE BoltManagerImpl:
+# The code that calls this is in BoltManagerImpl.
+#
+# Example 1:
 # 1  plan
 # 2  run
 # 3  deployments::test
@@ -17,6 +19,25 @@
 # 7  json
 # 8  --params
 # 9  @/Users/nwolfe/ws/puppet/PipelinesInfra/target/3210451008771527974/parameters.json
+#
+# Example 2:
+# 1  --version
+# 2  --configfile
+# 3  /Users/nwolfe/ws/puppet/PipelinesInfra/target/3465168372753193881/bolt.yaml
+# 4  --format
+# 5  json
 
-configDir="$(dirname "$5")"
-docker run --rm --volume "${configDir}":"${configDir}" puppet/puppet-bolt:latest $@
+# Keep this in sync with the production version defined in docker/Dockerfile
+BOLT_VERSION=2.6.0
+
+# Determine configuration directory to map mount into container
+configDir=
+if [ "$1" = "plan" ]; then
+    # Example 1 above
+    configDir="$(dirname "$5")"
+elif [ "$1" = "--version" ]; then
+    # Example 2 above
+    configDir="$(dirname "$3")"
+fi
+
+docker run --rm --volume "${configDir}":"${configDir}" puppet/puppet-bolt:$BOLT_VERSION $@
