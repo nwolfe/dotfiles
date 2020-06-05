@@ -12,6 +12,8 @@
   ui = true
 [push]
   default = current
+[pull]
+  rebase = false
 [diff]
   compactionHeuristic = true
 [commit]
