@@ -9,23 +9,13 @@
 # Make sure we’re using the latest Homebrew
 brew update
 
-# Upgrade any already-installed formulae
-brew upgrade
-brew cask upgrade
-
-brew cask install firefox
-brew cask install rectangle
-brew cask install aerial
-brew cask install caffeine
-
-# Emacs
+# Packages (CLIs)
 brew tap d12frosted/emacs-plus
 brew install emacs-plus@27
 if ! test -h /Applications/Emacs.app; then
     ln -s /usr/local/opt/emacs-plus@27/Emacs.app /Applications
 fi
 
-# Shell -- install Bash 4 and set it as default shell
 brew install bash
 brew install bash-completion2
 if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
@@ -48,6 +38,18 @@ brew install zile
 brew install bat
 brew install fzf
 brew install htop
+
+# Casks (GUIs)
+brew cask install firefox
+brew cask install rectangle
+brew cask install aerial
+brew cask install caffeine
+
+# Upgrade any other installed formulae.
+# Do this last so it's easier to notice if anything is
+# upgraded and should be explicitly installed above
+brew upgrade
+brew cask upgrade
 
 # Remove outdated versions from the cellar
 brew cleanup
