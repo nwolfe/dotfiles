@@ -191,6 +191,9 @@ complete -F _cht_complete cheat
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+# These comands are not useful to store in history so ignore them
+HISTIGNORE=ls:la:ll:cd:..:...:....:clear:exit
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
