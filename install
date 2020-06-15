@@ -108,8 +108,6 @@ function link_dotfile {
 link_dotfile bash/bashrc
 link_dotfile bash/bash_profile
 link_dotfile bash/inputrc
-link_dotfile zsh/zshenv
-link_dotfile zsh/zshrc
 link_dotfile git/gitconfig
 link_dotfile git/gitignore
 case $(uname -s) in
@@ -117,13 +115,8 @@ case $(uname -s) in
     Darwin) maybe_symlink "$PWD/git/gitconfig.macos" "$HOME/.gitconfig.os" ;;
     *) echo "Unknown OS; skipping .gitconfig.os" ;;
 esac
-link_dotfile vim/vimrc
-link_dotfile vim/gvimrc
-link_dotfile emacs/spacemacs
-link_dotfile misc/gemfile
 link_dotfile misc/hushlogin
 link_dotfile misc/shellcheckrc
 link_dotfile emacs/zile
 
 maybe_symlink "$PWD/bin" "$HOME/bin"
-maybe_symlink "$PWD/emacs/doom.d" "$HOME/.doom.d"
