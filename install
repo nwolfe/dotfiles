@@ -1,11 +1,11 @@
 #!/bin/bash
 
-function symlink {
+symlink() {
     ln -s "$1" "$2"
     echo "Linked '$1' to '$2'"
 }
 
-function maybe_symlink_file {
+maybe_symlink_file() {
     echo -n "  Backup & replace, Replace, View, Skip, Abort? (b/r/v/s/a) "
     read -r answer
     case $answer in
@@ -29,7 +29,7 @@ function maybe_symlink_file {
     esac
 }
 
-function maybe_symlink_directory {
+maybe_symlink_directory() {
     echo -n "  Backup & replace, Replace, View, Skip, Abort? (b/r/v/s/a) "
     read -r answer
     case $answer in
@@ -53,7 +53,7 @@ function maybe_symlink_directory {
     esac
 }
 
-function maybe_symlink_symlink {
+maybe_symlink_symlink() {
     echo -n "  Replace, View, Skip, Abort? (r/v/s/a) "
     read -r answer
     case $answer in
@@ -74,7 +74,7 @@ function maybe_symlink_symlink {
     esac
 }
 
-function maybe_symlink {
+maybe_symlink() {
     echo -n "Link '$1' to '$2'? (y/n) "
     read -r answer
     case $answer in
@@ -101,22 +101,35 @@ function maybe_symlink {
     esac
 }
 
-function link_dotfile {
-    maybe_symlink "$PWD/$1" "$HOME/.$(basename "$1")"
+link_home() {
+    target="$2"
+    if [ -z "$target" ]; then
+        target=".$(basename "$1")"
+    fi
+    maybe_symlink "$PWD/$1" "$HOME/$target"
 }
 
-link_dotfile bash/bashrc
-link_dotfile bash/bash_profile
-link_dotfile bash/inputrc
-link_dotfile git/gitconfig
-link_dotfile git/gitignore
+# Scripts directory
+link_home bin bin
+
+# Bash
+link_home bash/bashrc
+link_home bash/bash_profile
+
+# Git
+link_home git/gitconfig
+link_home git/gitignore
 case $(uname -s) in
-    Linux) maybe_symlink "$PWD/git/gitconfig.linux" "$HOME/.gitconfig.os" ;;
-    Darwin) maybe_symlink "$PWD/git/gitconfig.macos" "$HOME/.gitconfig.os" ;;
+    Linux) link_home git/gitconfig.linux .gitconfig.os ;;
+    Darwin) link_home git/gitconfig.macos .gitconfig.os ;;
     *) echo "Unknown OS; skipping .gitconfig.os" ;;
 esac
-link_dotfile misc/hushlogin
-link_dotfile misc/shellcheckrc
-link_dotfile emacs/zile
 
-maybe_symlink "$PWD/bin" "$HOME/bin"
+# Emacs
+link_home emacs/init.el .emacs.d/init.el
+link_home emacs/zile
+
+# Miscellaneous
+link_home bash/inputrc
+link_home misc/hushlogin
+link_home misc/shellcheckrc
