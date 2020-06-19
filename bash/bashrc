@@ -191,8 +191,21 @@ complete -F _cht_complete cheat
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-# These comands are not useful to store in history so ignore them
-HISTIGNORE=ls:la:ll:cd:..:...:....:clear:exit
+# These commands are not useful to store in history so ignore them.
+#
+# Generally, commands that are 2 or 3 letters are not worth storing
+# because it's just as easy to re-type them, such as the various g*
+# aliases for git commands.
+#
+# Also ignore commands that are very broad and not contextual at all,
+# such as clear/exit/top/history/update.
+#
+# NOTE many of these are actually aliases set elsewhere in .bashrc
+HISTIGNORE=\
+ls:la:ll:\
+pl:cd:..:...:....:\
+gst:gd:gds:gb:gcm:\
+clear:exit:top:htop:history:update
 
 # append to the history file, don't overwrite it
 shopt -s histappend
