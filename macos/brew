@@ -25,11 +25,7 @@ fi
 
 brew install git
 brew install ripgrep
-brew install gnu-tar
 brew install gnutls
-brew install coreutils
-brew install fd
-brew install markdown
 brew install shellcheck
 brew install tree
 brew install jq
