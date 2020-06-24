@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 #
-# Run from the root of a Git repo to add any number of pre-commit hooks.
+# Run from the root of a Git repo to add any number of pre-commit
+# hooks.
 #
-# Copies a special composite pre-commit file into .git/hooks/pre-commit
-# and then appends calls to the actual pre-commit checks to allow for
-# multiple hooks to be executed.
+# Creates a special hook runner file at .git/hooks/pre-commit that
+# executes all hook files listed in .git/hooks/pre-commit-hooks.
 
+# Base name of hook file to install (usually via tab-completion)
 HOOK=$1
 
 if [ -z $HOOK ]; then
@@ -13,10 +14,11 @@ if [ -z $HOOK ]; then
     exit 1
 fi
 
+# Full path to hook file under dotfiles repo
 newhook=$DOTFILES/git/hooks/pre-commit/$HOOK
 
 if [ ! -f $newhook ]; then
-    echo "Hook $HOOK not found"
+    echo "Hook '$HOOK' not found"
     exit 1
 fi
 
@@ -25,7 +27,11 @@ if [ ! -d .git ]; then
     exit 1
 fi
 
+# Special hook runner
 hookfile=$PWD/.git/hooks/pre-commit
+
+# List of actual pre-commit hooks the special runner executes
+hooks=$PWD/.git/hooks/pre-commit-hooks
 
 # Install special pre-commit composite file if not already there
 if [ -f $hookfile ]; then
@@ -35,15 +41,16 @@ if [ -f $hookfile ]; then
     fi
 else
     cp $DOTFILES/git/hooks/pre-commits $hookfile
+    echo "Created $hookfile"
 fi
 
 # Check if hook is already installed
-if grep -q "$newhook" $hookfile; then
-    echo "Hook $HOOK already installed"
+if test -s $hooks && grep -q "$newhook" $hooks; then
+    echo "Hook '$HOOK' already installed in $hooks"
     exit 0
 fi
 
-# Add a call to the new hook above the marker line
-gsed -i 's|# MARKER|'"$newhook"'\n&|g' $hookfile
+# Append the new hook to the file listing all the hooks
+echo $newhook >> $hooks
 
-echo "Added $newhook to $hookfile"
+echo "Added $newhook to $hooks"

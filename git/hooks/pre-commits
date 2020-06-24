@@ -3,24 +3,26 @@
 # Composes multiple hooks into a single hook file for Git.
 #
 # LABEL: pre-commit-composite-file
-EXITCODE=0
 
-# List of fully-qualified scripts to execute as pre-commit hooks.
-hooks=(
-# MARKER
-)
+# List of actual hooks to execute
+hooks="$(dirname $0)"/pre-commit-hooks
+
+# Exit early if there are no hooks to run
+! test -s "$hooks" && exit
+
+EXITCODE=0
 
 # A hook that passes should have no output. If there is output,
 # echo it and set the exit code to fail, but continue running
 # the remaining hooks.
-for i in "${hooks[@]}"; do
-    out="$($i)"
+while read hook; do
+    out="$($hook)"
     if [ -n "$out" ]; then
-        echo "> $i"
+        echo "> $hook"
         echo "$out"
         echo
         EXITCODE=1
     fi
-done
+done < "$hooks"
 
 exit $EXITCODE
