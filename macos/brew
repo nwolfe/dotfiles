@@ -29,7 +29,6 @@ brew install gnutls
 brew install shellcheck
 brew install tree
 brew install jq
-brew install gnu-sed   # install-pre-commit-hook script
 brew install zile
 brew install bat
 brew install fzf
