@@ -25,7 +25,6 @@ fi
 
 brew install git
 brew install ripgrep
-brew install gnutls
 brew install shellcheck
 brew install tree
 brew install jq
