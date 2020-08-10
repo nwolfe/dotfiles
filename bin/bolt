@@ -28,7 +28,7 @@
 # 5  json
 
 # Keep this in sync with the production version defined in docker/Dockerfile
-BOLT_VERSION=2.6.0
+BOLT_VERSION=2.19.0
 
 # Determine configuration directory to map mount into container
 configDir=
