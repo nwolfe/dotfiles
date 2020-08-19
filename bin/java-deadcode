@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
+# Usage: java-deadcode [options] [<directory>|<class>]
 #
-# Analyzes Java classes in current working directory for issues such as unused
-# code, code that is only tested but otherwise unused, and potentially
-# duplicated classes.
+# Analyzes Java classes for issues such as unused code, code that is
+# only tested but otherwise unused, and potentially duplicated
+# classes.
+#
+# All classes found under the current directory (or the directory
+# argument if specified) will be analyzed. To analyze a specific class
+# instead, use the --class switch and provide the class name as an
+# argument.
 #
 # Prints a summary of analyses to standard out, including the full filepath
 # of offending Java classes with a special identifier prepending each line.
@@ -23,15 +29,17 @@
 #
 # Options:
 #
-# --dead        Check for dead code
+#  -h, --help    Print usage information and exit
 #
-# --tested      Check for code that only has a test
+#  --dead        Check for dead code
 #
-# --dupes       Check for potentially duplicated classes
+#  --tested      Check for code that only has a test
 #
-# --class       Interpret argument as class instead of directory
+#  --dupes       Check for potentially duplicated classes
 #
-# --verbose     Show search command and results in output
+#  --class       Interpret argument as class instead of directory
+#
+#  --verbose     Show search command and results in output
 
 opt_dead=false
 opt_tested=false
@@ -45,6 +53,16 @@ for i in "$@"; do
         --dupes) opt_duplicated=true; shift; ;;
         --class) opt_class=true; shift; ;;
         --verbose) opt_verbose=true; shift; ;;
+        --help|-h)
+            # Print comment block at top of file as help text
+            sed -ne '/^#/!q;s/.\{1,2\}//;1d;p' < "$0"
+            exit
+            ;;
+        -*|--*)
+            echo "ERROR: unknown option '$i'"
+            echo "See -h, --help for usage"
+            exit 1
+            ;;
     esac
 done
 if ! $opt_dead && ! $opt_tested && ! $opt_duplicated; then
