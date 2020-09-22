@@ -133,3 +133,4 @@ link_home emacs/zile
 link_home bash/inputrc
 link_home misc/hushlogin
 link_home misc/shellcheckrc
+link_home misc/rgignore
