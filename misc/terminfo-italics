@@ -1,0 +1,17 @@
+# A xterm-256color based TERMINFO that adds the escape sequences for italic.
+#
+# Note this overrides the default 'xterm-256color'.
+#
+# You could change this string below to something different, but 
+# then you'd have to set it like 'TERM=<something different>'
+#
+# Install:
+#
+#   tic ./terminfo-italics
+#
+# References:
+# - https://gist.github.com/sos4nt/3187620
+# - https://github.com/joshdick/onedark.vim/issues/97
+xterm-256color|xterm with 256 colors and italic,
+    sitm=\E[3m, ritm=\E[23m,
+    use=xterm-256color,
