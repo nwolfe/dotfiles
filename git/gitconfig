@@ -6,7 +6,7 @@
   # Configuration that is specific to the operating system
   path = ~/.gitconfig.os
 [core]
-  editor = vim
+  editor = "vim +startinsert"
   excludesfile = ~/.gitignore
 [color]
   ui = true
