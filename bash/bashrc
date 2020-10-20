@@ -70,7 +70,7 @@ alias e='emacsclient --no-wait'
 alias cat=bat
 alias top=htop
 alias vpn='curl https://artifactory.delivery.puppetlabs.net/artifactory/api/system/ping --connect-timeout 1 --silent --output /dev/null && echo CONNECTED || echo ERROR'
-alias todo='$EDITOR $HOME/TODO.md'
+alias todo='vim +"/^\n" +nohlsearch +startinsert $HOME/TODO.md'
 alias now='date "+%A, %B %e, %Y - %l:%M:%S%p"'
 
 # Header timestamp for use in TODO.md
