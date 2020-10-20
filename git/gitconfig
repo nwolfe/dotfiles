@@ -6,7 +6,7 @@
   # Configuration that is specific to the operating system
   path = ~/.gitconfig.os
 [core]
-  editor = zile
+  editor = vim
   excludesfile = ~/.gitignore
 [color]
   ui = true
@@ -20,3 +20,5 @@
   gpgsign = true
 [remote]
   pushDefault = origin
+[alias]
+  new = "!f(){ git switch --create $1 origin/master; }; f"
