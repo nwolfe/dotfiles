@@ -79,7 +79,7 @@ alias vpn='curl https://artifactory.delivery.puppetlabs.net/artifactory/api/syst
 
 # NOTE the "function" is necessary for single-letter function names
 function t() {
-    timestamp=$(date "+%A, %B %e, %Y - %l:%M:%S%p")
+    timestamp=$(date "+%A, %B %e, %Y - %l:%M%p")
     sed -i '' "1s/.*/# $timestamp/" "$HOME"/TODO.md
     vim +"/^\n" +nohlsearch +startinsert "$HOME"/TODO.md
 }
