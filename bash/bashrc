@@ -216,7 +216,8 @@ HISTIGNORE=\
 ls:la:ll:\
 pl:cd:cdd:..:...:....:\
 ga:gb:gc:gcm:gco:gd:gds:gl:gst:\
-fg:clear:exit:top:htop:history:update:\
+fg:clear:exit:history:top:htop:\
+update:path:\
 e:t:vi:vim
 
 # append to the history file, don't overwrite it
