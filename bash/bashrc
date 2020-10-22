@@ -211,10 +211,11 @@ HISTCONTROL=ignoreboth
 # NOTE many of these are actually aliases set elsewhere in .bashrc
 HISTIGNORE=\
 ls:la:ll:\
-pl:cd:..:...:....:\
+pl:cd:cdd:..:...:....:\
 gst:gd:gds:gb:gcm:\
 fg:\
-clear:exit:top:htop:history:update:t
+clear:exit:top:htop:history:update:\
+e:t:vi:vim
 
 # append to the history file, don't overwrite it
 shopt -s histappend
