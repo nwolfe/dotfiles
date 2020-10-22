@@ -65,6 +65,7 @@ alias gcm='git checkout master'
 alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --staged'
+alias gl='git log'
 alias gst='git status'
 
 # Emacs
