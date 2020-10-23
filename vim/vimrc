@@ -1,0 +1,112 @@
+""" Plugins
+call plug#begin()
+Plug 'sainnhe/sonokai'
+Plug 'sheerun/vim-polyglot'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
+call plug#end()
+
+""" Miscellaneous
+let mapleader=','
+
+" Yank from cursor to end of line to be consistent with C and D
+nnoremap Y y$
+
+" Visual shifting does not exit Visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Use '//' to comment lines in Jenkinsfile
+autocmd FileType Jenkinsfile setlocal commentstring=//\ %s
+
+""" Colorscheme
+if has('termguicolors')
+  set termguicolors
+endif
+"let g:sonokai_style = 'andromeda'
+"let g:sonokai_enable_italic = 1
+"let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
+
+""" Text
+set backspace=indent,eol,start  " Backspace through everything in insert mode
+set autoindent                  " Indent cursor when starting new line
+set expandtab                   " Insert spaces instead of tabs when <TAB>
+set tabstop=2 shiftwidth=2      " Tab is 2 spaces
+set formatoptions+=j            " Delete comment character when joining lines
+set textwidth=70                " Format/wrap lines at 70 columns (default is 78)
+
+""" FZF
+" Prefer bottom popup over buggy floating window
+let g:fzf_layout = { 'down': '~40%' }
+
+""" Git gutter
+set updatetime=100              " Show git gutter symbols sooner (default is 4000)
+"set signcolumn=yes              " Always show gutter column (default is 'auto')
+"set signcolumn=number           " Put line number and gutter in same column
+"
+""" Text searching
+set hlsearch                    " Highlight matches
+set incsearch                   " Search as you type
+set ignorecase                  " Searches ignore case...
+set smartcase                   " ...unless they contain at least one capital letter
+
+" Un-highlight search matches on Enter
+nnoremap <leader><CR> :nohlsearch<CR>
+
+""" Cursor
+set ruler                       " Show cursor position at bottom
+set cursorline                  " Highlight the line the cursor is on
+set scrolloff=3                 " Begin scrolling the screen # lines from cursor
+set sidescrolloff=2
+
+""" Files
+" Disable swap/backup files
+set noswapfile
+set nobackup
+set nowritebackup
+
+" Save shortcut for use with my `t` todo utility
+" From Insert mode, C-s adds a blank line below cursor and writes/quits
+" Also useful when writing git commit messages
+inoremap <silent> <C-s> <ESC>:pu _<CR> :wq!<CR>
+
+" Fuzzy find files
+nnoremap <silent> <leader>f :Files<CR>
+"nnoremap <silent> <C-f> :Files<CR>
+
+" Edit files from directory of current buffer
+" http://vimcasts.org/episodes/the-edit-command
+"cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
+"map <leader>ew :e %%
+"map <leader>es :sp %%
+"map <leader>ev :vsp %%
+"map <leader>et :tabe %%
+
+""" Buffers
+set autoread                    " Reload buffers when file changed on disk
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
+" Fuzzy find buffers
+nnoremap <silent> <leader>b :Buffers<CR>
+"nnoremap <silent> <C-b> :Buffers<CR>
+
+" Swap & cycle through buffers
+nnoremap <leader><leader> <C-^>
+"nnoremap <leader>bn :bnext<CR>
+"nnoremap <leader>bp :bprevious<CR>
+
+""" Windows
+" Navigation shortcuts
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+"nnoremap <C-w>> 3<C-w>>
+"nnoremap <C-w>< 3<C-w><
+
+
