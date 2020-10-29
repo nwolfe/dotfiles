@@ -1,0 +1,54 @@
+#!/bin/bash
+# Countdown timer for stretching each arm for 30 seconds
+
+. $DOTFILES/utils/colors.sh
+
+DURATION=30
+PREP=3
+
+clearline() {
+  echo -ne "\r$(tput el)"
+}
+
+prepare() {
+  echo -n "${YELLOW}GET READY!${RESET} "
+  sleep 1
+  i=$PREP
+  while [ $i -gt 0 ]; do
+    echo -n "${BOLD}$i${RESET} "
+    i=$((i-1))
+    sleep 1
+  done
+}
+
+countdown() {
+  echo -n "${GREEN}STRETCH!${RESET} "
+  i=$DURATION
+  while [ $i -gt 0 ]; do
+    printf "${BOLD}%2d${RESET}" $i
+    i=$((i-1))
+    sleep 1
+    echo -ne '\b\b'
+  done
+}
+
+switch() {
+  echo -n "${YELLOW}SWITCH ARMS!${RESET}"
+  sleep 2
+}
+
+finish() {
+  echo "${GREEN}FEELS GOOD MAN!${RESET}"
+}
+
+prepare
+clearline
+countdown
+clearline
+switch
+clearline
+prepare
+clearline
+countdown
+clearline
+finish
