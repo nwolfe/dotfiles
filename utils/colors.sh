@@ -25,3 +25,14 @@ export CYAN
 export WHITE
 export BOLD
 export RESET
+
+_colors() {
+    echo "${RED}RED${RESET}"
+    echo "${GREEN}GREEN${RESET}"
+    echo "${YELLOW}YELLOW${RESET}"
+    echo "${BLUE}BLUE${RESET}"
+    echo "${MAGENTA}MAGENTA${RESET}"
+    echo "${CYAN}CYAN${RESET}"
+    echo "${WHITE}WHITE${RESET}"
+    echo "${BOLD}BOLD${RESET}"
+}
