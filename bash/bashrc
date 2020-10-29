@@ -216,7 +216,7 @@ HISTIGNORE=\
 ls:la:ll:\
 pl:cd:cdd:..:...:....:\
 ga:gb:gc:gcm:gco:gd:gds:gl:gst:\
-fg:clear:exit:history:alias:\
+fg:jobs:bc:clear:exit:history:alias:\
 top:htop:update:path:vpn\
 e:t:vi:vim
 
