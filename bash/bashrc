@@ -78,6 +78,7 @@ alias e='emacsclient --no-wait'
 # alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias cat=bat
 alias top=htop
+alias v=vim
 alias vpn='curl https://artifactory.delivery.puppetlabs.net/artifactory/api/system/ping --connect-timeout 1 --silent --output /dev/null && echo CONNECTED || echo ERROR'
 
 # NOTE the "function" is necessary for single-letter function names
@@ -218,7 +219,7 @@ pl:cd:cdd:..:...:....:\
 ga:gb:gc:gcm:gco:gd:gds:gl:gs:\
 fg:jobs:bc:clear:exit:history:alias:\
 top:htop:update:path:vpn:stretch\
-e:t:vi:vim
+e:t:v:vi:vim
 
 # append to the history file, don't overwrite it
 shopt -s histappend
