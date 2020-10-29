@@ -122,7 +122,6 @@ complete -F _repo_completion pl
 complete -F _repo_completion pomd
 complete -F _repo_completion pomv
 complete -F _repo_completion dep
-complete -F _repo_completion github
 
 _get_pre_commit_hooks() {
     find $DOTFILES/git/hooks/pre-commit -type f -exec basename {} \;
@@ -210,8 +209,8 @@ ls:la:ll:\
 pl:cd:cdd:..:...:....:\
 ga:gb:gc:gcm:gco:gd:gds:gl:gs:\
 fg:jobs:bc:clear:exit:history:alias:\
-top:htop:update:path:vpn:stretch\
-e:t:v:vi:vim
+top:htop:update:path:stretch\
+t:v:vi:vim
 
 # append to the history file, don't overwrite it
 shopt -s histappend
