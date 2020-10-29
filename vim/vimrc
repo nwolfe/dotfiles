@@ -68,10 +68,13 @@ set noswapfile
 set nobackup
 set nowritebackup
 
-" Save shortcut for use with my `t` todo utility
+" General save shortcut
+nnoremap <silent> <C-s> :w<CR>
+inoremap <silent> <C-s> <ESC>:w<CR>
+
+" Specialized save convenience for TO-DO file and Git commits.
 " From Insert mode, C-s adds a blank line below cursor and writes/quits
-" Also useful when writing git commit messages
-inoremap <silent> <C-s> <ESC>:pu _<CR> :wq!<CR>
+autocmd BufReadPost TODO.md,COMMIT_EDITMSG inoremap <silent> <C-s> <ESC>:pu _<CR> :wq!<CR>
 
 " Fuzzy find files
 nnoremap <silent> <leader>f :Files<CR>
