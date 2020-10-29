@@ -10,12 +10,6 @@
 brew update
 
 # Packages (CLIs)
-brew tap d12frosted/emacs-plus
-brew install emacs-plus@27
-if ! test -h /Applications/Emacs.app; then
-    ln -s /usr/local/opt/emacs-plus@27/Emacs.app /Applications
-fi
-
 brew install bash
 brew install bash-completion2
 if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
@@ -23,12 +17,12 @@ if ! grep -Fq '/usr/local/bin/bash' /etc/shells; then
     chsh -s /usr/local/bin/bash
 fi
 
+brew install vim
 brew install git
 brew install ripgrep
 brew install shellcheck
 brew install tree
 brew install jq
-brew install zile
 brew install bat
 brew install fzf
 brew install htop
