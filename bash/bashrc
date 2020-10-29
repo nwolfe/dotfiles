@@ -75,11 +75,9 @@ alias emacs-server-kill='emacsclient -e "(save-buffers-kill-emacs)"'
 alias e='emacsclient --no-wait'
 
 # Miscellaneous
-# alias remove-ds-stores='find . -name ".DS_Store" -type f -delete'
 alias cat=bat
 alias top=htop
 alias v=vim
-alias vpn='curl https://artifactory.delivery.puppetlabs.net/artifactory/api/system/ping --connect-timeout 1 --silent --output /dev/null && echo CONNECTED || echo ERROR'
 
 # NOTE the "function" is necessary for single-letter function names
 function t() {
