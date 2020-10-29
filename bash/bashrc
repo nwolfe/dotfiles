@@ -12,7 +12,6 @@ export VISUAL=$EDITOR
 export DEV_ROOT=$HOME/ws/puppet/
 JAVA_HOME=$(/usr/libexec/java_home)
 export JAVA_HOME
-export EMACSDIR=$HOME/.emacs.d
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 # Disable shell-specific history files in ~/.bash_sessions/
@@ -68,11 +67,6 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git log'
 alias gs='git status'
-
-# Emacs
-alias emacs-server='emacs --daemon'
-alias emacs-server-kill='emacsclient -e "(save-buffers-kill-emacs)"'
-alias e='emacsclient --no-wait'
 
 # Miscellaneous
 alias cat=bat
