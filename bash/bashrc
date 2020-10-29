@@ -67,7 +67,7 @@ alias gco='git checkout'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gl='git log'
-alias gst='git status'
+alias gs='git status'
 
 # Emacs
 alias emacs-server='emacs --daemon'
@@ -215,7 +215,7 @@ HISTCONTROL=ignoreboth
 HISTIGNORE=\
 ls:la:ll:\
 pl:cd:cdd:..:...:....:\
-ga:gb:gc:gcm:gco:gd:gds:gl:gst:\
+ga:gb:gc:gcm:gco:gd:gds:gl:gs:\
 fg:jobs:bc:clear:exit:history:alias:\
 top:htop:update:path:vpn:stretch\
 e:t:vi:vim
