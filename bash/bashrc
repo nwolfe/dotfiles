@@ -209,7 +209,7 @@ ls:la:ll:\
 pl:cd:cdd:..:...:....:\
 ga:gb:gc:gcm:gco:gd:gds:gl:gs:\
 fg:jobs:bc:clear:exit:history:alias:\
-top:htop:update:path:stretch\
+top:htop:update:env:path:stretch\
 t:v:vi:vim
 
 # append to the history file, don't overwrite it
