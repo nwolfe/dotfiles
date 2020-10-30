@@ -32,6 +32,11 @@ countdown() {
   done
 }
 
+shake() {
+  echo -n "${YELLOW}SHAKE IT OUT!${RESET}"
+  sleep 5
+}
+
 switch() {
   echo -n "${YELLOW}SWITCH ARMS!${RESET}"
   sleep 2
@@ -44,6 +49,8 @@ finish() {
 prepare
 clearline
 countdown
+clearline
+shake
 clearline
 switch
 clearline
