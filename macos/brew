@@ -28,11 +28,11 @@ brew install fzf
 brew install htop
 
 # Casks (GUIs)
-brew cask install iterm2
-brew cask install firefox
-brew cask install rectangle
-brew cask install aerial
-brew cask install caffeine
+brew install --cask iterm2
+brew install --cask firefox
+brew install --cask rectangle
+brew install --cask aerial
+brew install --cask caffeine
 
 # Upgrade any other installed formulae.
 # Do this last so it's easier to notice if anything is
