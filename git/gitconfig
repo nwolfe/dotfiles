@@ -18,6 +18,7 @@
   compactionHeuristic = true
 [commit]
   gpgsign = true
+  verbose = true
 [remote]
   pushDefault = origin
 [alias]
