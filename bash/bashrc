@@ -209,8 +209,9 @@ ls:la:ll:\
 pl:cd:cdd:..:...:....:\
 ga:gb:gc:gcm:gco:gd:gds:gl:gs:\
 fg:jobs:bc:clear:exit:history:alias:\
-top:htop:update:env:path:stretch:\
-t:v:vi:vim
+top:env:path:update:stretch:\
+t:v:vi:vim:\
+htop:fzf
 
 # append to the history file, don't overwrite it
 shopt -s histappend
