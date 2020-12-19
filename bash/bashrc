@@ -227,31 +227,26 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+_YELLOW=$(tput setaf 3)
+_GREEN=$(tput setaf 2)
+_BLUE=$(tput setaf 4)
+_BOLD=$(tput bold)
+_RESET=$(tput sgr0)
+
 _prompt_git_branch() {
     local branch="$(git branch --show-current 2> /dev/null)"
     if [ -n "$branch" ]; then
-        # NOTE escape colors with \001 \002 and printf to not break
-        # terminal width/line wrapping
-        local yellow="\001$(tput setaf 3)\002"
-        local bold="\001$(tput bold)\002"
-        local reset="\001$(tput sgr0)\002"
-        printf " (${bold}${yellow}${branch}${reset})"
+        # Escape colors with \001 \002 to not break terminal width/line wrapping
+        printf " (\001${_BOLD}${_YELLOW}\002${branch}\001${_RESET}\002)"
     fi
 }
 
-_prompt() {
-    # NOTE escape colors with \[ \] to not break terminal width/line wrapping
-    local green="\[$(tput setaf 2)\]"
-    local blue="\[$(tput setaf 4)\]"
-    local bold="\[$(tput bold)\]"
-    local reset="\[$(tput sgr0)\]"
-    # \u = user
-    # \h = host
-    # \w = absolute path to current directory
-    # \W = current directory
-    PS1="${bold}${green}\h${reset}:${bold}${blue}\w${reset}\$(_prompt_git_branch)\$ "
-}
-_prompt
+# \u = user
+# \h = host
+# \w = absolute path to current directory
+# \W = current directory
+# Escape colors with \[ \] to not break terminal width/line wrapping
+PS1="\[${_BOLD}${_GREEN}\]\h\[${_RESET}\]:\[${_BOLD}${_BLUE}\]\w\[${_RESET}\]\$(_prompt_git_branch)\$ "
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
