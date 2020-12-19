@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# https://upload.wikimedia.org/wikipedia/commons/1/15/Xterm_256color_chart.svg
+
 # Standard 8 colors
 BLACK=$(tput setaf 0)
 RED=$(tput setaf 1)
