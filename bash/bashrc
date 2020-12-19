@@ -230,18 +230,21 @@ shopt -s checkwinsize
 _prompt_git_branch() {
     local branch="$(git branch --show-current 2> /dev/null)"
     if [ -n "$branch" ]; then
-        local yellow="$(tput setaf 3)"
-        local bold="$(tput bold)"
-        local reset="$(tput sgr0)"
-        echo " (${bold}${yellow}${branch}${reset})"
+        # NOTE escape colors with \001 \002 and printf to not break
+        # terminal width/line wrapping
+        local yellow="\001$(tput setaf 3)\002"
+        local bold="\001$(tput bold)\002"
+        local reset="\001$(tput sgr0)\002"
+        printf " (${bold}${yellow}${branch}${reset})"
     fi
 }
 
 _prompt() {
-    local green="$(tput setaf 2)"
-    local blue="$(tput setaf 4)"
-    local bold="$(tput bold)"
-    local reset="$(tput sgr0)"
+    # NOTE escape colors with \[ \] to not break terminal width/line wrapping
+    local green="\[$(tput setaf 2)\]"
+    local blue="\[$(tput setaf 4)\]"
+    local bold="\[$(tput bold)\]"
+    local reset="\[$(tput sgr0)\]"
     # \u = user
     # \h = host
     # \w = absolute path to current directory
