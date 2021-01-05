@@ -80,22 +80,6 @@ function t() {
     vim +"/^\n" +nohlsearch +startinsert "$HOME"/TODO.md
 }
 
-# Prints version of <repo> from ./pom.xml
-pomd() {
-    grep "$1" -A1 pom.xml | tail -1 | sed 's/.*<version>//' | sed 's/<\/version>//'
-}
-
-# Prints artifact version from [.|<repo>]/pom.xml
-pomv() {
-    if [ -z "$1" ]; then
-        repo=.
-    else
-        repo="$DEV_ROOT/$1"
-    fi
-    xpath "$repo/pom.xml" "project/version/text()" 2>/dev/null
-    echo
-}
-
 cheat() {
     where="$1"; shift
     IFS=+ curl "https://cheat.sh/$where $*"
@@ -119,9 +103,6 @@ _repo_completion() {
 }
 
 complete -F _repo_completion pl
-complete -F _repo_completion pomd
-complete -F _repo_completion pomv
-complete -F _repo_completion dep
 
 _get_pre_commit_hooks() {
     find $DOTFILES/git/hooks/pre-commit -type f -exec basename {} \;
