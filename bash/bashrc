@@ -201,12 +201,28 @@ _BLUE=$(tput setaf 4)
 _BOLD=$(tput bold)
 _RESET=$(tput sgr0)
 
-_prompt_git_branch() {
+_ps1_git() {
+    # Show branch name
     local branch="$(git branch --show-current 2> /dev/null)"
-    if [ -n "$branch" ]; then
-        # Escape colors with \001 \002 to not break terminal width/line wrapping
-        printf " (\001${_BOLD}${_YELLOW}\002${branch}\001${_RESET}\002)"
-    fi
+    test -z "$branch" && return
+
+    # Show symbols *+- for modified,added,deleted files
+    local mod=
+    local add=
+    local del=
+    for i in $(git status --short); do
+        case $i in
+            M) mod='*' ;;
+            A) add='+' ;;
+            D) del='-' ;;
+            *) ;;
+        esac
+    done
+    local status=${mod}${add}${del}
+    test -n "$status" && status=" $status"
+
+    # Escape colors with \001 \002 to not break terminal width/line wrapping
+    printf " (\001${_BOLD}${_YELLOW}\002${branch}\001${_RESET}\002${status})"
 }
 
 # \u = user
@@ -214,7 +230,7 @@ _prompt_git_branch() {
 # \w = absolute path to current directory
 # \W = current directory
 # Escape colors with \[ \] to not break terminal width/line wrapping
-PS1="\[${_BOLD}${_GREEN}\]\h\[${_RESET}\]:\[${_BOLD}${_BLUE}\]\w\[${_RESET}\]\$(_prompt_git_branch)\$ "
+PS1="\[${_BOLD}${_GREEN}\]\h\[${_RESET}\]:\[${_BOLD}${_BLUE}\]\w\[${_RESET}\]\$(_ps1_git)\$ "
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
