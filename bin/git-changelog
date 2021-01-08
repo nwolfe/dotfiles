@@ -20,9 +20,9 @@
 #
 # More body
 
-# Determine branch to compare against; default to master
+# Determine branch to compare against; default to main
 upstream=$(git rev-parse --abbrev-ref '@{upstream}' 2> /dev/null)
-[ -z "$upstream" ] && upstream=master
+[ -z "$upstream" ] && upstream=main
 
 format="%s%n%+b%n----"
 
