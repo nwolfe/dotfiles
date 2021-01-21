@@ -60,7 +60,6 @@ alias la='ls -A'
 # Git
 alias ga='git add'
 alias gb='git branch'
-alias gc='git commit'
 alias gcm='git checkout main'
 alias gco='git checkout'
 alias gd='git diff'
@@ -75,9 +74,22 @@ alias v=vim
 
 # NOTE the "function" is necessary for single-letter function names
 function t() {
-    timestamp=$(date "+%A, %B %e, %Y - %l:%M%p")
+    local timestamp=$(date "+%A, %B %e, %Y - %l:%M%p")
     sed -i '' "1s/.*/# $timestamp/" "$HOME"/TODO.md
     vim +"/^\n" +nohlsearch +startinsert "$HOME"/TODO.md
+}
+
+# Pre-load commit message with ticket number from branch name
+gc() {
+    # Act like normal git commit if there are any arguments
+    if [ "$#" -gt 0 ]; then
+        git commit $@
+    else
+        # Turn "jira1234/my-feature" into "JIRA-1234"
+        local jira=$(git branch --show-current | cut -f 1 -d / | tr a-z A-Z | sed 's/[0-9]/-&/')
+        [ "$jira" = "MAINT" ] && jira="maint"
+        git commit --edit --message "($jira)"
+    fi
 }
 
 cheat() {
