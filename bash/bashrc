@@ -97,79 +97,6 @@ cheat() {
     IFS=+ curl "https://cheat.sh/$where $*"
 }
 
-_get_repos() {
-    for repo in $(ls -d $DEV_ROOT/*/); do
-        if [ -d $repo/.git ]; then
-            basename $repo
-        fi
-    done
-}
-
-_repo_completion() {
-    if [ "${#COMP_WORDS[@]}" != "2" ]; then
-        return
-    fi
-
-    options=$(_get_repos)
-    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
-}
-
-complete -F _repo_completion pl
-
-_get_pre_commit_hooks() {
-    find $DOTFILES/git/hooks/pre-commit -type f -exec basename {} \;
-}
-
-_pre_commit_hook_completion() {
-    if [ "${#COMP_WORDS[@]}" != "2" ]; then
-        return
-    fi
-
-    options=$(_get_pre_commit_hooks)
-    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
-}
-
-complete -F _pre_commit_hook_completion install-pre-commit-hook
-
-_get_dr_subcommands() {
-    # Find subcommands from source files.
-    # Skip the root.go file because it's not actually a subcommand.
-    find "$DOTFILES"/golang/nwolfe/dr/cmd -type f ! -name "root.go" -exec basename {} .go \;
-}
-
-_dr_completion() {
-    # Prevents [tab][tab]... from repeatedly adding the completion
-    if [ "${#COMP_WORDS[@]}" != "2" ]; then
-        return
-    fi
-
-    options=$(_get_dr_subcommands)
-    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
-}
-
-complete -F _dr_completion dr
-
-complete -W "all brew" update
-
-_cht_complete()
-{
-    local cur prev opts
-    _get_comp_words_by_ref -n : cur
-
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="$(curl -s cheat.sh/:list)"
-
-    if [ ${COMP_CWORD} = 1 ]; then
-          COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
-          __ltrim_colon_completions "$cur"
-    fi
-    return 0
-}
-
-complete -F _cht_complete cheat
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -268,6 +195,87 @@ fi
 # Enable ENV variable tab completion
 # See: https://askubuntu.com/questions/70750/how-to-get-bash-to-stop-escaping-during-tab-completion
 shopt -s direxpand
+
+# Wire up standard completions for aliases
+__git_complete ga _git_add
+__git_complete gb _git_branch
+__git_complete gco _git_checkout
+__git_complete gd _git_diff
+__git_complete gl _git_log
+__git_complete gs _git_status
+
+_get_repos() {
+    for repo in $(ls -d $DEV_ROOT/*/); do
+        if [ -d $repo/.git ]; then
+            basename $repo
+        fi
+    done
+}
+
+_repo_completion() {
+    if [ "${#COMP_WORDS[@]}" != "2" ]; then
+        return
+    fi
+
+    options=$(_get_repos)
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
+}
+
+complete -F _repo_completion pl
+
+_get_pre_commit_hooks() {
+    find $DOTFILES/git/hooks/pre-commit -type f -exec basename {} \;
+}
+
+_pre_commit_hook_completion() {
+    if [ "${#COMP_WORDS[@]}" != "2" ]; then
+        return
+    fi
+
+    options=$(_get_pre_commit_hooks)
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
+}
+
+complete -F _pre_commit_hook_completion install-pre-commit-hook
+
+_get_dr_subcommands() {
+    # Find subcommands from source files.
+    # Skip the root.go file because it's not actually a subcommand.
+    find "$DOTFILES"/golang/nwolfe/dr/cmd -type f ! -name "root.go" -exec basename {} .go \;
+}
+
+_dr_completion() {
+    # Prevents [tab][tab]... from repeatedly adding the completion
+    if [ "${#COMP_WORDS[@]}" != "2" ]; then
+        return
+    fi
+
+    options=$(_get_dr_subcommands)
+    COMPREPLY=($(compgen -W "$options" "${COMP_WORDS[1]}"))
+}
+
+complete -F _dr_completion dr
+
+complete -W "all brew" update
+
+_cht_complete()
+{
+    local cur prev opts
+    _get_comp_words_by_ref -n : cur
+
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="$(curl -s cheat.sh/:list)"
+
+    if [ ${COMP_CWORD} = 1 ]; then
+          COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+          __ltrim_colon_completions "$cur"
+    fi
+    return 0
+}
+
+complete -F _cht_complete cheat
 
 # Notify me ASAP if my SSH agent has no keys
 if ! ssh-add -l > /dev/null; then
