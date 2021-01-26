@@ -33,6 +33,7 @@ brew install --cask firefox
 brew install --cask rectangle
 brew install --cask aerial
 brew install --cask caffeine
+brew install --cask docker
 
 # Upgrade any other installed formulae.
 # Do this last so it's easier to notice if anything is
