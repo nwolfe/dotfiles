@@ -137,7 +137,7 @@ _ps1_git() {
     local mod=
     local add=
     local del=
-    for i in $(git status --short); do
+    for i in $(git status --short 2> /dev/null); do
         case $i in
             M) mod='*' ;;
             A) add='+' ;;
