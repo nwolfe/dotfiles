@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for i in $(brew list --formula); do
+  if [ -z "$(brew uses --installed $i)" ]; then
+    echo $i
+  fi
+done
