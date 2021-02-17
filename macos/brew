@@ -21,7 +21,6 @@ brew install vim
 brew install git
 brew install ripgrep
 brew install shellcheck
-brew install tree
 brew install jq
 brew install bat
 brew install fzf
