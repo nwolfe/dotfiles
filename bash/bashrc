@@ -185,9 +185,18 @@ fi
 shopt -s direxpand
 
 # Wire up standard completions for aliases
-__git_complete ga _git_add
-__git_complete gb _git_branch
-__git_complete gco _git_checkout
+BUGFIX_git_add() {
+    __git_cmd_idx=1 _git_add
+}
+BUGFIX_git_branch() {
+    __git_cmd_idx=1 _git_branch
+}
+BUGFIX_git_checkout() {
+    __git_cmd_idx=1 _git_checkout
+}
+__git_complete ga BUGFIX_git_add
+__git_complete gb BUGFIX_git_branch
+__git_complete gco BUGFIX_git_checkout
 __git_complete gd _git_diff
 __git_complete gl _git_log
 __git_complete gs _git_status
