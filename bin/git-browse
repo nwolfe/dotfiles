@@ -12,4 +12,7 @@ else
     repo="$DEV_ROOT/$1"
 fi
 
-open "$(git_web_url "$repo")"
+branch=$(git -C "$repo" branch --show-current)
+url="$(git_web_url "$repo")/tree/${branch}"
+
+open "$url"
