@@ -57,8 +57,10 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 # Spotlight: Apply search result changes
 #sudo mdutil -E / > /dev/null
 
-# Set hostname (related: ComputerName, LocalHostName)
+# Set hostname and machine name
 sudo scutil --set HostName natebook-pro
+sudo scutil --set ComputerName natebook-pro
+sudo scutil --set LocalHostName natebook-pro
 
 # Trackpad: Enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
