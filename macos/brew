@@ -25,6 +25,7 @@ brew install jq
 brew install bat
 brew install fzf
 brew install htop
+brew install gpg-suite
 
 # Casks (GUIs)
 brew install --cask iterm2
