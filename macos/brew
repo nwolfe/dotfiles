@@ -39,7 +39,7 @@ brew install --cask aerial
 # Do this last so it's easier to notice if anything is
 # upgraded and should be explicitly installed above
 brew upgrade
-brew upgrade --cask
+brew upgrade --cask --greedy
 
 # Remove outdated versions from the cellar
 brew cleanup
