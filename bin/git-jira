@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# Opens the Puppet JIRA ticket in the branch name in your browser.
+
+# Extract "JIRA-1234" from branch named "JIRA-1234/my-feature"
+jira=$(git branch --show-current | cut -f 1 -d /)
+
+open "https://tickets.puppetlabs.com/browse/$jira"
