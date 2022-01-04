@@ -3,7 +3,7 @@
 # Auto-include ticket number "(JIRA-1234)" in commit message.
 #
 # The ticket number is extracted from the current branch name,
-# assuming the name is in the format of "jira1234/my-feature".
+# assuming the name is in the format of "JIRA-1234/my-feature".
 #
 # But if it's a "maint/" branch then keep it lowercased.
 
@@ -13,8 +13,8 @@ SHA1=$3
 
 if [ -z "$COMMIT_SOURCE" ]; then
   content="$(cat $COMMIT_MSG_FILE)"
-  # Turns "jira1234/my-feature" into "JIRA-1234"
-  jira=$(git rev-parse --abbrev-ref HEAD | cut -f 1 -d / | tr a-z A-Z | sed 's/[0-9]/-&/')
+  # Turns "JIRA-1234/my-feature" into "JIRA-1234"
+  jira=$(git rev-parse --abbrev-ref HEAD | cut -f 1 -d /)
   test "$jira" = "MAINT" && jira="maint"
   printf "($jira) \n" > "$COMMIT_MSG_FILE"
   echo "$content" >> "$COMMIT_MSG_FILE"
