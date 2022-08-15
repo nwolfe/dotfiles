@@ -10,7 +10,7 @@ export DOTFILES=$HOME/.dotfiles
 export EDITOR=vim
 export VISUAL=$EDITOR
 export DEV_ROOT=$HOME/ws/puppet/
-JAVA_HOME=$(/usr/libexec/java_home)
+JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export JAVA_HOME
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
