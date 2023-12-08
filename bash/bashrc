@@ -26,8 +26,10 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 
 export PATH=\
 $HOME/bin:\
+/usr/local/opt/curl/bin:\
 /usr/local/opt/node@16/bin:\
-/usr/local/opt/ruby@2.7/bin:\
+/usr/local/opt/ruby@3/bin:\
+/Users/nwolfe/ws/google-cloud-sdk/bin:\
 /usr/local/sbin:\
 $PATH
 
