@@ -14,6 +14,9 @@ JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export JAVA_HOME
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
+# Disable NodeJS Husky library that has git hooks
+export HUSKY=0
+
 # Disable shell-specific history files in ~/.bash_sessions/
 # in favor of a global shared history file
 export SHELL_SESSION_HISTORY=0
