@@ -1,0 +1,2 @@
+# Search important directories like .github/ by default
+--hidden
