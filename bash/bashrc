@@ -90,8 +90,9 @@ function t() {
 }
 
 cheat() {
-    where="$1"; shift
-    IFS=+ curl "https://cheat.sh/$where $*"
+    #where="$1"; shift
+    #IFS=+ curl "https://cheat.sh/$where $*"
+    curl https://cheat.sh/$1
 }
 
 # don't put duplicate lines or lines starting with space in the history.
