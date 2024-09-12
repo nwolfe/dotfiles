@@ -5,4 +5,4 @@
 # Extract "JIRA-1234" from branch named "JIRA-1234/my-feature"
 jira=$(git branch --show-current | cut -f 1 -d /)
 
-open "https://tickets.puppetlabs.com/browse/$jira"
+open "https://perforce.atlassian.net/browse/$jira"
