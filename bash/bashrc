@@ -14,6 +14,7 @@ JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export JAVA_HOME
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export RIPGREP_CONFIG_PATH=$DOTFILES/misc/ripgreprc
+export PGDATA=/usr/local/var/postgresql@14
 
 # Disable NodeJS Husky library that has git hooks
 export HUSKY=0

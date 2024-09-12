@@ -28,6 +28,7 @@ brew install htop
 brew install gpg-suite
 brew install obsidian
 brew install leiningen
+brew install postgresql@14
 
 # Casks (GUIs)
 brew install --cask iterm2
