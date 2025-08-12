@@ -27,11 +27,11 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 
 export PATH=\
 $HOME/bin:\
+/opt/homebrew/bin:\
 /usr/local/opt/curl/bin:\
 /usr/local/opt/node@18/bin:\
 /usr/local/opt/ruby@3/bin:\
 /Users/nwolfe/ws/google-cloud-sdk/bin:\
-/usr/local/sbin:\
 $PATH
 
 alias path='echo -e ${PATH//:/\\n}'
