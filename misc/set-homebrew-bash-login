@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Sets Homebrew Bash as login shell.
+#
+# NOTE that iTerm may need to be configured
+# to use 'Login Shell' in order for this to
+# be picked up.
+
+bash=$(brew --prefix)/bin/bash
+
+if ! grep -Fq $bash /etc/shells; then
+    echo $bash | sudo tee -a /etc/shells
+    chsh -s $bash
+fi
+
+cat /etc/shells

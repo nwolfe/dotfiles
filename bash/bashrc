@@ -187,11 +187,15 @@ fi
 # Enable Bash 4 (via Homebrew) completion
 if [ -f /usr/local/share/bash-completion/bash_completion ]; then
     . /usr/local/share/bash-completion/bash_completion
+elif [ -f /opt/homebrew/share/bash-completion/bash_completion ]; then
+    . /opt/homebrew/share/bash-completion/bash_completion
 fi
 
 # Enable bash-completion2
 if [ -r /usr/local/etc/profile.d/bash_completion.sh ]; then
     . /usr/local/etc/profile.d/bash_completion.sh
+elif [ -r /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+    . /opt/homebrew/etc/profile.d/bash_completion.sh
 fi
 
 # Enable ENV variable tab completion
