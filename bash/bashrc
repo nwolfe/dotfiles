@@ -30,7 +30,7 @@ $HOME/bin:\
 /opt/homebrew/bin:\
 /usr/local/opt/node@18/bin:\
 /usr/local/opt/ruby@3/bin:\
-/Users/nwolfe/ws/google-cloud-sdk/bin:\
+$HOME/ws/google-cloud-sdk/bin:\
 $PATH
 
 alias path='echo -e ${PATH//:/\\n}'
