@@ -28,8 +28,8 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export PATH=\
 $HOME/bin:\
 /opt/homebrew/bin:\
-/usr/local/opt/node@18/bin:\
-/usr/local/opt/ruby@3/bin:\
+/opt/homebrew/opt/node@18/bin:\
+/opt/homebrew/opt/ruby@3/bin:\
 $HOME/ws/google-cloud-sdk/bin:\
 $PATH
 
