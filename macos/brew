@@ -25,8 +25,8 @@ brew install obsidian
 
 # Casks (GUIs)
 brew install --cask iterm2
-brew install --cask firefox
 brew install --cask rectangle
+# brew install --cask firefox
 # brew install --cask aerial
 # brew install --cask caffeine
 # brew install --cask docker
